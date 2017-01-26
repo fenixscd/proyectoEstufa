@@ -36,13 +36,14 @@ Se pretende que la conexión entre los diferentes clientes y el servidor sea TCP
 
 El dispositivo tendra tanto como enviar datos, como interpretar los datos recividos.
 
-Los datos recividos tendran la siguiente extructura:
-Codigo de operación: Incica la accion que tiene que realizar el dispositivo.
-1. Cambio de temperatura.
-2. Encendido del resistencia 1.
-3. Encendido del resistencia 2.
-4. Apagado del resistencia 1.
-5. Apagado del resistencia 2.
+Los datos recividos tendran la siguiente extructura separados por giones.
+**Codigo-2Parametro**
+
+|  Codgo | 2 Parametro | Descripción |
+|--------:|:--------|--------|
+|        1|Temperatura        		| Cambia la temperatura maxima |
+|        2|Numero de resistencia	| Enciende la resistencia indicada |
+|        3|Numero de resistencia    | Apaga la resistencia indicada |
 
 Despues de la recepción de la recepción de cada operación se enviara un mensaje de confirmacion.
 El envio de una accion, no garantiza la ejecución de la misma, el dispositivo evaluara en cada situación si dicha acción es necesaria o no.

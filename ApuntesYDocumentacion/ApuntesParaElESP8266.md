@@ -13,6 +13,7 @@ Tipo de conexión TCP/IP, que voy a utilizar para comunicarme con el servidor.
 
 [Ejemplo de tres reles con display](http://androidcontrol.blogspot.com.es/2016/05/esp8266-wifi-control-relay.html)
 [Ejemplo de dos reles con display](http://androidcontrol.blogspot.com.es/2016/05/esp8266-iot-thingspeak-control-relay.html)
+[Ejemplo avisador de correo GMail con display](http://www.areresearch.net/2016/07/gmail-notifier-with-esp8266-nodemcu.html)
 
 ##Sensor de temperatura
 ###Proyectos y ejemplos similares
@@ -20,4 +21,3 @@ Tipo de conexión TCP/IP, que voy a utilizar para comunicarme con el servidor.
 
 
 *[ESP]: Microcontrolador ESP8266
-*[ESP]: Microcontrolador ESP826
