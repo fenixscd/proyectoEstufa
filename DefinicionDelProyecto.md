@@ -28,20 +28,11 @@ En la parte el desarroyo para el cliente web se utilizara HTML, CSS y JavaScript
 
 ###Conexiones
 
-Se pretende que la conexión entre los diferentes clientes sea TCP/IP, esto permite una actualización de los datos, sin tener que hacer llamadas continuas entre clientes y servidores.
+Se pretende que la conexión entre los diferentes clientes y el servidor sea TCP/IP, esto permite una actualización de los datos, sin tener que hacer llamadas continuas entre clientes y servidor.
 
 
 
 ##Información que tengo que buscar
 
 - socket (TCP/IP) en php
-
-##Apuntes
-###Sockets
-[Pagina oficial](http://php.net/manual/es/book.sockets.php)
-[Ejemplo de concxión](http://www.cristalab.com/tutoriales/crear-un-socket-server-con-php-c97147l/)
-[Curso que esplica los sockets](https://www.redeszone.net/curso-php-online-recopilacion-de-articulos/)
-
-###Arduino
-Ejemplo de conexión con interruptores.
-<http://androidcontrol.blogspot.com.es/2016/05/esp8266-wifi-control-relay.html>
+- socket en ESP8266
