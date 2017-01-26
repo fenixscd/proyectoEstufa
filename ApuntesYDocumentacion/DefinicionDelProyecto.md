@@ -30,6 +30,35 @@ En la parte el desarroyo para el cliente web se utilizara HTML, CSS y JavaScript
 
 Se pretende que la conexión entre los diferentes clientes y el servidor sea TCP/IP, esto permite una actualización de los datos, sin tener que hacer llamadas continuas entre clientes y servidor.
 
+##Logica en el ESP8266
+
+** ESTOY PENSANDO ENVIAR TODA LA LOGICA AL SERVIDOR **
+
+El dispositivo tendra tanto como enviar datos, como interpretar los datos recividos.
+
+Los datos recividos tendran la siguiente extructura:
+Codigo de operación: Incica la accion que tiene que realizar el dispositivo.
+1. Cambio de temperatura.
+2. Encendido del resistencia 1.
+3. Encendido del resistencia 2.
+4. Apagado del resistencia 1.
+5. Apagado del resistencia 2.
+
+Despues de la recepción de la recepción de cada operación se enviara un mensaje de confirmacion.
+El envio de una accion, no garantiza la ejecución de la misma, el dispositivo evaluara en cada situación si dicha acción es necesaria o no.
+
+Ejemplo:
+Se indica el encendido de la resistencia 1, pero la temperatura ambiente es superior a la inicacada, la resistencia no se encendera.
+
+Las decisiones tomadas por el dipositivo seran enviadas al servidor.
+
+El dispositivo tendara una temperatura maxima de funcionamiento que sera de unos 40ºC, el control de temperatuara que el usuario a solicitado se guardara en el dispositivo.
+
+El dispositivo enviara información del estado y la temperatura cada 60s. Esto no quiere decir que se gurde la información de cada envio.
+
+Al encenderse el dispositivo intentara conectarse al servidor que estara preconfigurado, realizara 3 intentos si no lo consigue desitira hasta pasar 30 minutos, que lo volvera a intentar 3 veces.
+
+Despues de realizada la conexión, el dispositivo solicitara en que estao se tiene que estar (encendido o apagado), en el caso de encendido, que rangos de temperatura tiene que mantener.
 
 
 ##Información que tengo que buscar

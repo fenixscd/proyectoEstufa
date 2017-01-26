@@ -5,7 +5,19 @@ Cosas que voy a ir necesitanto a medida que avance el proyecto, seguramente haya
 ##Pendiente
 - Investigar las sondasd de temperatura.
 
-##Proyectos y ejemplos similares
-###Sockets
+
+##Sockets
+Tipo de conexión TCP/IP, que voy a utilizar para comunicarme con el servidor.
+
+###Proyectos y ejemplos similares
+
 [Ejemplo de tres reles con display](http://androidcontrol.blogspot.com.es/2016/05/esp8266-wifi-control-relay.html)
 [Ejemplo de dos reles con display](http://androidcontrol.blogspot.com.es/2016/05/esp8266-iot-thingspeak-control-relay.html)
+
+##Sensor de temperatura
+###Proyectos y ejemplos similares
+[Cideo de esplicación](https://www.youtube.com/watch?v=5VkOC7NxRlE&t=610s)
+
+
+*[ESP]: Microcontrolador ESP8266
+*[ESP]: Microcontrolador ESP826
