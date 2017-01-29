@@ -1,0 +1,32 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+#Ruta del directorio actula
+dir = File.dirname(File.expand_path(__FILE__))
+VAGRANTFILE_API_VERSION = "2"
+
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+  config.vm.box = "ubuntu/trusty64"
+  config.vm.hostname = "ServidorEstufa"
+
+  # Host-only network configuration
+  config.vm.network :private_network, ip: "192.168.56.21"
+  config.vm.synced_folder "../../codigo" , "/var/www", :mount_options => ["dmode=777", "fmode=777"]
+  #config.vm.synced_folder "../codigo" , "/home/vagrant", :mount_options => ["dmode=777", "fmode=777"]
+
+
+  config.vm.provider :virtualbox do |vb|
+    #Abre una ventana con la maquina
+    vb.gui = false
+
+    # configuracion de la maquina virtual
+    vb.customize ["modifyvm", :id, "--memory", "512"]
+    vb.customize ["modifyvm", :id, "--name"  , "ServidorEstufa"]
+    vb.customize ["modifyvm", :id, "--cpus"  , 1]
+    #vb.customize ["modifyvm", :id, "--chipset", "ich9"]
+  end
+
+  # Instaladores
+  config.vm.provision "shell", path: "scripts/vagrant-bootstrap.sh"
+end
