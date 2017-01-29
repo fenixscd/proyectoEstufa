@@ -6,8 +6,7 @@ Cosas que voy a ir necesitanto a medida que avance el proyecto, todas o casi tod
 
 Montar el servidor con Apache, php y mySQL, antes que nada verificamos si php esta preparado para recivir este tipo de conexiones, para eso creamos un archivo index.php con el metodo, info(), y buscamos la linea donde nos indica si el tipo de conexión sockete esta avilitada.
 
-![Texto alternativo](/ruta/a/la/imagen.jpg "Título alternativo")
-
+![Captura de la configuración de php](./img/phpSocket.PNG "")
 
 ##Pendiente
 
