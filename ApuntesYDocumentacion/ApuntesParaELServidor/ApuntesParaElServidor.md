@@ -4,9 +4,14 @@ Cosas que voy a ir necesitanto a medida que avance el proyecto, todas o casi tod
 
 ##Pasos que voy ha tener que ir dando
 
-Montar el servidor con Apache, php y mySQL, antes que nada verificamos si php esta preparado para recivir este tipo de conexiones, para eso creamos un archivo index.php con el metodo, info(), y buscamos la linea donde nos indica si el tipo de conexión sockete esta avilitada.
+Montar el servidor con Apache, php y mySQL, antes que nada verificamos si php esta preparado para recivir conexiones a traves de un socket, para eso creamos un archivo index.php con el metodo, info(), y buscamos la linea donde nos indica si el tipo de conexión esta avilitada.
 
 ![Captura de la configuración de php](./img/phpSocket.PNG "")
+
+Hacemos un archivo de para intentar realizar una conecxión.
+
+Para heso creo un script de php que sera un daemon que correra en segundo plano y se encargara de ir haceptando todas las peticiones que tengamos.
+
 
 ##Pendiente
 
