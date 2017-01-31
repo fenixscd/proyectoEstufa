@@ -76,7 +76,7 @@ fi
 VHOST=$(cat <<EOF
 <VirtualHost *:80>
         ServerAdmin     fenixscd@gmail.com
-        ServerName      192.168.56.21
+        ServerName      127.0.0.1
         ServerAlias     www.proyectoestufa.es
         DocumentRoot "/var/www/web/public"
         <Directory "/var/www/web/public">

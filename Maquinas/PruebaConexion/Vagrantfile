@@ -8,12 +8,13 @@ VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box = "ubuntu/trusty64"
-  config.vm.hostname = "ServidorEstufa"
+  config.vm.hostname = "ServidorPruebaConexion"
 
   # Host-only network configuration
-  config.vm.network :public_network,:bridge=>"eth0"
   # config.vm.network :public_network
-  config.vm.synced_folder "../../codigo" , "/var/www", :mount_options => ["dmode=777", "fmode=777"]
+  # config.vm.network :private_network, ip: "192.168.56.20"
+  config.vm.network :public_network,:bridge=>"eth0"
+  # config.vm.synced_folder "../../codigo" , "/var/www", :mount_options => ["dmode=777", "fmode=777"]
   #config.vm.synced_folder "../codigo" , "/home/vagrant", :mount_options => ["dmode=777", "fmode=777"]
 
 
@@ -23,13 +24,13 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
     # configuracion de la maquina virtual
     vb.customize ["modifyvm", :id, "--memory", "512"]
-    vb.customize ["modifyvm", :id, "--name"  , "ServidorEstufa"]
+    vb.customize ["modifyvm", :id, "--name"  , "ServidorPruebaConexion"]
     vb.customize ["modifyvm", :id, "--cpus"  , 1]
     #vb.customize ["modifyvm", :id, "--chipset", "ich9"]
   end
 
   # Instaladores
-  config.vm.provision "shell", path: "scripts/vagrant-bootstrap.sh"
+  # config.vm.provision "shell", path: "scripts/vagrant-bootstrap.sh"
 end
 
 # Pequeño manual http://www.conasa.es/blog/vagrant-configuracion-basica-de-la-maquina-virtual/
