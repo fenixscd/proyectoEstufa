@@ -11,7 +11,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.hostname = "ServidorEstufa"
 
   # Host-only network configuration
-  config.vm.network :private_network, ip: "192.168.56.21"
+  config.vm.network :public_network
   config.vm.synced_folder "../../codigo" , "/var/www", :mount_options => ["dmode=777", "fmode=777"]
   #config.vm.synced_folder "../codigo" , "/home/vagrant", :mount_options => ["dmode=777", "fmode=777"]
 
@@ -30,3 +30,5 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # Instaladores
   config.vm.provision "shell", path: "scripts/vagrant-bootstrap.sh"
 end
+
+# Pequeño manual http://www.conasa.es/blog/vagrant-configuracion-basica-de-la-maquina-virtual/

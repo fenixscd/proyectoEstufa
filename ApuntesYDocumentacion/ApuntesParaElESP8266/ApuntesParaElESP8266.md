@@ -10,7 +10,7 @@ Lista de los diferentes componentes que van a ir conectados al ESP:
 
 
 ## Pendiente
--   2 Relés de 10A a 220V.
+-   2 Relés de 10A a 220V con [opto acopladores](opto acopladores)
 -   1 Sensor de temperatura y humdedad DHT-11.
 -   Que es un Websocket
 
@@ -29,6 +29,17 @@ Tipo de conexión TCP/IP, que voy a utilizar para comunicarme con el servidor.
 *	[Vídeo de explicación](https://www.youtube.com/watch?v=5VkOC7NxRlE&t=610s)
 *	[Lista de tutorial bastante interesante (Python)](https://www.youtube.com/watch?v=zmaKHIRy4J0&list=PL1Hs_F1k2mdStrLUIj8ZdSiD9eadMqTYe)
 *	[Proyecto estación meteorológica muy bueno](https://learn.adafruit.com/wifi-weather-station-with-tft-display/)
+
+## Reles
+
+Que tenga opto acoplador para que haya una mayor separación entre la electronica y  el rele para evitar rebotes.
+
+Por el pin Vim tenemos salida de 5V
+
+### Proyectos y ejemplos similares
+
+[Ejemplo de conexión del rele](https://www.youtube.com/watch?v=D_rYB9KWuAM)
+
 
 ***
 ^1 ESP: Micro controlador ESP8266

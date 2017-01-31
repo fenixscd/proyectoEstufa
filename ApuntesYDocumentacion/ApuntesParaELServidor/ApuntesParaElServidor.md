@@ -24,6 +24,7 @@ Es el tipo de conexión que voy a utilizar para recivir las diferentes peticione
 ###Proyectos y ejemplos similares
 
 [Pagina oficial](http://php.net/manual/es/book.sockets.php)
+[Pagina de mozilla](https://developer.mozilla.org/es/docs/WebSockets-840092-dup/Escribiendo_servidores_con_WebSocket)
 [Ejemplo de concxión](http://www.cristalab.com/tutoriales/crear-un-socket-server-con-php-c97147l/)
 [Curso que esplica los sockets](https://www.redeszone.net/curso-php-online-recopilacion-de-articulos/)
 
@@ -43,4 +44,12 @@ La idea era montar dos servidores, uno que se encargse puramente de la logica y 
 Por lo tanto se montara un unico servidor para todo, lo unico que igual si lo ago para el desarroyo del proyecto, una separación tan clara me puede ayudar a depurar responsabilidades.
 
 ###Proyectos y ejemplos similares
+
+##Configuración Vagrant
+Vagrant es el asistente para montar maquinas virtules que voy ha utlizar.
+
+###Proyectos y ejemplos similares
+
+[Pequeño manual de configuración de vagrant](http://www.conasa.es/blog/vagrant-configuracion-basica-de-la-maquina-virtual/)
+[Otro manual mas](https://www.adictosaltrabajo.com/tutoriales/vagrant-install/#5.%20Como%20instalo%20software%20de%20forma%20que%20lo%20vean%20mis%20compa%C3%B1eros?)
 
