@@ -1,5 +1,5 @@
 <?php
-$servidor = stream_socket_server("tcp://192.168.56.21:1339", $errno, $errorMessage);
+$servidor = stream_socket_server("tcp://192.168.4.142:1339", $errno, $errorMessage);
 if ($servidor === false) {
   throw new UnexpectedValueException("No se ha podido enlazar el socket: $errorMessage");
 }

@@ -4,6 +4,21 @@ Cosas que voy a ir necesitanto a medida que avance el proyecto, todas o casi tod
 
 ##Pasos que voy ha tener que ir dando
 
+Una maner de saver que dispositovos estan conectados a unuestra en red en linux, es utilizar la aplicación nmap, esta aplicación escanea el rengo de ip que le especifiquemos y nos devuelve información del dispositivo y su IP.
+
+~~~~
+  sudo nmap -sP 192.168.43.1-254
+~~~~
+
+Hay ha vido que configurar la maquina virtual forme parte de la misma red que el resto de dispositivos, para heso emos hecho una confiracion adaptador puente.
+
+~~~~
+  config.vm.network :public_network,:bridge=>"eth0"
+~~~~
+En estas linea le indicamos que haga una conexión publica y que cre un puente con la targeta de red eth0. De todas maneras con esta cofiguración, aun estando en el mismo rango de IP y poder hacer ping contra la maquina virtual desde cualquier parte de la red, no puede hacer ping desde la maquina virtual a la maquina anfritrion aun estando conectado a la red.
+
+Otro problema que nos podemos encontrar, es que al conectarnos a otra red, esta red trabaje con otro rango de IPs o la IP que tengamos en la maquina virtual ya este asignada, en ese caso podemos utilizar el comando   <code>sudo /etc/init.d/networking</code>   restart para que reinicie la targeta de red y que el ruter le reasigne una direccion IP, no voy a tener este problema a la hora de presentar el proyecto al llevare mi propio ruter configurado con una IP fija, de todas maneras si tengo suficiente timpo intentare suvir el proyecto a un servidor, con una IP fija.
+
 Montar el servidor con Apache, php y mySQL, antes que nada verificamos si php esta preparado para recivir conexiones a traves de un socket, para eso creamos un archivo index.php con el metodo, info(), y buscamos la linea donde nos indica si el tipo de conexión esta avilitada.
 
 ![Captura de la configuración de php](./img/phpSocket.PNG "")
@@ -52,4 +67,3 @@ Vagrant es el asistente para montar maquinas virtules que voy ha utlizar.
 
 [Pequeño manual de configuración de vagrant](http://www.conasa.es/blog/vagrant-configuracion-basica-de-la-maquina-virtual/)
 [Otro manual mas](https://www.adictosaltrabajo.com/tutoriales/vagrant-install/#5.%20Como%20instalo%20software%20de%20forma%20que%20lo%20vean%20mis%20compa%C3%B1eros?)
-
