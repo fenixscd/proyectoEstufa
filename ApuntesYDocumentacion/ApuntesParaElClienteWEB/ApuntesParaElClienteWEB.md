@@ -16,9 +16,10 @@ Este componente va ha tener 2 partes:
 Es el tipo de conexión que voy a utilizar para conectarme con el servidor.
 
 ####Proyectos y ejemplos similares
+[Video con explicacón](https://www.youtube.com/watch?v=4lkRacFJ9_I) no es muy bueno pero tampoco esta mal.
+[Video](https://www.youtube.com/watch?v=WDowDtfWiGQ) de como hacer un websocket parce bueno pero esta en ingles.
 
 
-
-*[HTML]:Hyper Text Markup Language
-*[JS]:JavaScript
-*[W3C]:World Wide Web Consortium
+HTML :Hyper Text Markup Language
+JS :JavaScript
+W3C :World Wide Web Consortium
