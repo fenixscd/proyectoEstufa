@@ -1,8 +1,8 @@
-#Apuntes para el servidor
+# Apuntes para el servidor
 
 Cosas que voy a ir necesitanto a medida que avance el proyecto, todas o casi todas ablaran sobre PHP, que es el lenguaje elegido para la programación del lado del servidor.
 
-##Pasos que voy ha tener que ir dando
+## Pasos que voy ha tener que ir dando
 
 Una maner de saver que dispositovos estan conectados a unuestra en red en linux, es utilizar la aplicación nmap, esta aplicación escanea el rengo de ip que le especifiquemos y nos devuelve información del dispositivo y su IP.
 
@@ -67,3 +67,34 @@ Vagrant es el asistente para montar maquinas virtules que voy ha utlizar.
 
 [Pequeño manual de configuración de vagrant](http://www.conasa.es/blog/vagrant-configuracion-basica-de-la-maquina-virtual/)
 [Otro manual mas](https://www.adictosaltrabajo.com/tutoriales/vagrant-install/#5.%20Como%20instalo%20software%20de%20forma%20que%20lo%20vean%20mis%20compa%C3%B1eros?)
+
+### Material suelto
+#### Problema de crear una red Vagrant
+[Enlace](http://serviciosgs.readthedocs.io/es/latest/introduccion/vagrant.html)
+~~~
+config.vm.network :public_network,:bridge=>"eth0"
+~~~
+
+[Fuente](https://www.enmimaquinafunciona.com/pregunta/9283/vagrant-ip-publica-no-es-accesible)
+~~~
+config.vm.network "public_network", ip: "192.168.56.101", :mac => "0022334455DA"
+config.vm.network :public_network, ip: '172.16.35.51', :netmask => '255.255.0.0', :bridge => 'eth0'
+~~~
+
+[Fuente](https://media.readthedocs.org/pdf/serviciosgs/latest/serviciosgs.pdf)
+~~~
+nodo2.vm.network :public_network,:bridge=>"eth0"
+nodo2.vm.network :private_network, ip: "10.1.1.102"
+config.vm.network :public_network, ip: '172.16.35.51', :netmask => '255.255.0.0', :bridge => 'eth0'
+~~~
+
+[Fuente](https://styde.net/compartir-virtualhost-en-red-local-lan-vagrant-homestead/)
+~~~
+config.vm.network :private_network, ip: settings["ip"] ||= "192.168.10.10"
+config.vm.network :public_network, :adapter=>3, ip: "192.168.1.200"
+~~~
+
+
+### Apuntes varios
+[Pagina muy buena que explica la configuarción de la tarjeta de red en VirtualBox](http://fpg.x10host.com/VirtualBox/modo_adaptador_puente.html)
+[Tutorial bastane bueno de Vagran](https://www.adictosaltrabajo.com/tutoriales/vagrant-install/)
