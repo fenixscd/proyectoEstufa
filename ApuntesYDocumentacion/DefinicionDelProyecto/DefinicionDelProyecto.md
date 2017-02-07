@@ -15,27 +15,30 @@ Para el proyecto dividiremos el material en dos grupos, uno que representa los c
 1. Microcontrolador ESP8266, encargado de dotar a la estufa de una conexión wifi y que pueda ser controlada de manera remota.
 2. Dos reles que se conectaran a las resistencias de la estufa.
 3. Un sensor de temperatura y humedad.
+4. Raspberry PI que hara de servidor local.
 4. Ruter para hacer las simulaciones en local.
 5. Un ordenador con 3 maquinas virtules que correran un servidor dada una.
 
-El servidor albergará toda la lógica de funcionamiento de la estufa y tomará decisiones cruzando los datos del estado de la estufa con las necesidades que se hayan programado para cada momento.
+El la Raspberry albergará toda la lógica de funcionamiento de la estufa y tomará decisiones cruzando los datos del estado de la estufa con las necesidades que se hayan programado para cada momento.
+
+La Raspberry hira se conectara al servidor web para hacer de puente entre los dispositivos y las conexiones externas de la red local.
 
 ###Lenguajes de programación
 
 Para el ESP8266 se va utilizar el entorno de desarroyo de Arduino, esta plataforma es una de las más extendidas y proporciona una gran cantidad de librerías.
 
-En la parte del servidor se utilizará el lenguaje de programación PHP, lenguaje altamente extendido para la programación de páginas web.
+La Raspberry PI y el servidor web se programarar con el mismo lenguaje PHP, para no tener que divesificar en otro lenguaje.
 
 En la parte del desarroyo para el cliente web se utilizara HTML, CSS y JavaScript, que son tambien los más extendidos en el mundo web.
 
 
-###Conexiones
+### Comunicaciones
 
-Se pretende que la conexión entre los diferentes clientes y el servidor sea TCP/IP, esto permite una actualización de los datos, sin tener que hacer llamadas continuas entre clientes y servidor.
+Se pretende que la comunicación los diferentes deispositovos ESP con la Rasberry PI el servidor sea TCP/IP, esto permite una actualización de los datos, sin tener que hacer llamadas continuas entre clientes y servidor.
 
 ##Logica en el ESP8266
 
-** ESTOY PENSANDO ENVIAR TODA LA LOGICA AL SERVIDOR **
+** ESTOY PENSANDO ENVIAR TODA LA LOGICA AL SERVIDOR**
 
 El dispositivo tendra tanto como enviar datos, como interpretar los datos recividos.
 
