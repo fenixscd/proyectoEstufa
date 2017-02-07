@@ -68,6 +68,11 @@ Al encenderse el dispositivo intentara conectarse al servidor que estara preconf
 Despues de realizada la conexión, el dispositivo solicitara en que estao se tiene que estar (encendido o apagado), en el caso de encendido, que rangos de temperatura tiene que mantener.
 
 
+## PHP
+
+http://php.net/manual/es/language.oop5.iterations.php
+
+
 ##Información que tengo que buscar
 
 - socket (TCP/IP) en php

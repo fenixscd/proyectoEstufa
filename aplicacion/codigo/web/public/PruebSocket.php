@@ -1,4 +1,7 @@
 <?php
+
+require_once('ConexionesLista.php');
+
 // dejamos en cero para que la conexion acepte la conexiones a ese y esta nunca se cierre
 set_time_limit(0);
 
@@ -23,8 +26,14 @@ echo socket_strerror(socket_last_error());
 // hacemos el que socket escuche peticiones
 socket_listen($socket);
 $i=0;
+
+$conexionesLista = new ConexionesLista();
+
 while(1){
-    // aceptamos la conexion que nos entre y la almacenamos en un array
+
+
+
+    // aceptamos la conexion que nos entre
     $cliente[++$i] = socket_accept($socket);
     // leemos la informacion que nos envian
     $input = socket_read($cliente[$i], 1024);

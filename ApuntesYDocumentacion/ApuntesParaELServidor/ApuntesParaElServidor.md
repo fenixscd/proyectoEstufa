@@ -28,6 +28,24 @@ Hacemos un archivo de para intentar realizar una conecxión.
 Para heso creo un script de php que sera un daemon que correra en segundo plano y se encargara de ir haceptando todas las peticiones que tengamos.
 
 
+## Instalando Composer Estructura de carpetas
+
+Para una merjor gestión de los archivos utilizar Composer, para eso vamos a la carpeta codigo y creamos el archivo de configuración.
+
+Tanto la Raspberry como el servidor WEB tendran la misma estructura de carpetas.
+
+-   socket
+-   WEB
+    -   public
+        -   js
+        -   css
+        -   img
+-   core
+    -   domain
+    -   aplication
+
+
+
 ##Pendiente
 
 
@@ -93,6 +111,11 @@ config.vm.network :public_network, ip: '172.16.35.51', :netmask => '255.255.0.0'
 config.vm.network :private_network, ip: settings["ip"] ||= "192.168.10.10"
 config.vm.network :public_network, :adapter=>3, ip: "192.168.1.200"
 ~~~
+
+## PHP
+
+[php IteratorAggregate](http://php.net/manual/es/language.oop5.iterations.php) la esplicación esta casi al final.
+`if(array_key_exists($ticker, $contenido))` `$contenido` es un array y `$ticker` es la clave del elemento que buscamos.
 
 
 ### Apuntes varios

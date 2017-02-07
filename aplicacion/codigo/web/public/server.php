@@ -7,11 +7,11 @@ $contador=0;
 // creamos el array que contiene la informacion que queremos buscar
 $contenido = array('banano' => 10, 'manzana' => 18, 'peras' => 50);
 // la ip del servidor en la cual se va a crear el socket
-$ip = '192.168.5.10';
+$ip = '192.168.1.3';
 // el puerto por el cual escuchara peticiones
 $puerto = '747';
-
-/* CREANDO EL SOCKET
+ 
+/* CREANDO EL SOCKET 
 AF_INET sirve para especifcar el protocolo en que se basara la conexion (AF_INET - AF_INET6 - AF_UNIX)
 SOCK_STREAM indica como se enviaran y recibiran los bytes en la conexion
 */
@@ -24,7 +24,7 @@ echo socket_strerror(socket_last_error());
 socket_listen($socket);
 $i=0;
 while(1){
-    // aceptamos la conexion que nos entre y la almacenamos en un array
+    // aceptamos la conexion que nos entre
     $cliente[++$i] = socket_accept($socket);
     // leemos la informacion que nos envian
     $input = socket_read($cliente[$i], 1024);
@@ -35,7 +35,7 @@ while(1){
     echo "mensaje: $contador";
     echo " --> ";
     echo "mensaje: $ticker"."\n";
-
+    
     if(array_key_exists($ticker, $contenido)){
         // ahora si buscamos la informacion que leimos en el socket
         // dentro del array de contenido
