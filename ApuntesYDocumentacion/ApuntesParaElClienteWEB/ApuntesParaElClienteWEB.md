@@ -19,7 +19,9 @@ Es el tipo de conexión que voy a utilizar para conectarme con el servidor.
 [Video con explicacón](https://www.youtube.com/watch?v=4lkRacFJ9_I) no es muy bueno pero tampoco esta mal.
 [Video](https://www.youtube.com/watch?v=WDowDtfWiGQ) de como hacer un websocket parce bueno pero esta en ingles.
 
-
+[Pagina de mozilla sobre websocket](https://developer.mozilla.org/es/docs/WebSockets-840092-dup/Writing_WebSocket_client_applications)
+[Tutorial completo sobre WebSockets](http://www.w3ii.com/es/websockets/websockets_quick_guide.html)
+[Pregunta de es.stackoverflow](http://es.stackoverflow.com/questions/27846/como-se-usan-los-websocket-en-un-archivo-de-html)
 HTML :Hyper Text Markup Language
 JS :JavaScript
 W3C :World Wide Web Consortium

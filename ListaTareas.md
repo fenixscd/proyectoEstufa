@@ -7,3 +7,18 @@
 | Poner a punto el ESP8266	| 1 DIA | |
 | Provar la conexioón a traves del ESP  | 1 DIA       |    |
 | Comprar el materila para la ESP | 1 DIA | |
+
+
+
+## Tareas
+
+### Pendiente
+
+- Investigar como conectar 2 base de datos para tener tablas sincronizadas.
+- 
+
+### Visto
+
+- Investigar la configuración de la Raspberry PI para que haga de servidor.
+- Investigación sobre aplicaciones de escritorio con HTML5.
+

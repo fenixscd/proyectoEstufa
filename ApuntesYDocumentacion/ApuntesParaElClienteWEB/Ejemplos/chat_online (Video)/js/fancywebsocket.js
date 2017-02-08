@@ -1,7 +1,7 @@
 var Server;
 
 $(document).ready(function(){
-	Server = new FancyWebSocket('ws://'+urlPort);
+	Server = new FancyWebSocket('ws://' + urlPort);
     Server.bind('open', function()
 	{
     });

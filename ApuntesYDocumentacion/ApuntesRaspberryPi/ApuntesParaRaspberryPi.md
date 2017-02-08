@@ -4,19 +4,21 @@ output:
   html_document: default
   word_document: default
 ---
-#Apuntes para la Raspberry Pi
+# Apuntes para la Raspberry Pi
 
 Los dispositivos se conectararn a las Raspberry PI y ella se conectara al servidor web.
+Eso lo conseguirmos teniendo 2 tarjetas wifi, una estara encargada de crear una red wifi para que los dispositivos se conecten a ella y la otra sera la encargada de conectarse a la red wifi.
 
 
 
-##Pendiente
+
+## Pendiente
 
 * Mirar de crear una aplicación de escritrio.
 * Convertir la en un Servidor WEB.
 * Mirar sei se puede montar mediante Vagrant
 
-## Crear una aplicaci�n de escritorio
+## Crear una aplicación de escritorio
 
 #### Proyectos y ejemplos similares
 
