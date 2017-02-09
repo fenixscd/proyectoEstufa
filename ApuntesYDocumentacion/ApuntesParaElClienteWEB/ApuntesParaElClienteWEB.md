@@ -24,6 +24,8 @@ Es el tipo de conexión que voy a utilizar para conectarme con el servidor.
 [Pregunta de es.stackoverflow](http://es.stackoverflow.com/questions/27846/como-se-usan-los-websocket-en-un-archivo-de-html)
 [Documentación oficial sockets php](http://php.net/manual/es/book.sockets.php)
 
+
+
 Ratchet
 [Pagina con un video brutal de implementación de un webSocket](https://codiumx.com/ratchet-websockets-para-php-laravel-u-otros-frameworks/)
 [Pagina de ejemplo con Rarchet](http://www.kabytes.com/programacion/websockets-para-php/)

@@ -67,6 +67,7 @@ En la parte del servidor se programa igula que un socket normal, de todas manera
 
 ###Proyectos y ejemplos similares
 
+[Esplicación muy buena sobre sockets](http://es.stackoverflow.com/questions/7170/cu%C3%A1l-es-la-diferencia-entre-socket-tcp-ip-websockets-y-request-http)
 [Ejemplo y esplicación muy buenas](http://developer.firefoxmania.uci.cu/2014/05/01/websockets-en-la-practica-2/)
 [Pequeño ejemplo](http://www.kabytes.com/programacion/websockets-para-php/)
 
