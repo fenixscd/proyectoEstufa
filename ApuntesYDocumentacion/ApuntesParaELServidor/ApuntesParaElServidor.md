@@ -48,6 +48,9 @@ Tanto la Raspberry como el servidor WEB tendran la misma estructura de carpetas.
 
 ##Pendiente
 
+## Apache
+[confiuracion apache](https://www.enmimaquinafunciona.com/pregunta/599/la-configuracion-de-apache2-para-proxy-websocket)
+[Tutorial](https://www.adictosaltrabajo.com/tutoriales/soporte-de-web-sockets-en-apache-web-server-httpd-sobre-un-contenedor-docker/)
 
 
 ##Sockets
