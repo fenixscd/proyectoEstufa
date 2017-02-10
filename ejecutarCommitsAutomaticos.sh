@@ -36,9 +36,9 @@ do
   HORA=`date +"%H:%M"`
 	clear
   echo "Hoy es el $DIA y la hora actual es $HORA!"
-  sleep  10
+  sleep  20
   git add .
   git commit -m "Commit automatico $DIA -- $HORA"
 	echo ''
-	barraDeProgreso 10
+	barraDeProgreso 1200
 done
