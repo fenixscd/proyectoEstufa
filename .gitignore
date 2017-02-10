@@ -16,6 +16,7 @@ composer.phar
 composer.lock
 */vendor/
 .vagrant
+*/*/vendor/
 
 # -- PHPUnit ------------------------------------------
 app/phpunit.xml
