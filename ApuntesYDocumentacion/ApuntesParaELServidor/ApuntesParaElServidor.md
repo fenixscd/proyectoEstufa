@@ -68,6 +68,8 @@ Es el tipo de conexión que voy a utilizar para recivir las diferentes peticione
 
 En la parte del servidor se programa igula que un socket normal, de todas maneras se le puede hechar un vistazo a la libreria [Ratchet](http://socketo.me/), que promete el manejo de las conexiones de este tipo.
 
+[Libreria de Websockets Ratchet](https://github.com/morrissinger/ESP8266-Websocket/blob/master/examples/WebSocketClient_Demo/WebSocketClient_Demo.ino)
+
 ###Proyectos y ejemplos similares
 
 [Esplicación muy buena sobre sockets](http://es.stackoverflow.com/questions/7170/cu%C3%A1l-es-la-diferencia-entre-socket-tcp-ip-websockets-y-request-http)

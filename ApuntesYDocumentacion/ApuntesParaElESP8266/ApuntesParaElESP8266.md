@@ -18,9 +18,14 @@ Lista de los diferentes componentes que van a ir conectados al ESP:
 ## Sockets
 Tipo de conexión TCP/IP, que voy a utilizar para comunicarme con el servidor.
 
+
+## Websocket
+
+[Ejemplo Websocket en github](https://github.com/morrissinger/ESP8266-Websocket/blob/master/examples/WebSocketClient_Demo/WebSocketClient_Demo.ino)
+
 ### Proyectos y ejemplos similares
 
-*	[Ejemplo de tres relés con display](http://androidcontrol.blogspot.com.es/2016/05/esp8266-wifi-control-relay.html)
+ *   [Ejemplo de tres relés con display](http://androidcontrol.blogspot.com.es/2016/05/esp8266-wifi-control-relay.html)
 *	[Ejemplo de dos relés con display](http://androidcontrol.blogspot.com.es/2016/05/esp8266-iot-thingspeak-control-relay.html)
 *	[Ejemplo avisador de correo GMail con display](http://www.areresearch.net/2016/07/gmail-notifier-with-esp8266-nodemcu.html)
 
