@@ -25,4 +25,4 @@ Eso lo conseguirmos teniendo 2 tarjetas wifi, una estara encargada de crear una 
 Proyecto [xojo](http://www.xojo.com/), pretende crear aplicaciones con HTML5 para Raspberry.
 
 
-
+[Video de como reciclar una pantalla para la Raspberry](https://www.youtube.com/watch?v=qkk-JEKBNWQ)

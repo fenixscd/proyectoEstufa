@@ -33,3 +33,13 @@ Ratchet
 HTML :Hyper Text Markup Language
 JS :JavaScript
 W3C :World Wide Web Consortium
+
+
+Por defecto en Windows 10 no viene el comando Telnet, ya que es una minoría la de usuarios que lo necesitaran. Para poder habilitarlo:
+
+1.- Botón derecho encima del menú inicio y seleccionar "panel de control" , o en el recuadro de búsqueda ponemos "Panel de Control"
+2.- Seleccionamos "Programas"
+3.- Seleccionamos "Activar o desactivar características de Windows"
+4.- Seleccionamos "Cliente Telnet"
+
+Ya podemos utilizar la instrucción Telnet.
