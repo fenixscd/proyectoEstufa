@@ -20,30 +20,12 @@ class Conexion implements MessageComponentInterface {
         echo "Nueva conexión! ({$conn->resourceId})\n";
 
         $numRecv = count($this->clients) - 1;
-        $mensaje = "log:".$numRecv;
+        $mensaje = "connected:".$numRecv;
         foreach ($this->clients as $client) {
             $client->send($mensaje);
           }
-        }
+    }
 
-
-
-
-
-    // Recivimos un mensaje
-    // public function onMessage(ConnectionInterface $from, $msg) {
-    //     $numRecv = count($this->clients) - 1;
-    //     echo sprintf('Connection %d sending message "%s" to %d other connection%s' . "\n"
-    //         , $from->resourceId, $msg, $numRecv, $numRecv == 1 ? '' : 's');
-    //
-    //     // Enviamos el mensaje a todos los usuarios
-    //     foreach ($this->clients as $client) {
-    //         if ($from !== $client) { // Si es el mismo cliente no le envia.
-    //             // En via a todos los clentes conectado menos al que ha enviado el mensaje
-    //             $client->send($msg);
-    //         }
-    //     }
-    // }
 
     public function onMessage(ConnectionInterface $from, $msg) {
       $numRecv = count($this->clients) - 1;
