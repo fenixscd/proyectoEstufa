@@ -35,6 +35,10 @@ class Mensajes implements MessageComponentInterface {
         }
     }
 
+    public function onMessage(ConnectionInterface $from, $msg) {
+      $numRecv = count($this->clients) - 1;
+    }
+
     public function onClose(ConnectionInterface $conn) {
         // La conexión está cerrada, eliminarla, ya que ya no podemos enviarle mensajes
         $this->clients->detach($conn);

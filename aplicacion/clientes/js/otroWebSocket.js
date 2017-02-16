@@ -5,7 +5,6 @@ form = chat.form;
 state = document.getElementById("status");
 
 if (window.WebSocket === undefined) {
-   console.log("Socket no soportado");
    state.innerHTML = "Socket no soportado";
    state.className = "fail";
 }else {
