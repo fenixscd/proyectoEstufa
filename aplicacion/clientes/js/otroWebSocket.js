@@ -46,7 +46,7 @@ function onMessage(evt) {
 
    if (message.startsWith("log:")) {
       message = message.slice("log:".length);
-      log.innerHTML = '<li class = "message" "izq">' + message + "</li>" + log.innerHTML;
+      log.innerHTML = '<li class = "message izq">' + message + "</li>" + log.innerHTML;
    }else if (message.startsWith("connected:")) {
       message = message.slice("connected:".length);
       connected.innerHTML = message;
@@ -62,6 +62,6 @@ function onError(evt) {
 function addMessage() {
    var message = chat.value;
    chat.value = "";
-   log.innerHTML = '<li class = "message" "der">' + message + "</li>" + log.innerHTML;
+   log.innerHTML = '<li class = "message der">' + message + "</li>" + log.innerHTML;
    websocket.send(message);
 }
