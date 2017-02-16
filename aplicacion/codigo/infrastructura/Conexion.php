@@ -3,14 +3,12 @@ namespace infrastructura;
 
 use Ratchet\MessageComponentInterface;
 use Ratchet\ConnectionInterface;
-use SplObjectStorage;
-
 
 class Conexion implements MessageComponentInterface {
     protected $clients;
 
     public function __construct() {
-        $this->clients = new SplObjectStorage; // SplObjectStorage identificar objetos de forma única.
+        $this->clients = new \SplObjectStorage; // SplObjectStorage identificar objetos de forma única.
     }
 
     // Se ejecuta el metod cuando recive una conexión
@@ -25,7 +23,7 @@ class Conexion implements MessageComponentInterface {
         foreach ($this->clients as $client) {
             $client->send($mensaje);
           }
-    }
+        }
 
 
     public function onMessage(ConnectionInterface $from, $msg) {
