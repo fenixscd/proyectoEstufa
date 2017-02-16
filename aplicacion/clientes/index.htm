@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Prueba sockets</title>
+
+</head>
+
+<body>
+    <h1>Prueba de WebSocket</h1>
+
+    <div id="contenedor">
+    	
+
+    </div>
+
+<script type="text/javascript" src="js/WebSocket.js"></script>
+
+
+<!-- Empieza el javaScript------------ -->
+    <script type="text/javascript">
+    	var objeto = {"nombre":"Samuel", "apellido":"Domingez"}
+    	var array = ["Antonio", "Manolo", "Francisco"];
+
+    	var arrayDeObjetos = [
+    		{
+    			"clave1":"valor1",
+    			"clave2":"valor2"
+    		},
+    		{
+    			"clave1":"valor1",
+    			"clave2":"valor2"
+    		}
+    	];
+
+    	document.getElementById("contenedor").innerHTML = objeto.nombre;
+    	document.getElementById("contenedor").innerHTML = array[1];
+    	document.getElementById("contenedor").innerHTML = array[2].clave1;
+
+    </script>
+    
+</body>
+
+</html>

@@ -7,10 +7,17 @@ use infrastructura\Chat;
 
 require dirname(__DIR__) . '/vendor/autoload.php';
 
-    $server = IoServer::factory(
-        new Chat(),
-        8080
-    );
-
+$server = IoServer::factory(
+    new HttpServer(
+        new WsServer(
+            new Chat()
+        )
+    ),
+    8080
+);
+    echo "Sevidor en marcha IP 192.168.5.10 8080\n";
     $server->run();
+
+
+
 ?>
