@@ -43,17 +43,17 @@ function onMessage(evt) {
    // 1. un mensaje de participante de chat en sí mismo
    // 2. un mensaje con un número de participantes de chat conectados
    var message = evt.data;
-
+   console.log("El mensaje es --- " + message);
    if (message.startsWith("log:")) {
       message = message.slice("log:".length);
-      log.innerHTML = '<li class = "message">' + 
+      log.innerHTML = '<li class = "message">' +
       message + "</li>" + log.innerHTML;
    }else if (message.startsWith("connected:")) {
       message = message.slice("connected:".length);
       connected.innerHTML = message;
    }
 }
-					
+
 function onError(evt) {
     console.log("Evento error");
    state.className = "fail";
@@ -65,4 +65,3 @@ function addMessage() {
    chat.value = "";
    websocket.send(message);
 }
-					

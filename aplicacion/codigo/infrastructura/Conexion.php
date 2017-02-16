@@ -18,7 +18,17 @@ class Conexion implements MessageComponentInterface {
         $this->clients->attach($conn); // attach -> Agrega un objeto a la lista
 
         echo "Nueva conexión! ({$conn->resourceId})\n";
-    }
+
+        $numRecv = count($this->clients) - 1;
+        $mensaje = "log:".$numRecv;
+        foreach ($this->clients as $client) {
+            $client->send($mensaje);
+          }
+        }
+
+
+
+
 
     // Recivimos un mensaje
     // public function onMessage(ConnectionInterface $from, $msg) {
@@ -37,8 +47,7 @@ class Conexion implements MessageComponentInterface {
 
     public function onMessage(ConnectionInterface $from, $msg) {
       $numRecv = count($this->clients) - 1;
-      $msgCant = "log:".$numRecv;
-      $mensaje = "connected:".$msg;
+      $mensaje = "log:".$msg;
 
       echo sprintf('Connection %d sending message "%s" to %d other connection%s' . "\n"
                , $from->resourceId, $msg, $numRecv, $numRecv == 1 ? '' : 's');
@@ -46,7 +55,6 @@ class Conexion implements MessageComponentInterface {
       foreach ($this->clients as $client) {
         if ($from !== $client) { // Si es el mismo cliente no le envia.
           // En via a todos los clentes conectado menos al que ha enviado el mensaje
-          $client->send($msgCant);
           $client->send($mensaje);
         }
       }
