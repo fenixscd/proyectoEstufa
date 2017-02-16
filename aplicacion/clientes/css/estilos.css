@@ -1,7 +1,17 @@
-#chat { width: 97%; }
-.message { font-weight: bold; }
-.message:before { content: ' '; color: #bbb; font-size: 14px; }
-					
+#chat {
+	width: 97%;
+}
+
+.message {
+	font-weight: bold;
+}
+
+.message:before {
+	content: ' ';
+	color: #bbb;
+	font-size: 14px;
+}
+
 #log {
    overflow: auto;
    max-height: 300px;
@@ -9,10 +19,20 @@
    padding: 0;
 }
 #log li {
+
    border-top: 1px solid #ccc;
    margin: 0;
    padding: 10px 0;
 }
+
+.izq {
+	text-align: left;;
+}
+
+.der{
+		text-align: right;
+}
+
 body {
    font: normal 16px/20px "Helvetica Neue", Helvetica, sans-serif;
    background: rgb(237, 237, 236);
