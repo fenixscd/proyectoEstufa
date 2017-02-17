@@ -20,9 +20,15 @@ Eso lo conseguirmos teniendo 2 tarjetas wifi, una estara encargada de crear una 
 
 ## Crear una aplicación de escritorio
 
-#### Proyectos y ejemplos similares
+#### Proyectos, ejemplos y documentación
 
 Proyecto [xojo](http://www.xojo.com/), pretende crear aplicaciones con HTML5 para Raspberry.
+
+Ejecutar comandos desde PHP [...](http://php.net/manual/es/function.shell-exec.php)
+Ejecutar un programa [...](http://php.net/manual/es/function.exec.php)
+Ejecuta un programa externo y muestra la salida en bruto [...](http://php.net/manual/es/function.passthru.php)
+Escapar meta-caracteres del intérprete de comandos [...](http://php.net/manual/es/function.escapeshellcmd.php)
+Ejecuta el programa especificado en el espacio de proceso actual [...](http://php.net/manual/es/function.pcntl-exec.php)
 
 
 [Video de como reciclar una pantalla para la Raspberry](https://www.youtube.com/watch?v=qkk-JEKBNWQ)
