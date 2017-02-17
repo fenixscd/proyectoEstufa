@@ -26,6 +26,7 @@ header h1{
         
 }
 
+/******* LINEA SUPERIOR  *************/
 
 .lSuperior h2, .lSuperior p{
     font-size: 12px;
@@ -51,11 +52,13 @@ header h1{
 
 .programacion .izq {
     float: left;
-    width: 50%;
+    
 }
 
 .programacion .der{
 	float: right;
+    text-align: left;
+    width: 50%;
 }
 
 
