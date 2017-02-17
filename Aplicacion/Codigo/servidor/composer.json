@@ -1,0 +1,21 @@
+{
+  "require": {
+  	    "slim/slim": "2.*",
+        "cboden/ratchet": "0.3.*"
+
+  },
+  "require-dev": {
+        "phpunit/phpunit": "5.*"
+  },
+  "autoload": {
+        "psr-4": {
+            "web\\": "web",
+            "core\\": "core",
+            "tests\\": "tests",
+            "infrastructura\\":"infrastructura"
+        }
+  },
+  "config": {
+        "optimize-autoloader":true
+  }
+}

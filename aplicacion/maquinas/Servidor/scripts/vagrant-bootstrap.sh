@@ -166,12 +166,12 @@ mv composer.phar /usr/local/bin/composer
 
 /etc/init.d/apache2 restart
 
-if [ -f /vagrant/scripts/vim.sh ];then
-	echo "Sí, sí existe."
-	chmod +x /vagrant/scripts/vim.sh
-	sh /vagrant/scripts/vim/vim.sh
-else
-	echo "No, no existe"
-fi
+# if [ -f /vagrant/scripts/vim.sh ];then
+# 	echo "Sí, sí existe."
+# 	chmod +x /vagrant/scripts/vim.sh
+# 	sh /vagrant/scripts/vim/vim.sh
+# else
+# 	echo "No, no existe"
+# fi
 
 echo '........'
