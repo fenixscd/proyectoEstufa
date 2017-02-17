@@ -6,19 +6,32 @@
 
 .centrado {
     margin: 0 auto;
-    width: 500px;
+    width: 350px;
+    background-color: aqua;
 }
 
 .display {
     padding: 2px;
-    width: 450px;
+    width: 300px;
     color: white;
-    background-color: blue;
+    background-color: #0050FE;
     border: black 1px solid;
+}
+
+.display {
+	overflow: hidden;
 }
 
 .display h2, .display p{
     font-size: 12px;
+}
+
+.display h2 {
+	float: left;
+}
+
+.display p{ 
+    float: right;
 }
 
 
