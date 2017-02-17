@@ -10,14 +10,20 @@
     background-color: aqua;
 }
 
+header h1{
+    text-align: center
+}
+
 .display {
     padding: 7px 7px;;
-    width: 300px;
+    width: 250px;
     color: white;
     background-color: #0050FE;
     border: black 1px solid;
     overflow: hidden;
-    border-radius: 10px
+    border-radius: 10px;
+    float: left;
+        
 }
 
 
@@ -50,4 +56,14 @@
 
 .programacion .der{
 	float: right;
+}
+
+form {
+    background-color: chocolate;
+    border: black 1px solid;
+}
+
+.botonera {
+    background-color: firebrick;
+	float: left;
 }
