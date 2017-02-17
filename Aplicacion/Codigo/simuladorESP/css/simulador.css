@@ -11,12 +11,13 @@
 }
 
 .display {
-    padding: 2px 5px;;
+    padding: 7px 7px;;
     width: 300px;
     color: white;
     background-color: #0050FE;
     border: black 1px solid;
     overflow: hidden;
+    border-radius: 10px
 }
 
 
@@ -42,3 +43,11 @@
 	font-size: 12px;
 }
 
+.programacion .izq {
+    float: left;
+    width: 50%;
+}
+
+.programacion .der{
+	float: right;
+}
