@@ -6,10 +6,20 @@
 
 .centrado {
     margin: 0 auto;
-    width: 800px;
+    width: 500px;
 }
 
-#display {
-    width: 750px;
+.display {
+    padding: 2px;
+    width: 450px;
+    color: white;
+    background-color: blue;
+    border: black 1px solid;
 }
+
+.display h2, .display p{
+    font-size: 12px;
+}
+
+
 
