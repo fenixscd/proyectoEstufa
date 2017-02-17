@@ -38,10 +38,20 @@ console.log(hora2Temp.innerHTML)
 
 
 // Retorna un número aleatorio entre min (incluido) y max (excluido)
-function getRandomArbitrary(min, max) {
-  return Math.random() * (max - min) + min;
-}
+//function getRandomArbitrary(min, max) {
+//  return Math.random() * (max - min) + min;
+//}
 
-while (true) {
-  console.log("Dentro del bucle");
-}
+function wait(nsegundos) {
+objetivo = (new Date()).getTime() + 1000 * Math.abs(nsegundos);
+while ( (new Date()).getTime() < objetivo );
+};
+
+//do {
+//    console.log("Dentro del bucle");
+//    wait(5);
+//} while (true);
+
+
+
+
