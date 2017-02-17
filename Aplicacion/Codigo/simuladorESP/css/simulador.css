@@ -1,0 +1,15 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+.centrado {
+    margin: 0 auto;
+    width: 800px;
+}
+
+#display {
+    width: 750px;
+}
+
