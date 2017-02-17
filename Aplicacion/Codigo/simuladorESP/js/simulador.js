@@ -53,5 +53,10 @@ while ( (new Date()).getTime() < objetivo );
 //} while (true);
 
 
+function enviarBucle(){
+    window.setTimeout(enviarBucle, 2000);
+    console.log("Dentro del bucle");
+}
 
 
+enviarBucle();
