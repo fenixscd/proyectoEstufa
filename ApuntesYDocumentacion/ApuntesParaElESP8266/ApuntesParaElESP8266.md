@@ -20,19 +20,18 @@ Tipo de conexión TCP/IP, que voy a utilizar para comunicarme con el servidor.
 
 ## Datos que voy a enviar
 
+Voy a utilizar la misma extructura de envio de datos y de conexión más o menos va haser lo mismo.
+
 ### La primera coenxión
 -   Acción: primera
 -   Dirección MAC: ...
 -   Tipo de dispositivo: estufa
 -   Modo: Auto/Manual
--   Estado resitencia1: false/true
--
-
-### Envio de datos
--   Acción: Datos
--   Dirección MAC: ...
--   Tipo de dispositivo: estufa
-
+-   Estado resitencia 1: false/true
+-   Estado resitencia 2: false/true
+-   Temperatura: ...
+-   Humedad ...
+-   Sensacion: ...
 
 
 ## Websocket
