@@ -11,28 +11,34 @@
 }
 
 .display {
-    padding: 2px;
+    padding: 2px 5px;;
     width: 300px;
     color: white;
     background-color: #0050FE;
     border: black 1px solid;
+    overflow: hidden;
 }
 
-.display {
-	overflow: hidden;
-}
 
-.display h2, .display p{
+.lSuperior h2, .lSuperior p{
     font-size: 12px;
 }
 
-.display h2 {
+.lSuperior h2 {
 	float: left;
 }
 
-.display p{ 
+.lSuperior p{ 
     float: right;
 }
 
+.medidas h2 {
+    display: inline-block;
+    width: 49%;
+    text-align: center;
+}
 
+.programacion {
+	font-size: 12px;
+}
 
