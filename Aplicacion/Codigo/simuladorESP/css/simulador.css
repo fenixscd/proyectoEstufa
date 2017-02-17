@@ -6,7 +6,7 @@
 
 .centrado {
     margin: 0 auto;
-    width: 350px;
+    width: 280px;
     background-color: aqua;
 }
 
@@ -58,12 +58,20 @@ header h1{
 	float: right;
 }
 
-form {
-    background-color: chocolate;
-    border: black 1px solid;
-}
+
+
+/***********BOTONERA*************/
 
 .botonera {
-    background-color: firebrick;
+    margin-left: 2px;
 	float: left;
+    width: 28px;
+/*    text-align: center;*/
 }
+
+.botonera input {
+    width: 28px;
+    height: 28px;
+    
+}
+
