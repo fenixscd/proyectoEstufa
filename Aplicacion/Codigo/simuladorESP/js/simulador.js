@@ -37,3 +37,11 @@ console.log(hora2Cambio.innerHTML)
 console.log(hora2Temp.innerHTML)
 
 
+// Retorna un número aleatorio entre min (incluido) y max (excluido)
+function getRandomArbitrary(min, max) {
+  return Math.random() * (max - min) + min;
+}
+
+while (true) {
+  console.log("Dentro del bucle");
+}
