@@ -17,6 +17,28 @@ var hora2Cambio = document.getElementById("hora2Cambio");
 var hora2Temp = document.getElementById("hora2Temp");
 
 
+function Resistencia(){
+    this.nombre;
+    this.estado;
+    this.temperatura;
+    this.horaCambio;
+    this.HoraTemperatura;
+}
+
+Resitencia.prototype.setNombre = function(nombre){
+    this.nombre = nombre;
+}
+
+
+function estufa (){
+    this.dispositivo; // Nombre
+    this.mac;
+    this.conexion;
+    this.temperatura;
+    this.hemedad;
+    this.listaResitencias = [];
+}
+
 
 function valoresDisplay (){
     console.log(dispositivo.innerHTML) 
@@ -76,7 +98,13 @@ function disminuirHumedad(){
 
 
 
-
+function generarValores(){
+    // Si las resistencia estan activas depende de que aumente o disminuya la temperatura.
+    // Hay que parsear los valores de on off;
+    var resistencia1 =  resis1Esta.innerHTML;
+    var resistencia2 =  resis2Esta.innerHTML;
+    
+}
 
 medicion = 25;
 function enviarBucle(){
@@ -84,4 +112,3 @@ function enviarBucle(){
     //console.log("Medicion: " +gerarValores(medicion));
     gerarValores(medicion);
 }
-enviarBucle();
