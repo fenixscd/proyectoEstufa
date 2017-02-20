@@ -22,6 +22,9 @@ Eso lo conseguirmos teniendo 2 tarjetas wifi, una estara encargada de crear una 
 
 #### Proyectos, ejemplos y documentación
 
+Proyecto [electron](http://electron.atom.io/), pretende crear aplicaciones con HTML5.
+
+
 Proyecto [xojo](http://www.xojo.com/), pretende crear aplicaciones con HTML5 para Raspberry.
 
 Ejecutar comandos desde PHP [...](http://php.net/manual/es/function.shell-exec.php)
