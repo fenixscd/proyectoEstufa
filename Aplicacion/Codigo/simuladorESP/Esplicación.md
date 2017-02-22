@@ -46,6 +46,9 @@ https://developer.mozilla.org/es/docs/Web/API/Document/createElement
 https://abalozz.es/plantillas-en-javascript-con-es2015/
 http://www.etnassoft.com/2016/10/05/template-strings-en-es6-estudiando-las-nuevas-plantillas-de-cadena-en-javascript/
 
+Excepciones
+<https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Sentencias/try...catch>
+
 
 
 

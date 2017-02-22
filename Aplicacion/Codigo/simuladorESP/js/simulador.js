@@ -53,13 +53,6 @@ function Estufa (){
 
 
 
-
-
-
-
-
-
-
 function valoresDisplay (){
     console.log(dispositivo.innerHTML) 
     console.log(modo.innerHTML)
