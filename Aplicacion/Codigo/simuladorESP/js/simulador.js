@@ -96,23 +96,23 @@ function generarValores(valor, suvir){
 }
 
 function aumetarTemperatura() {
-    temperatura = temp.innerHTML;
+    var temperatura = temp.innerHTML;
     return generarValores(temperatura, true);
 }
 
 function disminuirTemperatura() {
-    temperatura = temp.innerHTML;
+    var temperatura = temp.innerHTML;
     return generarValores(temperatura, false);
 }
 
 
 function aumentarHumedad(){
-    humedad =  hume.innerHTML;
+    var humedad =  hume.innerHTML;
     return generarValores(humedad, true);
 }
 
 function disminuirHumedad(){
-    humedad =  hume.innerHTML;
+    var humedad =  hume.innerHTML;
     return generarValores(humedad, false);
 }
 
@@ -126,11 +126,11 @@ function generarValores(){
     
 }
 
-medicion = 25;
+var medicion = 25;
 function enviarBucle(){
     window.setTimeout(enviarBucle, 1000);
     //console.log("Medicion: " +gerarValores(medicion));
-    gerarValores(medicion);
+    generarValores(medicion);
 }
 
 
@@ -163,9 +163,6 @@ function crearDisplay(mac){
     var contenedor = document.getElementsByTagName("section")[0];
     var dispositivo = document.createElement("div");
     dispositivo.setAttribute("class", "dispositivo");
-    var dato = "hola";
-    
-    
     
     var contenido =`<div class="display">
                         <div class="lSuperior">
