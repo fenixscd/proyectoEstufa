@@ -119,8 +119,8 @@ function Estufa(mac){
     this.conexion;
     this.temperatura;
     this.hemedad;
-    this.resitencia1;
-    this.resitencia2;
+    this.resitencia1 = new Resistencia(1);
+    this.resitencia2 = new Resistencia(2);
 
     this.getMac = function(){
       return this.mac;
@@ -198,9 +198,15 @@ ListaDispositivos.prototype.isExisteMAC = function (mac) {
 ListaDispositivos.prototype.generarMac = function () {
   var mac = "A6-B5-C4-D3"
   var calculado;
+  var longitud;
+  calculado = Math.random()*9999; // Genera un numero a leatiroio entre 0 y 9999 con decimales
+  calculado = Math.floor(calculado) // Le quita los decimales.
+  calculado = calculado.toString();
+  longitud = calculado.length();
+
+
   for (i=0; i<2; i++){
-    calculado = Math.random()*99; // Genera un numero a leatiroio entre 0 y 99 con decimales
-    calculado = Math.floor(calculado) // Le quita los decimales.
+
     mac = mac + "-" + calculado;
   }
 };
