@@ -76,14 +76,14 @@ function Resistencia(numero){
       if (this.estado) {
         return this.temperatura;
       }
-      return null;
+      return false;
     }
 
     this.getEncendida = function(){
       if (this.estado) {
         return this.encendida;
       }
-      return null;
+      return false;
     }
 
     this.setEncendida = function(encendida){
@@ -110,7 +110,7 @@ function Resistencia(numero){
       if (this.horaCambio !== null){
         return this.horaEstado;
       }
-      return null;
+      return false;
     }
 
     this.setHoraEstado = function(horaEstado){
@@ -122,7 +122,7 @@ function Resistencia(numero){
       if (this.horaCambio !== null){
         return this.horaTemperatura;
       }
-      return null;
+      return false;
     }
 
     this.setHoraTemperatura = function(horaTemperatura){
@@ -136,7 +136,7 @@ Resistencia.prototype.generarValores = function () {
   this.setEstado(true)
       .setTemperatura(22)
       .sethoraCambio(null)
-      .setHoraEstado(null);
+      .setHoraEstado(null)
       .horaTemperatura(null);
 };
 
@@ -148,6 +148,10 @@ function Estufa(mac){
     this.hemedad;
     this.resitencia1;
     this.resitencia2;
+
+    this.getMac = function(){
+      return this.mac;
+    }
 
     this.getDispositivo = function(){
       return this.dispositivo;
@@ -205,36 +209,47 @@ Estufa.prototype.generarValores = function () {
       .setTemperatura(25).
       .setHemedad(15).
       .setResitencia1(new Resistencia(1).generarValores()).
-      .setResitencia2(new Resistencia(2).generarValores()).
+      .setResitencia2(new Resistencia(2).generarValores());
 };
 
 
 function ListaDispositivos(){
     var listaDispositivos = new Array();
 }
+/**
+* Compruba si una mac ya a sido asignada.
+* @param {String} mac dirección mac.
+* @return {bool} true si existe false si no.
+*/
+ListaDispositivos.prototype.isExisteMAC = function (mac) {
+  for each (var dispositivo in listaDispositivos) {
+    if (dispositivo.getMac === mac){
+      return true;
+    }
+    return false;
+  }
+};
 
+ListaDispositivos.prototype.generarMac = function () {
+  var mac = "A6-B5-C4-D3"
+  var calculado;
+  for (i=0; i<2; i++){
+    calculado = Math.random()*99; // Genera un numero a leatiroio entre 0 y 99 con decimales
+    calculado = Math.floor(calculado) // Le quita los decimales.
+    mac = mac + "-" + calculado;
+  }
+};
+
+/**
+* @param {Number} numero de dispositivos a generar.
+*/
 ListaDispositivos.prototype.genrarlistaDispositivos = function(numero){
+
+
     for(var i = 0; i < numero; i++) {
-        listaDispositivos.push(new estufa(i));
+        listaDispositivos.push(new Estufa(i));
     }
 }
-
-
-
-Resistencia.prototype.setNombre = function(nombre){
-    this.nombre = nombre;
-}
-
-
-function Estufa (){
-    this.dispositivo; // Nombre
-    this.mac;
-    this.conexion;
-    this.temperatura;
-    this.hemedad;
-    this.listaResitencias = new Array();
-}
-
 
 
 function valoresDisplay (){
