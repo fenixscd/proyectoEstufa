@@ -16,6 +16,129 @@ var hora2 = document.getElementById("hora2");
 var hora2Cambio = document.getElementById("hora2Cambio");
 var hora2Temp = document.getElementById("hora2Temp");
 
+/*
+ *
+ */
+
+
+ function generarValores(valor, suvir){
+     valor = parseFloat(valor);
+     var alearorio = Math.random();
+     var calculado;
+
+     if (suvir){
+         calculado = valor + alearorio;
+     }else{
+         calculado = valor - alearorio;
+     }
+     return calculado.toFixed(1);
+ }
+
+
+
+ /* Clase resistencia
+ * @param int numero numero de resistencia
+ * @param bool estado Encendido on apagado off
+ * @temperatura float toFixed(1) si no tinene temperatura null
+ * @horaCambio Date solo hora si no tiene null
+ * @horaTemperatura float toFixed(1) si no hay Date null
+ */
+
+function Resistencia(numero){
+    this.numero = numero; // Numero de resistencia
+    this.estado; // Encendido apagado
+    this.temperatura; // Temperatura a la que esta progrmada que ese pare.
+    this.horaCambio; // Hora cambio tipo Date
+    this.horaEstado; // En que stado esta si no hay valores
+    this.horaTemperatura; // Que temperatura para el cambio
+
+    // Metodos privilegiados
+    this.getNumero = function() {
+      return this.numero;
+    }
+
+    this.setNumero = function (numero){
+      this.numero = numero;
+      return this;
+    }
+
+    this.getEstado = function(){
+      return this.estado;
+    }
+
+    this.setEstado = function(estado){
+      this.estado = estado;
+      return this;
+    }
+
+    this.getTemperatura = function(){
+      if (this.estado) {
+        return this.temperatura;
+      }
+      return null;
+    }
+
+    this.setTemperatura = function(temperatura){
+      this.Temperatura = temperatura;
+      return this;
+    }
+
+    this.gethoraCambio = function(){
+      return this.horaCambio;
+    }
+
+    this.sethoraCambio = function(horaCambio){
+      this.horaCambio = horaCambio;
+      return this;
+    }
+
+    this.getHoraEstado = function (){
+
+      if (this.horaCambio !== null){
+        return this.horaEstado;
+      }
+      return null;
+    }
+
+    this.setHoraEstado = function(horaEstado){
+      this.horaEstado = horaEstado
+      return this;
+    }
+
+    this.getHoraTemperatura = function(){
+      if (this.horaCambio !== null){
+        return this.horaTemperatura;
+      }
+      return null;
+    }
+
+    this.setHoraTemperatura = function(horaTemperatura){
+      this.horaTemperatura = horaTemperatura;
+      return this;
+    }
+
+}
+/**
+  return una resistencia con los valores iniciados
+*/
+function generarResistenciaConValores(numero){
+  var resistencia = new resistencia(numero);
+  resistencia.setEstado(true)
+             .setTemperatura(22)
+             .sethoraCambio(null)
+             .setHoraEstado(null);
+             .horaTemperatura(null);
+}
+
+
+function Estufa (){
+    this.mac;
+    this.dispositivo; // Nombre
+    this.conexion;
+    this.temperatura;
+    this.hemedad;
+    this.listaResitencias = new Array();
+}
 
 
 function ListaDispositivos(){
@@ -29,13 +152,6 @@ ListaDispositivos.prototype.genrarlistaDispositivos = function(numero){
 }
 
 
-function Resistencia(){
-    this.nombre;
-    this.estado;
-    this.temperatura;
-    this.horaCambio;
-    this.HoraTemperatura;
-}
 
 Resistencia.prototype.setNombre = function(nombre){
     this.nombre = nombre;
@@ -54,7 +170,7 @@ function Estufa (){
 
 
 function valoresDisplay (){
-    console.log(dispositivo.innerHTML) 
+    console.log(dispositivo.innerHTML)
     console.log(modo.innerHTML)
     console.log(conexion.innerHTML)
 
@@ -75,18 +191,7 @@ function valoresDisplay (){
 }
 
 
-function generarValores(valor, suvir){
-    valor = parseFloat(valor);
-    var alearorio = Math.random();
-    var calculado;
-   
-    if (suvir){    
-        calculado = valor + alearorio;
-    }else{
-        calculado = valor - alearorio;
-    }
-    return calculado.toFixed(1);
-}
+
 
 function aumetarTemperatura() {
     var temperatura = temp.innerHTML;
@@ -116,7 +221,7 @@ function generarValores(){
     // Hay que parsear los valores de on off;
     var resistencia1 =  resis1Esta.innerHTML;
     var resistencia2 =  resis2Esta.innerHTML;
-    
+
 }
 
 var medicion = 25;
@@ -140,42 +245,31 @@ function renombrarID(){
 }
 
 
-// crea un nuevo div 
-  // y añade contenido 
-  
-//  var newContent = document.createTextNode("Hola!¿Qué tal?"); 
-//  newDiv.appendChild(newContent); //añade texto al div creado. 
-//
-//  // añade el elemento creado y su contenido al DOM 
-//  var currentDiv = document.getElementById("div1"); 
-//  document.body.insertBefore(newDiv, currentDiv); 
-
-
 
 function crearDisplay(mac){
     var contenedor = document.getElementsByTagName("section")[0];
     var dispositivo = document.createElement("div");
     dispositivo.setAttribute("class", "dispositivo");
-    
+
     var contenido =`<div class="display">
                         <div class="lSuperior">
                             <h2><span id="dispositivo${mac}">ESTUFA HABITACI</span></h2>
                             <p><span id="modo${mac}">Auto</span> | <span id="conexion${mac}">DESCONEC</span></p>
                         </div>
-              
+
                         <div class="medidas">
                             <h2>T: <span id="temp${mac}">40</span>º</h2>
                             <h2>H: <span id="hume${mac}">10</span>%</h2>
                         </div>
-              
+
                         <div class="programacion">
-                            <p class="izq">Resis 1: <span id="resis1Esta${mac}">ON</span> <span id="resis1Temp${mac}">27</span>º</p>  
+                            <p class="izq">Resis 1: <span id="resis1Esta${mac}">ON</span> <span id="resis1Temp${mac}">27</span>º</p>
                             <p class="der">Hora <span id="hora1${mac}">6:25</span> <span id="hora1Cambio${mac}">OFF</span> <span id="hora1Temp${mac}">27</span>º</p>
-                  
-                            <p class="izq">Resis 2: <span id="resis2Esta${mac}">OFF</span> <span id="resis2Temp${mac}"></span></p>  
+
+                            <p class="izq">Resis 2: <span id="resis2Esta${mac}">OFF</span> <span id="resis2Temp${mac}"></span></p>
                             <p class="der">Hora <span id="hora2${mac}">6:25</span> <span id="hora2Cambio${mac}">ON</span> <span id="hora2Temp${mac}">27</span>º</p>
                         </div>
-               
+
                     </div>
                 </div>
                 <div class="botonera">
@@ -187,20 +281,4 @@ function crearDisplay(mac){
     dispositivo.innerHTML = contenido;
     dispositivo.classList.add("dispositivo");
     contenedor.appendChild(dispositivo);
-    
-    
-    
-    var temperatura = document.getElementById("temp"+mac);
-    temperatura.innerHTML;
-    console.log("Temperatura del dipositivo temp" + mac + ": " + temperatura.innerHTML);
 }
-
-
-crearDisplay(12);
-
-
-
-
-
-
-
