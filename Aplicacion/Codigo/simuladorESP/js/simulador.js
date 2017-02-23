@@ -46,30 +46,20 @@ var hora2Temp = document.getElementById("hora2Temp");
 
 function Resistencia(numero){
     this.numero = numero; // Numero de resistencia
-    this.estado; // Encendido apagado
-    this.temperatura; // Temperatura a la que esta progrmada que ese pare.
-    this.encendida; // Encaso del que el estado sea encendido indica si la resistencia esta en marcha o no.
-    this.horaCambio; // Hora cambio tipo Date
-    this.horaEstado; // En que stado esta si no hay valores
-    this.horaTemperatura; // Que temperatura para el cambio
+    this.estado = false; // Encendido apagado
+    this.temperatura  = false; // Temperatura a la que esta progrmada que ese pare.
+    this.encendida = false; // Encaso del que el estado sea encendido indica si la resistencia esta en marcha o no.
+    this.horaCambio = false; // Hora cambio tipo Date
+    this.horaEstado = false; // En que stado esta si no hay valores
+    this.horaTemperatura = false; // Que temperatura para el cambio
 
     // Metodos privilegiados
     this.getNumero = function() {
       return this.numero;
     }
 
-    this.setNumero = function (numero){
-      this.numero = numero;
-      return this;
-    }
-
     this.getEstado = function(){
       return this.estado;
-    }
-
-    this.setEstado = function(estado){
-      this.estado = estado;
-      return this;
     }
 
     this.getTemperatura = function(){
@@ -86,23 +76,8 @@ function Resistencia(numero){
       return false;
     }
 
-    this.setEncendida = function(encendida){
-      this.encendida = encendida;
-      return this;
-    }
-
-    this.setTemperatura = function(temperatura){
-      this.Temperatura = temperatura;
-      return this;
-    }
-
-    this.gethoraCambio = function(){
+    this.getHoraCambio = function(){
       return this.horaCambio;
-    }
-
-    this.sethoraCambio = function(horaCambio){
-      this.horaCambio = horaCambio;
-      return this;
     }
 
     this.getHoraEstado = function (){
@@ -113,16 +88,43 @@ function Resistencia(numero){
       return false;
     }
 
-    this.setHoraEstado = function(horaEstado){
-      this.horaEstado = horaEstado
-      return this;
-    }
-
     this.getHoraTemperatura = function(){
       if (this.horaCambio !== null){
         return this.horaTemperatura;
       }
       return false;
+    }
+
+
+// Inicio seters
+
+    this.setNumero = function (numero){
+      this.numero = numero;
+      return this;
+    }
+
+    this.setEstado = function(estado){
+      this.estado = estado;
+      return this;
+    }
+
+    this.setEncendida = function(encendida){
+      this.encendida = encendida;
+      return this;
+    }
+    this.setTemperatura = function(temperatura){
+      this.Temperatura = temperatura;
+      return this;
+    }
+
+    this.setHoraCambio = function(horaCambio){
+      this.horaCambio = horaCambio;
+      return this;
+    }
+
+    this.setHoraEstado = function(horaEstado){
+      this.horaEstado = horaEstado
+      return this;
     }
 
     this.setHoraTemperatura = function(horaTemperatura){
@@ -135,9 +137,9 @@ function Resistencia(numero){
 Resistencia.prototype.generarValores = function () {
   this.setEstado(true)
       .setTemperatura(22)
-      .sethoraCambio(null)
-      .setHoraEstado(null)
-      .horaTemperatura(null);
+      .setHoraCambio(false)
+      .setHoraEstado(false)
+      .sethoraTemperatura(false);
 };
 
 function Estufa(mac){
