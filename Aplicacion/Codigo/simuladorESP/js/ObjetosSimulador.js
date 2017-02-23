@@ -77,11 +77,6 @@ function Resistencia(numero){
 
 // Inicio seters
 
-    this.setNumero = function (numero){
-      this.numero = numero;
-      return this;
-    }
-
     this.setEstado = function(estado){
       this.estado = estado;
       return this;
@@ -114,13 +109,14 @@ function Resistencia(numero){
 }
 
 function Estufa(){
-    this.mac = this.generarMac();
+    this.mac;
     this.dispositivo; // Nombre
     this.conexion;
     this.temperatura;
     this.hemedad;
-    //this.resitencia1 = new Resistencia(1);
-    //this.resitencia2 = new Resistencia(2);
+    this.resitencia1 = new Resistencia(1);
+    this.resitencia2 = new Resistencia(2);
+    this.generarMac();
 
     this.getMac = function(){
       return this.mac;
@@ -181,20 +177,16 @@ Estufa.prototype.generarMac = function () {
   var calculado;
   var longitud;
   calculado = Math.random()*9999; // Genera un numero a leatiroio entre 0 y 9999 con decimales
-  console.log("Numero generado: " + calculado);
   calculado = Math.floor(calculado) // Le quita los decimales.
-  console.log("Numero sin decimales: " + calculado);
   calculado = calculado.toString();
-  console.log("Pasado a estring: " + calculado);
   longitud = calculado.length;
 
   for (i=0; i<(4-longitud); i++){
     calculado = "0" + calculado;
   }
-    console.log("calculado con ceros : " + calculado);
     mac = mac + "-" + calculado.substr(0,2);
     mac = mac + "-" + calculado.substr(2,3);
-    console.log("Esta es la MAC:" + mac);
+    this.mac = mac;
 };
 
 
@@ -220,16 +212,25 @@ ListaDispositivos.prototype.isExisteMAC = function (mac) {
   }
 };
 
+/**
+* Antes de añadir verificamos que la mac no este duplicada.
+*/
 ListaDispositivos.prototype.addDispositivo = function () {
-  this.
-  listaDispositivos.push(new Estufa(i));
+  var estufa = new Estufa();
+  var mac = estufa.getMac();
+  
+  do {
+    estufa = new Estufa();
+    mac = estufa.getMac();
+  } while (this.isExisteMAC(mac));
+
+  listaDispositivos.push(estufa);
 };
 
 /**
 * @param {Number} numero de dispositivos a generar.
 */
 ListaDispositivos.prototype.genrarlistaDispositivos = function(numero){
-
   var mac;
   for(var i = 0; i < numero; i++) {
     do {
@@ -240,3 +241,10 @@ ListaDispositivos.prototype.genrarlistaDispositivos = function(numero){
     listaDispositivos.push(new Estufa(i));
   }
 }
+
+LsitaDispositivos.prototype.showMACs = function () {
+
+  for (var i = 0; i < this.listaDispositivos.length; i++) {
+    console.log(this.listaDispositivos[i].getMac());
+  }
+};
