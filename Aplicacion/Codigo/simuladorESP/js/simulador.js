@@ -127,14 +127,14 @@ Resistencia.prototype.generarValores = function () {
       .horaTemperatura(null);
 };
 
-
 function Estufa(mac){
     this.mac = mac;
     this.dispositivo; // Nombre
     this.conexion;
     this.temperatura;
     this.hemedad;
-    this.listaResitencias = new Array();
+    this.resitencia1;
+    this.resitencia2;
 
     this.getDispositivo = function(){
       return this.dispositivo;
@@ -150,6 +150,13 @@ function Estufa(mac){
     }
     this.getListaResitencias = function(){
       return this.listaResitencias;
+    }
+
+    this.getResitencia1 = function(){
+      return this.resistencia1;
+    }
+    this.getResitencia2 = function(){
+      return this.resistencia2;
     }
 
     this.setDispositivo = function(dispositivo){
@@ -168,11 +175,24 @@ function Estufa(mac){
       this.humedad = humedad;
       return this;
     }
+
+    this.setResitencia1 = function(resistencia1){
+      this.resistencia1 = resistencia1;
+      return this;
+    }
+    this.setResitencia2 = function(resistencia2){
+      this.resistencia2 = resistencia2;
+      return this;
+    }
 }
 
-Estufa.prototype.addResistencia = function (resistencia) {
-  this.listaResitencias.push(resistencia);
-  return this;
+Estufa.prototype.generarValores = function () {
+  this.setDispositivo(this.mac).
+      .setConexion(false).
+      .setTemperatura(25).
+      .setHemedad(15).
+      .setResitencia1(new Resistencia(1).generarValores()).
+      .setResitencia2(new Resistencia(2).generarValores()).
 };
 
 
