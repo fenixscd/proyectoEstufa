@@ -52,7 +52,8 @@
 
 
 
-   <script type="text/javascript" src="js/simulador.js"></script>
+   <!-- <script type="text/javascript" src="js/simulador.js"></script> -->
+   <script type="text/javascript" src="js/ObjetosSimulador.js"></script>
 
    <script type="text/javascript">
 
@@ -108,11 +109,14 @@
       return mac;
     }
 
-    console.log("Direccione MAC creada: " + pruebaMAC_Secuencial(1));
+    // console.log("Direccione MAC creada: " + pruebaMAC_Secuencial(1));
+    //
+    // for (var j = 0; j < 10; j++) {
+    //   console.log("Direccione MAC creada: " + pruebaMAC_Secuencial(j));
+    // }
 
-    for (var j = 1; j < 11; j++) {
-      console.log("Direccione MAC creada: " + pruebaMAC_Secuencial(j));
-    }
+    var estufa = new Estufa();
+    console.log(estufa.getMac());
 
 
 

@@ -113,14 +113,14 @@ function Resistencia(numero){
 
 }
 
-function Estufa(mac){
-    this.mac = mac;
+function Estufa(){
+    this.mac = this.generarMac();
     this.dispositivo; // Nombre
     this.conexion;
     this.temperatura;
     this.hemedad;
-    this.resitencia1 = new Resistencia(1);
-    this.resitencia2 = new Resistencia(2);
+    //this.resitencia1 = new Resistencia(1);
+    //this.resitencia2 = new Resistencia(2);
 
     this.getMac = function(){
       return this.mac;
@@ -176,11 +176,36 @@ function Estufa(mac){
     }
 }
 
+Estufa.prototype.generarMac = function () {
+  var mac = "A6-B5-C4-D3"
+  var calculado;
+  var longitud;
+  calculado = Math.random()*9999; // Genera un numero a leatiroio entre 0 y 9999 con decimales
+  console.log("Numero generado: " + calculado);
+  calculado = Math.floor(calculado) // Le quita los decimales.
+  console.log("Numero sin decimales: " + calculado);
+  calculado = calculado.toString();
+  console.log("Pasado a estring: " + calculado);
+  longitud = calculado.length;
+
+  for (i=0; i<(4-longitud); i++){
+    calculado = "0" + calculado;
+  }
+    console.log("calculado con ceros : " + calculado);
+    mac = mac + "-" + calculado.substr(0,2);
+    mac = mac + "-" + calculado.substr(2,3);
+    console.log("Esta es la MAC:" + mac);
+};
+
 
 
 function ListaDispositivos(){
-    var listaDispositivos = new Array();
+     this.listaDispositivos = new Array();
 }
+
+ListaDispositivos.prototype.getTotalDispositivos = function () {
+  return this.listaDispositivos.length;
+};
 /**
 * Compruba si una mac ya a sido asignada.
 * @param {String} mac dirección mac.
@@ -195,21 +220,9 @@ ListaDispositivos.prototype.isExisteMAC = function (mac) {
   }
 };
 
-ListaDispositivos.prototype.generarMac = function () {
-  var mac = "A6-B5-C4-D3"
-  var calculado;
-  var longitud;
-  calculado = Math.random()*9999; // Genera un numero a leatiroio entre 0 y 9999 con decimales
-  calculado = Math.floor(calculado) // Le quita los decimales.
-  calculado = calculado.toString();
-  longitud = calculado.length;
-
-  for (i=0; i<(4-longitud); i++){
-    calculado = "0" + calculado;
-  }
-    mac = mac + "-" + calculado.substr(0,1);
-    mac = mac + "-" + calculado.substr(2,3);
-
+ListaDispositivos.prototype.addDispositivo = function () {
+  this.
+  listaDispositivos.push(new Estufa(i));
 };
 
 /**
