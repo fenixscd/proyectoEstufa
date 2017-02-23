@@ -93,9 +93,32 @@
         console.log("Esta es la MAC:" + mac);
     }
 
-    
+    function pruebaMAC_Secuencial(num){
+      var mac = "A6-B5-C4-D3"
+      var longitud;
+      var calculado;
 
-    pruebaMAC();
+
+        calculado = num.toString();
+      }
+
+      longitud = calculado.length;
+      for (i=0; i<(4-longitud); i++){
+        calculado = "0" + calculado;
+      }
+      mac = mac + "-" + calculado.substr(0,2);
+      mac = mac + "-" + calculado.substr(2,3);
+      return mac;
+    }
+
+    // pruebaMAC();
+    for (var i = 1; i < 2; i++) {
+      console.log("Direccione MAC creada: " + pruebaMAC_Secuencial(i));
+    }
+
+
+
+
    </script>
 </body>
 </html>
