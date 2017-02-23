@@ -26,11 +26,12 @@
 function Resistencia(numero){
     this.numero = numero; // Numero de resistencia
     this.estado = false; // Encendido apagado
-    this.temperatura  = false; // Temperatura a la que esta progrmada que ese pare.
+    this.temperatura; // Temperatura a la que esta progrmada que ese pare.
     this.encendida = false; // Encaso del que el estado sea encendido indica si la resistencia esta en marcha o no.
     this.horaCambio = false; // Hora cambio tipo Date
     this.horaEstado = false; // En que stado esta si no hay valores
     this.horaTemperatura = false; // Que temperatura para el cambio
+    this.añadirTemperatura();
 
     // Metodos privilegiados
     this.getNumero = function() {
@@ -42,10 +43,7 @@ function Resistencia(numero){
     }
 
     this.getTemperatura = function(){
-      if (this.estado) {
-        return this.temperatura;
-      }
-      return false;
+      return this.temperatura;
     }
 
     this.getEncendida = function(){
@@ -107,6 +105,21 @@ function Resistencia(numero){
     }
 
 }
+
+Resistencia.prototype.generarTemperatura = function (max, min) {
+  var valor = Math.random() * (max - min) + min;
+  return valor.toFixed(1);
+};
+
+Resistencia.prototype.añadirTemperatura = function () {
+  this.temperatura = this.generarTemperatura(15,40);
+};
+
+
+
+
+
+
 
 function Estufa(){
     this.mac;

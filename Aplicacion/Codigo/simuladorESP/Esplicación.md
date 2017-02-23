@@ -40,7 +40,7 @@ elemento.id ="Cambio";
 
 
 ## Recursos
-http://www.jasoft.org/Blog/post/La-manera-correcta-de-anadir-y-quitar-clases-CSS-a-elementos-mediante-JavaScript-puro.aspx
+<http://www.jasoft.org/Blog/post/La-manera-correcta-de-anadir-y-quitar-clases-CSS-a-elementos-mediante-JavaScript-puro.aspx>
 http://www.w3big.com/es/js/js-htmldom-elements.html
 https://developer.mozilla.org/es/docs/Web/API/Document/createElement
 https://abalozz.es/plantillas-en-javascript-con-es2015/
@@ -57,8 +57,3 @@ Excepciones
 
 
 --------
-
-
-
-
-
