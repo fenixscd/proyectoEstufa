@@ -202,13 +202,14 @@ ListaDispositivos.prototype.generarMac = function () {
   calculado = Math.random()*9999; // Genera un numero a leatiroio entre 0 y 9999 con decimales
   calculado = Math.floor(calculado) // Le quita los decimales.
   calculado = calculado.toString();
-  longitud = calculado.length();
+  longitud = calculado.length;
 
-
-  for (i=0; i<2; i++){
-
-    mac = mac + "-" + calculado;
+  for (i=0; i<(4-longitud); i++){
+    calculado = "0" + calculado;
   }
+    mac = mac + "-" + calculado.substr(0,1);
+    mac = mac + "-" + calculado.substr(2,3);
+
 };
 
 /**

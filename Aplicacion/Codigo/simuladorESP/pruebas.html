@@ -63,15 +63,39 @@
   //    this.setResitencia2(new Resistencia(2));
   //  };
 
-     var resistencia = new Resistencia(1);
-     console.log(resistencia.getNumero());
-     console.log(resistencia.getEstado());
-     console.log(resistencia.getTemperatura());
-     console.log(resistencia.getEncendida());
-     console.log(resistencia.getHoraCambio());
-     console.log(resistencia.getHoraEstado ());
-     console.log(resistencia.getHoraTemperatura());
+    //  var resistencia = new Resistencia(1);
+    //  console.log(resistencia.getNumero());
+    //  console.log(resistencia.getEstado());
+    //  console.log(resistencia.getTemperatura());
+    //  console.log(resistencia.getEncendida());
+    //  console.log(resistencia.getHoraCambio());
+    //  console.log(resistencia.getHoraEstado ());
+    //  console.log(resistencia.getHoraTemperatura());
 
+    function pruebaMAC_Aleatorio(){
+      var mac = "A6-B5-C4-D3"
+      var calculado;
+      var longitud;
+      calculado = Math.random()*9999; // Genera un numero a leatiroio entre 0 y 9999 con decimales
+      console.log("Numero generado: " + calculado);
+      calculado = Math.floor(calculado) // Le quita los decimales.
+      console.log("Numero sin decimales: " + calculado);
+      calculado = calculado.toString();
+      console.log("Pasado a estring: " + calculado);
+      longitud = calculado.length;
+
+      for (i=0; i<(4-longitud); i++){
+        calculado = "0" + calculado;
+      }
+        console.log("calculado con ceros : " + calculado);
+        mac = mac + "-" + calculado.substr(0,2);
+        mac = mac + "-" + calculado.substr(2,3);
+        console.log("Esta es la MAC:" + mac);
+    }
+
+    
+
+    pruebaMAC();
    </script>
 </body>
 </html>
