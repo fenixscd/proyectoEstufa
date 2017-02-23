@@ -73,41 +73,41 @@
     //  console.log(resistencia.getHoraEstado ());
     //  console.log(resistencia.getHoraTemperatura());
 
-    function pruebaMAC_Aleatorio(){
-      var mac = "A6-B5-C4-D3"
-      var calculado;
-      var longitud;
-      calculado = Math.random()*9999; // Genera un numero a leatiroio entre 0 y 9999 con decimales
-      console.log("Numero generado: " + calculado);
-      calculado = Math.floor(calculado) // Le quita los decimales.
-      console.log("Numero sin decimales: " + calculado);
-      calculado = calculado.toString();
-      console.log("Pasado a estring: " + calculado);
-      longitud = calculado.length;
-
-      for (i=0; i<(4-longitud); i++){
-        calculado = "0" + calculado;
-      }
-        console.log("calculado con ceros : " + calculado);
-        mac = mac + "-" + calculado.substr(0,2);
-        mac = mac + "-" + calculado.substr(2,3);
-        console.log("Esta es la MAC:" + mac);
-    }
-
-    function pruebaMAC_Secuencial(num){
-      var mac = "A6-B5-C4-D3"
-      var longitud;
-      var calculado;
-      calculado = num.toString();
-      longitud = calculado.length;
-
-      for (i=0; i<(4-longitud); i++){
-        calculado = "0" + calculado;
-      }
-
-      mac = mac + "-" + calculado.substr(0,2) + "-" + calculado.substr(2,3);
-      return mac;
-    }
+    // function pruebaMAC_Aleatorio(){
+    //   var mac = "A6-B5-C4-D3"
+    //   var calculado;
+    //   var longitud;
+    //   calculado = Math.random()*9999; // Genera un numero a leatiroio entre 0 y 9999 con decimales
+    //   console.log("Numero generado: " + calculado);
+    //   calculado = Math.floor(calculado) // Le quita los decimales.
+    //   console.log("Numero sin decimales: " + calculado);
+    //   calculado = calculado.toString();
+    //   console.log("Pasado a estring: " + calculado);
+    //   longitud = calculado.length;
+    //
+    //   for (i=0; i<(4-longitud); i++){
+    //     calculado = "0" + calculado;
+    //   }
+    //     console.log("calculado con ceros : " + calculado);
+    //     mac = mac + "-" + calculado.substr(0,2);
+    //     mac = mac + "-" + calculado.substr(2,3);
+    //     console.log("Esta es la MAC:" + mac);
+    // }
+    //
+    // function pruebaMAC_Secuencial(num){
+    //   var mac = "A6-B5-C4-D3"
+    //   var longitud;
+    //   var calculado;
+    //   calculado = num.toString();
+    //   longitud = calculado.length;
+    //
+    //   for (i=0; i<(4-longitud); i++){
+    //     calculado = "0" + calculado;
+    //   }
+    //
+    //   mac = mac + "-" + calculado.substr(0,2) + "-" + calculado.substr(2,3);
+    //   return mac;
+    // }
 
     // console.log("Direccione MAC creada: " + pruebaMAC_Secuencial(1));
     //
@@ -117,9 +117,11 @@
 
     // var estufa = new Estufa();
     // console.log(estufa.getMac());
-    var despositivos = new ListaDispositivos();
-    console.console.log();
-
+    var dispositivos = new ListaDispositivos();
+    console.log(dispositivos.getTotalDispositivos());
+    dispositivos.showMACs();
+    dispositivos.addDispositivo();
+    dispositivos.showMACs();
 
 
 

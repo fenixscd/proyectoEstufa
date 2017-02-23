@@ -204,7 +204,7 @@ ListaDispositivos.prototype.getTotalDispositivos = function () {
 * @return {bool} true si existe false si no.
 */
 ListaDispositivos.prototype.isExisteMAC = function (mac) {
-  for (var dispositivo in listaDispositivos) {
+  for (var dispositivo in this.listaDispositivos) {
     if (dispositivo.getMac === mac){
       return true;
     }
@@ -218,13 +218,13 @@ ListaDispositivos.prototype.isExisteMAC = function (mac) {
 ListaDispositivos.prototype.addDispositivo = function () {
   var estufa = new Estufa();
   var mac = estufa.getMac();
-  
+
   do {
     estufa = new Estufa();
     mac = estufa.getMac();
   } while (this.isExisteMAC(mac));
 
-  listaDispositivos.push(estufa);
+  this.listaDispositivos.push(estufa);
 };
 
 /**
@@ -242,7 +242,7 @@ ListaDispositivos.prototype.genrarlistaDispositivos = function(numero){
   }
 }
 
-LsitaDispositivos.prototype.showMACs = function () {
+ListaDispositivos.prototype.showMACs = function () {
 
   for (var i = 0; i < this.listaDispositivos.length; i++) {
     console.log(this.listaDispositivos[i].getMac());
