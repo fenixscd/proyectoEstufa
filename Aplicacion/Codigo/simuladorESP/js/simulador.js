@@ -48,6 +48,7 @@ function Resistencia(numero){
     this.numero = numero; // Numero de resistencia
     this.estado; // Encendido apagado
     this.temperatura; // Temperatura a la que esta progrmada que ese pare.
+    this.encendida; // Encaso del que el estado sea encendido indica si la resistencia esta en marcha o no.
     this.horaCambio; // Hora cambio tipo Date
     this.horaEstado; // En que stado esta si no hay valores
     this.horaTemperatura; // Que temperatura para el cambio
@@ -76,6 +77,18 @@ function Resistencia(numero){
         return this.temperatura;
       }
       return null;
+    }
+
+    this.getEncendida = function(){
+      if (this.estado) {
+        return this.encendida;
+      }
+      return null;
+    }
+
+    this.setEncendida = function(encendida){
+      this.encendida = encendida;
+      return this;
     }
 
     this.setTemperatura = function(temperatura){
