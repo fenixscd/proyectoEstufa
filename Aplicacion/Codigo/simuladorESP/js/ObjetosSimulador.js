@@ -14,10 +14,7 @@ function Resistencia(numero){
     this.horaCambio = false; // Hora cambio tipo Date
     this.horaEstado = false; // En que stado esta si no hay valores
     this.horaTemperatura = false; // Que temperatura para el cambio
-    this.temperaturaMaxima = 40;
-    this.bucleTemperatura(this);
-    this.temperaturaInicial();
-    this.humedadInicial();
+
 
     // Metodos privilegiados
     this.getNumero = function() {
@@ -91,30 +88,7 @@ function Resistencia(numero){
     }
 }
 
-Resistencia.prototype.bucleTemperatura = function (_this) {
-  window.setTimeout(function() {
-    _this.bucleTemperatura(_this);
-  }, 1000);
-  console.log("hola " + this.generarTemperatura(15,40));
-};
 
-Resistencia.prototype.temperaturaInicial = function (max, min) {
-  var max = 38;
-  var min = -5;
-  var valor = generarValorEntreDosNumeros(max, min);
-  this.temperatura = valor.toFixed(1);
-};
-
-Resistencia.prototype.humedadInicial = function (max, min) {
-  var max = 1;
-  var min = 99;
-  var valor =generarValorEntreDosNumeros(max, min);
-  this.humedad = valor.toFixed(0);
-};
-
-Resistencia.prototype.generarValorEntreDosNumeros(max, min) {
-  return Math.random() * (max - min) + min;
-};
 
 
 // Bucle haver como lo hace
@@ -131,10 +105,18 @@ function Estufa(){
     this.dispositivo; // Nombre
     this.conexion;
     this.temperatura;
-    this.hemedad;
+    this.humedad;
     this.resitencia1 = new Resistencia(1);
     this.resitencia2 = new Resistencia(2);
+    this.temperaturaMaxima = 40;
+    this.temperaturaMinima = 10;
+    this.humedadMaxima = 99;
+    this.humedadMinima = 1;
     this.generarMac();
+    this.bucleTemperatura(this);
+    this.temperaturaInicial();
+    this.humedadInicial();
+
 
     this.getMac = function(){
       return this.mac;
@@ -206,6 +188,46 @@ Estufa.prototype.generarMac = function () {
     mac = mac + "-" + calculado.substr(2,3);
     this.mac = mac;
 };
+
+
+// La modificación aumentara y disminuira la temperatura dependiendo si la resistencia esta encendida.
+
+// Estufa.prototype.cambiarTemperatura = function () {
+//   if (this.)
+// };
+
+
+Estufa.prototype.bucleTemperatura = function (_this) {
+  window.setTimeout(function() {
+    _this.bucleTemperatura(_this);
+  }, 1000);
+  //console.log("hola " + this.generarTemperatura(15,40));
+};
+
+Estufa.prototype.temperaturaInicial = function (){
+  var valor = this.generarValorEntreDosNumeros(this.temperaturaMaxima, this.temperaturaMinima);
+  this.temperatura = valor.toFixed(1);
+};
+
+Estufa.prototype.humedadInicial = function (){
+  var valor = this.generarValorEntreDosNumeros(this.humedadMaxima, this.humedadMinima);
+  this.humedad = valor.toFixed(0);
+};
+
+Estufa.prototype.generarValorEntreDosNumeros  = function(max, min){
+  return Math.random() * (max - min) + min;
+};
+
+
+
+
+
+
+
+
+
+
+
 
 
 
