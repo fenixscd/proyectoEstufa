@@ -192,9 +192,9 @@ Estufa.prototype.generarMac = function () {
 
   //La modificación aumentara y disminuira la temperatura dependiendo si la resistencia esta encendida.
 
-  Estufa.prototype.cambiarTemperatura = function () {
-    var resistencia1 = this.resistencia1.getEstado();
-    var resistencia2 = this.resistencia2.getEstado();
+  Estufa.prototype.cambiarTemperatura = function (_this) {
+    var resistencia1 = _this.resistencia1.getEstado();
+    var resistencia2 = _this.resistencia2.getEstado();
     var multiplicador = 0;
     var valorRandom = Math.random().toFixed(1);
     if (!resistencia1) multiplicador++;
@@ -206,15 +206,14 @@ Estufa.prototype.generarMac = function () {
       valorRandom = -1 * valorRandom;
     }
 
-    this.temperatura = this.temperatura + valorRandom));
+    _this.temperatura = _this.temperatura + valorRandom;
   };
-
 
 Estufa.prototype.bucleTemperatura = function (_this) {
   window.setTimeout(function() {
     _this.bucleTemperatura(_this);
-  }, 1000);
-  console.log("hola " + this.cambiarTemperatura());
+  }, 2000);
+  console.log("hola " + _this.cambiarTemperatura(_this));
 };
 
 Estufa.prototype.temperaturaInicial = function (){
