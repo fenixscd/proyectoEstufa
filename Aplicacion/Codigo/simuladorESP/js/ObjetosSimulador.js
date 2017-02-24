@@ -1,20 +1,3 @@
-
-
- function generarValores(valor, suvir){
-     valor = parseFloat(valor);
-     var alearorio = Math.random();
-     var calculado;
-
-     if (suvir){
-         calculado = valor + alearorio;
-     }else{
-         calculado = valor - alearorio;
-     }
-     return calculado.toFixed(1);
- }
-
-
-
  /* Clase resistencia
  * @param int numero numero de resistencia
  * @param bool estado Encendido on apagado off
@@ -31,7 +14,10 @@ function Resistencia(numero){
     this.horaCambio = false; // Hora cambio tipo Date
     this.horaEstado = false; // En que stado esta si no hay valores
     this.horaTemperatura = false; // Que temperatura para el cambio
+    this.temperaturaMaxima = 40;
     this.bucleTemperatura(this);
+    this.temperaturaInicial();
+    this.humedadInicial();
 
     // Metodos privilegiados
     this.getNumero = function() {
@@ -112,14 +98,24 @@ Resistencia.prototype.bucleTemperatura = function (_this) {
   console.log("hola " + this.generarTemperatura(15,40));
 };
 
-Resistencia.prototype.generarTemperatura = function (max, min) {
-  var valor = Math.random() * (max - min) + min;
-  return valor.toFixed(1);
+Resistencia.prototype.temperaturaInicial = function (max, min) {
+  var max = 38;
+  var min = -5;
+  var valor = generarValorEntreDosNumeros(max, min);
+  this.temperatura = valor.toFixed(1);
 };
 
-Resistencia.prototype.añadirTemperatura = function () {
-  this.temperatura = this.generarTemperatura(15,40);
+Resistencia.prototype.humedadInicial = function (max, min) {
+  var max = 1;
+  var min = 99;
+  var valor =generarValorEntreDosNumeros(max, min);
+  this.humedad = valor.toFixed(0);
 };
+
+Resistencia.prototype.generarValorEntreDosNumeros(max, min) {
+  return Math.random() * (max - min) + min;
+};
+
 
 // Bucle haver como lo hace
 
