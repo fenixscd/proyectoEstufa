@@ -88,17 +88,7 @@ function Resistencia(numero){
     }
 }
 
-
-
-
-// Bucle haver como lo hace
-
-
-
-
-
-
-
+// Estufa
 
 function Estufa(){
     this.mac;
@@ -150,6 +140,10 @@ function Estufa(){
       return this;
     }
     this.setTemperatura = function(temperatura){
+      // La temperatura siempre tiene que estar en tre los minimos y maximos
+      // indicados
+      if (temperatura);
+
       this.temperatura = temperatura;
       //return this;
     }
@@ -213,13 +207,12 @@ Estufa.prototype.generarMac = function () {
       valorRandom = -1 * valorRandom;
     }
 
-
-    tempturaActual = parseFloat(this.getTemperatura()).toFixed(1);
-    valorRandom =   parseFloat(valorRandom).toFixed(1);
+    //tempturaActual = parseFloat(this.getTemperatura()).toFixed(1);
+    // valorRandom =   parseFloat(valorRandom).toFixed(1);
 
     total =  parseFloat(this.getTemperatura()) + parseFloat(valorRandom);
-    console.log("Temperatura recogida " + tempturaActual);
-    console.log("Valor para sumar " + valorRandom);
+    console.log("Temperatura recogida " + this.getTemperatura());
+    console.log("Valor para sumar " + valorRandom.toFixed(1));
     console.log("Temperatura temperatura calculada " + total);
 
     this.setTemperatura(total);
