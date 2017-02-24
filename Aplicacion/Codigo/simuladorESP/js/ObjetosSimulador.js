@@ -32,6 +32,7 @@ function Resistencia(numero){
     this.horaEstado = false; // En que stado esta si no hay valores
     this.horaTemperatura = false; // Que temperatura para el cambio
     this.añadirTemperatura();
+    this.pruebaFunciona();
 
     // Metodos privilegiados
     this.getNumero = function() {
@@ -103,8 +104,12 @@ function Resistencia(numero){
       this.horaTemperatura = horaTemperatura;
       return this;
     }
-
 }
+
+Resistencia.prototype.pruebaFunciona = function () {
+  window.setTimeout(this.pruebaFunciona, 1000);
+  console.log("hola " + this.generarTemperatura(15,40));
+};
 
 Resistencia.prototype.generarTemperatura = function (max, min) {
   var valor = Math.random() * (max - min) + min;
@@ -114,6 +119,9 @@ Resistencia.prototype.generarTemperatura = function (max, min) {
 Resistencia.prototype.añadirTemperatura = function () {
   this.temperatura = this.generarTemperatura(15,40);
 };
+
+// Bucle haver como lo hace
+
 
 
 
