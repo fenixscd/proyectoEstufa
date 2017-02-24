@@ -125,7 +125,7 @@ function Estufa(){
       return this.conexion;
     }
     this.getTemperatura = function(){
-      return this.temperatura;
+      return parseFloat(this.temperatura).toFixed(1);
     }
     this.getHumedad = function(){
       return this.humedad;
@@ -167,9 +167,11 @@ function Estufa(){
       return this;
     }
 
-    this.cambiarTemperatura(this);
+
     this.temperaturaInicial();
     this.humedadInicial();
+    this.cambiarTemperatura();
+    // this.bucleTemperatura();
 
     //this.bucleTemperatura(this);
 }
@@ -199,15 +201,21 @@ Estufa.prototype.generarMac = function () {
     var resistencia2 = this.resistencia2.getEstado();
     var multiplicador = 0;
     var valorRandom = Math.random().toFixed(1);
+    console.log("Valor rando con un decimal " + valorRandom);
     if (!resistencia1) multiplicador++;
     if (!resistencia2) multiplicador++;
+
+    console.log("Valor despues de los ifs " + valorRandom);
+    console.log("Valor del multiplicador " + multiplicador)
 
     if (multiplicador !== 0){
       valorRandom = valorRandom * multiplicador;
     } else {
       valorRandom = -1 * valorRandom;
     }
-    this.setTemperatura(this.getTemperatura() + valorRandom);
+    console.log("valor sumado " + valorRandom);
+    this.setTemperatura(this.getTemperatura() + (valorRandom));
+    console.log("Cambio de temperatura: "+ this.getTemperatura());
   };
 
   Estufa.prototype.bucleTemperatura = function () {
