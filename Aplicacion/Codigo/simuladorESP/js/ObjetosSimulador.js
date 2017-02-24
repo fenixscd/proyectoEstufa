@@ -131,7 +131,7 @@ function Estufa(){
     this.getTemperatura = function(){
       return this.temperatura;
     }
-    this.getHemedad = function(){
+    this.getHumedad = function(){
       return this.humedad;
     }
     this.getListaResitencias = function(){
@@ -157,7 +157,7 @@ function Estufa(){
       this.temperatura = temperatura;
       return this;
     }
-    this.setHemedad = function(humedad){
+    this.setHumedad = function(humedad){
       this.humedad = humedad;
       return this;
     }
@@ -190,18 +190,19 @@ Estufa.prototype.generarMac = function () {
 };
 
 
-// La modificación aumentara y disminuira la temperatura dependiendo si la resistencia esta encendida.
+  //La modificación aumentara y disminuira la temperatura dependiendo si la resistencia esta encendida.
 
-// Estufa.prototype.cambiarTemperatura = function () {
-//   if (this.)
-// };
+  Estufa.prototype.cambiarTemperatura = function () {
+    var resistencia1 = this
+    if (this.)
+  };
 
 
 Estufa.prototype.bucleTemperatura = function (_this) {
   window.setTimeout(function() {
     _this.bucleTemperatura(_this);
   }, 1000);
-  //console.log("hola " + this.generarTemperatura(15,40));
+  console.log("hola " + this.cambiarTemperatura());
 };
 
 Estufa.prototype.temperaturaInicial = function (){
