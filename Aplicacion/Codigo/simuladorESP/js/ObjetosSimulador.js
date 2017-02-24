@@ -55,9 +55,6 @@ function Resistencia(numero){
       return false;
     }
 
-
-// Inicio seters
-
     this.setEstado = function(estado){
       this.estado = estado;
       return this;
@@ -88,7 +85,11 @@ function Resistencia(numero){
     }
 }
 
-// Estufa
+/******************************************************************************/
+/******************************************************************************/
+/******************************************************************************/
+/******************************************************************************/
+
 
 function Estufa(){
     this.mac;
@@ -141,23 +142,13 @@ function Estufa(){
       return this;
     }
     this.setTemperatura = function(temperatura){
-      this.temperatura = temperatura;
-      if (temperatura >= this.temperaturaMaxima){
-        this.temperatura = this.temperaturaMaxima;
-      }else if (temperatura <= this.temperaturaMinima) {
-        this.temperatura = this.temperaturaMinima;
-      }
+      this.temperatura = this.getEntreValores(temperatura, this.temperaturaMaxima, this.temperaturaMinima);
+      
       /// SI LLEGA LA MAXIMO HAY QUE FORZAR EL APAGADO
       return this;
     }
     this.setHumedad = function(humedad){
-      this.humedad = humedad;
-      this.humedad = humedad;
-      if (humedad >= this.humedadMaxima){
-        this.humedad = this.humedadMaxima;
-      }else if (humedad <= this.humedadMinima) {
-        this.humedad = this.humedadMinima;
-      }
+      this.humedad = this.getEntreValores(temperatura, this.humedadMaxima, this.humedadMinima);
       return this;
     }
 
@@ -196,37 +187,30 @@ Estufa.prototype.generarMac = function () {
     this.mac = mac;
 };
 
-
-  //La modificación aumentara y disminuira la temperatura dependiendo si la resistencia esta encendida.
-
   Estufa.prototype.cambiarTemperatura = function () {
     var resistencia1 = this.resistencia1.getEstado();
     var resistencia2 = this.resistencia2.getEstado();
-    var multiplicador = 0;
+    var multiplicador = -1;
     var valorRandom = Math.random();
-    var tempturaActual;
     var total;
     if (!resistencia1) multiplicador++;
     if (!resistencia2) multiplicador++;
 
-    if (multiplicador !== 0){
-      valorRandom = valorRandom * multiplicador;
-
-    } else {
-      valorRandom = -1 * valorRandom;
+    if (multiplicador > -1){
+      multiplicador++;
     }
+    valorRandom = valorRandom * multiplicador;
 
     total =  parseFloat(this.getTemperatura()) + parseFloat(valorRandom);
     this.setTemperatura(total);
   };
 
-
-
   Estufa.prototype.cambiarHumedad = function () {
     // Un random para que suva de manera aleatoria
-    var subir = (Math.random()*2)-1;
-    console.log("Subir o bajar: " + subir);
-    var valorRandom = Math.random();
+    var valorRandom = (Math.random()*2)-1;
+    var total = parseFloat(this.getHumedad()) + parseFloat(valorRandom);
+    this.setHumedad(total);
+    console.log("La nueva humedad es de: " + this.getHumedad());
   };
 
   Estufa.prototype.bucleTemperatura = function(_this) {
@@ -235,7 +219,7 @@ Estufa.prototype.generarMac = function () {
     }, 2000);
     this.cambiarTemperatura();
     this.cambiarHumedad();
-    // console.log("Temperatura calculada: " + this.getTemperatura(_this));
+    console.log("Temperatura calculada: " + this.getTemperatura(_this));
   };
 
 Estufa.prototype.temperaturaInicial = function (){
@@ -252,6 +236,24 @@ Estufa.prototype.generarValorEntreDosNumeros  = function(max, min){
   return Math.random() * (max - min) + min;
 };
 
+Estufa.prototype.getEntreValores = function (cantidad, cantidadMaxima, cantidadMinima) {
+  var resultado = cantidad;
+  if (cantidad >= cantidadMaxima){
+    resultado = cantidadMaxima;
+  }else if (resultado <= cantidadMinima) {
+    resultado = cantidadMinima;
+  }
+  return resultado;
+};
+
+
+
+
+
+/******************************************************************************/
+/******************************************************************************/
+/******************************************************************************/
+/******************************************************************************/
 
 function ListaDispositivos(){
      this.listaDispositivos = new Array();
