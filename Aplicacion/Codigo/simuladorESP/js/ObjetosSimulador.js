@@ -106,8 +106,8 @@ function Estufa(){
     this.conexion;
     this.temperatura;
     this.humedad;
-    this.resitencia1 = new Resistencia(1);
-    this.resitencia2 = new Resistencia(2);
+    this.resistencia1 = new Resistencia(1);
+    this.resistencia2 = new Resistencia(2);
     this.temperaturaMaxima = 40;
     this.temperaturaMinima = 10;
     this.humedadMaxima = 99;
@@ -193,8 +193,20 @@ Estufa.prototype.generarMac = function () {
   //La modificación aumentara y disminuira la temperatura dependiendo si la resistencia esta encendida.
 
   Estufa.prototype.cambiarTemperatura = function () {
-    var resistencia1 = this
-    if (this.)
+    var resistencia1 = this.resistencia1.getEstado();
+    var resistencia2 = this.resistencia2.getEstado();
+    var multiplicador = 0;
+    var valorRandom = Math.random().toFixed(1);
+    if (!resistencia1) multiplicador++;
+    if (!resistencia2) multiplicador++;
+
+    if (multiplicador !== 0){
+      valorRandom = valorRandom * multiplicador;
+    } else {
+      valorRandom = -1 * valorRandom;
+    }
+
+    this.temperatura = this.temperatura + valorRandom));
   };
 
 
@@ -218,18 +230,6 @@ Estufa.prototype.humedadInicial = function (){
 Estufa.prototype.generarValorEntreDosNumeros  = function(max, min){
   return Math.random() * (max - min) + min;
 };
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 function ListaDispositivos(){
@@ -257,7 +257,7 @@ ListaDispositivos.prototype.isExisteMAC = function (mac) {
 * Antes de añadir verificamos que la mac no este duplicada.
 */
 ListaDispositivos.prototype.addDispositivo = function () {
-  var estufa = new Estufa();
+  var estufa;
   var mac = estufa.getMac();
 
   do {
