@@ -118,6 +118,7 @@ function Estufa(){
       return parseFloat(this.temperatura).toFixed(1);
     }
     this.getHumedad = function(){
+
       return this.humedad;
     }
     this.getListaResitencias = function(){
@@ -140,15 +141,23 @@ function Estufa(){
       return this;
     }
     this.setTemperatura = function(temperatura){
-      // La temperatura siempre tiene que estar en tre los minimos y maximos
-      // indicados
-      if (temperatura);
-
       this.temperatura = temperatura;
-      //return this;
+      if (temperatura >= this.temperaturaMaxima){
+        this.temperatura = this.temperaturaMaxima;
+      }else if (temperatura <= this.temperaturaMinima) {
+        this.temperatura = this.temperaturaMinima;
+      }
+      /// SI LLEGA LA MAXIMO HAY QUE FORZAR EL APAGADO
+      return this;
     }
     this.setHumedad = function(humedad){
       this.humedad = humedad;
+      this.humedad = humedad;
+      if (humedad >= this.humedadMaxima){
+        this.humedad = this.humedadMaxima;
+      }else if (humedad <= this.humedadMinima) {
+        this.humedad = this.humedadMinima;
+      }
       return this;
     }
 
@@ -207,15 +216,17 @@ Estufa.prototype.generarMac = function () {
       valorRandom = -1 * valorRandom;
     }
 
-    //tempturaActual = parseFloat(this.getTemperatura()).toFixed(1);
-    // valorRandom =   parseFloat(valorRandom).toFixed(1);
-
     total =  parseFloat(this.getTemperatura()) + parseFloat(valorRandom);
-    console.log("Temperatura recogida " + this.getTemperatura());
-    console.log("Valor para sumar " + valorRandom.toFixed(1));
-    console.log("Temperatura temperatura calculada " + total);
-
     this.setTemperatura(total);
+  };
+
+
+
+  Estufa.prototype.cambiarHumedad = function () {
+    // Un random para que suva de manera aleatoria
+    var subir = (Math.random()*2)-1;
+    console.log("Subir o bajar: " + subir);
+    var valorRandom = Math.random();
   };
 
   Estufa.prototype.bucleTemperatura = function(_this) {
@@ -223,7 +234,8 @@ Estufa.prototype.generarMac = function () {
       _this.bucleTemperatura(_this);
     }, 2000);
     this.cambiarTemperatura();
-    console.log("Temperatura calculada: " + this.getTemperatura(_this));
+    this.cambiarHumedad();
+    // console.log("Temperatura calculada: " + this.getTemperatura(_this));
   };
 
 Estufa.prototype.temperaturaInicial = function (){
@@ -287,13 +299,11 @@ ListaDispositivos.prototype.genrarlistaDispositivos = function(numero){
       console.log("Hola");
 
     } while (false);
-
     listaDispositivos.push(new Estufa(i));
   }
 }
 
 ListaDispositivos.prototype.showMACs = function () {
-
   for (var i = 0; i < this.listaDispositivos.length; i++) {
     console.log(this.listaDispositivos[i].getMac());
   }
