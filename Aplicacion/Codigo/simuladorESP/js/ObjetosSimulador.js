@@ -113,10 +113,6 @@ function Estufa(){
     this.humedadMaxima = 99;
     this.humedadMinima = 1;
     this.generarMac();
-    this.bucleTemperatura(this);
-    this.temperaturaInicial();
-    this.humedadInicial();
-
 
     this.getMac = function(){
       return this.mac;
@@ -155,7 +151,7 @@ function Estufa(){
     }
     this.setTemperatura = function(temperatura){
       this.temperatura = temperatura;
-      return this;
+      //return this;
     }
     this.setHumedad = function(humedad){
       this.humedad = humedad;
@@ -170,6 +166,12 @@ function Estufa(){
       this.resistencia2 = resistencia2;
       return this;
     }
+
+    this.cambiarTemperatura(this);
+    this.temperaturaInicial();
+    this.humedadInicial();
+
+    //this.bucleTemperatura(this);
 }
 
 Estufa.prototype.generarMac = function () {
@@ -192,9 +194,9 @@ Estufa.prototype.generarMac = function () {
 
   //La modificación aumentara y disminuira la temperatura dependiendo si la resistencia esta encendida.
 
-  Estufa.prototype.cambiarTemperatura = function (_this) {
-    var resistencia1 = _this.resistencia1.getEstado();
-    var resistencia2 = _this.resistencia2.getEstado();
+  Estufa.prototype.cambiarTemperatura = function () {
+    var resistencia1 = this.resistencia1.getEstado();
+    var resistencia2 = this.resistencia2.getEstado();
     var multiplicador = 0;
     var valorRandom = Math.random().toFixed(1);
     if (!resistencia1) multiplicador++;
@@ -205,20 +207,19 @@ Estufa.prototype.generarMac = function () {
     } else {
       valorRandom = -1 * valorRandom;
     }
-
-    _this.temperatura = _this.temperatura + valorRandom;
+    this.setTemperatura(this.getTemperatura() + valorRandom);
   };
 
-Estufa.prototype.bucleTemperatura = function (_this) {
-  window.setTimeout(function() {
-    _this.bucleTemperatura(_this);
-  }, 2000);
-  console.log("hola " + _this.cambiarTemperatura(_this));
-};
+  Estufa.prototype.bucleTemperatura = function () {
+    window.setTimeout(function() {
+      this.bucleTemperatura();
+    }, 2000);
+    console.log("Temperatura calculada: " + this.cambiarTemperatura(this));
+  };
 
 Estufa.prototype.temperaturaInicial = function (){
   var valor = this.generarValorEntreDosNumeros(this.temperaturaMaxima, this.temperaturaMinima);
-  this.temperatura = valor.toFixed(1);
+  this.setTemperatura(valor.toFixed(1));
 };
 
 Estufa.prototype.humedadInicial = function (){
