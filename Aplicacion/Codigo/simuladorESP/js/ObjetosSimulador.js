@@ -31,8 +31,7 @@ function Resistencia(numero){
     this.horaCambio = false; // Hora cambio tipo Date
     this.horaEstado = false; // En que stado esta si no hay valores
     this.horaTemperatura = false; // Que temperatura para el cambio
-    this.añadirTemperatura();
-    this.pruebaFunciona();
+    this.bucleTemperatura(this);
 
     // Metodos privilegiados
     this.getNumero = function() {
@@ -106,8 +105,10 @@ function Resistencia(numero){
     }
 }
 
-Resistencia.prototype.pruebaFunciona = function () {
-  window.setTimeout(this.pruebaFunciona, 1000);
+Resistencia.prototype.bucleTemperatura = function (_this) {
+  window.setTimeout(function() {
+    _this.bucleTemperatura(_this);
+  }, 1000);
   console.log("hola " + this.generarTemperatura(15,40));
 };
 

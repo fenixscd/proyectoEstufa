@@ -136,11 +136,35 @@
     //resistencia.Bucle();
     //console.log(resistencia.getTemperatura());
 
-    var timeoutId = setTimeout(function(msg){
-    log(msg);
-  },2000,'Pasaron 2 segundos desde el click');
+    // window.setTimeout(function(msg){
+    //   console.log(msg);
+    // },2000,'Pasaron 2 segundos desde el click');
 
+    // function enviarBucle(msg){
+    //     window.setTimeout(function(msg){
+    //       enviarBucle();
+    //       msg++;
+    //       console.log(msg);
+    //     }, 1000, msg);
+    //     //console.log("Medicion: " +gerarValores(medicion));
+    //
+    // }
+    // enviarBucle(1);
 
+    var resitencia = new Resistencia(1);
+
+    function escribir(resitencia) {
+      resitencia.getno
+      console.log(valor);
+
+      // if (valor < 10) {
+        window.setTimeout(function() {
+          escribir(valor);
+        },2000);
+      // }
+    }
+
+    // escribir(1);
 
    </script>
 </body>
