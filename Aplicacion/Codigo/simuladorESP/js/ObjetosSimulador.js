@@ -143,12 +143,12 @@ function Estufa(){
     }
     this.setTemperatura = function(temperatura){
       this.temperatura = this.getEntreValores(temperatura, this.temperaturaMaxima, this.temperaturaMinima);
-      
+
       /// SI LLEGA LA MAXIMO HAY QUE FORZAR EL APAGADO
       return this;
     }
     this.setHumedad = function(humedad){
-      this.humedad = this.getEntreValores(temperatura, this.humedadMaxima, this.humedadMinima);
+      this.humedad = this.getEntreValores(humedad, this.humedadMaxima, this.humedadMinima);
       return this;
     }
 
@@ -169,6 +169,16 @@ function Estufa(){
 
     //this.bucleTemperatura(this);
 }
+
+Estufa.prototype.getEntreValores = function (cantidad, cantidadMaxima, cantidadMinima) {
+  var resultado = cantidad;
+  if (cantidad >= cantidadMaxima){
+    resultado = cantidadMaxima;
+  }else if (resultado <= cantidadMinima) {
+    resultado = cantidadMinima;
+  }
+  return resultado;
+};
 
 Estufa.prototype.generarMac = function () {
   var mac = "A6-B5-C4-D3"
@@ -236,15 +246,7 @@ Estufa.prototype.generarValorEntreDosNumeros  = function(max, min){
   return Math.random() * (max - min) + min;
 };
 
-Estufa.prototype.getEntreValores = function (cantidad, cantidadMaxima, cantidadMinima) {
-  var resultado = cantidad;
-  if (cantidad >= cantidadMaxima){
-    resultado = cantidadMaxima;
-  }else if (resultado <= cantidadMinima) {
-    resultado = cantidadMinima;
-  }
-  return resultado;
-};
+
 
 
 
