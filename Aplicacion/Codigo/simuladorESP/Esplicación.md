@@ -36,8 +36,11 @@ elemento.parentNode.removeChild(elemento);
 
 elemento.id ="Cambio";
 
-
-
+---------
+var fruits = ["Manzana", "Plátano"];
+fruits.forEach(function (item, index, array) {
+    console.log(item, index);
+});
 
 ## Recursos
 <http://www.jasoft.org/Blog/post/La-manera-correcta-de-anadir-y-quitar-clases-CSS-a-elementos-mediante-JavaScript-puro.aspx>

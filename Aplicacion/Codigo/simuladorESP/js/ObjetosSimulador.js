@@ -94,6 +94,7 @@ function Resistencia(numero){
 function Estufa(){
     this.mac;
     this.dispositivo; // Nombre
+    this.modoAutomatico;
     this.conexion;
     this.temperatura;
     this.humedad;
@@ -110,8 +111,16 @@ function Estufa(){
     }
 
     this.getDispositivo = function(){
+      if (this.dispositivo === undefined){
+        return this.mac;
+      }
       return this.dispositivo;
     }
+
+    this.getModoAutomatico = function(){
+      return this.modoAutomatico;
+    }
+
     this.getConexion = function(){
       return this.conexion;
     }
@@ -137,6 +146,12 @@ function Estufa(){
       this.dispositivo = dispositivo;
       return this;
     }
+
+    this.setModoAutomatico = function(modoAutomatico){
+      this.modoAutomatico = modoAutomatico;
+      return this;
+    }
+
     this.setConexion = function(conexion){
       this.conexion = conexion;
       return this;
@@ -167,7 +182,9 @@ function Estufa(){
     this.cambiarTemperatura(this);
     this.bucleTemperatura(this);
 
-    //this.bucleTemperatura(this);
+    // Tengo que añadir el metodo de conexión
+    // Añadir el metodo de enviar datos
+    //
 }
 
 Estufa.prototype.getEntreValores = function (cantidad, cantidadMaxima, cantidadMinima) {
@@ -220,7 +237,7 @@ Estufa.prototype.generarMac = function () {
     var valorRandom = (Math.random()*2)-1;
     var total = parseFloat(this.getHumedad()) + parseFloat(valorRandom);
     this.setHumedad(total);
-    console.log("La nueva humedad es de: " + this.getHumedad());
+    console.log("Humedad almacenada: " + this.getHumedad());
   };
 
   Estufa.prototype.bucleTemperatura = function(_this) {
@@ -229,7 +246,8 @@ Estufa.prototype.generarMac = function () {
     }, 2000);
     this.cambiarTemperatura();
     this.cambiarHumedad();
-    console.log("Temperatura calculada: " + this.getTemperatura(_this));
+    /////// Tiene que enviar tambien los datos
+    console.log("Temperatura almacenada: " + this.getTemperatura(_this));
   };
 
 Estufa.prototype.temperaturaInicial = function (){
@@ -246,8 +264,34 @@ Estufa.prototype.generarValorEntreDosNumeros  = function(max, min){
   return Math.random() * (max - min) + min;
 };
 
+Estufa.prototype.generarHTML = function (plantilla) {
+   return plantilla.replace(/{{mac}}/g, this.getMac());
+};
 
+Estufa.prototype.pintarDatos = function () {
 
+  document.getElementById("dispositivo").innerHTML = this.getDispositivo();
+  if (this.getModoAutomatico()){
+    document.getElementById("modo");
+  }
+
+  var modo =
+  var conexion = document.getElementById("conexion");
+  var temp = document.getElementById("temp");
+  var hume = document.getElementById("hume");
+
+  var resis1Esta = document.getElementById("resis1Esta");
+  var resis1Temp = document.getElementById("resis1Temp");
+  var hora1 = document.getElementById("hora1");
+  var hora1Cambio = document.getElementById("hora1Cambio");
+  var hora1Temp = document.getElementById("hora1Temp");
+
+  var resis2Esta = document.getElementById("resis2Esta");
+  var resis2Temp = document.getElementById("resis2Temp");
+  var hora2 = document.getElementById("hora2");
+  var hora2Cambio = document.getElementById("hora2Cambio");
+  var hora2Temp = document.getElementById("hora2Temp");
+};
 
 
 
