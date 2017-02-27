@@ -11,13 +11,13 @@ Se podria provar de incluirlo en la lista de dispositivos y que al añadir el di
 -   [ ] Crear la clase que una los objetos con el html, que se encargara de parsear los datos.
 -   [ ] Crear el protocolo de comunicación.
 -   [ ] Crear un objeto nuevo para que una todas las partes del dispositivo (como un main de cada dispositivo).
-   -   [ ] La estufa con sus resistencias.
-   -   [ ] El bucle.
-   -   [ ] La inserción del html.
-   -   [ ] El cambio de datos.
-   -   [ ] El envio de datos.
-   -   [ ] La recepción de datos.
-   -   [ ] La gestión de la comunicaciones (Protocolo de que tiene que hacer cuando recive los datos).
+    -   [ ] La estufa con sus resistencias.
+    -   [ ] El bucle.
+    -   [ ] La inserción del html.
+    -   [ ] El cambio de datos.
+    -   [ ] El envio de datos.
+    -   [ ] La recepción de datos.
+    -   [ ] La gestión de la comunicaciones (Protocolo de que tiene que hacer cuando recive los datos).
 
 ## main
 
@@ -26,12 +26,13 @@ Se podria provar de incluirlo en la lista de dispositivos y que al añadir el di
 
 ## ListaDispositivos
 
--   [ ] 
+-   [ ] Modificar el validado de direciones MAC para que no tenga en cuenta el ulimo elemento.
+-   [ ] Terminar le metodo de agragar esturfas.
 
 
 ## Estufa
 
--   [ ] 
+
 
 ## Resistencias
 
@@ -60,7 +61,7 @@ El método startsWith() verifica si un string contiene una cadena que le pasamos
 
 
 
-
+~~~
 var rojos = document.getElementsByClassName("rojo");
 for (var i = 0; i<rojos.length; i++) {
    rojos[i].classList.remove("rojo");
@@ -95,13 +96,14 @@ var fruits = ["Manzana", "Plátano"];
 fruits.forEach(function (item, index, array) {
     console.log(item, index);
 });
+~~~
 
 ## Recursos
 <http://www.jasoft.org/Blog/post/La-manera-correcta-de-anadir-y-quitar-clases-CSS-a-elementos-mediante-JavaScript-puro.aspx>
-http://www.w3big.com/es/js/js-htmldom-elements.html
-https://developer.mozilla.org/es/docs/Web/API/Document/createElement
-https://abalozz.es/plantillas-en-javascript-con-es2015/
-http://www.etnassoft.com/2016/10/05/template-strings-en-es6-estudiando-las-nuevas-plantillas-de-cadena-en-javascript/
+<http://www.w3big.com/es/js/js-htmldom-elements.html>
+<https://developer.mozilla.org/es/docs/Web/API/Document/createElement>
+<https://abalozz.es/plantillas-en-javascript-con-es2015/>
+<http://www.etnassoft.com/2016/10/05/template-strings-en-es6-estudiando-las-nuevas-plantillas-de-cadena-en-javascript/>
 
 Excepciones
 <https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Sentencias/try...catch>

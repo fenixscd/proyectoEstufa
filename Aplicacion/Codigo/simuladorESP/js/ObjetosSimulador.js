@@ -131,8 +131,7 @@ function Estufa(){
       return parseFloat(this.temperatura).toFixed(1);
     }
     this.getHumedad = function(){
-
-      return this.humedad;
+      return parseFloat(this.humedad).toFixed(0);
     }
     this.getListaResitencias = function(){
       return this.listaResitencias;
@@ -183,11 +182,6 @@ function Estufa(){
     this.temperaturaInicial();
     this.humedadInicial();
     this.cambiarTemperatura(this);
-    this.bucleTemperatura(this);
-
-    // Tengo que añadir el metodo de conexión
-    // Añadir el metodo de enviar datos
-    //
 }
 
 Estufa.prototype.getEntreValores = function (cantidad, cantidadMaxima, cantidadMinima) {
@@ -249,8 +243,19 @@ Estufa.prototype.generarMac = function () {
     }, 2000);
     this.cambiarTemperatura();
     this.cambiarHumedad();
+    this.pintarDatos(_this);
     /////// Tiene que enviar tambien los datos
     console.log("Temperatura almacenada: " + this.getTemperatura(_this));
+  };
+
+  Estufa.prototype.bucleTemperaturaDos = function(_this) {
+    window.setTimeout(function() {
+      _this.bucleTemperatura(_this);
+    }, 2000);
+    _this.cambiarTemperatura();
+    _this.cambiarHumedad();
+    /////// Tiene que enviar tambien los datos
+    console.log("Temperatura almacenada: " + _this.getTemperatura(_this));
   };
 
 Estufa.prototype.temperaturaInicial = function (){
@@ -273,18 +278,18 @@ Estufa.prototype.generarHTML = function (plantilla) {
 
 Estufa.prototype.pintarDatos = function () {
 
-  document.getElementById("dispositivo").innerHTML = this.getDispositivo();
+  document.getElementById("dispositivo" + this.getMac()).innerHTML = this.getDispositivo();
   if (this.getModoAutomatico())
-    document.getElementById("modo").getElementById("Auto");
-  else document.getElementById("modo").getElementById("Manu");
+    document.getElementById("modo" + this.getMac()).innerHTML = "Auto";
+  else document.getElementById("modo"  + this.getMac()).innerHTML = "Manual";
 
   if (this.getConexion())
-    document.getElementById("conexion").innerHTML = this.getElementById("CONEC");
-  else document.getElementById("conexion").innerHTML = this.getElementById("DESCONEC");
-  
-  document.getElementById("temp").innerHTML = this.getTemperatura();
-  document.getElementById("hume").innerHTML = this.getHumedad();
-  
+    document.getElementById("conexion" + this.getMac()).innerHTML = "Conec";
+  else document.getElementById("conexion" + this.getMac()).innerHTML = "Desconec";
+
+  document.getElementById("temp" + this.getMac()).innerHTML = this.getTemperatura();
+  document.getElementById("hume" + this.getMac()).innerHTML = this.getHumedad();
+
   // var temp = document.getElementById("temp");
   // var hume = document.getElementById("hume");
 
@@ -301,8 +306,15 @@ Estufa.prototype.pintarDatos = function () {
   // var hora2Temp = document.getElementById("hora2Temp");
 };
 
+/******************************************************************************/
+/******************************************************************************/
+/******************************************************************************/
+/******************************************************************************/
 
+function Dispositivo(){
+  var estufa = new Estufa();
 
+}
 
 /******************************************************************************/
 /******************************************************************************/
@@ -321,7 +333,8 @@ ListaDispositivos.prototype.getTotalDispositivos = function () {
 * @param {String} mac dirección mac.
 * @return {bool} true si existe false si no.
 */
-ListaDispositivos.prototype.isExisteMAC = function (mac) {
+ListaDispositivos.prototype.isExisteMAC = function () {
+  // el for sin tener en cuenta el ulimo dispositivo.
   for (var dispositivo in this.listaDispositivos) {
     if (dispositivo.getMac === mac){
       return true;
@@ -334,13 +347,11 @@ ListaDispositivos.prototype.isExisteMAC = function (mac) {
 * Antes de añadir verificamos que la mac no este duplicada.
 */
 ListaDispositivos.prototype.addDispositivo = function () {
-  var estufa;
-  var mac = estufa.getMac();
-
   do {
-    estufa = new Estufa();
-    mac = estufa.getMac();
-  } while (this.isExisteMAC(mac));
+    this.listaDispositivos.push(new Estufa());
+
+  } while (this.isExisteMAC());
+
 
   this.listaDispositivos.push(estufa);
 };
