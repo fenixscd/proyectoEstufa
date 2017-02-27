@@ -122,6 +122,9 @@ function Estufa(){
     }
 
     this.getConexion = function(){
+      if (this.conexion === undefined){
+        return false;
+      }
       return this.conexion;
     }
     this.getTemperatura = function(){
@@ -271,26 +274,31 @@ Estufa.prototype.generarHTML = function (plantilla) {
 Estufa.prototype.pintarDatos = function () {
 
   document.getElementById("dispositivo").innerHTML = this.getDispositivo();
-  if (this.getModoAutomatico()){
-    document.getElementById("modo");
-  }
+  if (this.getModoAutomatico())
+    document.getElementById("modo").getElementById("Auto");
+  else document.getElementById("modo").getElementById("Manu");
 
-  var modo =
-  var conexion = document.getElementById("conexion");
-  var temp = document.getElementById("temp");
-  var hume = document.getElementById("hume");
+  if (this.getConexion())
+    document.getElementById("conexion").innerHTML = this.getElementById("CONEC");
+  else document.getElementById("conexion").innerHTML = this.getElementById("DESCONEC");
+  
+  document.getElementById("temp").innerHTML = this.getTemperatura();
+  document.getElementById("hume").innerHTML = this.getHumedad();
+  
+  // var temp = document.getElementById("temp");
+  // var hume = document.getElementById("hume");
 
-  var resis1Esta = document.getElementById("resis1Esta");
-  var resis1Temp = document.getElementById("resis1Temp");
-  var hora1 = document.getElementById("hora1");
-  var hora1Cambio = document.getElementById("hora1Cambio");
-  var hora1Temp = document.getElementById("hora1Temp");
+  // var resis1Esta = document.getElementById("resis1Esta");
+  // var resis1Temp = document.getElementById("resis1Temp");
+  // var hora1 = document.getElementById("hora1");
+  // var hora1Cambio = document.getElementById("hora1Cambio");
+  // var hora1Temp = document.getElementById("hora1Temp");
 
-  var resis2Esta = document.getElementById("resis2Esta");
-  var resis2Temp = document.getElementById("resis2Temp");
-  var hora2 = document.getElementById("hora2");
-  var hora2Cambio = document.getElementById("hora2Cambio");
-  var hora2Temp = document.getElementById("hora2Temp");
+  // var resis2Esta = document.getElementById("resis2Esta");
+  // var resis2Temp = document.getElementById("resis2Temp");
+  // var hora2 = document.getElementById("hora2");
+  // var hora2Cambio = document.getElementById("hora2Cambio");
+  // var hora2Temp = document.getElementById("hora2Temp");
 };
 
 

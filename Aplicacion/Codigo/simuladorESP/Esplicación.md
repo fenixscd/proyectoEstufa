@@ -1,6 +1,60 @@
 # Ejemplo de webSocket
 
-El método startsWith() indica si un string inicia con los caracteres de otro string, regresando true o false según sea el caso. [Url](https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Objetos_globales/String/startsWith)
+A lo mejor hay que cambiar el bucle de genración de datos, porque no puedo acceder al evento desde fuenra de la classe y eso conyeva que la clase asuma demasiadas responavilidades, como tener que pintar los objetos gestionar la conexión etc....
+Se podria provar de incluirlo en la lista de dispositivos y que al añadir el dipositivo se crea el bucle con el temporizador para cada uno de los elementos.
+
+
+
+## General
+
+-   [ ] Separar todos los objetos y inyectarlos en la cración del objeto creación.
+-   [ ] Crear la clase que una los objetos con el html, que se encargara de parsear los datos.
+-   [ ] Crear el protocolo de comunicación.
+-   [ ] Crear un objeto nuevo para que una todas las partes del dispositivo (como un main de cada dispositivo).
+   -   [ ] La estufa con sus resistencias.
+   -   [ ] El bucle.
+   -   [ ] La inserción del html.
+   -   [ ] El cambio de datos.
+   -   [ ] El envio de datos.
+   -   [ ] La recepción de datos.
+   -   [ ] La gestión de la comunicaciones (Protocolo de que tiene que hacer cuando recive los datos).
+
+## main
+
+-   [ ] Probar la inserción de dispositivo en le html con la MAC del dispositivo.
+
+
+## ListaDispositivos
+
+-   [ ] 
+
+
+## Estufa
+
+-   [ ] 
+
+## Resistencias
+
+-   [x] Añadir el metodo de conexión Cambio de uvicación.
+-   [x] Añadir el metodo de enviar datos Cambio de uvicación.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+El método startsWith() verifica si un string contiene una cadena que le pasamos false/true. [Url](https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Objetos_globales/String/startsWith)
 `String.prototype.startsWith != "function"`
 
 
