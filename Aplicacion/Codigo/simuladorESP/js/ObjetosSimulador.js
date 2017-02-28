@@ -211,7 +211,7 @@ Estufa.prototype.generarMac = function () {
     mac = mac + "-" + calculado.substr(0,2);
     mac = mac + "-" + calculado.substr(2,3);
     this.setMac(mac);
-    console.log("*La mac generada es " + mac);
+    // console.log("*La mac generada es " + mac);
 };
 
   Estufa.prototype.cambiarTemperatura = function () {
@@ -220,8 +220,8 @@ Estufa.prototype.generarMac = function () {
     var multiplicador = -1;
     var valorRandom = Math.random();
     var total;
-    if (!resistencia1) multiplicador++;
-    if (!resistencia2) multiplicador++;
+    if (resistencia1) multiplicador++;
+    if (resistencia2) multiplicador++;
 
     if (multiplicador > -1){
       multiplicador++;
@@ -237,7 +237,7 @@ Estufa.prototype.generarMac = function () {
     var valorRandom = (Math.random()*2)-1;
     var total = parseFloat(this.getHumedad()) + parseFloat(valorRandom);
     this.setHumedad(total);
-    console.log("Humedad almacenada: " + this.getHumedad());
+    // console.log("Humedad almacenada: " + this.getHumedad());
   };
 
   Estufa.prototype.bucleTemperatura = function(_this) {
@@ -248,7 +248,7 @@ Estufa.prototype.generarMac = function () {
     this.cambiarHumedad();
     this.pintarDatos(_this);
     /////// Tiene que enviar tambien los datos
-    console.log("Temperatura almacenada: " + this.getTemperatura(_this));
+    // console.log("Temperatura almacenada: " + this.getTemperatura(_this));
   };
 
   Estufa.prototype.bucleTemperaturaDos = function(_this) {
@@ -307,6 +307,10 @@ Estufa.prototype.pintarDatos = function () {
   // var hora2 = document.getElementById("hora2");
   // var hora2Cambio = document.getElementById("hora2Cambio");
   // var hora2Temp = document.getElementById("hora2Temp");
+};
+
+Estufa.prototype.getJson = function () {
+  // Parseo los datos que voy a pasar
 };
 
 /******************************************************************************/
@@ -381,11 +385,11 @@ ListaDispositivos.prototype.showMACs = function () {
 };
 
 ListaDispositivos.prototype.cambiarDatos = function () {
-  for (dispositivo in this.listaDispositivos) {
+  for (let dispositivo of this.listaDispositivos) {
     dispositivo.cambiarTemperatura();
     dispositivo.cambiarHumedad();
     dispositivo.pintarDatos();
-    }
+  }
 };
 
 ListaDispositivos.prototype.getUltimoElemento = function () {

@@ -42,8 +42,9 @@ function bucle (){
   window.setTimeout(function() {
     bucle();
   }, 2000);
-  // listaDispositivos.cambiarDatos();
-  listaDispositivos.showMACs();
+  listaDispositivos.cambiarDatos();
+  // listaDispositivos.showMACs();
+
   console.log("Bucle de 2 segundos");
 }
 
@@ -56,6 +57,8 @@ function añadirHTMLDispositivo(macDispositvo, plantilla){
   dispositivo.classList.add("dispositivo");
   contenedor.appendChild(dispositivo);
 }
+
+function 
 
 function crearDispositivo(mac){
   var nuevoDispositivo = listaDispositivos.addDispositivo();
