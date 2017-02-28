@@ -34,37 +34,38 @@ var plantilla = '<div class="display">' +
 
 
 
-var listadDispositivos = new ListaDispositivos();
+var listaDispositivos = new ListaDispositivos();
+
+
 
 function bucle (){
   window.setTimeout(function() {
     bucle();
   }, 2000);
-
+  // listaDispositivos.cambiarDatos();
+  listaDispositivos.showMACs();
+  console.log("Bucle de 2 segundos");
 }
 
-function añadirDispositivo(){
-
-}
-
-function crearDispositivo(mac){
-  var nuevaPlantilla;
-  listadDispositivos.addDispositivo();
-
-
-  // Llamo al metodo addDispositivo de la lista
-  // llamo al metod generar html del elemto que acavamos de añadir para genrar el html
+function añadirHTMLDispositivo(macDispositvo, plantilla){
   var contenedor = document.getElementsByTagName("section")[0];
   var dispositivo = document.createElement("div");
 
   dispositivo.setAttribute("class", "dispositivo");
-  console.log("Id elemento añadadio: " + listadDispositivos.getUltimoElemento().getMac());
-  nuevaPlantilla = plantilla.replace(/{{mac}}/g, listadDispositivos.getUltimoElemento().getMac());
-
-
-  dispositivo.innerHTML = nuevaPlantilla;
+  dispositivo.innerHTML = plantilla.replace(/{{mac}}/g, macDispositvo);
   dispositivo.classList.add("dispositivo");
   contenedor.appendChild(dispositivo);
+}
+
+function crearDispositivo(mac){
+  var nuevoDispositivo = listaDispositivos.addDispositivo();
+
+  añadirHTMLDispositivo(nuevoDispositivo.getMac(), plantilla);
+  bucle();
+
+  // Llamo al metodo addDispositivo de la lista
+  // llamo al metod generar html del elemto que acavamos de añadir para genrar el html
+
   //estufa.bucleTemperatura(estufa);
 
 }

@@ -357,6 +357,7 @@ ListaDispositivos.prototype.addDispositivo = function () {
     console.log("Total elementos: "+this.listaDispositivos.length)
   } while (this.isExisteMAC(nuevaEstufa.getMac()));
   this.listaDispositivos.push(nuevaEstufa);
+  return nuevaEstufa;
 };
 
 /**
@@ -379,10 +380,8 @@ ListaDispositivos.prototype.showMACs = function () {
   }
 };
 
-ListaDispositivos.prototype.CambiarDatos = function () {
-
-
-  for (var dispositivo in this.listaDispositivos) {
+ListaDispositivos.prototype.cambiarDatos = function () {
+  for (dispositivo in this.listaDispositivos) {
     dispositivo.cambiarTemperatura();
     dispositivo.cambiarHumedad();
     dispositivo.pintarDatos();
