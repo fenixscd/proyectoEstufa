@@ -104,7 +104,7 @@ function Estufa(){
     this.temperaturaMinima = 10;
     this.humedadMaxima = 99;
     this.humedadMinima = 1;
-    this.generarMac();
+
 
     this.getMac = function(){
       return this.mac;
@@ -144,6 +144,10 @@ function Estufa(){
       return this.resistencia2;
     }
 
+    this.setMac = function(mac){
+      this.mac = mac;
+    }
+
     this.setDispositivo = function(dispositivo){
       this.dispositivo = dispositivo;
       return this;
@@ -177,11 +181,9 @@ function Estufa(){
       this.resistencia2 = resistencia2;
       return this;
     }
-
-
+    this.generarMac();
     this.temperaturaInicial();
     this.humedadInicial();
-    this.cambiarTemperatura(this);
 }
 
 Estufa.prototype.getEntreValores = function (cantidad, cantidadMaxima, cantidadMinima) {
@@ -208,7 +210,8 @@ Estufa.prototype.generarMac = function () {
   }
     mac = mac + "-" + calculado.substr(0,2);
     mac = mac + "-" + calculado.substr(2,3);
-    this.mac = mac;
+    this.setMac(mac);
+    console.log("*La mac generada es " + mac);
 };
 
   Estufa.prototype.cambiarTemperatura = function () {
@@ -313,6 +316,7 @@ Estufa.prototype.pintarDatos = function () {
 
 function Dispositivo(){
   var estufa = new Estufa();
+  //
 
 }
 
@@ -333,11 +337,12 @@ ListaDispositivos.prototype.getTotalDispositivos = function () {
 * @param {String} mac dirección mac.
 * @return {bool} true si existe false si no.
 */
-ListaDispositivos.prototype.isExisteMAC = function () {
+ListaDispositivos.prototype.isExisteMAC = function (mac) {
   // el for sin tener en cuenta el ulimo dispositivo.
+
   for (var dispositivo in this.listaDispositivos) {
     if (dispositivo.getMac === mac){
-      return false;
+      return true;
     }
     return false;
   }
@@ -347,13 +352,11 @@ ListaDispositivos.prototype.isExisteMAC = function () {
 * Antes de añadir verificamos que la mac no este duplicada.
 */
 ListaDispositivos.prototype.addDispositivo = function () {
+  var nuevaEstufa = new Estufa();
   do {
-    this.listaDispositivos.push(new Estufa());
-
-  } while (this.isExisteMAC());
-
-
-  this.listaDispositivos.push(estufa);
+    console.log("Total elementos: "+this.listaDispositivos.length)
+  } while (this.isExisteMAC(nuevaEstufa.getMac()));
+  this.listaDispositivos.push(nuevaEstufa);
 };
 
 /**
@@ -374,4 +377,23 @@ ListaDispositivos.prototype.showMACs = function () {
   for (var i = 0; i < this.listaDispositivos.length; i++) {
     console.log(this.listaDispositivos[i].getMac());
   }
+};
+
+ListaDispositivos.prototype.CambiarDatos = function () {
+
+
+  for (var dispositivo in this.listaDispositivos) {
+    dispositivo.cambiarTemperatura();
+    dispositivo.cambiarHumedad();
+    dispositivo.pintarDatos();
+    }
+};
+
+ListaDispositivos.prototype.getUltimoElemento = function () {
+  var posicionUltimoElemento;
+  posicionUltimoElemento = this.listaDispositivos.length - 1;
+  console.log("Id ultimo elemento "+ posicionUltimoElemento);
+  console.log("La dichosa mac " + this.listaDispositivos[posicionUltimoElemento].getMac());
+  this.listaDispositivos[posicionUltimoElemento].getMac()
+  return this.listaDispositivos[posicionUltimoElemento];
 };

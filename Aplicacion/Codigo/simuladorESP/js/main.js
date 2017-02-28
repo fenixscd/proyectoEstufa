@@ -32,24 +32,39 @@ var plantilla = '<div class="display">' +
     '</form>';
 // Como hacer el renderizado tendra que ser desde la propia clase
 
+
+
 var listadDispositivos = new ListaDispositivos();
 
-function crearDispositivo(mac){
+function bucle (){
+  window.setTimeout(function() {
+    bucle();
+  }, 2000);
 
+}
+
+function añadirDispositivo(){
+
+}
+
+function crearDispositivo(mac){
+  var nuevaPlantilla;
   listadDispositivos.addDispositivo();
+
 
   // Llamo al metodo addDispositivo de la lista
   // llamo al metod generar html del elemto que acavamos de añadir para genrar el html
   var contenedor = document.getElementsByTagName("section")[0];
   var dispositivo = document.createElement("div");
-  var estufa = new Estufa();
+
   dispositivo.setAttribute("class", "dispositivo");
+  console.log("Id elemento añadadio: " + listadDispositivos.getUltimoElemento().getMac());
+  nuevaPlantilla = plantilla.replace(/{{mac}}/g, listadDispositivos.getUltimoElemento().getMac());
 
-  plantilla = plantilla.replace(/{{mac}}/g, estufa.getMac());
 
-  dispositivo.innerHTML = plantilla;
+  dispositivo.innerHTML = nuevaPlantilla;
   dispositivo.classList.add("dispositivo");
   contenedor.appendChild(dispositivo);
-  estufa.bucleTemperatura(estufa);
+  //estufa.bucleTemperatura(estufa);
 
 }
