@@ -337,7 +337,7 @@ ListaDispositivos.prototype.isExisteMAC = function () {
   // el for sin tener en cuenta el ulimo dispositivo.
   for (var dispositivo in this.listaDispositivos) {
     if (dispositivo.getMac === mac){
-      return true;
+      return false;
     }
     return false;
   }
