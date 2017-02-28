@@ -391,12 +391,3 @@ ListaDispositivos.prototype.cambiarDatos = function () {
     dispositivo.pintarDatos();
   }
 };
-
-ListaDispositivos.prototype.getUltimoElemento = function () {
-  var posicionUltimoElemento;
-  posicionUltimoElemento = this.listaDispositivos.length - 1;
-  console.log("Id ultimo elemento "+ posicionUltimoElemento);
-  console.log("La dichosa mac " + this.listaDispositivos[posicionUltimoElemento].getMac());
-  this.listaDispositivos[posicionUltimoElemento].getMac()
-  return this.listaDispositivos[posicionUltimoElemento];
-};

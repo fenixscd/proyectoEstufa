@@ -58,17 +58,23 @@ function añadirHTMLDispositivo(macDispositvo, plantilla){
   contenedor.appendChild(dispositivo);
 }
 
-function 
+function pintarDatos(datosJson){
+  document.getElementById("dispositivo" + this.getMac()).innerHTML = this.getDispositivo();
+  if (this.getModoAutomatico())
+    document.getElementById("modo" + this.getMac()).innerHTML = "Auto";
+  else document.getElementById("modo"  + this.getMac()).innerHTML = "Manual";
+
+  if (this.getConexion())
+    document.getElementById("conexion" + this.getMac()).innerHTML = "Conec";
+  else document.getElementById("conexion" + this.getMac()).innerHTML = "Desconec";
+
+  document.getElementById("temp" + this.getMac()).innerHTML = this.getTemperatura();
+  document.getElementById("hume" + this.getMac()).innerHTML = this.getHumedad();
+}
 
 function crearDispositivo(mac){
   var nuevoDispositivo = listaDispositivos.addDispositivo();
-
   añadirHTMLDispositivo(nuevoDispositivo.getMac(), plantilla);
   bucle();
-
-  // Llamo al metodo addDispositivo de la lista
-  // llamo al metod generar html del elemto que acavamos de añadir para genrar el html
-
-  //estufa.bucleTemperatura(estufa);
 
 }
