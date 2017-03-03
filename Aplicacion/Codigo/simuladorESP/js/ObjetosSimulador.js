@@ -91,15 +91,15 @@ function Resistencia(numero){
 /******************************************************************************/
 
 
-function Estufa(){
+function Estufa(resistencia1, resistencia2){
     this.mac;
     this.dispositivo; // Nombre
     this.modoAutomatico;
     this.conexion;
     this.temperatura;
     this.humedad;
-    this.resistencia1 = new Resistencia(1);
-    this.resistencia2 = new Resistencia(2);
+    this.resistencia1 = resistencia1;
+    this.resistencia2 = resistencia2;
     this.temperaturaMaxima = 40;
     this.temperaturaMinima = 10;
     this.humedadMaxima = 99;
@@ -229,6 +229,8 @@ Estufa.prototype.generarMac = function () {
 
     total =  parseFloat(this.getTemperatura()) + parseFloat(valorRandom);
     this.setTemperatura(total);
+
+    return this;
   };
 
   Estufa.prototype.cambiarHumedad = function () {
@@ -236,28 +238,8 @@ Estufa.prototype.generarMac = function () {
     var valorRandom = (Math.random()*2)-1;
     var total = parseFloat(this.getHumedad()) + parseFloat(valorRandom);
     this.setHumedad(total);
-    // console.log("Humedad almacenada: " + this.getHumedad());
-  };
 
-  Estufa.prototype.bucleTemperatura = function(_this) {
-    window.setTimeout(function() {
-      _this.bucleTemperatura(_this);
-    }, 2000);
-    this.cambiarTemperatura();
-    this.cambiarHumedad();
-    this.pintarDatos(_this);
-    /////// Tiene que enviar tambien los datos
-    // console.log("Temperatura almacenada: " + this.getTemperatura(_this));
-  };
-
-  Estufa.prototype.bucleTemperaturaDos = function(_this) {
-    window.setTimeout(function() {
-      _this.bucleTemperatura(_this);
-    }, 2000);
-    _this.cambiarTemperatura();
-    _this.cambiarHumedad();
-    /////// Tiene que enviar tambien los datos
-    console.log("Temperatura almacenada: " + _this.getTemperatura(_this));
+    return this;
   };
 
 Estufa.prototype.temperaturaInicial = function (){
@@ -276,6 +258,13 @@ Estufa.prototype.generarValorEntreDosNumeros  = function(max, min){
 
 Estufa.prototype.generarHTML = function (plantilla) {
    return plantilla.replace(/{{mac}}/g, this.getMac());
+};
+
+
+Estufa.prototype.pintarDatosConsola = function () {
+  console.log(this.getMac() + " Humedad: " + this.getHumedad());
+  console.log(this.getMac() + " Temperatura: " + this.getTemperatura());
+
 };
 
 Estufa.prototype.pintarDatos = function () {
@@ -312,16 +301,49 @@ Estufa.prototype.getJson = function () {
   // Parseo los datos que voy a pasar
 };
 
+Estufa.prototype.cambiarMediciones = function () {
+  this.cambiarTemperatura();
+  this.cambiarHumedad();
+
+};
+
 /******************************************************************************/
 /******************************************************************************/
 /******************************************************************************/
 /******************************************************************************/
 
 function Dispositivo(){
-  var estufa = new Estufa();
-  //
+  this.resistencia1 = new Resistencia();
+  this.resistencia2 = new Resistencia();
+  this.estufa = new Estufa(this.resistencia1, this.resistencia2);
 
+  function bucle (obj){
+    window.setTimeout(function() {
+      bucle(obj);
+    }, 2000);
+    obj.cambiarMediciones();
+    obj.pintarDatosConsola();
+  }
+
+  bucle(this.estufa);
 }
+
+Dispositivo.prototype.isMacEquals = function (mac) {
+  if (this.estufa.GetMac() === mac){
+    return true;
+  }
+  return false;
+};
+
+Dispositivo.prototype.GetMac = function() {
+  return this.estufa.GetMac();
+};
+
+// Jenerar los datos que se van a pintar en formato JSON
+Dispositivo.prototype.getJsonPintar = function () {
+
+};
+
 
 /******************************************************************************/
 /******************************************************************************/
@@ -355,31 +377,20 @@ ListaDispositivos.prototype.isExisteMAC = function (mac) {
 * Antes de añadir verificamos que la mac no este duplicada.
 */
 ListaDispositivos.prototype.addDispositivo = function () {
-  var nuevaEstufa = new Estufa();
-  do {
-    console.log("Total elementos: "+this.listaDispositivos.length)
-  } while (this.isExisteMAC(nuevaEstufa.getMac()));
-  this.listaDispositivos.push(nuevaEstufa);
-  return nuevaEstufa;
+  var nuevoDispositivo = new Dispositivo();
+  // do {
+  //    nuevoDispositivo
+  // } while (this.isExisteMAC(nuevoDispositivo.getMac()));
+
+  this.listaDispositivos.push(nuevoDispositivo);
+  console.log("Total elementos: "+this.listaDispositivos.length);
+  return nuevoDispositivo;
 };
 
-/**
-* @param {Number} numero de dispositivos a generar.
-*/
-ListaDispositivos.prototype.genrarlistaDispositivos = function(numero){
-  var mac;
-  for(var i = 0; i < numero; i++) {
-    do {
-      console.log("Hola");
-
-    } while (false);
-    listaDispositivos.push(new Estufa(i));
-  }
-}
 
 ListaDispositivos.prototype.showMACs = function () {
-  for (var i = 0; i < this.listaDispositivos.length; i++) {
-    console.log(this.listaDispositivos[i].getMac());
+  for (let dispositivo of this.listaDispositivos) {
+    console.log(dispositivo.getMac());
   }
 };
 
