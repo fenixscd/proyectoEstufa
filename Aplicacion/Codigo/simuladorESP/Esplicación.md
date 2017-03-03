@@ -21,13 +21,13 @@ Se podria provar de incluirlo en la lista de dispositivos y que al añadir el di
 
 ## main
 
--   [ ] Probar la inserción de dispositivo en le html con la MAC del dispositivo.
+-   [x] Probar la inserción de dispositivo en le html con la MAC del dispositivo.
 
 
 ## ListaDispositivos
 
--   [ ] Modificar el validado de direciones MAC para que no tenga en cuenta el ulimo elemento.
--   [ ] Terminar le metodo de agragar esturfas.
+-   [x] Modificar el validado de direciones MAC para que no tenga en cuenta el ulimo elemento.
+-   [x] Terminar le metodo de agragar esturfas.
 
 
 ## Estufa

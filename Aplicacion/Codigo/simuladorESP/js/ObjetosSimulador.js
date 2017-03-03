@@ -211,7 +211,6 @@ Estufa.prototype.generarMac = function () {
     mac = mac + "-" + calculado.substr(0,2);
     mac = mac + "-" + calculado.substr(2,3);
     this.setMac(mac);
-    // console.log("*La mac generada es " + mac);
 };
 
   Estufa.prototype.cambiarTemperatura = function () {

@@ -1,11 +1,5 @@
 console.log("Desde aqui se enviaran los datos, se civirarn y se reenderizara la vista");
 
-// Voy a tener que haer el bucle en esta parte para que esa el propio evento.
-
-
-// console.log("La temperatura es de: " + estufa.getTemperatura());
-// console.log("La humedad es de: " + estufa.getHumedad());
-
 var plantilla = '<div class="display">' +
         '<div class="lSuperior">' +
             '<h2><span id="dispositivo{{mac}}">{{mac}}</span></h2>' +
@@ -36,16 +30,17 @@ var plantilla = '<div class="display">' +
 
 var listaDispositivos = new ListaDispositivos();
 
-
+function crearDispositivo(mac){
+  var nuevoDispositivo = listaDispositivos.addDispositivo();
+  añadirHTMLDispositivo(nuevoDispositivo.getMac(), plantilla);
+  bucle();
+}
 
 function bucle (){
   window.setTimeout(function() {
     bucle();
   }, 2000);
   listaDispositivos.cambiarDatos();
-  // listaDispositivos.showMACs();
-
-  console.log("Bucle de 2 segundos");
 }
 
 function añadirHTMLDispositivo(macDispositvo, plantilla){
@@ -70,11 +65,4 @@ function pintarDatos(datosJson){
 
   document.getElementById("temp" + this.getMac()).innerHTML = this.getTemperatura();
   document.getElementById("hume" + this.getMac()).innerHTML = this.getHumedad();
-}
-
-function crearDispositivo(mac){
-  var nuevoDispositivo = listaDispositivos.addDispositivo();
-  añadirHTMLDispositivo(nuevoDispositivo.getMac(), plantilla);
-  bucle();
-
 }

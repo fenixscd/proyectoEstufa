@@ -1,4 +1,4 @@
-# Lista de tareas
+  # Lista de tareas
 
 | TAREA | ESTIMACION | TIMPO REAL |
 | :------- | :------: | :-----: |
@@ -14,17 +14,17 @@
 
 ### Pendiente
 
-- Investigar como conectar 2 base de datos para tener tablas sincronizadas.
-- 
+-   Investigar como conectar 2 base de datos para tener tablas sincronizadas.
+-
 
 ### Visto
 
-- Investigar la configuración de la Raspberry PI para que haga de servidor.
-- Investigación sobre aplicaciones de escritorio con HTML5.
-
-*[HTML]: Hyper Text Markup Language
+-   Investigar la configuración de la Raspberry PI para que haga de servidor.
+-   Investigación sobre aplicaciones de escritorio con HTML5.
 
 
-* [ ] Una liseta
-* [ ] Segundo parametro
-* [ ] Cuantos parametros
+
+
+*   [ ] Una liseta
+*   [ ] Segundo parametro
+*   [ ] Cuantos parametros
