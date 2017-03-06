@@ -30,9 +30,8 @@ var plantilla = '<div class="display">' +
 
 var listaDispositivos = new ListaDispositivos();
 
-function crearDispositivo(mac){
+function crearDispositivo(){
   var nuevoDispositivo = listaDispositivos.addDispositivo();
-
 }
 
 

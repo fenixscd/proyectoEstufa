@@ -324,7 +324,6 @@ function Dispositivo(){
     obj.cambiarMediciones();
     obj.pintarDatosConsola();
   }
-
   bucle(this.estufa);
 }
 
@@ -342,6 +341,14 @@ Dispositivo.prototype.GetMac = function() {
 // Jenerar los datos que se van a pintar en formato JSON
 Dispositivo.prototype.getJsonPintar = function () {
 
+};
+
+Dispositivo.prototype.pintarDispositivo = function (plantilla) {
+
+};
+
+Dispositivo.prototype.parsearParaPintar = function () {
+  
 };
 
 
