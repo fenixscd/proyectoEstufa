@@ -33,9 +33,6 @@ function Estufa(resistencia1, resistencia2){
     }
 
     this.getModoAutomatico = function(){
-      if (this.modoAutomatico === undefined){
-        return false;
-      }
       return this.modoAutomatico;
     }
 
@@ -46,25 +43,21 @@ function Estufa(resistencia1, resistencia2){
       return "Manu";
     }
 
-
     this.getConexion = function(){
-      if (this.conexion === undefined){
-        return false;
-      }
       return this.conexion;
     }
 
     this.getHTML_Conexion(){
       if (this.getConexion()){
-        return "";
+        return "Conec";
       }
-      return "";
+      return "Desco";
     }
-
 
     this.getTemperatura = function(){
       return parseFloat(this.temperatura).toFixed(1);
     }
+    
     this.getHumedad = function(){
       return parseFloat(this.humedad).toFixed(0);
     }
