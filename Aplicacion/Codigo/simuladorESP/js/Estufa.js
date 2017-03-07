@@ -1,8 +1,8 @@
 function Estufa(resistencia1, resistencia2){
     this.mac;
-    this.dispositivo; // Nombre
-    this.modoAutomatico;
-    this.conexion;
+    this.dispositivo = false; // Nombre
+    this.modoAutomatico = false;
+    this.conexion = false;
     this.temperatura;
     this.humedad;
     this.resistencia1 = resistencia1;
@@ -17,16 +17,35 @@ function Estufa(resistencia1, resistencia2){
       return this.mac;
     }
 
+    this.getHTML_Mac(){
+      return this.getMac();
+    }
+
     this.getDispositivo = function(){
-      if (this.dispositivo === undefined){
+      if (this.dispositivo){
         return this.mac;
       }
       return this.dispositivo;
     }
 
+    this.getHTML_Dipositivo(){
+      return this.getDispositivo();
+    }
+
     this.getModoAutomatico = function(){
+      if (this.modoAutomatico === undefined){
+        return false;
+      }
       return this.modoAutomatico;
     }
+
+    this.getHTML_ModoAutomatico(){
+      if (getModoAutomatico()){
+        return "Auto";
+      }
+      return "Manu";
+    }
+
 
     this.getConexion = function(){
       if (this.conexion === undefined){
@@ -34,6 +53,15 @@ function Estufa(resistencia1, resistencia2){
       }
       return this.conexion;
     }
+
+    this.getHTML_Conexion(){
+      if (this.getConexion()){
+        return "";
+      }
+      return "";
+    }
+
+
     this.getTemperatura = function(){
       return parseFloat(this.temperatura).toFixed(1);
     }

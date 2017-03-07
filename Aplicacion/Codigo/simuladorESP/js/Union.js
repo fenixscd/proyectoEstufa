@@ -1,8 +1,8 @@
 function Union() {
 
 }
-Union.prototype. = function (mac) {
-  this.mac = mac;
+Union.prototype. = function (dispositivo) {
+  this.dispositivo = dispositivo;
   this.plantilla = '<div class="display">' +
                       '<div class="lSuperior">' +
                         '<h2><span id="dispositivo{{mac}}">{{mac}}</span></h2>' +
@@ -30,5 +30,9 @@ Union.prototype. = function (mac) {
 };
 
 Union.prototype.montarPlantilla = function () {
-  this.plantilla = this.plantilla.replace(/{{mac}}/g, this.mac);
+  this.plantilla = this.plantilla.replace(/{{mac}}/g, this.dispositivo.getEstufa().getMac());
+};
+
+Union.prototype.getEstructuraHTML = function () {
+  return this.plantilla;
 };

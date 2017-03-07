@@ -24,6 +24,10 @@ Dispositivo.prototype.GetMac = function() {
   return this.estufa.GetMac();
 };
 
+Dispositivo.prototype.getEstufa = function () {
+  return this.estufa;
+};
+
 // Jenerar los datos que se van a pintar en formato JSON
 Dispositivo.prototype.getJsonPintar = function () {
 
