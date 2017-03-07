@@ -17,50 +17,29 @@ function Estufa(resistencia1, resistencia2){
       return this.mac;
     }
 
-    this.getHTML_Mac(){
-      return this.getMac();
-    }
-
-    this.getDispositivo = function(){
-      if (this.dispositivo){
+      this.getDispositivo = function(){
+      if (!this.dispositivo){
         return this.mac;
       }
       return this.dispositivo;
-    }
-
-    this.getHTML_Dipositivo(){
-      return this.getDispositivo();
     }
 
     this.getModoAutomatico = function(){
       return this.modoAutomatico;
     }
 
-    this.getHTML_ModoAutomatico(){
-      if (getModoAutomatico()){
-        return "Auto";
-      }
-      return "Manu";
-    }
-
     this.getConexion = function(){
       return this.conexion;
-    }
-
-    this.getHTML_Conexion(){
-      if (this.getConexion()){
-        return "Conec";
-      }
-      return "Desco";
     }
 
     this.getTemperatura = function(){
       return parseFloat(this.temperatura).toFixed(1);
     }
-    
+
     this.getHumedad = function(){
       return parseFloat(this.humedad).toFixed(0);
     }
+    
     this.getListaResitencias = function(){
       return this.listaResitencias;
     }
@@ -208,25 +187,17 @@ Estufa.prototype.pintarDatos = function () {
 
   document.getElementById("temp" + this.getMac()).innerHTML = this.getTemperatura();
   document.getElementById("hume" + this.getMac()).innerHTML = this.getHumedad();
-
-  // var temp = document.getElementById("temp");
-  // var hume = document.getElementById("hume");
-
-  // var resis1Esta = document.getElementById("resis1Esta");
-  // var resis1Temp = document.getElementById("resis1Temp");
-  // var hora1 = document.getElementById("hora1");
-  // var hora1Cambio = document.getElementById("hora1Cambio");
-  // var hora1Temp = document.getElementById("hora1Temp");
-
-  // var resis2Esta = document.getElementById("resis2Esta");
-  // var resis2Temp = document.getElementById("resis2Temp");
-  // var hora2 = document.getElementById("hora2");
-  // var hora2Cambio = document.getElementById("hora2Cambio");
-  // var hora2Temp = document.getElementById("hora2Temp");
 };
 
 Estufa.prototype.getJson = function () {
-  // Parseo los datos que voy a pasar
+  return {
+    "mac":this.getMac(),
+    "dispositivo":this.getDispositivo(),
+    "modo":this.getModoAutomatico(),
+    "conexion":this.getConexion(),
+    "temp":this.getTemperatura(),
+    "hume":this.getHumedad()
+  };
 };
 
 Estufa.prototype.cambiarMediciones = function () {

@@ -1,7 +1,7 @@
 function Resistencia(numero){
     this.numero = numero; // Numero de resistencia
     this.estado = false; // Encendido apagado
-    this.temperatura; // Temperatura a la que esta progrmada que ese pare.
+    this.temperatura = false; // Temperatura a la que esta progrmada que ese pare.
     this.encendida = false; // Encaso del que el estado sea encendido indica si la resistencia esta en marcha o no.
     this.horaCambio = false; // Hora cambio tipo Date
     this.horaEstado = false; // En que stado esta si no hay valores
@@ -22,7 +22,7 @@ function Resistencia(numero){
     }
 
     this.getEncendida = function(){
-      if (this.estado) {
+      if (this.estado !== false) {
         return this.encendida;
       }
       return false;
@@ -34,14 +34,14 @@ function Resistencia(numero){
 
     this.getHoraEstado = function (){
 
-      if (this.horaCambio !== null){
+      if (this.horaCambio !== false){
         return this.horaEstado;
       }
       return false;
     }
 
     this.getHoraTemperatura = function(){
-      if (this.horaCambio !== null){
+      if (this.horaCambio !== false){
         return this.horaTemperatura;
       }
       return false;
@@ -76,3 +76,15 @@ function Resistencia(numero){
       return this;
     }
 }
+
+Resistencia.prototype.getJson = function () {
+  return{
+    "resiEencendida":this.getNumero(), // Numero de resistencia
+    "resisEsta":this.getEstado(), // Encendido apagado
+    "resisTemp":this.getTemperatura(), // Temperatura a la que esta progrmada que ese pare.
+    "resisEncendida":this.getEncendida(), // Encaso del que el estado sea encendido indica si la resistencia esta en marcha o no.
+    "hora":this.getHoraCambio(), // Hora cambio tipo Date
+    "horaCambio":this.getHoraEstado(), // En que stado esta si no hay valores
+    "horaTemp":this.getHoraTemperatura() // Que temperatura para el cambio
+  };
+};

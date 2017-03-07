@@ -1,16 +1,18 @@
 function Dispositivo(){
-  this.resistencia1 = new Resistencia();
-  this.resistencia2 = new Resistencia();
+  this.resistencia1 = new Resistencia(1);
+  this.resistencia2 = new Resistencia(2);
   this.estufa = new Estufa(this.resistencia1, this.resistencia2);
 
   function bucle (obj){
     window.setTimeout(function() {
       bucle(obj);
     }, 2000);
-    obj.cambiarMediciones();
-    obj.pintarDatosConsola();
+    obj.estufa.cambiarMediciones();
+    // obj.estufa.pintarDatosConsola();
+    console.log(obj.getJson());
+
   }
-  bucle(this.estufa);
+  bucle(this);
 }
 
 Dispositivo.prototype.isMacEquals = function (mac) {
@@ -28,9 +30,13 @@ Dispositivo.prototype.getEstufa = function () {
   return this.estufa;
 };
 
-// Jenerar los datos que se van a pintar en formato JSON
-Dispositivo.prototype.getJsonPintar = function () {
 
+Dispositivo.prototype.getJson = function () {
+  return {
+    "estufa" : this.estufa.getJson(),
+    "resistencia1":this.resistencia1.getJson(),
+    "resistencia2":this.resistencia2.getJson()
+  };
 };
 
 Dispositivo.prototype.pintarDispositivo = function (plantilla) {
