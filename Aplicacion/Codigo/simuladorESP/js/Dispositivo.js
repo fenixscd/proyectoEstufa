@@ -2,6 +2,9 @@ function Dispositivo(){
   this.resistencia1 = new Resistencia(1);
   this.resistencia2 = new Resistencia(2);
   this.estufa = new Estufa(this.resistencia1, this.resistencia2);
+  this.union = new Union(this);
+  this.union.añadirHTMLDispositivo();
+  this.mac = this.estufa.getMac();
 
   function bucle (obj){
     window.setTimeout(function() {
@@ -9,11 +12,16 @@ function Dispositivo(){
     }, 2000);
     obj.estufa.cambiarMediciones();
     // obj.estufa.pintarDatosConsola();
-    console.log(obj.getJson());
+    // console.log(obj.parseParaPintar());
+    // console.log(obj.parseParaPintar());
 
   }
   bucle(this);
 }
+
+Dispositivo.prototype.getEstufa = function () {
+  return this.estufa;
+};
 
 Dispositivo.prototype.isMacEquals = function (mac) {
   if (this.estufa.GetMac() === mac){
@@ -37,6 +45,10 @@ Dispositivo.prototype.getJson = function () {
     "resistencia1":this.resistencia1.getJson(),
     "resistencia2":this.resistencia2.getJson()
   };
+};
+// Crear el json parseado para pintor
+Dispositivo.prototype.parseParaPintar = function () {
+
 };
 
 Dispositivo.prototype.pintarDispositivo = function (plantilla) {
