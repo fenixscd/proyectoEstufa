@@ -193,10 +193,10 @@ Estufa.prototype.getJson = function () {
   return {
     "mac":this.getMac(),
     "dispositivo":this.getDispositivo(),
-    "modo":this.getModoAutomatico(),
+    "modoAutomatico":this.getModoAutomatico(),
     "conexion":this.getConexion(),
-    "temp":this.getTemperatura(),
-    "hume":this.getHumedad()
+    "temperatura":this.getTemperatura(),
+    "humedad":this.getHumedad()
   };
 };
 

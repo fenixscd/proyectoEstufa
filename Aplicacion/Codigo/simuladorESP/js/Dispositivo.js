@@ -3,7 +3,9 @@ function Dispositivo(){
   this.resistencia2 = new Resistencia(2);
   this.estufa = new Estufa(this.resistencia1, this.resistencia2);
   this.union = new Union(this);
-  this.union.añadirHTMLDispositivo();
+  this.union.añadirHTMLDispositivo(); //DESOMENTAR CUANDO YA FUNCIONE
+  // console.log(this.parseParaPintar());
+  
   this.mac = this.estufa.getMac();
 
   function bucle (obj){
@@ -47,14 +49,42 @@ Dispositivo.prototype.getJson = function () {
   };
 };
 // Crear el json parseado para pintor
-Dispositivo.prototype.parseParaPintar = function () {
+Dispositivo.prototype.parseParaPintarEstufa = function () {
+  var mac = this.estufa.getDispositivo();
+
+  var arrayParseado = new Array();
+  arrayParseado["dispositivo" + mac ] = this.estufa.getDispositivo();
+
+  if (this.estufa.getModoAutomatico()){
+    arrayParseado["modo" + mac ] = "Auto";
+  }else{
+    arrayParseado["modo" + mac ] = "Man";
+  }
+
+
+
+
+  return arrayParseado;
+  // {
+    // "dispositivo${mac}":this.estufa.getDispositivo(),
+    // "modo":this.estufa.getModoAutomatico(),
+    // "conexion":this.estufa.getConexion(),
+    // "temp":this.estufa.getTemperatura(),
+    // "hume":this.estufa.getHumedad()
+    // };
+
 
 };
 
-Dispositivo.prototype.pintarDispositivo = function (plantilla) {
 
-};
+// Dispositovo.prototype.ParaParseo = function() {
+//   // body...
+// };
 
-Dispositivo.prototype.parsearParaPintar = function () {
+// Dispositivo.prototype.pintarDispositivo = function (plantilla) {
 
-};
+// };
+
+// Dispositivo.prototype.parsearParaPintar = function () {
+
+// };
