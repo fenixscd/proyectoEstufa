@@ -1,17 +1,8 @@
 function Union(dispositivo) {
   this.dispositivo = dispositivo;
-  this.parametros = new Array();
-  this.parametros["mac"]=new Array(this.dispositivo.getEstufa().getMac());
-  this.parametros["dispositivo"]=new Array(this.dispositivo.getEstufa().getDispositivo());
-  this.parametros["modoAutomatico"]=new Array("Auto", "Manu");
-  this.parametros["temperatura"]=new Array("Conec", "Desc");
-  this.parametros["conexion"]=new Array(this.dispositivo.getEstufa().getConexion());
-  this.parametros["conexion"]=new Array(this.dispositivo.getEstufa().getHumedad());
-
-  this.otros = {
-    "mac":{"true":this.dispositivo.getEstufa().getMac()},
-    "dispositivo":{"true":this.dispositivo.getEstufa().getDispositivo()}
-  };
+  this.mac = this.dispositivo.getEstufa().getMac();
+  this.estufa = this.dispositivo.getEstufa();
+  this.cargarDatos();
 
 }
 
@@ -56,24 +47,22 @@ Union.prototype.añadirHTMLDispositivo = function () {
   this.pintarValores();
 };
 
+
 Union.prototype.pintarValores = function() {
-  // document.getElementById(this.parametros);
-  console.log(this.parametros.length);
-
-  console.log("Total registros: "+ this.parametros.length);
-  for (var i=0; i < this.parametros.length; i++)
-  {
-   console.log("Elementos: "+otros[i]);
+  
+  for (dato in this.datos){
+    console.log("Indice -> "+ dato +  this.mac +" Datos -> " + this.datos[dato]);
+    // if ()
+    document.getElementById(dato + this.mac).innerHTML = this.datos[dato];
   }
+};
 
-  // for(var otro in this.otros) {
-  //   console.log(otro);
-  // }
-
-  // for(var usuario in usuarios) {
-  //   if(usuarios[usuario].isFav) {
-  //     console.log('El usuario con índice (usamos su nombre como índice) ' + usuario + ' es uno de tus favoritos');
-  //   }
-  // }
-
+Union.prototype.cargarDatos = function() {
+  this.datos = new Array();
+  // this.datos["mac"]=[this.estufa.getMac(),this.estufa.getMac()];
+  this.datos["dispositivo"] = [this.estufa.getDispositivo(),this.estufa.getDispositivo()];
+  this.datos["modoAutomatico"] = [this.estufa.getModoAutomatico(), "Auto", "Manu"];
+  this.datos["conexion"] = [this.estufa.getModoAutomatico(), "Conec", "Desc"];
+  this.datos["temperatura"] = [this.estufa.getTemperatura(), this.estufa.getTemperatura()];
+  this.datos["humedad"] = [this.estufa.getHumedad(),this.estufa.getHumedad()];
 };
