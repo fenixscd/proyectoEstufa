@@ -46,6 +46,6 @@ ListaDispositivos.prototype.cambiarDatos = function () {
   for (let dispositivo of this.listaDispositivos) {
     dispositivo.cambiarTemperatura();
     dispositivo.cambiarHumedad();
-    dispositivo.pintarDatos();
+    // dispositivo.pintarDatos();
   }
 };

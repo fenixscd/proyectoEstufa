@@ -39,7 +39,7 @@ function Estufa(resistencia1, resistencia2){
     this.getHumedad = function(){
       return parseFloat(this.humedad).toFixed(0);
     }
-    
+
     this.getListaResitencias = function(){
       return this.listaResitencias;
     }
@@ -166,7 +166,6 @@ Estufa.prototype.generarValorEntreDosNumeros  = function(max, min){
 Estufa.prototype.generarHTML = function (plantilla) {
    return plantilla.replace(/{{mac}}/g, this.getMac());
 };
-
 
 Estufa.prototype.pintarDatosConsola = function () {
   console.log(this.getMac() + " Humedad: " + this.getHumedad());

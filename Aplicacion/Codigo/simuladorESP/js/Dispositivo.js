@@ -5,7 +5,7 @@ function Dispositivo(){
   this.union = new Union(this);
   this.union.añadirHTMLDispositivo(); //DESOMENTAR CUANDO YA FUNCIONE
   // console.log(this.parseParaPintar());
-  
+
   this.mac = this.estufa.getMac();
 
   function bucle (obj){
@@ -60,7 +60,6 @@ Dispositivo.prototype.parseParaPintarEstufa = function () {
   }else{
     arrayParseado["modo" + mac ] = "Man";
   }
-
 
 
 

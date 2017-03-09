@@ -34,35 +34,38 @@ Union.prototype.generarHTML = function () {
 };
 
 Union.prototype.añadirHTMLDispositivo = function () {
-  
   var contenedor = document.getElementsByTagName("section")[0];
   var dispositivo = document.createElement("div");
   dispositivo.setAttribute("class", "dispositivo");
-  
+
   dispositivo.innerHTML = this.generarHTML();
   dispositivo.classList.add("dispositivo");
   contenedor.appendChild(dispositivo);
-
   
   this.pintarValores();
 };
 
 
 Union.prototype.pintarValores = function() {
-  
+  var valorPintar;
   for (dato in this.datos){
-    console.log("Indice -> "+ dato +  this.mac +" Datos -> " + this.datos[dato]);
-    // if ()
-    document.getElementById(dato + this.mac).innerHTML = this.datos[dato];
+      valorPintar = this.datos[dato][1]; // Valor verdadero
+      if (this.datos[dato][0] === false){
+        valorPintar = this.datos[dato][2]; // Para falso
+      }
+      document.getElementById(dato + this.mac).innerHTML = valorPintar;
   }
 };
 
 Union.prototype.cargarDatos = function() {
   this.datos = new Array();
-  // this.datos["mac"]=[this.estufa.getMac(),this.estufa.getMac()];
-  this.datos["dispositivo"] = [this.estufa.getDispositivo(),this.estufa.getDispositivo()];
+  this.datos["dispositivo"] = [this.estufa.getDispositivo(),this.estufa.getDispositivo(),""];
   this.datos["modoAutomatico"] = [this.estufa.getModoAutomatico(), "Auto", "Manu"];
   this.datos["conexion"] = [this.estufa.getModoAutomatico(), "Conec", "Desc"];
-  this.datos["temperatura"] = [this.estufa.getTemperatura(), this.estufa.getTemperatura()];
-  this.datos["humedad"] = [this.estufa.getHumedad(),this.estufa.getHumedad()];
+  this.datos["temperatura"] = [this.estufa.getTemperatura(),this.estufa.getTemperatura(), ""];
+  this.datos["humedad"] = [this.estufa.getHumedad(),this.estufa.getHumedad(),""];
+};
+
+Union.prototype.parserDatos = function () {
+
 };
