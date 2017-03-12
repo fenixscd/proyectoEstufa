@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang = "es">
+
+<head>
+   <meta charset="UTF-8">
+   <title>Pruebas</title>
+   <link rel="stylesheet" href="css/simulador.css">
+</head>
+
+<body>
+    <section class="centrado" >
+        <header>
+            <h1>Pruebas</h1>
+            <form>
+                <input type="button" value="Añadir elemento" onclick="crearDispositivo()"/>
+             </form>
+        </header>
+
+        <article>
+            <div class="dispositivo">
+                <div class="display">
+                    <div class="lSuperior">
+                        <h2><span id="dispositivo">A6-B5-C4-D3-E2-F1</span></h2>
+                        <p><span id="modo">Manual</span> | <span id="conexion">DESCONEC</span></p>
+                    </div>
+
+                    <div class="medidas">
+                        <h2>T: <span id="temp">25.5</span>º</h2>
+                        <h2>H: <span id="hume">10</span>%</h2>
+                    </div>
+
+                    <div class="programacion">
+                        <p class="izq">Resis 1 [<span id="resis1encendida">*</span>]: <span id="resis1Esta">ON</span> <span id="resis1Temp">27</span>º</p>
+                        <p class="der">Hora <span id="hora1">6:25</span> <span id="hora1Cambio">OFF</span> <span id="hora1Temp">27</span>º</p>
+
+                        <p class="izq">Resis 2 [<span id="resis2encendida"> </span>]: <span id="resis2Esta">OFF</span> <span id="resis2Temp"></span></p>
+                        <p class="der">Hora <span id="hora2">6:25</span> <span id="hora2Cambio">ON</span> <span id="hora2Temp">27</span>º</p>
+                    </div>
+                </div>
+
+            <div class="botonera">
+                <form>
+                    <input type="button" value="+" onclick="hacer_click()"/>
+                    <input type="button" value="M" onclick="hacer_click()"/>
+                    <input type="button" value="-" onclick="hacer_click()"/>
+                </form>
+            </div>
+            </div>
+        </article>
+
+
+
+
+
+
+   <!-- <script type="text/javascript" src="js/simulador.js"></script> -->
+   <!-- <script type="text/javascript" src="js/ObjetosSimulador.js"></script> -->
+   <script type="text/javascript" src="js2/Termometro.js"></script>
+   <script type="text/javascript" src="js2/main.js"></script>
+   <script type="text/javascript">
+
+    
+
+   </script>
+</body>
+</html>

@@ -28,11 +28,13 @@ var plantilla = '<div class="display">' +
 
 
 
-var listaDispositivos = new ListaDispositivos();
 
-function crearDispositivo(){
-  var nuevoDispositivo = listaDispositivos.addDispositivo();
-}
+
+// var listaDispositivos = new ListaDispositivos();
+//
+// function crearDispositivo(){
+//   var nuevoDispositivo = listaDispositivos.addDispositivo();
+// }
 
 
 // function crearDispositivo(mac){
