@@ -36,9 +36,7 @@ function Estufa(resistencia1, resistencia2){
       return parseFloat(this.temperatura).toFixed(1);
     }
 
-    this.getHumedad = function(){
-      return parseFloat(this.humedad).toFixed(0);
-    }
+    
 
     this.getListaResitencias = function(){
       return this.listaResitencias;
