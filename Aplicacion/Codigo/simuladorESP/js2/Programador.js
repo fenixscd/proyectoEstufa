@@ -1,10 +1,11 @@
-function Programador (resistencia, numero){
+function Programador (numero, resistencia, hora, encender, temperatura, automatico, temperaturaActual){
 	this.numero = numero;
+	this.resistencia = resistencia;
 	this.hora 	     = false; // Hora cambio tipo Date
     this.encender 	 = false; // En que stado esta si no hay valores
     this.temperatura = false; // Que temperatura para el cambio
     this.automatico  = false; // Si esta en modo automatico realiza las hoperaciones con la hora si no no lo hace
-    this.resistencia = resistencia;
+    this.cambiarValores(hora, encender, temperatura, temperatura, automatico);
 }
 
 Programador.prototype.getHora = function() {
@@ -49,15 +50,45 @@ Programador.prototype.setAutomatico = function(automatico) {
 
 // ACCIONES CONTRA LA RESITENCIA
 
+Programador.prototype.cambiarValores = function(hora, encender, temperatura, automatico, temperaturaActual){
+	this.setHora(hora);
+	this.setEncender(encender);
+	this.setTemperatura(temperatura);
+	this.setAutomatico(automatico);
+}
 
 /**
 * Para si hay que hacer el cambio de estado 
 */
-Programadro.prototype.isCambioEstadoEstufa = function(horaActual) {
+
+Programador.prototype.isHoraDelCambio = function(horaActual) {
+	if (this.hora >== horaActual){
+		return true;
+	}else{
+		return false;
+	}
+};
+
+
+Programador.prototype.isCambioEstadoResistencia = function(horaActual) {
 	
 };
 
-Programadro.prototype.cambiarEstadoEstufaHora = function(horaActual) {
+Programador.prototype.cambiarEstadoEstufaHora = function(horaActual) {
 	// Cambio el estado y reseteo los valores a cero
 };
+
+
+Programador.prototype.cambiarValores = function(hora, encender, temperatura, automatico, resistencia) {
+	// body...
+};
+
+Programador.prototype.actualizarEstado = function(hora) {
+	
+};
+
+
+	
+
+
 

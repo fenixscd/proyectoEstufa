@@ -41,23 +41,24 @@ Resitencia.prototype.setEstado = function(estado) {
 	this.estado = estado;
 };
 
+
+
+
+/////////////// METODOS QUE SE UTILIZARAN DESDE FUERA ///////////////////////
+Resitencia.prototype.cambiarValores = function(encendida, automatico, temperatura, temperaturaActual) {
+	this.getEncendida(encendida);
+	this.getAutomatico(automatico);
+	this.temperatura(temperatura);
+
+	this.actualizarEstado(temperaturaActual);
+};
+
 Resitencia.prototype.actualizarEstado = function(temperaturaActual) {
 	if (this.temperatura >== temperaturaActual){
 		this.setEstado(false);
 	} else {
 		this.setEstado(true);
 	}
-};
-
-
-/////////////// METODOS QUE SE UTILIZARAN DESDE FUERA ///////////////////////
-
-Resitencia.prototype.cambiarValores = function(encendida, automatico, temperatura, temperaturaActual) {
-	this.getEncendida(encendida);
-	this.getAutomatico(automatico);
-	this.temperatura(temperatura);
-
-	this.actualizarEstado();
 };
 
 Resitencia.prototype.getJSON = function() {
