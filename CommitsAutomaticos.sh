@@ -63,4 +63,5 @@ function crearCommit()
   crearCommit
 	barraDeProgreso 1200
 	echo ""
-	/c/Archivos\ de\ programa/Git/git-bash.exe ./CommitsAutomaticos.sh
+	#/c/Archivos\ de\ programa/Git/git-bash.exe ./CommitsAutomaticos.sh
+	/git-bash.exe ./CommitsAutomaticos.sh
