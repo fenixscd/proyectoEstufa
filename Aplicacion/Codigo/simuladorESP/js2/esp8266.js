@@ -1,6 +1,6 @@
 function esp8266(){
-
-  // Añadir la conexion
+  this.mac;
+  this.conexion     = new Conexion(this.mac);
   this.termometro   = new Termometro();
   this.humedad      = new Humedad();
   this.resistencia1 = new Resistencia(1);
@@ -16,7 +16,10 @@ esp8266.prototype.buclePrincipal = function () {
 
 
 esp8266.prototype.bucleEnviarDatos = function () {
-
+  //   window.setTimeout(function() {
+  //     bucle(obj);
+  //   }, 2000);
+  //   obj.estufa.cambiarMediciones();
 };
 
 esp8266.prototype.solicirarDatosIniciales = function () {
