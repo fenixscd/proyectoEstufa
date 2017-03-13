@@ -1,11 +1,14 @@
-function Resitencia (encendida, automatico, temperatura, temperaturaActual){
+function Resitencia (numero){
+  this.numero      = numero;
   this.encendida   = false; // Si tiene que estar en modo endendida
   this.automatico  = false; // Si esta en modo automatico realiza las hoperaciones con la hora si no no lo hace
   this.temperatura = false; // Temperatura de funcionamiento;
   this.estado 	   = false; // Encendida cuando la temperatura no es la soliciata apagada si la temperatura es igula o superior a al necesitada.
-  this.cambiarValores(encendida, automatico, temperatura, temperaturaActual);
 }
 
+Resistencia.prototype.getNumero = function () {
+
+};
 
 Resitencia.prototype.getEncendida = function() {
 	return this.encendida;
@@ -64,11 +67,8 @@ Resitencia.prototype.actualizarEstado = function(temperaturaActual) {
 Resitencia.prototype.getJSON = function() {
 	return{
     	"encendida":this.getEncendida(),
-		"automatico":this.getAutomatico(),
-		"temperatura":this.getTemperatura(),
-		"estado":this.getEstado()
+		  "automatico":this.getAutomatico(),
+		  "temperatura":this.getTemperatura(),
+		  "estado":this.getEstado()
   };
 };
-
-
-

@@ -1,12 +1,15 @@
-function Programador (numero, resistencia, hora, encender, temperatura, automatico, temperaturaActual){
-	this.numero = numero;
+function Programador (numero, resistencia){
+	this.numero = resistencia.getNumero();
 	this.resistencia = resistencia;
 	this.hora 	     = false; // Hora cambio tipo Date
-    this.encender 	 = false; // En que stado esta si no hay valores
-    this.temperatura = false; // Que temperatura para el cambio
-    this.automatico  = false; // Si esta en modo automatico realiza las hoperaciones con la hora si no no lo hace
-    this.cambiarValores(hora, encender, temperatura, temperatura, automatico);
+  this.encender 	 = false; // En que stado esta si no hay valores
+  this.temperatura = false; // Que temperatura para el cambio
+  this.automatico  = false; // Si esta en modo automatico realiza las hoperaciones con la hora si no no lo hace
 }
+
+Programador.prototype.getNumero = function () {
+	return this.nuemro;
+};
 
 Programador.prototype.getHora = function() {
 	return this.hora;
@@ -20,11 +23,10 @@ Programador.prototype.getEncender = function() {
 };
 
 Programador.prototype.getTemperatura = function() {
-
 	if (this.hora === false){
 		return false;
 	}
-	return this.temperatura;	
+	return this.temperatura;
 };
 
 Programador.prototype.getAutomatico = function() {
@@ -58,9 +60,8 @@ Programador.prototype.cambiarValores = function(hora, encender, temperatura, aut
 }
 
 /**
-* Para si hay que hacer el cambio de estado 
+* Para si hay que hacer el cambio de estado
 */
-
 Programador.prototype.isHoraDelCambio = function(horaActual) {
 	if (this.hora >== horaActual){
 		return true;
@@ -71,7 +72,7 @@ Programador.prototype.isHoraDelCambio = function(horaActual) {
 
 
 Programador.prototype.isCambioEstadoResistencia = function(horaActual) {
-	
+
 };
 
 Programador.prototype.cambiarEstadoEstufaHora = function(horaActual) {
@@ -84,11 +85,10 @@ Programador.prototype.cambiarValores = function(hora, encender, temperatura, aut
 };
 
 Programador.prototype.actualizarEstado = function(hora) {
-	
+
 };
 
 
-	
+Programador.prototype.getJSON = function () {
 
-
-
+};
