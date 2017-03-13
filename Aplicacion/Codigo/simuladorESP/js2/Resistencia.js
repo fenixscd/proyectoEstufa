@@ -1,4 +1,4 @@
-function Resitencia (numero){
+function Resistencia (numero){
   this.numero      = numero;
   this.encendida   = false; // Si tiene que estar en modo endendida
   this.automatico  = false; // Si esta en modo automatico realiza las hoperaciones con la hora si no no lo hace
@@ -7,40 +7,40 @@ function Resitencia (numero){
 }
 
 Resistencia.prototype.getNumero = function () {
-
+  return this.numero;
 };
 
-Resitencia.prototype.getEncendida = function() {
+Resistencia.prototype.getEncendida = function() {
 	return this.encendida;
 };
 
-Resitencia.prototype.getAutomatico = function() {
+Resistencia.prototype.getAutomatico = function() {
 	return this.automatico;
 };
 
-Resitencia.prototype.getTemperatura = function() {
+Resistencia.prototype.getTemperatura = function() {
 	return this.temperatura;
 };
 
-Resitencia.prototype.getEstado = function() {
+Resistencia.prototype.getEstado = function() {
 	return this.estado;
 };
 
 // Seters --------
 
-Resitencia.prototype.setEncendida = function(encendida) {
+Resistencia.prototype.setEncendida = function(encendida) {
 	this.encendida = encendida;
 };
 
-Resitencia.prototype.setAutomatico = function(automatico) {
+Resistencia.prototype.setAutomatico = function(automatico) {
 	this.automatico = automatico;
 };
 
-Resitencia.prototype.setTemperatura = function(temperatura) {
+Resistencia.prototype.setTemperatura = function(temperatura) {
 	this.temperatura = temperatura;
 };
 
-Resitencia.prototype.setEstado = function(estado) {
+Resistencia.prototype.setEstado = function(estado) {
 	this.estado = estado;
 };
 
@@ -48,7 +48,7 @@ Resitencia.prototype.setEstado = function(estado) {
 
 
 /////////////// METODOS QUE SE UTILIZARAN DESDE FUERA ///////////////////////
-Resitencia.prototype.cambiarValores = function(encendida, automatico, temperatura, temperaturaActual) {
+Resistencia.prototype.cambiarValores = function(encendida, automatico, temperatura, temperaturaActual) {
 	this.getEncendida(encendida);
 	this.getAutomatico(automatico);
 	this.temperatura(temperatura);
@@ -56,15 +56,15 @@ Resitencia.prototype.cambiarValores = function(encendida, automatico, temperatur
 	this.actualizarEstado(temperaturaActual);
 };
 
-Resitencia.prototype.actualizarEstado = function(temperaturaActual) {
-	if (this.temperatura >== temperaturaActual){
+Resistencia.prototype.actualizarEstado = function(temperaturaActual) {
+	if (this.temperatura >= temperaturaActual){
 		this.setEstado(false);
 	} else {
 		this.setEstado(true);
 	}
 };
 
-Resitencia.prototype.getJSON = function() {
+Resistencia.prototype.getJSON = function() {
 	return{
     	"encendida":this.getEncendida(),
 		  "automatico":this.getAutomatico(),

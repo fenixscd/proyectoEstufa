@@ -1,4 +1,4 @@
-function Programador (numero, resistencia){
+function Programador (resistencia){
 	this.numero = resistencia.getNumero();
 	this.resistencia = resistencia;
 	this.hora 	     = false; // Hora cambio tipo Date
@@ -63,7 +63,7 @@ Programador.prototype.cambiarValores = function(hora, encender, temperatura, aut
 * Para si hay que hacer el cambio de estado
 */
 Programador.prototype.isHoraDelCambio = function(horaActual) {
-	if (this.hora >== horaActual){
+	if (this.hora >= horaActual){
 		return true;
 	}else{
 		return false;

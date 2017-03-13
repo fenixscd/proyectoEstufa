@@ -10,6 +10,7 @@ function esp8266(){
 }
 
 esp8266.prototype.buclePrincipal = function () {
+  // Modificar valores
 
 };
 
@@ -17,6 +18,11 @@ esp8266.prototype.buclePrincipal = function () {
 esp8266.prototype.bucleEnviarDatos = function () {
 
 };
+
+esp8266.prototype.solicirarDatosIniciales = function () {
+
+};
+
 
 // function bucle (obj){
 //   window.setTimeout(function() {
