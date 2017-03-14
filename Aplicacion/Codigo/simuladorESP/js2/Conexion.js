@@ -1,5 +1,6 @@
-function Conexion(mac){
-  this.mac = mac;
+function Conexion(esp8266){
+  this.esp8266 = esp8266;
+  this.mac = esp8266.getMac();
 }
 
 Conexion.prototype.enviar = function (clave, valor) {

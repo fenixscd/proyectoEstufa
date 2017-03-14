@@ -1,9 +1,11 @@
-function Resistencia (numero){
+function Resistencia (numero, conexion){
+  this.conexion	   = conexion;
   this.numero      = numero;
   this.encendida   = false; // Si tiene que estar en modo endendida
   this.automatico  = false; // Si esta en modo automatico realiza las hoperaciones con la hora si no no lo hace
   this.temperatura = false; // Temperatura de funcionamiento;
   this.estado 	   = false; // Encendida cuando la temperatura no es la soliciata apagada si la temperatura es igula o superior a al necesitada.
+  this.enviarDatos = false; // Se inidica si se manda la actualización de datos
 }
 
 Resistencia.prototype.getNumero = function () {
@@ -43,8 +45,6 @@ Resistencia.prototype.setTemperatura = function(temperatura) {
 Resistencia.prototype.setEstado = function(estado) {
 	this.estado = estado;
 };
-
-
 
 
 /////////////// METODOS QUE SE UTILIZARAN DESDE FUERA ///////////////////////

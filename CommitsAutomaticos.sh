@@ -61,7 +61,30 @@ function crearCommit()
 }
 
   crearCommit
-	barraDeProgreso 1200
+	barraDeProgreso 600
 	echo ""
-	#/c/Archivos\ de\ programa/Git/git-bash.exe ./CommitsAutomaticos.sh
-	/git-bash.exe ./CommitsAutomaticos.sh
+	
+	InstaladoEnLocal=/c/Archivos\ de\ programa/Git/git-bash.exe
+	InstaladoEnPendriver=/E/PROYECTO/git-bash.exe
+
+	if [ -f $InstaladoEnLocal ]; then
+        echo "Esta instalado en Local $InstaladoEnLocal"
+        /c/Archivos\ de\ programa/Git/git-bash.exe ./CommitsAutomaticos.sh
+	else
+        echo "No esta inlatado en Local $InstaladoEnLocal"
+        if [ -f $InstaladoEnPendriver ]; then
+        	echo "Esta instalado en Pendriver $InstaladoEnLocal"
+        	/E/PROYECTO/git-bash.exe ./CommitsAutomaticos.sh
+		else
+        	echo "No esta inlatado en Pendriver $InstaladoEnLocal"
+		fi
+	fi
+
+	# if [ -f /c/Archivos\ de\ programa/Git/git-bash.exe ]; then
+ #    echo "El archivo no existe!!!"
+	# fi
+	# #/c/Archivos\ de\ programa/Git/git-bash.exe ./CommitsAutomaticos.sh
+	# /git-bash.exe ./CommitsAutomaticos.sh
+
+
+	# #!/bin/bash
