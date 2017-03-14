@@ -18,7 +18,6 @@ Termometro.prototype.generarValorEntreDosNumeros  = function(max, min){
 
 Termometro.prototype.getMedicion = function (isEncendida) {
   return parseFloat(this.temperatura).toFixed(1);
-  this.cambiarMedicion(isEncendida);
 };
 
 Termometro.prototype.setMedicion = function (temperatura) {
@@ -44,7 +43,7 @@ Termometro.prototype.cambiarMedicion = function (isEncendida) {
   } else {
     multiplicador--;
   }
-  valorRandom = valorRandom * multiplicador;
+  valorRandom = valorRandom * (multiplicador/3); // Si no varia muy rapido
 
   var total =  parseFloat(this.getMedicion()) + parseFloat(valorRandom);
   this.setMedicion(total);

@@ -67,8 +67,8 @@ Resistencia.prototype.actualizarEstado = function(temperaturaActual) {
 Resistencia.prototype.getJSON = function() {
 	return{
     	"encendida":this.getEncendida(),
-		  "automatico":this.getAutomatico(),
-		  "temperatura":this.getTemperatura(),
-		  "estado":this.getEstado()
-  };
+		"automatico":this.getAutomatico(),
+		"temperatura":this.getTemperatura(),
+		"estado":this.getEstado()
+  	};
 };

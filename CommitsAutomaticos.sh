@@ -73,10 +73,10 @@ function crearCommit()
 	else
         echo "No esta inlatado en Local $InstaladoEnLocal"
         if [ -f $InstaladoEnPendriver ]; then
-        	echo "Esta instalado en Pendriver $InstaladoEnLocal"
+        	echo "Esta instalado en Pendriver $InstaladoEnPendriver"
         	/E/PROYECTO/git-bash.exe ./CommitsAutomaticos.sh
 		else
-        	echo "No esta inlatado en Pendriver $InstaladoEnLocal"
+        	echo "No esta inlatado en Pendriver $InstaladoEnPendriver"
 		fi
 	fi
 
