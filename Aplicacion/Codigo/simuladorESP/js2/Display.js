@@ -1,12 +1,27 @@
 function Display (esp8266){
   this.esp8266 = esp8266;
+
+  this.datos = new Array();
+  this.datos["dispositivo"] = [this.esp8266.getDispositivo(),this.estufa.getDispositivo(),""];
+  this.datos["modoAutomatico"] = [this.esp8266.getModoAutomatico(), "Auto", "Manu"];
+  this.datos["conexion"] = [this.esp8266.getModoAutomatico(), "Conec", "Desc"];
+  this.datos["temperatura"] = [this.esp8266.getTemperatura(),this.estufa.getTemperatura(), ""];
+  this.datos["humedad"] = [this.esp8266.getHumedad(),this.estufa.getHumedad(),""];
 }
 
-Display.prototype.generarDispositivo = function () {
-
+Display.prototype.pintarValores = function() {
+  var valorPintar;
+  for (dato in this.datos){
+      valorPintar = this.datos[dato][1]; // Valor verdadero
+      if (this.datos[dato][0] === false){
+        valorPintar = this.datos[dato][2]; // Para falso
+      }
+      document.getElementById(dato + this.mac).innerHTML = valorPintar;
+  }
 };
 
-Display.prototype.cambiarValores = function () {
+
+Display.prototype.cambiarValor = function () {
 
 };
 
@@ -14,8 +29,19 @@ Display.prototype.parsearParaPintar = function () {
 
 };
 
+Display.prototype.añadirHTMLDispositivo = function () {
+  var contenedor = document.getElementsByTagName("section")[0];
+  var dispositivo = document.createElement("div");
+  dispositivo.setAttribute("class", "dispositivo");
 
-Union.prototype.generarHTML = function () {
+  dispositivo.innerHTML = this.generarHTML();
+  dispositivo.classList.add("dispositivo");
+  contenedor.appendChild(dispositivo);
+
+  // this.pintarValores();
+};
+
+Display.prototype.generarHTML = function () {
   var plantilla = '<div class="display">' +
                       '<div class="lSuperior">' +
                         '<h2><span id="dispositivo{{mac}}">{{mac}}</span></h2>' +
@@ -39,5 +65,5 @@ Union.prototype.generarHTML = function () {
                           '<input type="button" value="M" onclick="hacer_click()"/>' +
                           '<input type="button" value="-" onclick="hacer_click()"/>' +
                           '</form>';
-  return plantilla.replace(/{{mac}}/g, this.dispositivo.getEstufa().getMac());
+  return plantilla.replace(/{{mac}}/g, this.esp8266.getMac());
 };

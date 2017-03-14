@@ -1,4 +1,4 @@
-function Programador (resistencia){
+function Programador (resistencia, display){
 	this.numero = resistencia.getNumero();
 	this.resistencia = resistencia;
 	this.hora 	     = false; // Hora cambio tipo Date

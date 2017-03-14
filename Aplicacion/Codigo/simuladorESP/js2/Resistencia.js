@@ -1,4 +1,4 @@
-function Resistencia (numero, conexion){
+function Resistencia (numero, conexion, display){
   this.conexion	   = conexion;
   this.numero      = numero;
   this.encendida   = false; // Si tiene que estar en modo endendida

@@ -1,4 +1,4 @@
-function Humedad(conexion){
+function Humedad(conexion, display){
   this.conexion = conexion;
   this.humedad;
   this.humedadMaxima = 99;

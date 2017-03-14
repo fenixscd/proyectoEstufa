@@ -1,10 +1,10 @@
-function Conexion(esp8266){
+function Conexion(esp8266, display){
   this.esp8266 = esp8266;
   this.mac = esp8266.getMac();
 }
 
 Conexion.prototype.enviar = function () {
-  
+
   console.log("Enviar datos: " + this.mac);
 };
 

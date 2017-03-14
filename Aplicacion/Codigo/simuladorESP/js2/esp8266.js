@@ -1,15 +1,18 @@
 function esp8266(){
   this.mac;
-  this.conexion     = new Conexion(this);
-  this.termometro   = new Termometro(this.conexion);
-  this.humedad      = new Humedad(this.conexion);
-  this.resistencia1 = new Resistencia(1, this.conexion);
-  this.resistencia2 = new Resistencia(2, this.conexion);
-  this.programador1 = new Programador(this.resistencia1, this.conexion);
-  this.programador2 = new Programador(this.resistencia2, this.conexion);
+  this.nombreDispositivo = false;
+
+  this.display      = new Display()
+  this.conexion     = new Conexion(this, this.display);
+  this.termometro   = new Termometro(this.conexion, this.display);
+  this.humedad      = new Humedad(this.conexion, this.display);
+  this.resistencia1 = new Resistencia(1, this.conexion, this.display);
+  this.resistencia2 = new Resistencia(2, this.conexion, this.display);
+  this.programador1 = new Programador(this.resistencia1, this.conexion, this.display);
+  this.programador2 = new Programador(this.resistencia2, this.conexion, this.display);
+
   this.generarMac();
   this.actualizarMediciones(this) // Bucle para que se vallan actualizando las mediciones
-
 }
 
 esp8266.prototype.getMac = function() {
@@ -20,6 +23,15 @@ esp8266.prototype.setMac = function(mac) {
   this.mac = mac;
 };
 
+esp8266.prototype.getNombreDispositivo = function () {
+  if (this.nombreDispositivo == false){
+    return this.getMac();
+  }else {
+    return this.nombreDispositivo;
+  }
+};
+
+
 esp8266.prototype.buclePrincipal = function () {
   // Modificar valores
 
@@ -29,7 +41,7 @@ esp8266.prototype.buclePrincipal = function () {
 esp8266.prototype.actualizarMediciones = function (obj) {
     window.setTimeout(function() {
       obj.actualizarMediciones(obj); // Llamar a si mismo cuando termine la cuenta a tras
-    }, 2000);
+    }, 5000);
       obj.termometro.cambiarMedicion(true);
       console.log("Cambio de temperatura: " + obj.termometro.getMedicion());
     //obj.estufa.cambiarMediciones(); // Metodos que quiero ejecutar
