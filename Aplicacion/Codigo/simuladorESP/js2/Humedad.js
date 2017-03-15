@@ -38,21 +38,6 @@ Humedad.prototype.cambiarHumedad = function () {
   this.setMedicion(total);
 };
 
-Humedad.prototype.humedadInicial = function (){
-  var valor = this.generarValorEntreDosNumeros(this.humedadMaxima, this.humedadMinima);
-  this.humedad = valor.toFixed(0);
-};
-
 Humedad.prototype.setMedicion = function(humedad){
   this.humedad = this.getEntreValores(humedad, this.humedadMaxima, this.humedadMinima);
 }
-
-Humedad.prototype.getEntreValores = function (cantidad, cantidadMaxima, cantidadMinima) {
-  var resultado = cantidad;
-  if (cantidad >= cantidadMaxima){
-    resultado = cantidadMaxima;
-  }else if (resultado <= cantidadMinima) {
-    resultado = cantidadMinima;
-  }
-  return resultado;
-};

@@ -12,7 +12,7 @@ Conexion.prototype.recivir = function () {
 
 };
 
-Conexionq.prototype.enviarDatos = function(clave, valor) {
+Conexion.prototype.enviarDatos = function(clave, valor) {
 	var enviar = "Dispositivo " + this.mac + ": " + clave + " " + valor;
 	this.enviar(enviar);
 };

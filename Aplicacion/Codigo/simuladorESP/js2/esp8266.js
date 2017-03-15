@@ -12,7 +12,7 @@ function esp8266(){
   this.programador1 = new Programador(this.resistencia1, this.conexion, this.display);
   this.programador2 = new Programador(this.resistencia2, this.conexion, this.display);
 
-  
+
   this.display.añadirHTMLDispositivo();
   this.actualizarMediciones(this) // Bucle para que se vallan actualizando las mediciones
 }
@@ -50,13 +50,17 @@ esp8266.prototype.buclePrincipal = function () {
 
 };
 
+esp8266.prototype.isResistenciaEncendida = function () {
+  if (this.resistencia1.getEstado() || this.resistencia1.getEstado()) return true;
+  else return false;
+};
 
 esp8266.prototype.actualizarMediciones = function (obj) {
     window.setTimeout(function() {
       obj.actualizarMediciones(obj); // Llamar a si mismo cuando termine la cuenta a tras
     }, 5000);
-      obj.termometro.actualizarMedicion(true);
-      console.log("Cambio de temperatura: " + obj.termometro.getMedicion());
+      obj.termometro.actualizarMedicion(obj.isResistenciaEncendida());
+      // console.log("Cambio de temperatura: " + obj.termometro.getMedicion());
       // Comprobar temperatura.
       this.resistencia1.actualizarEstado(obj.termometro.getMedicion());
 

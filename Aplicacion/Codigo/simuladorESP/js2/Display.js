@@ -26,8 +26,6 @@ Display.prototype.pintarValores = function() {
 };
 
 Display.prototype.cambiarValor = function(clave, valor) {
-  console.log("Clave: " + clave + this.mac + " Valor: " + valor);
-
   document.getElementById(clave + this.mac).innerHTML = valor;
 };
 
@@ -54,9 +52,9 @@ Display.prototype.generarHTML = function () {
                         '<h2>H: <span id="humedad{{mac}}">10</span>%</h2>' +
                       '</div>' +
                       '<div class="programacion">' +
-                        '<p class="izq">Resis 1 [<span id="resistenciaEstado1{{mac}}">*</span>]: <span id="resistenciaEncendida1{{mac}}">ON</span> <span id="resistenciaTemperatura1{{mac}}">27</span>º</p>' +
+                        '<p class="izq"><span id="resistenciaAutomatico1{{mac}}">M</span> Resis 1 [<span id="resistenciaEstado1{{mac}}">*</span>]: <span id="resistenciaEncendida1{{mac}}">ON</span> <span id="resistenciaTemperatura1{{mac}}">27</span>º</p>' +
                         '<p class="der">Hora <span id="ProgramadorHora1{{mac}}">6:25</span> <span id="ProgramadorEncender1{{mac}}">OFF</span> <span id="ProgramadorTemperatura1{{mac}}">27</span>º</p>' +
-                        '<p class="izq">Resis 2 [<span id="resistenciaEstado2{{mac}}"> </span>]: <span id="resistenciaEncendida2{{mac}}">OFF</span> <span id="resistenciaTemperatura1{{mac}}"></span></p>' +
+                        '<p class="izq"><span id="resistenciaAutomatico2{{mac}}">M</span> Resis 2 [<span id="resistenciaEstado2{{mac}}"> </span>]: <span id="resistenciaEncendida2{{mac}}">OFF</span> <span id="resistenciaTemperatura1{{mac}}"></span></p>' +
                         '<p class="der">Hora <span id="ProgramadorHora2{{mac}}">6:25</span> <span id="ProgramadorEncender2{{mac}}">ON</span> <span id="ProgramadorTemperatura2{{mac}}">27</span>º</p>' +
                       '</div>' +
                       '</div>' +

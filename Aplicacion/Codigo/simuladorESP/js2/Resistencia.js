@@ -4,9 +4,9 @@ function Resistencia (numero, conexion, display){
   this.display	   = display;
   this.encendida   = false; // Si tiene que estar en modo endendida
   this.automatico  = false; // Si esta en modo automatico realiza las hoperaciones con la hora si no no lo hace
-  this.temperatura = false; // Temperatura de funcionamiento;
+  this.temperatura = 28; // Temperatura de funcionamiento;
   this.estado 	   = false; // Encendida cuando la temperatura no es la soliciata apagada si la temperatura es igula o superior a al necesitada.
-  this.enviarDatos = false; // Se inidica si se manda la actualización de datos
+  this.automatico  = false; // Si esta la resistencia manual o automatico
 }
 
 Resistencia.prototype.getNumero = function () {
@@ -33,6 +33,7 @@ Resistencia.prototype.getEstado = function() {
 
 Resistencia.prototype.setEncendida = function(encendida) {
 	this.encendida = encendida;
+  this.pintarEncendida();
 };
 
 Resistencia.prototype.setAutomatico = function(automatico) {
@@ -41,48 +42,44 @@ Resistencia.prototype.setAutomatico = function(automatico) {
 
 Resistencia.prototype.setTemperatura = function(temperatura) {
 	this.temperatura = temperatura;
+  this.pintarTemperatura();
 };
 
 Resistencia.prototype.setEstado = function(estado) {
-	this.estado = estado;
+  if( this.estado != estado){
+    this.estado = estado;
+    this.display.pintarEstado();
+    this.conexion.enviarEstado();
+  }
 };
 
 
 /////////////// METODOS QUE SE UTILIZARAN DESDE FUERA ///////////////////////
 Resistencia.prototype.cambiarValores = function(encendida, automatico, temperatura, temperaturaActual) {
-	this.getEncendida(encendida);
-	this.getAutomatico(automatico);
+	this.setEncendida(encendida);
+	this.setAutomatico(automatico);
 	this.temperatura(temperatura);
 
 	this.actualizarEstado(temperaturaActual);
 };
 
+
+// Metodo que llama el bucle para hacer verificar si hay cambios
 Resistencia.prototype.actualizarEstado = function(temperaturaActual) {
-	var estadoActual = this.temperatura;
-	if (this.encendida){
+  var sePuedeEncender = this.encendida || this.manual;
+	var estadoActual = this.estado;
+	if (sePuedeEncender){
 		if (this.temperatura >= temperaturaActual){ // Si es mallor o igual apago la resistencia
 			this.setEstado(false);
 		} else {
 			this.setEstado(true); // Si es menor enciendo la resistencia
 		}
 	}
-	if (estadoActula == this.getEstado()){
-		// Enviar datos
-		this.display.cambiarValor(("resistenciaEstado" + this.numero), this.getMedicion());
-	} else {
-		// Enviar datos
-		this.display.cambiarValor(("resistenciaEstado" + this.numero), this.getMedicion());
-	}
-
-};
-
-Resistencia.prototype.pintarDisplay = function () {
-  this.display.cambiarValor("temperatura", this.getMedicion());
 };
 
 Resistencia.prototype.getJSON = function() {
 	return{
-    	"encendida":this.getEncendida(),
+    "encendida":this.getEncendida(),
 		"automatico":this.getAutomatico(),
 		"temperatura":this.getTemperatura(),
 		"estado":this.getEstado()
@@ -95,4 +92,51 @@ Resistencia.prototype.isTemperaturaSeleccionada = function(temperaturaActual) {
 	} else {
 		this.setEstado(true);
 	}
+};
+
+//////////////////// ENVIAR ACTUALIZAR DISPLAY ///////////////////////////////
+
+Resistencia.prototype.pintarEstado = function () {
+  var pintar;
+  if (this.getEstado()) pintar = "*";
+  else pintar = " ";
+  this.display.cambiarValor(("resistenciaEstado" + this.numero), pintar);
+};
+
+Resistencia.prototype.enviarEstado = function () {
+  this.conexion.enviarDatos(("resistenciaEstado" + this.numero), this.getEstado());
+};
+
+Resistencia.prototype.pintarEncendida = function () {
+  var pintar;
+  if (this.getEncendida()) pintar = "ON";
+  else pintar = "OFF";
+  this.display.cambiarValor(("resistenciaEstado" + this.numero), pintar);
+};
+
+Resistencia.prototype.enviarEncendida = function () {
+  this.conexion.enviarDatos(("resistenciaEncendida" + this.numero), this.getEstado());
+};
+
+Resistencia.prototype.pintarTemperatura = function () {
+  this.display.cambiarValor(("resistenciaTemperatura" + this.numero), this.getTemperatura());
+};
+
+Resistencia.prototype.enviarTemperatura = function () {
+  this.conexion.enviarDatos(("resistenciaTemperatura" + this.numero), this.getTemperatura());
+};
+
+Resistencia.prototype.pintarAutomatico = function () {
+  var pintar;
+  if (this.getAutomatico() pintar = "A";
+  else pintar = "M";
+  this.display.cambiarValor(("resistenciaAutomatico" + this.numero), pintar);
+};
+
+Resistencia.prototype.enviarAutomatico = function () {
+  this.conexion.enviarDatos(("resistenciaAutomatico" + this.numero), this.getAutomatico());
+};
+
+Resistencia.prototype.pintarTemperatura() = function () {
+
 };
