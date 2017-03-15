@@ -1,13 +1,18 @@
 function Display (esp8266){
   this.esp8266 = esp8266;
+  this.mac = this.esp8266.getMac();
 
   this.datos = new Array();
-  this.datos["dispositivo"] = [this.esp8266.getDispositivo(),this.estufa.getDispositivo(),""];
-  this.datos["modoAutomatico"] = [this.esp8266.getModoAutomatico(), "Auto", "Manu"];
-  this.datos["conexion"] = [this.esp8266.getModoAutomatico(), "Conec", "Desc"];
-  this.datos["temperatura"] = [this.esp8266.getTemperatura(),this.estufa.getTemperatura(), ""];
-  this.datos["humedad"] = [this.esp8266.getHumedad(),this.estufa.getHumedad(),""];
+  // this.cargarCorrespondencia();
 }
+
+// Display.prototype.cargarCorrespondencia = function () {
+//   this.datos["dispositivo"] = [this.esp8266.getNombreDispositivo(),this.esp8266.getNombreDispositivo(),""];
+//   this.datos["modoAutomatico"] = [this.esp8266.getModoAutomatico(), "Auto", "Manu"];
+//   this.datos["conexion"] = [this.esp8266.getModoAutomatico(), "Conec", "Desc"];
+//   this.datos["temperatura"] = [this.esp8266.termometro.getMedicion(),this.esp8266.termometro.getMedicion(), ""];
+//   this.datos["humedad"] = [this.esp8266.humedad().getMedicion(),this.esp8266.humedad().getMedicion(),""];
+// };
 
 Display.prototype.pintarValores = function() {
   var valorPintar;
@@ -20,13 +25,9 @@ Display.prototype.pintarValores = function() {
   }
 };
 
-
-Display.prototype.cambiarValor = function () {
-
-};
-
-Display.prototype.parsearParaPintar = function () {
-
+Display.prototype.cambiarValor = function(clave, valor) {
+  console.log("Clave: " + clave + this.mac + " Valor: " + valor);
+  document.getElementById(clave + this.mac).innerHTML = valor;
 };
 
 Display.prototype.añadirHTMLDispositivo = function () {

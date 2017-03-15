@@ -1,5 +1,6 @@
 function Termometro(conexion, display){
   this.conexion = conexion;
+  this.display = display;
   this.temperatura;
   this.temperaturaMaxima = 40;
   this.temperaturaMinima = -20;
@@ -47,4 +48,13 @@ Termometro.prototype.cambiarMedicion = function (isEncendida) {
 
   var total =  parseFloat(this.getMedicion()) + parseFloat(valorRandom);
   this.setMedicion(total);
+};
+
+Termometro.prototype.pintarDisplay = function () {
+  this.display.cambiarValor("temperatura", this.getMedicion());
+};
+
+Termometro.prototype.actualizarMedicion = function (isEncendida) {
+  this.cambiarMedicion(isEncendida);
+  this.pintarDisplay();
 };

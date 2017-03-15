@@ -1,8 +1,9 @@
 function esp8266(){
-  this.mac;
+  this.mac = this.generarMac();
   this.nombreDispositivo = false;
+  this.modoAutomatico    = false;
 
-  this.display      = new Display()
+  this.display      = new Display(this)
   this.conexion     = new Conexion(this, this.display);
   this.termometro   = new Termometro(this.conexion, this.display);
   this.humedad      = new Humedad(this.conexion, this.display);
@@ -11,7 +12,8 @@ function esp8266(){
   this.programador1 = new Programador(this.resistencia1, this.conexion, this.display);
   this.programador2 = new Programador(this.resistencia2, this.conexion, this.display);
 
-  this.generarMac();
+  
+  this.display.añadirHTMLDispositivo();
   this.actualizarMediciones(this) // Bucle para que se vallan actualizando las mediciones
 }
 
@@ -31,6 +33,17 @@ esp8266.prototype.getNombreDispositivo = function () {
   }
 };
 
+esp8266.prototype.setNombreDispositivo = function (nombreDispositivo) {
+  this.nombreDispositivo = nombreDispositivo;
+};
+
+esp8266.prototype.getModoAutomatico = function () {
+  return this.modoAutomatico;
+};
+
+esp8266.prototype.setModoAutomatico = function (modoAutomatico) {
+  this.nombreDispositivo = modoAutomatico;
+};
 
 esp8266.prototype.buclePrincipal = function () {
   // Modificar valores
@@ -42,7 +55,7 @@ esp8266.prototype.actualizarMediciones = function (obj) {
     window.setTimeout(function() {
       obj.actualizarMediciones(obj); // Llamar a si mismo cuando termine la cuenta a tras
     }, 5000);
-      obj.termometro.cambiarMedicion(true);
+      obj.termometro.actualizarMedicion(true);
       console.log("Cambio de temperatura: " + obj.termometro.getMedicion());
     //obj.estufa.cambiarMediciones(); // Metodos que quiero ejecutar
 
@@ -71,6 +84,7 @@ esp8266.prototype.generarMac = function () {
     mac = mac + "-" + calculado.substr(0,2);
     mac = mac + "-" + calculado.substr(2,3);
     this.setMac(mac);
+    return mac;
 };
 
 

@@ -6,8 +6,8 @@
 // console.log("Mediciones: " + termometro.getMedicion());
 // console.log("Mediciones: " + humedad.getMedicion());
 
-var dispositivo = new esp8266();
+
 
 function crearDispositivo() {
-  console.log("No implementado todavia");
+  var dispositivo = new esp8266();
 }
