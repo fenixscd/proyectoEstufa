@@ -14,6 +14,7 @@ function esp8266(){
 
 
   this.display.añadirHTMLDispositivo();
+  this.iniciarValores();
   this.actualizarMediciones(this) // Bucle para que se vallan actualizando las mediciones
 }
 
@@ -51,18 +52,22 @@ esp8266.prototype.buclePrincipal = function () {
 };
 
 esp8266.prototype.isResistenciaEncendida = function () {
-  if (this.resistencia1.getEstado() || this.resistencia1.getEstado()) return true;
+  console.log("Resistencia1 " + this.resistencia1.getResistenciaEncendida());
+  console.log("Resistencia2 " + this.resistencia2.getResistenciaEncendida());
+  if (this.resistencia1.getResistenciaEncendida() || this.resistencia2.getResistenciaEncendida()) return true;
   else return false;
 };
 
 esp8266.prototype.actualizarMediciones = function (obj) {
     window.setTimeout(function() {
       obj.actualizarMediciones(obj); // Llamar a si mismo cuando termine la cuenta a tras
-    }, 5000);
+    }, 1000);
+      console.log("Verificando si la resistencia esta apagada o encendida: " + obj.isResistenciaEncendida());
       obj.termometro.actualizarMedicion(obj.isResistenciaEncendida());
+      obj.resistencia1.actualizarEstado(obj.termometro.getMedicion());
+      obj.resistencia2.actualizarEstado(obj.termometro.getMedicion());
       // console.log("Cambio de temperatura: " + obj.termometro.getMedicion());
       // Comprobar temperatura.
-      this.resistencia1.actualizarEstado(obj.termometro.getMedicion());
 
 
 
@@ -98,10 +103,12 @@ esp8266.prototype.generarMac = function () {
     return mac;
 };
 
+esp8266.prototype.iniciarValores = function () {
+  this.resistencia1.setModoManual(true);
+  this.resistencia1.setModoEncendido(true);
+  this.resistencia1.setTemperatura(30);
 
-
-// function bucle (obj){
-//   window.setTimeout(function() {
-//     bucle(obj);
-//   }, 2000);
-//   obj.estufa.cambiarMediciones();
+  this.resistencia2.setModoManual(false);
+  this.resistencia2.setModoEncendido(false);
+  this.resistencia2.setTemperatura(31);
+};
