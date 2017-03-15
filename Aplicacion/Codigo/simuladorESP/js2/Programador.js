@@ -2,9 +2,9 @@ function Programador (resistencia, display){
 	this.numero = resistencia.getNumero();
 	this.resistencia = resistencia;
 	this.hora 	     = false; // Hora cambio tipo Date
-  this.encender 	 = false; // En que stado esta si no hay valores
-  this.temperatura = false; // Que temperatura para el cambio
-  this.automatico  = false; // Si esta en modo automatico realiza las hoperaciones con la hora si no no lo hace
+    this.encender 	 = false; // En que stado esta si no hay valores
+    this.temperatura = false; // Que temperatura para el cambio
+    this.automatico  = false; // Si esta en modo automatico realiza las hoperaciones con la hora si no no lo hace
 }
 
 Programador.prototype.getNumero = function () {

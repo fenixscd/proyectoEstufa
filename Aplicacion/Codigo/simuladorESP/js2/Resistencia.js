@@ -1,6 +1,7 @@
 function Resistencia (numero, conexion, display){
   this.conexion	   = conexion;
   this.numero      = numero;
+  this.display	   = display;
   this.encendida   = false; // Si tiene que estar en modo endendida
   this.automatico  = false; // Si esta en modo automatico realiza las hoperaciones con la hora si no no lo hace
   this.temperatura = false; // Temperatura de funcionamiento;
@@ -57,11 +58,26 @@ Resistencia.prototype.cambiarValores = function(encendida, automatico, temperatu
 };
 
 Resistencia.prototype.actualizarEstado = function(temperaturaActual) {
-	if (this.temperatura >= temperaturaActual){
-		this.setEstado(false);
-	} else {
-		this.setEstado(true);
+	var estadoActual = this.temperatura;
+	if (this.encendida){
+		if (this.temperatura >= temperaturaActual){ // Si es mallor o igual apago la resistencia
+			this.setEstado(false);
+		} else {
+			this.setEstado(true); // Si es menor enciendo la resistencia
+		}
 	}
+	if (estadoActula == this.getEstado()){
+		// Enviar datos
+		this.display.cambiarValor(("resistenciaEstado" + this.numero), this.getMedicion());
+	} else {
+		// Enviar datos
+		this.display.cambiarValor(("resistenciaEstado" + this.numero), this.getMedicion());
+	}
+
+};
+
+Resistencia.prototype.pintarDisplay = function () {
+  this.display.cambiarValor("temperatura", this.getMedicion());
 };
 
 Resistencia.prototype.getJSON = function() {
@@ -71,4 +87,12 @@ Resistencia.prototype.getJSON = function() {
 		"temperatura":this.getTemperatura(),
 		"estado":this.getEstado()
   	};
+};
+
+Resistencia.prototype.isTemperaturaSeleccionada = function(temperaturaActual) {
+	if (this.temperatura >= temperaturaActual){
+		this.setEstado(false);
+	} else {
+		this.setEstado(true);
+	}
 };

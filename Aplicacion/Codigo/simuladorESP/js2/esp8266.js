@@ -57,6 +57,13 @@ esp8266.prototype.actualizarMediciones = function (obj) {
     }, 5000);
       obj.termometro.actualizarMedicion(true);
       console.log("Cambio de temperatura: " + obj.termometro.getMedicion());
+      // Comprobar temperatura.
+      this.resistencia1.actualizarEstado(obj.termometro.getMedicion());
+
+
+
+
+
     //obj.estufa.cambiarMediciones(); // Metodos que quiero ejecutar
 
     // Hala funcion hay que llamarla des de fuera para que empieza el bucle
