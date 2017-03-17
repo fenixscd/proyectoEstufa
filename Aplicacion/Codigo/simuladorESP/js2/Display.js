@@ -26,6 +26,7 @@ Display.prototype.pintarValores = function() {
 };
 
 Display.prototype.cambiarValor = function(clave, valor) {
+  console.log("Clave: " + clave + " Valor: " + valro);
   document.getElementById(clave + this.mac).innerHTML = valor;
 };
 
