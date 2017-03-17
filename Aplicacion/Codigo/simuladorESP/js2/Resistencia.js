@@ -1,7 +1,8 @@
-function Resistencia (numero, conexion, display){
+function Resistencia (numero, conexion, display, termometro){
   this.conexion	            = conexion;
-  this.numero               = numero;
   this.display	            = display;
+  this.termometro           = termometro;
+  this.numero               = numero;
   this.modoManual           = false;
   this.modoEncendido        = false;
   this.resistenciaEncendida = false;
@@ -26,7 +27,7 @@ Resistencia.prototype.getResistenciaEncendida = function() {
 
 
 Resistencia.prototype.getTemperatura = function() {
-	return this.temperatura;
+	return parseFloat(this.temperatura).toFixed(1);
 };
 
 
@@ -34,19 +35,25 @@ Resistencia.prototype.getTemperatura = function() {
 
 Resistencia.prototype.setModoManual = function(modoManual) {
 	this.modoManual = modoManual;
-  this.pintarModoManual()
-  this.enviarModoManual()
+  this.pintarModoManual();
+  this.enviarModoManual();
+  this.actualizarEstado(this.termometro.getMedicion());
 };
 
 Resistencia.prototype.setModoEncendido = function (modoEncendido) {
   this.modoEncendido = modoEncendido;
+  this.pintarModoEncendido();
+  this.enviarModoEncendido();
+  this.actualizarEstado(this.termometro.getMedicion());
 };
 
 Resistencia.prototype.setResistenciaEncendida = function(resistenciaEncendida) {
-	this.resistenciaEncendida = resistenciaEncendida;
-  this.pintarResistenciaEncendida();
-  this.enviarResistenciaEncendida();
-  this.pintarTemperatura();
+  console.log("Resitencia encender " + this.getNumero()+ " estado " + this.getResistenciaEncendida() + resistenciaEncendida);
+  if (this.resistenciaEncendida != resistenciaEncendida){
+    this.resistenciaEncendida = resistenciaEncendida;
+    this.pintarResistenciaEncendida();
+    this.enviarResistenciaEncendida();
+  }
 };
 
 Resistencia.prototype.setTemperatura = function(temperatura) {
@@ -57,21 +64,24 @@ Resistencia.prototype.setTemperatura = function(temperatura) {
 
 
 
-/////////////// METODOS QUE SE UTILIZARAN DESDE FUERA ///////////////////////
+/////////////// FLUJO ///////////////////////
 
-Resistencia.prototype.isSePuedeEncender = function () {
-  return this.encendida || (!this.manual);
+Resistencia.prototype.isEncenderResistencia = function (temperaturaActual) {
+
+  var encenderResistencia = parseFloat(this.getTemperatura()) <= parseFloat(temperaturaActual);
+  console.log("Encender resitencia " + encenderResistencia);
+  return encenderResistencia;
 };
 
 // Metodo que llama el bucle para hacer verificar si hay cambios
 Resistencia.prototype.actualizarEstado = function(temperaturaActual) {
-	var estadoActual = this.estado;
-	if (this.isSePuedeEncender()){
-		if (this.temperatura >= temperaturaActual){ // Si es mallor o igual apago la resistencia
-      console.log("Apagar resistencia");
+  this.pintarEnConsola();
+	if (this.getModoEncendido()){
+		if (this.isEncenderResistencia(temperaturaActual)){ // Si es mallor o igual apago la resistencia
+      console.log("Apaga la resistencia " + this.getNumero());
 			this.setResistenciaEncendida(false);
 		} else {
-      console.log("Enciendo la resisten");
+      console.log("Enciende la resistencia " + this.getNumero());
 			this.setResistenciaEncendida(true); // Si es menor enciendo la resistencia
 		}
 	}
@@ -99,7 +109,7 @@ Resistencia.prototype.pintarModoEncendido = function () {
 };
 
 Resistencia.prototype.enviarModoEncendido = function () {
-  this.conexion.enviarDatos(("resistenciaEncendida" + this.numero), this.getEstado());
+  this.conexion.enviarDatos(("resistenciaEncendida" + this.numero), this.getModoEncendido());
 };
 
 
@@ -115,13 +125,20 @@ Resistencia.prototype.enviarResistenciaEncendida = function () {
 
 
 Resistencia.prototype.pintarTemperatura = function () {
-  var pintar = this.getTemperatura();
-  if (!this.isSePuedeEncender()){
-    pintar = "";
+  pintar = "";
+  if (this.getModoEncendido()){
+    var pintar = this.getTemperatura();
   }
 this.display.cambiarValor(("resistenciaTemperatura" + this.numero), pintar);
 };
 
 Resistencia.prototype.enviarTemperatura = function () {
   this.conexion.enviarDatos(("resistenciaTemperatura" + this.numero), this.getTemperatura());
+};
+
+Resistencia.prototype.pintarEnConsola = function () {
+  console.log("Resistencia: " + this.getNumero());
+  console.log("    Modo Manual: " + this.getModoManual());
+  console.log("    Modo Encendido: " + this.getModoEncendido());
+  console.log("    Resistencia Encendida: " + this.getResistenciaEncendida());
 };

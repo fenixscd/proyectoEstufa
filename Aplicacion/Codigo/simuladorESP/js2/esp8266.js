@@ -7,8 +7,8 @@ function esp8266(){
   this.conexion     = new Conexion(this, this.display);
   this.termometro   = new Termometro(this.conexion, this.display);
   this.humedad      = new Humedad(this.conexion, this.display);
-  this.resistencia1 = new Resistencia(1, this.conexion, this.display);
-  this.resistencia2 = new Resistencia(2, this.conexion, this.display);
+  this.resistencia1 = new Resistencia(1, this.conexion, this.display, this.termometro);
+  this.resistencia2 = new Resistencia(2, this.conexion, this.display, this.termometro);
   this.programador1 = new Programador(this.resistencia1, this.conexion, this.display);
   this.programador2 = new Programador(this.resistencia2, this.conexion, this.display);
 
