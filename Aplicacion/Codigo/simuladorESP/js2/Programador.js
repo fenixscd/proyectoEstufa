@@ -56,14 +56,13 @@ Programador.prototype.cambiarValores = function(hora, encender, temperatura, cue
 
 Programador.prototype.temporizador = function (obj) {
     window.setTimeout(function() {
-      obj.actualizarMediciones(obj); // Llamar a si mismo cuando termine la cuenta a tras
+      obj.cambiar(obj); // Llamar a si mismo cuando termine la cuenta a tras
     }, 1000);
-      console.log("Verificando si la resistencia esta apagada o encendida: " + obj.isResistenciaEncendida());
-      obj.termometro.actualizarMedicion(obj.isResistenciaEncendida());
 };
 
 Programador.prototype.cambiar = function () {
 	// Realizar cambio
 	// Solicitar nueva hora de cambio
 	// Ejecuar denuevo el bucle con el nuevo tiempo
+	console.log("Llama al temporizador");
 };
