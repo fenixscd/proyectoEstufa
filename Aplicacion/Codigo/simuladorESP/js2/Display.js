@@ -46,16 +46,16 @@ Display.prototype.generarHTML = function () {
   var plantilla = '<div class="display">' +
                       '<div class="lSuperior">' +
                         '<h2><span id="dispositivo{{mac}}">{{mac}}</span></h2>' +
-                        '<p><span id="modoAutomatico{{mac}}">Manual</span> | <span id="conexion{{mac}}">DESCONEC</span></p>' +
+                        '<p><span id="conexion{{mac}}">DESCONEC</span></p>' +
                       '</div>' +
                       '<div class="medidas">' +
-                        '<h2>T: <span id="temperatura{{mac}}">25.5</span>º</h2>' +
+                        '<h2>T: <span id="temperatura{{mac}}"></span>º</h2>' +
                         '<h2>H: <span id="humedad{{mac}}">10</span>%</h2>' +
                       '</div>' +
                       '<div class="programacion">' +
-                        '<p class="izq"><span id="resistenciaAutomatico1{{mac}}">M</span> Res 1 [<span id="resistenciaEstado1{{mac}}">*</span>]: <span id="resistenciaEncendida1{{mac}}">ON</span> <span id="resistenciaTemperatura1{{mac}}">27</span>º</p>' +
-                        '<p class="der">Hora <span id="ProgramadorHora1{{mac}}">6:25</span> <span id="ProgramadorEncender1{{mac}}">OFF</span> <span id="ProgramadorTemperatura1{{mac}}">27</span>º</p>' +
-                        '<p class="izq"><span id="resistenciaAutomatico2{{mac}}">M</span> Res 2 [<span id="resistenciaEstado2{{mac}}"> </span>]: <span id="resistenciaEncendida2{{mac}}">OFF</span> <span id="resistenciaTemperatura2{{mac}}"></span></p>' +
+                        '<p class="izq"><span id="resistenciaAutomatico1{{mac}}"></span> Res1 [<span id="resistenciaEstado1{{mac}}"></span>]: <span id="resistenciaEncendida1{{mac}}"> </span> <span id="resistenciaTemperatura1{{mac}}"></span></p>' +
+                        '<p class="der">Hora <span id="ProgramadorHora1{{mac}}">6:25</span> <span id="ProgramadorEncender1{{mac}}"> </span> <span id="ProgramadorTemperatura1{{mac}}">27</span>º</p>' +
+                        '<p class="izq"><span id="resistenciaAutomatico2{{mac}}"></span> Res2 [<span id="resistenciaEstado2{{mac}}"> </span>]: <span id="resistenciaEncendida2{{mac}}"></span> <span id="resistenciaTemperatura2{{mac}}"></span></p>' +
                         '<p class="der">Hora <span id="ProgramadorHora2{{mac}}">6:25</span> <span id="ProgramadorEncender2{{mac}}">ON</span> <span id="ProgramadorTemperatura2{{mac}}">27</span>º</p>' +
                       '</div>' +
                       '</div>' +
