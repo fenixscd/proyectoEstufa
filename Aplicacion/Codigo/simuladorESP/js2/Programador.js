@@ -1,11 +1,10 @@
 function Programador (resistencia, conexion, display){
 	this.numero       = resistencia.getNumero();
 	this.resistencia  = resistencia;
-	this.cuantraAtras = 0;
+	this.cuentaAtras  = false; // Si es falso es que no hay programa
 	this.hora 	      = false; // Hora cambio tipo Date
   this.encender 	  = false; // En que stado esta si no hay valores
   this.temperatura  = false; // Que temperatura para el cambio
-  this.automatico   = false; // Si esta en modo automatico realiza las hoperaciones con la hora si no no lo hace
 }
 
 Programador.prototype.getNumero = function () {
@@ -24,9 +23,11 @@ Programador.prototype.getTemperatura = function() {
 	return this.temperatura;
 };
 
-Programador.prototype.getAutomatico = function() {
-	return this.automatico;
+Programador.prototype.getCuentaAtras = function () {
+	return this.cuentaAtras;
 };
+
+//////////////// SETERS ////////////////////
 
 Programador.prototype.setHora = function(hora) {
 	this.hora = hora;
@@ -40,50 +41,29 @@ Programador.prototype.setTemperatura = function(temperatura) {
 	this.temperatura = temperatura;
 };
 
-Programador.prototype.setAutomatico = function(automatico) {
-	this.automatico = automatico;
+Programador.prototype.setCuentaAtras = function (cuentaAtras) {
+	this.cuentaAtras = cuentaAtras;
 };
-
 
 // ACCIONES CONTRA LA RESITENCIA
 
-Programador.prototype.cambiarValores = function(hora, encender, temperatura, automatico, temperaturaActual){
+Programador.prototype.cambiarValores = function(hora, encender, temperatura, cuentaAtras){
 	this.setHora(hora);
 	this.setEncender(encender);
 	this.setTemperatura(temperatura);
-	this.setAutomatico(automatico);
+	this.setCuentaAtras(cuentaAtras);
 }
 
-/**
-* Para si hay que hacer el cambio de estado
-*/
-Programador.prototype.isHoraDelCambio = function(horaActual) {
-	if (this.hora >= horaActual){
-		return true;
-	}else{
-		return false;
-	}
+Programador.prototype.temporizador = function (obj) {
+    window.setTimeout(function() {
+      obj.actualizarMediciones(obj); // Llamar a si mismo cuando termine la cuenta a tras
+    }, 1000);
+      console.log("Verificando si la resistencia esta apagada o encendida: " + obj.isResistenciaEncendida());
+      obj.termometro.actualizarMedicion(obj.isResistenciaEncendida());
 };
 
-
-Programador.prototype.isCambioEstadoResistencia = function(horaActual) {
-
-};
-
-Programador.prototype.cambiarEstadoEstufaHora = function(horaActual) {
-	// Cambio el estado y reseteo los valores a cero
-};
-
-
-Programador.prototype.cambiarValores = function(hora, encender, temperatura, automatico, resistencia) {
-	// body...
-};
-
-Programador.prototype.actualizarEstado = function(hora) {
-
-};
-
-
-Programador.prototype.getJSON = function () {
-
+Programador.prototype.cambiar = function () {
+	// Realizar cambio
+	// Solicitar nueva hora de cambio
+	// Ejecuar denuevo el bucle con el nuevo tiempo
 };
