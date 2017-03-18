@@ -52,9 +52,9 @@ Resistencia.prototype.setResistenciaEncendida = function(resistenciaEncendida) {
   console.log("Resitencia encender " + this.getNumero()+ " estado " + this.getResistenciaEncendida() + resistenciaEncendida);
   if (this.resistenciaEncendida != resistenciaEncendida){
     this.resistenciaEncendida = resistenciaEncendida;
+    this.pintarResistenciaEncendida();
     this.enviarResistenciaEncendida();
   }
-  this.pintarResistenciaEncendida();
 };
 
 Resistencia.prototype.setTemperatura = function(temperatura) {
@@ -134,10 +134,7 @@ this.display.cambiarValor(("resistenciaTemperatura" + this.numero), pintar);
 };
 
 Resistencia.prototype.enviarTemperatura = function () {
-  if ( this.getTemperatura() != undefined){
-    this.conexion.enviarDatos(("resistenciaTemperatura" + this.numero), this.getTemperatura());wsddssxdrftfrgt
-  }
-
+  this.conexion.enviarDatos(("resistenciaTemperatura" + this.numero), this.getTemperatura());
 };
 
 Resistencia.prototype.pintarEnConsola = function () {
