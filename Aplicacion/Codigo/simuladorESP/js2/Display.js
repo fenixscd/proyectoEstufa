@@ -48,8 +48,8 @@ Display.prototype.generarHTML = function () {
                         '<p><span id="conexion{{mac}}">DESCONEC</span></p>' +
                       '</div>' +
                       '<div class="medidas">' +
-                        '<h2>T: <span id="temperatura{{mac}}"></span>º</h2>' +
-                        '<h2>H: <span id="humedad{{mac}}">10</span>%</h2>' +
+                        '<h2><span id="temperatura{{mac}}"></span>º</h2>' +
+                        '<h2><span id="humedad{{mac}}">10</span>%</h2>' +
                       '</div>' +
                       '<div class="programacion">' +
                         '<p class="izq"><span id="resistenciaAutomatico1{{mac}}"></span> Res1 [<span id="resistenciaEstado1{{mac}}"></span>]: <span id="resistenciaEncendida1{{mac}}"> </span> <span id="resistenciaTemperatura1{{mac}}"></span></p>' +

@@ -1,10 +1,11 @@
-function Programador (resistencia, display){
-	this.numero = resistencia.getNumero();
-	this.resistencia = resistencia;
-	this.hora 	     = false; // Hora cambio tipo Date
-    this.encender 	 = false; // En que stado esta si no hay valores
-    this.temperatura = false; // Que temperatura para el cambio
-    this.automatico  = false; // Si esta en modo automatico realiza las hoperaciones con la hora si no no lo hace
+function Programador (resistencia, conexion, display){
+	this.numero       = resistencia.getNumero();
+	this.resistencia  = resistencia;
+	this.cuantraAtras = 0;
+	this.hora 	      = false; // Hora cambio tipo Date
+  this.encender 	  = false; // En que stado esta si no hay valores
+  this.temperatura  = false; // Que temperatura para el cambio
+  this.automatico   = false; // Si esta en modo automatico realiza las hoperaciones con la hora si no no lo hace
 }
 
 Programador.prototype.getNumero = function () {
@@ -16,16 +17,10 @@ Programador.prototype.getHora = function() {
 };
 
 Programador.prototype.getEncender = function() {
-	if (this.hora === false){
-		return false;
-	}
 	return this.encender;
 };
 
 Programador.prototype.getTemperatura = function() {
-	if (this.hora === false){
-		return false;
-	}
 	return this.temperatura;
 };
 
