@@ -1,6 +1,7 @@
 function Humedad(conexion, display){
-  this.conexion = conexion;
   this.humedad;
+  this.display       = display;
+  this.conexion      = conexion;
   this.humedadMaxima = 99;
   this.humedadMinima = 0;
 
@@ -40,4 +41,17 @@ Humedad.prototype.cambiarHumedad = function () {
 
 Humedad.prototype.setMedicion = function(humedad){
   this.humedad = this.getEntreValores(humedad, this.humedadMaxima, this.humedadMinima);
-}
+};
+
+Humedad.prototype.actualizarEstado = function () {
+  this.cambiarHumedad();
+  this.pintarHumedad();
+};
+
+Humedad.prototype.pintarHumedad = function () {
+  this.display.cambiarValor("humedad", this.getMedicion());
+};
+
+Humedad.prototype.enviarHumedad = function () {
+  this.conexion.enviarDatos("humedad", this.getMedicion());
+};

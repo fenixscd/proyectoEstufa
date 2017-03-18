@@ -56,6 +56,7 @@ esp8266.prototype.actualizarMediciones = function (obj) {
     }, 1000);
       console.log("Verificando si la resistencia esta apagada o encendida: " + obj.isResistenciaEncendida());
       obj.termometro.actualizarMedicion(obj.isResistenciaEncendida());
+      obj.humedad.actualizarEstado();
       obj.resistencia1.actualizarEstado(obj.termometro.getMedicion());
       obj.resistencia2.actualizarEstado(obj.termometro.getMedicion());
       // console.log("Cambio de temperatura: " + obj.termometro.getMedicion());
