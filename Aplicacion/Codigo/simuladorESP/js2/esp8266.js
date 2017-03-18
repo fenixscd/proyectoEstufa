@@ -38,14 +38,6 @@ esp8266.prototype.setNombreDispositivo = function (nombreDispositivo) {
   this.nombreDispositivo = nombreDispositivo;
 };
 
-esp8266.prototype.getModoAutomatico = function () {
-  return this.modoAutomatico;
-};
-
-esp8266.prototype.setModoAutomatico = function (modoAutomatico) {
-  this.nombreDispositivo = modoAutomatico;
-};
-
 esp8266.prototype.buclePrincipal = function () {
   // Modificar valores
 

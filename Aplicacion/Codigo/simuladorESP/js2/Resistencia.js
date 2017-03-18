@@ -7,6 +7,7 @@ function Resistencia (numero, conexion, display, termometro){
   this.modoEncendido        = false;
   this.resistenciaEncendida = false;
   this.temperatura          = 28; // Temperatura de funcionamiento;
+  //this.pintarValoresDisplay();
 }
 
 Resistencia.prototype.getNumero = function () {
@@ -141,4 +142,11 @@ Resistencia.prototype.pintarEnConsola = function () {
   console.log("    Modo Manual: " + this.getModoManual());
   console.log("    Modo Encendido: " + this.getModoEncendido());
   console.log("    Resistencia Encendida: " + this.getResistenciaEncendida());
+};
+
+Resistencia.prototype.pintarValoresDisplay = function () {
+  this.pintarModoManual();
+  this.pintarModoEncendido();
+  this.pintarResistenciaEncendida();
+  this.pintarTemperatura();
 };
