@@ -48,6 +48,13 @@ Resistencia.prototype.setModoEncendido = function (modoEncendido) {
   this.actualizarEstado(this.termometro.getMedicion());
 };
 
+Resistencia.prototype.setTemperatura = function(temperatura) {
+	this.temperatura = temperatura;
+  this.pintarTemperatura();
+  this.enviarTemperatura();
+  this.actualizarEstado(this.termometro.getMedicion());
+};
+
 Resistencia.prototype.setResistenciaEncendida = function(resistenciaEncendida) {
   // console.log("Resitencia encender " + this.getNumero()+ " estado " + this.getResistenciaEncendida() + resistenciaEncendida);
   if (this.resistenciaEncendida != resistenciaEncendida){
@@ -57,40 +64,37 @@ Resistencia.prototype.setResistenciaEncendida = function(resistenciaEncendida) {
   }
 };
 
-Resistencia.prototype.setTemperatura = function(temperatura) {
-	this.temperatura = temperatura;
-  this.pintarTemperatura();
-  this.enviarTemperatura();
+Resistencia.prototype.setConfiguracion = function (modoManual, modoEncendido, temperatura) {
+  this.setModoManual(modoManual);
+  this.setModoEncendido(modoEncendido);
+  this.setTemperatura(temperatura);
 };
-
-
 
 /////////////// FLUJO ///////////////////////
 
 Resistencia.prototype.isEncenderResistencia = function (temperaturaActual) {
 
   var encenderResistencia = parseFloat(this.getTemperatura()) <= parseFloat(temperaturaActual);
-  // console.log("Encender resitencia " + encenderResistencia);
   return encenderResistencia;
 };
 
 // Metodo que llama el bucle para hacer verificar si hay cambios
 Resistencia.prototype.actualizarEstado = function(temperaturaActual) {
-  // this.pintarEnConsola();
 	if (this.getModoEncendido()){
 		if (this.isEncenderResistencia(temperaturaActual)){ // Si es mallor o igual apago la resistencia
-      // console.log("Apaga la resistencia " + this.getNumero());
 			this.setResistenciaEncendida(false);
 		} else {
-      // console.log("Enciende la resistencia " + this.getNumero());
 			this.setResistenciaEncendida(true); // Si es menor enciendo la resistencia
 		}
 	}
 };
 
+Resistencia.prototype.iniciar = function () {
+  this.pintarValoresDisplay();
+  this.actualizarEstado(this.termometro.getMedicion())
+};
 
 //////////////////// ENVIAR ACTUALIZAR DISPLAY ///////////////////////////////
-
 
 Resistencia.prototype.pintarModoManual = function () {
   var pintar = "A";

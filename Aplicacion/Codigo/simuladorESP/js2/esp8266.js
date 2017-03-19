@@ -21,13 +21,16 @@ function esp8266(){
 esp8266.prototype.iniciarComponenetes = function () {
   this.programador1.iniciar();
   this.programador2.iniciar();
-  this.resistencia1.setModoManual(true);
-  this.resistencia1.setModoEncendido(true);
-  this.resistencia1.setTemperatura(30);
+  this.resistencia1.iniciar();
+  this.resistencia2.iniciar();
 
-  this.resistencia2.setModoManual(false);
-  this.resistencia2.setModoEncendido(false);
-  this.resistencia2.setTemperatura(31);
+  // this.resistencia1.setModoManual(true);
+  // this.resistencia1.setModoEncendido(true);
+  // this.resistencia1.setTemperatura(30);
+  //
+  // this.resistencia2.setModoManual(false);
+  // this.resistencia2.setModoEncendido(false);
+  // this.resistencia2.setTemperatura(31);
 };
 
 
@@ -52,11 +55,6 @@ esp8266.prototype.setNombreDispositivo = function (nombreDispositivo) {
   this.nombreDispositivo = nombreDispositivo;
 };
 
-esp8266.prototype.buclePrincipal = function () {
-  // Modificar valores
-
-};
-
 esp8266.prototype.isResistenciaEncendida = function () {
   if (this.resistencia1.getResistenciaEncendida() || this.resistencia2.getResistenciaEncendida()) return true;
   else return false;
@@ -70,16 +68,6 @@ esp8266.prototype.actualizarMediciones = function (obj) {
       obj.humedad.actualizarEstado();
       obj.resistencia1.actualizarEstado(obj.termometro.getMedicion());
       obj.resistencia2.actualizarEstado(obj.termometro.getMedicion());
-      // console.log("Cambio de temperatura: " + obj.termometro.getMedicion());
-      // Comprobar temperatura.
-
-
-
-
-
-    //obj.estufa.cambiarMediciones(); // Metodos que quiero ejecutar
-
-    // Hala funcion hay que llamarla des de fuera para que empieza el bucle
 };
 
 
