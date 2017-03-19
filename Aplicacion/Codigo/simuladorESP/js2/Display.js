@@ -3,16 +3,7 @@ function Display (esp8266){
   this.mac = this.esp8266.getMac();
 
   this.datos = new Array();
-  // this.cargarCorrespondencia();
 }
-
-// Display.prototype.cargarCorrespondencia = function () {
-//   this.datos["dispositivo"] = [this.esp8266.getNombreDispositivo(),this.esp8266.getNombreDispositivo(),""];
-//   this.datos["modoAutomatico"] = [this.esp8266.getModoAutomatico(), "Auto", "Manu"];
-//   this.datos["conexion"] = [this.esp8266.getModoAutomatico(), "Conec", "Desc"];
-//   this.datos["temperatura"] = [this.esp8266.termometro.getMedicion(),this.esp8266.termometro.getMedicion(), ""];
-//   this.datos["humedad"] = [this.esp8266.humedad().getMedicion(),this.esp8266.humedad().getMedicion(),""];
-// };
 
 Display.prototype.pintarValores = function() {
   var valorPintar;
@@ -53,9 +44,9 @@ Display.prototype.generarHTML = function () {
                       '</div>' +
                       '<div class="programacion">' +
                         '<p class="izq"><span id="resistenciaAutomatico1{{mac}}"></span> Res1 [<span id="resistenciaEstado1{{mac}}"></span>]: <span id="resistenciaEncendida1{{mac}}"> </span> <span id="resistenciaTemperatura1{{mac}}"></span></p>' +
-                        '<p class="der">Hora <span id="ProgramadorHora1{{mac}}">6:25</span> <span id="ProgramadorEncender1{{mac}}"> </span> <span id="ProgramadorTemperatura1{{mac}}">27</span>º</p>' +
+                        '<p class="der">Hora <span id="ProgramadorHora1{{mac}}">6:25</span> <span id="ProgramadorEncender1{{mac}}"> </span> <span id="ProgramadorTemperatura1{{mac}}">27</span></p>' +
                         '<p class="izq"><span id="resistenciaAutomatico2{{mac}}"></span> Res2 [<span id="resistenciaEstado2{{mac}}"> </span>]: <span id="resistenciaEncendida2{{mac}}"></span> <span id="resistenciaTemperatura2{{mac}}"></span></p>' +
-                        '<p class="der">Hora <span id="ProgramadorHora2{{mac}}">6:25</span> <span id="ProgramadorEncender2{{mac}}">ON</span> <span id="ProgramadorTemperatura2{{mac}}">27</span>º</p>' +
+                        '<p class="der">Hora <span id="ProgramadorHora2{{mac}}">6:25</span> <span id="ProgramadorEncender2{{mac}}">ON</span> <span id="ProgramadorTemperatura2{{mac}}">27</span></p>' +
                       '</div>' +
                       '</div>' +
                       '</div>' +

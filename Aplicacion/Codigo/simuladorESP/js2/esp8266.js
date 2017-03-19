@@ -14,9 +14,23 @@ function esp8266(){
 
 
   this.display.añadirHTMLDispositivo();
-  this.iniciarValores();
+  this.iniciarComponenetes();
   this.actualizarMediciones(this) // Bucle para que se vallan actualizando las mediciones
 }
+
+esp8266.prototype.iniciarComponenetes = function () {
+  this.programador1.iniciar();
+  this.programador2.iniciar();
+  this.resistencia1.setModoManual(true);
+  this.resistencia1.setModoEncendido(true);
+  this.resistencia1.setTemperatura(30);
+
+  this.resistencia2.setModoManual(false);
+  this.resistencia2.setModoEncendido(false);
+  this.resistencia2.setTemperatura(31);
+};
+
+
 
 esp8266.prototype.getMac = function() {
   return this.mac;
@@ -91,14 +105,4 @@ esp8266.prototype.generarMac = function () {
     mac = mac + "-" + calculado.substr(2,3);
     this.setMac(mac);
     return mac;
-};
-
-esp8266.prototype.iniciarValores = function () {
-  this.resistencia1.setModoManual(true);
-  this.resistencia1.setModoEncendido(true);
-  this.resistencia1.setTemperatura(30);
-
-  this.resistencia2.setModoManual(false);
-  this.resistencia2.setModoEncendido(false);
-  this.resistencia2.setTemperatura(31);
 };
