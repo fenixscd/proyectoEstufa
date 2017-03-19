@@ -107,9 +107,7 @@ Programador.prototype.pararTemporizador = function () {
 };
 
 Programador.prototype.cambiar = function () {
-	// Realizar cambio
-	// Solicitar nueva hora de cambio
-	// Ejecuar denuevo el bucle con el nuevo tiempo
+	this.resistencia.setConfiguracion(false, true, 30);
 	console.log("Llama al temporizador" + this.numero);
 };
 
