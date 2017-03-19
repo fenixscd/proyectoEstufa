@@ -18,7 +18,6 @@ Programador.prototype.iniciar = function () {
 		this.setEncender(false);
 		this.setTemperatura(false);
 	}else{
-		console.log("Entra dentro de ponerValores");
 		this.iniciarTemporizador(this);
 	}
 	this.pintarHora();
@@ -98,7 +97,7 @@ Programador.prototype.setCuentaAtras = function (cuentaAtras) {
 
 Programador.prototype.iniciarTemporizador = function (obj) {
 	this.temporizador = setTimeout(function(){
-		obj.cambiar(); // Llamar a si mismo cuando termine la cuenta a tras
+		obj.cambiarResistencia(); // Llamar a si mismo cuando termine la cuenta a tras
 	}, 5000);
 };
 
@@ -106,8 +105,8 @@ Programador.prototype.pararTemporizador = function () {
 
 };
 
-Programador.prototype.cambiar = function () {
-	this.resistencia.setConfiguracion(false, true, 30);
+Programador.prototype.cambiarResistencia = function () {
+	this.resistencia.setConfiguracion(true, this.getEncender(), this.getTemperatura());
 	console.log("Llama al temporizador" + this.numero);
 };
 

@@ -34,7 +34,7 @@ Resistencia.prototype.getTemperatura = function() {
 
 // Seters --------
 
-Resistencia.prototype.getModoAutomatico = function(modoAutomatico) {
+Resistencia.prototype.setModoAutomatico = function(modoAutomatico) {
 	this.modoAutomatico = modoAutomatico;
   this.pintarModoManual();
   this.enviarModoManual();
