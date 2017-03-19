@@ -41,8 +41,29 @@ Programador.prototype.setTemperatura = function(temperatura) {
 	this.temperatura = temperatura;
 };
 
+
+
+// Determina si hay un cambio de comportamiento no un cambio en la cuenta atras
+Programador.prototype.isCambioEstadoCuentaAtras = function () {
+	return Boolean(this.getCuentaAtras()) != Boolean(cuentaAtras);
+};
+
 Programador.prototype.setCuentaAtras = function (cuentaAtras) {
-	this.cuentaAtras = cuentaAtras;
+	// Si es un cambio de estato
+	if (this.isCambioEstadoCuentaAtras()){
+		  if (Boolean(cuentaAtras) == false){ // Si el cambio se hace a false  paro el temporizador
+			    // Parar temporizador
+		  }else{ // Si el cambio es a tiempo iniciamos el la cuenta con el tiempo obtenido
+			    // Iniciar temporizacion
+		  }
+		 // pintar display
+		 this.cuentaAtras = cuentaAtras;
+	}else{ // No es un cambio de estado
+		  if (Boolean(cuentaAtras) != false){
+				 // Cambiar tiempo de del temporizador
+				     // Seguramente abra que pararlo y volver a arrancarlo
+		  }
+	  }
 };
 
 // ACCIONES CONTRA LA RESITENCIA
@@ -57,7 +78,7 @@ Programador.prototype.cambiarValores = function(hora, encender, temperatura, cue
 Programador.prototype.temporizador = function (obj) {
     window.setTimeout(function() {
       obj.cambiar(obj); // Llamar a si mismo cuando termine la cuenta a tras
-    }, 1000);
+    }, 5000);
 };
 
 Programador.prototype.cambiar = function () {

@@ -44,8 +44,6 @@ esp8266.prototype.buclePrincipal = function () {
 };
 
 esp8266.prototype.isResistenciaEncendida = function () {
-  console.log("Resistencia1 " + this.resistencia1.getResistenciaEncendida());
-  console.log("Resistencia2 " + this.resistencia2.getResistenciaEncendida());
   if (this.resistencia1.getResistenciaEncendida() || this.resistencia2.getResistenciaEncendida()) return true;
   else return false;
 };
@@ -54,7 +52,6 @@ esp8266.prototype.actualizarMediciones = function (obj) {
     window.setTimeout(function() {
       obj.actualizarMediciones(obj); // Llamar a si mismo cuando termine la cuenta a tras
     }, 1000);
-      console.log("Verificando si la resistencia esta apagada o encendida: " + obj.isResistenciaEncendida());
       obj.termometro.actualizarMedicion(obj.isResistenciaEncendida());
       obj.humedad.actualizarEstado();
       obj.resistencia1.actualizarEstado(obj.termometro.getMedicion());
