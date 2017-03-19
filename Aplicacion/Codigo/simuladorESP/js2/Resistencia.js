@@ -3,24 +3,19 @@ function Resistencia (numero, conexion, display, termometro){
   this.display	            = display;
   this.termometro           = termometro;
   this.numero               = numero;
-  this.modoManual           = false;
+  this.modoAutomatico       = false;
   this.modoEncendido        = false;
   this.resistenciaEncendida = false;
   this.temperatura          = false; // Temperatura de funcionamiento;
   //this.pintarValoresDisplay();
 }
 
-modoManual
-getModoManual
-
-
-
 Resistencia.prototype.getNumero = function () {
   return this.numero;
 };
 
-Resistencia.prototype.getModoManual = function() {
-	return this.modoManual;
+Resistencia.prototype.getModoAutomatico = function() {
+	return this.modoAutomatico;
 };
 
 Resistencia.prototype.getModoEncendido = function() {
@@ -39,8 +34,8 @@ Resistencia.prototype.getTemperatura = function() {
 
 // Seters --------
 
-Resistencia.prototype.setModoManual = function(modoManual) {
-	this.modoManual = modoManual;
+Resistencia.prototype.getModoAutomatico = function(modoAutomatico) {
+	this.modoAutomatico = modoAutomatico;
   this.pintarModoManual();
   this.enviarModoManual();
   this.actualizarEstado(this.termometro.getMedicion());
@@ -69,8 +64,8 @@ Resistencia.prototype.setResistenciaEncendida = function(resistenciaEncendida) {
   }
 };
 
-Resistencia.prototype.setConfiguracion = function (modoManual, modoEncendido, temperatura) {
-  this.setModoManual(modoManual);
+Resistencia.prototype.setConfiguracion = function (modoAutomatico, modoEncendido, temperatura) {
+  this.setModoAutomatico(modoAutomatico);
   this.setModoEncendido(modoEncendido);
   this.setTemperatura(temperatura);
 };
@@ -78,7 +73,6 @@ Resistencia.prototype.setConfiguracion = function (modoManual, modoEncendido, te
 /////////////// FLUJO ///////////////////////
 
 Resistencia.prototype.isEncenderResistencia = function (temperaturaActual) {
-
   var encenderResistencia = parseFloat(this.getTemperatura()) <= parseFloat(temperaturaActual);
   return encenderResistencia;
 };
@@ -102,13 +96,13 @@ Resistencia.prototype.iniciar = function () {
 //////////////////// ENVIAR ACTUALIZAR DISPLAY ///////////////////////////////
 
 Resistencia.prototype.pintarModoManual = function () {
-  var pintar = "A";
-  if (this.getModoManual()) pintar = "M";
+  var pintar = "M";
+  if (this.getModoAutomatico()) pintar = "A";
   this.display.cambiarValor(("resistenciaAutomatico" + this.numero), pintar);
 };
 
 Resistencia.prototype.enviarModoManual = function () {
-  this.conexion.enviarDatos(("resistenciaAutomatico" + this.numero), this.getModoManual());
+  this.conexion.enviarDatos(("resistenciaAutomatico" + this.numero), this.getModoAutomatico());
 };
 
 
@@ -133,7 +127,6 @@ Resistencia.prototype.enviarResistenciaEncendida = function () {
   this.conexion.enviarDatos(("resistenciaEstado" + this.numero), this.getResistenciaEncendida());
 };
 
-
 Resistencia.prototype.pintarTemperatura = function () {
   pintar = "";
   if (this.getModoEncendido()){
@@ -148,7 +141,7 @@ Resistencia.prototype.enviarTemperatura = function () {
 
 Resistencia.prototype.pintarEnConsola = function () {
   console.log("Resistencia: " + this.getNumero());
-  console.log("    Modo Manual: " + this.getModoManual());
+  console.log("    Modo Automatico: " + this.getModoAutomatico());
   console.log("    Modo Encendido: " + this.getModoEncendido());
   console.log("    Resistencia Encendida: " + this.getResistenciaEncendida());
 };
