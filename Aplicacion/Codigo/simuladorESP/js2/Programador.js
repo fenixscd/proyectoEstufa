@@ -18,9 +18,7 @@ Programador.prototype.iniciar = function () {
 	}else{
 		this.iniciarTemporizador(this);
 	}
-	this.pintarHora();
-	this.pintarTemperatura();
-	this.pintarEncender();
+	this.pintarValores();
 };
 
 Programador.prototype.cambiarValores = function(hora, encender, temperatura, cuentaAtras){
@@ -64,52 +62,42 @@ Programador.prototype.setTemperatura = function(temperatura) {
 	this.temperatura = temperatura;
 };
 
-
-
 // Determina si hay un cambio de comportamiento no un cambio en la cuenta atras
-Programador.prototype.isCambioEstadoCuentaAtras = function () {
-	return Boolean(this.getCuentaAtras()) != Boolean(cuentaAtras);
+Programador.prototype.isCambioEstadoCuentaAtras = function (cuentaAtras) {
+	return Boolean(this.cuentaAtras) != Boolean(cuentaAtras);
 };
 
 Programador.prototype.setCuentaAtras = function (cuentaAtras) {
-	// Si es un cambio de estato
-	if (this.isCambioEstadoCuentaAtras()){
-		  if (Boolean(cuentaAtras) == false){ // Si el cambio se hace a false  paro el temporizador
-			    // Parar temporizador
-		  }else{ // Si el cambio es a tiempo iniciamos el la cuenta con el tiempo obtenido
-			    // Iniciar temporizacion
-		  }
-		 // pintar display
+	if (this.isCambioEstadoCuentaAtras(cuentaAtras)){ // Si es un cambio de estato
+		  if (Boolean(cuentaAtras) == false) this.pararTemporizador(); // Si el cambio se hace a false  paro el temporizador
+			else this.iniciarTemporizador(); // Si el cambio es a tiempo iniciamos el la cuenta con el tiempo obtenido
 		 this.cuentaAtras = cuentaAtras;
 	}else{ // No es un cambio de estado
 		  if (Boolean(cuentaAtras) != false){
-				 // Cambiar tiempo de del temporizador
-				     // Seguramente abra que pararlo y volver a arrancarlo
+				 this.pararTemporizador();
+				 this.iniciarTemporizador(this);
 		  }
 	}
+	this.pintarValores();
 };
 
 // ACCIONES CONTRA LA RESITENCIA
 
-
-
 Programador.prototype.iniciarTemporizador = function (obj) {
-	this.temporizador = setTimeout(function(){
-		obj.cambiarResistencia(); // Llamar a si mismo cuando termine la cuenta a tras
-		// Solicitar nueva hora de cambio
-		
-	}, this.cuentaAtras);
+	console.log("Cuenta atras " + this.cuentaAtras);
+	// console.log("Cuenta atras numero " + this.numero);
+	this.temporizador = setTimeout(this.cambiarResistencia() , this.cuentaAtras);
 };
 
 Programador.prototype.pararTemporizador = function () {
-
+	clearTimeout(this.cuentaAtras);
+	this.cuentaAtras = false;
 };
 
 Programador.prototype.cambiarResistencia = function () {
 	this.resistencia.cambioTemporizador(this.getEncender(), this.getTemperatura());
 	console.log("Llama al temporizador" + this.numero);
 };
-
 
 
 ///////////////////// PINTAR //////////////////
@@ -140,4 +128,10 @@ Programador.prototype.pintarEncender = function () {
 		}
   }
 	this.display.cambiarValor(("ProgramadorEncender" + this.numero), pintar);
+};
+
+Programador.prototype.pintarValores = function () {
+	this.pintarHora();
+	this.pintarTemperatura();
+	this.pintarEncender();
 };

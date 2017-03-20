@@ -24,6 +24,8 @@ esp8266.prototype.iniciarComponenetes = function () {
   this.resistencia1.iniciar();
   this.resistencia2.iniciar();
 
+  this.programador1.cambiarValores("12:25", true, 31, 5000) //(hora, encender, temperatura, cuentaAtras){
+
   // this.resistencia1.setModoManual(true);
   // this.resistencia1.setModoEncendido(true);
   // this.resistencia1.setTemperatura(30);
