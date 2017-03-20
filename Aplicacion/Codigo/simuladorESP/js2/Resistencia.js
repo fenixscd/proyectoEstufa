@@ -48,6 +48,7 @@ Resistencia.prototype.setModoEncendido = function (modoEncendido) {
   this.actualizarEstado(this.termometro.getMedicion());
 };
 
+
 Resistencia.prototype.setTemperatura = function(temperatura) {
 	this.temperatura = temperatura;
   this.pintarTemperatura();
@@ -64,10 +65,11 @@ Resistencia.prototype.setResistenciaEncendida = function(resistenciaEncendida) {
   }
 };
 
-Resistencia.prototype.setConfiguracion = function (modoAutomatico, modoEncendido, temperatura) {
-  this.setModoAutomatico(modoAutomatico);
-  this.setModoEncendido(modoEncendido);
-  this.setTemperatura(temperatura);
+Resistencia.prototype.cambioTemporizador = function (modoEncendido, temperatura) {
+  if (this.getModoAutomatico()){
+    this.setModoEncendido(modoEncendido);
+    this.setTemperatura(temperatura);
+  }
 };
 
 /////////////// FLUJO ///////////////////////
