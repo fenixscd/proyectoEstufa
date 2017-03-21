@@ -24,6 +24,7 @@ esp8266.prototype.iniciarComponenetes = function () {
   this.resistencia1.iniciar();
   this.resistencia2.iniciar();
 
+  this.resistencia1.setModoAutomatico(true);
   this.programador1.cambiarValores("12:25", true, 31, 5000) //(hora, encender, temperatura, cuentaAtras){
 
   // this.resistencia1.setModoManual(true);
@@ -63,17 +64,13 @@ esp8266.prototype.isResistenciaEncendida = function () {
 };
 
 esp8266.prototype.actualizarMediciones = function (obj) {
-    window.setTimeout(function() {
-      obj.actualizarMediciones(obj); // Llamar a si mismo cuando termine la cuenta a tras
-    }, 1000);
+    window.setInterval(function() {
       obj.termometro.actualizarMedicion(obj.isResistenciaEncendida());
       obj.humedad.actualizarEstado();
       obj.resistencia1.actualizarEstado(obj.termometro.getMedicion());
       obj.resistencia2.actualizarEstado(obj.termometro.getMedicion());
+    }, 1000);
 };
-
-
-
 
 esp8266.prototype.solicirarDatosIniciales = function () {
 

@@ -62,16 +62,21 @@ Programador.prototype.setTemperatura = function(temperatura) {
 	this.temperatura = temperatura;
 };
 
+
+
 // Determina si hay un cambio de comportamiento no un cambio en la cuenta atras
 Programador.prototype.isCambioEstadoCuentaAtras = function (cuentaAtras) {
 	return Boolean(this.cuentaAtras) != Boolean(cuentaAtras);
 };
 
 Programador.prototype.setCuentaAtras = function (cuentaAtras) {
+	console.log("Llaman a cuenta a tras prog " + this.numero);
+	console.log("Timepo asignado " + cuentaAtras);
 	if (this.isCambioEstadoCuentaAtras(cuentaAtras)){ // Si es un cambio de estato
+		  this.cuentaAtras = cuentaAtras;
 		  if (Boolean(cuentaAtras) == false) this.pararTemporizador(); // Si el cambio se hace a false  paro el temporizador
-			else this.iniciarTemporizador(); // Si el cambio es a tiempo iniciamos el la cuenta con el tiempo obtenido
-		 this.cuentaAtras = cuentaAtras;
+			else this.iniciarTemporizador(this); // Si el cambio es a tiempo iniciamos el la cuenta con el tiempo obtenido
+
 	}else{ // No es un cambio de estado
 		  if (Boolean(cuentaAtras) != false){
 				 this.pararTemporizador();
@@ -85,8 +90,10 @@ Programador.prototype.setCuentaAtras = function (cuentaAtras) {
 
 Programador.prototype.iniciarTemporizador = function (obj) {
 	console.log("Cuenta atras " + this.cuentaAtras);
-	// console.log("Cuenta atras numero " + this.numero);
-	this.temporizador = setTimeout(this.cambiarResistencia() , this.cuentaAtras);
+	//console.log("Cuenta atras numero " + this.numero);
+	this.temporizador = setTimeout(function(){
+		obj.cambiarResistencia()
+	} , this.cuentaAtras);
 };
 
 Programador.prototype.pararTemporizador = function () {
@@ -96,7 +103,11 @@ Programador.prototype.pararTemporizador = function () {
 
 Programador.prototype.cambiarResistencia = function () {
 	this.resistencia.cambioTemporizador(this.getEncender(), this.getTemperatura());
-	console.log("Llama al temporizador" + this.numero);
+	/// Llamar al servidor para que actualice los datos
+	//---------------------------------------------------------
+	            this.cambiarValores(false, false, false, false); //-------------------------
+	//---------------------------------------------------------
+	console.log("Cambia al temporizador" + this.numero);
 };
 
 
