@@ -1080,7 +1080,6 @@ class ComposerStaticInitbec0ff5a494ed1f52c181865fd1cb4f5
         'Symfony\\Polyfill\\Mbstring\\Mbstring' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/Mbstring.php',
         'Text_Template' => __DIR__ . '/..' . '/phpunit/php-text-template/src/Template.php',
         'Webmozart\\Assert\\Assert' => __DIR__ . '/..' . '/webmozart/assert/src/Assert.php',
-        'infrastructura\\Chat' => __DIR__ . '/../..' . '/infrastructura/Apollo/Chat.php',
         'infrastructura\\Conexion' => __DIR__ . '/../..' . '/infrastructura/Conexion.php',
         'phpDocumentor\\Reflection\\DocBlock' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/DocBlock.php',
         'phpDocumentor\\Reflection\\DocBlockFactory' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/DocBlockFactory.php',
@@ -1143,6 +1142,7 @@ class ComposerStaticInitbec0ff5a494ed1f52c181865fd1cb4f5
         'phpDocumentor\\Reflection\\Types\\String_' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/Types/String_.php',
         'phpDocumentor\\Reflection\\Types\\This' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/Types/This.php',
         'phpDocumentor\\Reflection\\Types\\Void_' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/Types/Void_.php',
+        'tests\\Core\\DispositivoTest' => __DIR__ . '/../..' . '/tests/Core/DispositivoTest.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
