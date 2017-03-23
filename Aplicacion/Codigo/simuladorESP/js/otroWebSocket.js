@@ -18,7 +18,7 @@ if (window.WebSocket === undefined) {
 
 function onLoad() {
    console.log("Antes de conectar");
-   var wsUri = "ws://192.168.5.10:8080";
+   var wsUri = "ws://192.168.5.20:8080";
    websocket = new WebSocket(wsUri);
    console.log("Despues de genrar el WebSocket");
    websocket.onopen = function(evt) { onOpen(evt) };

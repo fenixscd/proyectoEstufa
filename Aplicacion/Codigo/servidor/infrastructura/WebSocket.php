@@ -1,5 +1,5 @@
 <?php
-
+ // Arrancar en la consola php bin/WebSocket.php
 use Ratchet\Server\IoServer;
 use Ratchet\Http\HttpServer;
 use Ratchet\WebSocket\WsServer;
@@ -15,9 +15,6 @@ $server = IoServer::factory(
     ),
     8080
 );
-    echo "Sevidor en marcha IP 192.168.5.10 8080\n";
+    echo "Sevidor en marcha IP 192.168.5.20 8080\n";
     $server->run();
-
-
-
 ?>
