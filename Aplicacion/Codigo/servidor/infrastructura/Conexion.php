@@ -19,11 +19,11 @@ class Conexion implements MessageComponentInterface {
         echo "Nueva conexión! ({$conn->resourceId})\n";
 
         $numRecv = count($this->clients) - 1;
-        $mensaje = "connected:".$numRecv;
-        foreach ($this->clients as $client) {
-            $client->send($mensaje);
-          }
-        }
+        // $mensaje = "connected:".$numRecv;
+        // foreach ($this->clients as $client) {
+        //     $client->send($mensaje);
+        // }
+    }
 
 
     public function onMessage(ConnectionInterface $from, $msg) {
