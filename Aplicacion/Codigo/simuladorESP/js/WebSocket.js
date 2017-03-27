@@ -27,35 +27,26 @@ function onOpen(evt) { // Cuando se conecta
  }
 
 function onClose(evt) { // Cuando se cierra la conexion
-   state.className = "fail";
-   state.innerHTML = "Not connected";
-   connected.innerHTML = "0";
+   console.log("Conexión cerrada");
 }
 
-function onMessage(evt) { // Enviar mensaje
-   // Existen dos tipos de mensajes:
-   // 1. un mensaje de participante de chat en sí mismo
-   // 2. un mensaje con un número de participantes de chat conectados
-   var message = evt.data;
-
-   if (message.startsWith("log:")) {
-      message = message.slice("log:".length);
-      log.innerHTML = '<li class = "message izq">' + message + "</li>" + log.innerHTML;
-   }else if (message.startsWith("connected:")) {
-      message = message.slice("connected:".length);
-      connected.innerHTML = message;
+function onMessage(evt) { // Mensaje recivido
+   var mensaje = evt.data;
+   console.log(mensaje);
+   if (mensaje.startsWith("log:")) {
+      mensaje = mensaje.slice("log:".length);
+      console.log(mensaje);
+   }else if (mensaje.startsWith("connected:")) {
+      mensaje = mensaje.slice("connected:".length);
+      console.log(mensaje);
    }
 }
 
 function onError(evt) {
     console.log("Evento error");
-   state.className = "fail";
-   state.innerHTML = "Communication error";
 }
 
 function addMessage() {
-   var message = chat.value;
-   chat.value = "";
-   log.innerHTML = '<li class = "message der">' + message + "</li>" + log.innerHTML;
+   var mensaje;
    websocket.send(message); // Enviar mensaje
 }
