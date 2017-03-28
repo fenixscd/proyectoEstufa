@@ -2,45 +2,47 @@ function Conexion(esp8266, display){
   this.esp8266 = esp8266;
   this.mac = esp8266.getMac();
 
-  var urlServidor = "ws://192.168.5.20:8080";
-  var websocket = new WebSocket(urlServidor);
 
-  this.getWebsocket = function(){
-    return websocket;
-  }
+  this.urlServidor = "ws://192.168.5.20:8080";
+  this.websocket;
 
-  this.getUrlServidor = function(){
-    return websocket;
-  }
 
-  this.prueba = function(){
-    console.log("Conexion avierta " + esp8266.getMac());
-  }
+  // websocket.send(" -2 Mensaje- ");
+  //websocket.send("Hola desde el cliente")
+  //this.enviarAlgo();
+  //this.websocket.send("Hestoy conectado"); // Enviar mensaje
+  // console.log(urlServidor);
+  // console.log(websocket);
 
-  websocket.onopen = function(evt) {
-    this.prueba;
+  this.iniciar(this);
+}
+
+Conexion.prototype.mesaaaaa = function () {
+  console.log("Llama a mesaaaaaa");
+  this.websocket.send("Conecto");
+};
+
+Conexion.prototype.iniciar = function (_this) {
+  this.websocket = new WebSocket(this.urlServidor);
+  this.websocket.onopen = function(evt) {
+    console.log(_this.websocket);
+    _this.mesaaaaa();
+    // _this.websocket.send("Conecto");
   };
 
 
-  websocket.onclose = function(evt) { console.log("Conexion cerrada") };
-  websocket.onmessage = function(evt) { console.log("Entrad de mensaje") };
-  websocket.onerror = function(evt) { console.log("Evento de error") };
-  // websocket.send(" -2 Mensaje- ");
-  //websocket.send("Hola desde el cliente");
+  this.websocket.onclose = function(evt) { console.log("Conexion cerrada") };
+  this.websocket.onmessage = function(evt) { console.log("Entrad de mensaje") };
+  this.websocket.onerror = function(evt) { console.log("Evento de error") };
+};
 
 
 
 
-  //this.enviarAlgo();
-  //this.websocket.send("Hestoy conectado"); // Enviar mensaje
-  console.log(urlServidor);
-  console.log(websocket);
 
-
-}
 
 Conexion.prototype.onOpen = function (evt) {
-  this.getWebsocket().send("Hlola");
+  console.log("Conexion avierta " + esp8266.getMac());
 };
 
 Conexion.prototype.enviarAlgo = function () {
