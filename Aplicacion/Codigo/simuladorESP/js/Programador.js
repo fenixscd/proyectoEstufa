@@ -70,8 +70,8 @@ Programador.prototype.isCambioEstadoCuentaAtras = function (cuentaAtras) {
 };
 
 Programador.prototype.setCuentaAtras = function (cuentaAtras) {
-	console.log("Llaman a cuenta a tras prog " + this.numero);
-	console.log("Timepo asignado " + cuentaAtras);
+	// console.log("Llaman a cuenta a tras prog " + this.numero);
+	// console.log("Timepo asignado " + cuentaAtras);
 	if (this.isCambioEstadoCuentaAtras(cuentaAtras)){ // Si es un cambio de estato
 		  this.cuentaAtras = cuentaAtras;
 		  if (Boolean(cuentaAtras) == false) this.pararTemporizador(); // Si el cambio se hace a false  paro el temporizador
@@ -89,7 +89,7 @@ Programador.prototype.setCuentaAtras = function (cuentaAtras) {
 // ACCIONES CONTRA LA RESITENCIA
 
 Programador.prototype.iniciarTemporizador = function (obj) {
-	console.log("Cuenta atras " + this.cuentaAtras);
+	// console.log("Cuenta atras " + this.cuentaAtras);
 	//console.log("Cuenta atras numero " + this.numero);
 	this.temporizador = setTimeout(function(){
 		obj.cambiarResistencia()
@@ -107,7 +107,7 @@ Programador.prototype.cambiarResistencia = function () {
 	//---------------------------------------------------------
 	            this.cambiarValores(false, false, false, false); //-------------------------
 	//---------------------------------------------------------
-	console.log("Cambia al temporizador" + this.numero);
+	// console.log("Cambia al temporizador" + this.numero);
 };
 
 
@@ -118,7 +118,7 @@ Programador.prototype.pintarHora = function () {
   if (this.getHora() && Boolean(this.cuentaAtras)){
     var pintar = this.getHora();
   }
-	console.log("ProgramadorHora" + this.numero);
+	// console.log("ProgramadorHora" + this.numero);
 	this.display.cambiarValor(("ProgramadorHora" + this.numero), pintar);
 };
 

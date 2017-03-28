@@ -8,16 +8,35 @@ function Conexion(esp8266, display){
   this.getWebsocket = function(){
     return websocket;
   }
+
+  this.getUrlServidor = function(){
+    return websocket;
+  }
+
+  this.prueba = function(){
+    console.log("Conexion avierta " + esp8266.getMac());
+  }
+
+  websocket.onopen = function(evt) {
+    this.prueba;
+  };
+
+
+  websocket.onclose = function(evt) { console.log("Conexion cerrada") };
+  websocket.onmessage = function(evt) { console.log("Entrad de mensaje") };
+  websocket.onerror = function(evt) { console.log("Evento de error") };
+  // websocket.send(" -2 Mensaje- ");
+  //websocket.send("Hola desde el cliente");
+
+
+
+
+  //this.enviarAlgo();
   //this.websocket.send("Hestoy conectado"); // Enviar mensaje
   console.log(urlServidor);
   console.log(websocket);
 
-  websocket.onopen = function(evt) { console.log("Evento conectado") };
-  websocket.onclose = function(evt) { console.log("Conexion cerrada") };
-  websocket.onmessage = function(evt) { console.log("Entrad de mensaje") };
-  websocket.onerror = function(evt) { console.log("Evento de error") };
 
-  this.enviarAlgo();
 }
 
 Conexion.prototype.onOpen = function (evt) {
@@ -25,7 +44,7 @@ Conexion.prototype.onOpen = function (evt) {
 };
 
 Conexion.prototype.enviarAlgo = function () {
-  this.getWebsocket().send("Hlola");
+  this.getWebsocket().send(" HOtro mensaje ");
 };
 
 
@@ -134,16 +153,27 @@ Conexion.prototype.enviarAlgo = function () {
 //    websocket.send(message); // Enviar mensaje
 // }
 
-
+Conexion.prototype.temporizdor = function (msg) {
+  this.getWebsocket().send(msg +"\n");
+};
 
 
 ///////////////////////////////////////
 Conexion.prototype.enviar = function (msg) {
+  //console.log(this.getUrlServidor());
 
-  //console.log("Enviar datos: " + msg);
+  //this.getWebsocket().send(msg +"\n");
+  var ejecutar = function(){
+    //this.getWebsocket().send(msg +"\n");
+  }
+  setTimeout(function(){
+    ejecutar();
+  } , 500);
+
 };
 
 Conexion.prototype.enviarDatos = function(clave, valor) {
 	var enviar = "Dispositivo " + this.mac + ": " + clave + " " + valor;
 	this.enviar(enviar);
+  //this.getWebsocket().send(enviar);
 };
