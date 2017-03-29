@@ -12,13 +12,27 @@ function esp8266(){
   this.programador1 = new Programador(this.resistencia1, this.conexion, this.display);
   this.programador2 = new Programador(this.resistencia2, this.conexion, this.display);
 
-
+  this.bucleConexion();
   this.display.añadirHTMLDispositivo();
-  this.iniciarComponenetes();
-  this.actualizarMediciones(this) // Bucle para que se vallan actualizando las mediciones
+  //this.iniciarComponenetes();
+  //this.actualizarMediciones(this) // Bucle para que se vallan actualizando las mediciones
 }
 
+esp8266.prototype.comprobarConexion = function () {
+  // si he conectado llamo ha iniciarComponenetes
+  // no he conectado llamo bucle
+  //console.log("Comprobando conexion " + this.conexion.getIniciada());
+  this.bucleConexion();
+  console.log("Hola");
+};
+
+esp8266.prototype.bucleConexion = function () {
+  // var temprizador = setTimeout.call(this.comprobarConexion(), 20000);
+  var temprizador = setTimeout(console.log("hola"), 20000);
+};
+
 esp8266.prototype.iniciarComponenetes = function () {
+
   this.programador1.iniciar();
   this.programador2.iniciar();
   this.resistencia1.iniciar();
