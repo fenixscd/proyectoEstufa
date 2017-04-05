@@ -52,10 +52,6 @@ class ComposerStaticInitbec0ff5a494ed1f52c181865fd1cb4f5
             'React\\EventLoop\\' => 16,
             'Ratchet\\' => 8,
         ),
-        'E' => 
-        array (
-            'EjemploChat\\' => 12,
-        ),
         'D' => 
         array (
             'Doctrine\\Instantiator\\' => 22,
@@ -129,10 +125,6 @@ class ComposerStaticInitbec0ff5a494ed1f52c181865fd1cb4f5
         'Ratchet\\' => 
         array (
             0 => __DIR__ . '/..' . '/cboden/ratchet/src/Ratchet',
-        ),
-        'EjemploChat\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/EjemploChat',
         ),
         'Doctrine\\Instantiator\\' => 
         array (
@@ -213,7 +205,6 @@ class ComposerStaticInitbec0ff5a494ed1f52c181865fd1cb4f5
         'Doctrine\\Instantiator\\Exception\\UnexpectedValueException' => __DIR__ . '/..' . '/doctrine/instantiator/src/Doctrine/Instantiator/Exception/UnexpectedValueException.php',
         'Doctrine\\Instantiator\\Instantiator' => __DIR__ . '/..' . '/doctrine/instantiator/src/Doctrine/Instantiator/Instantiator.php',
         'Doctrine\\Instantiator\\InstantiatorInterface' => __DIR__ . '/..' . '/doctrine/instantiator/src/Doctrine/Instantiator/InstantiatorInterface.php',
-        'EjemploChat\\Conexion' => __DIR__ . '/../..' . '/EjemploChat/Conexion.php',
         'Evenement\\EventEmitter' => __DIR__ . '/..' . '/evenement/evenement/src/Evenement/EventEmitter.php',
         'Evenement\\EventEmitterInterface' => __DIR__ . '/..' . '/evenement/evenement/src/Evenement/EventEmitterInterface.php',
         'Evenement\\EventEmitterTrait' => __DIR__ . '/..' . '/evenement/evenement/src/Evenement/EventEmitterTrait.php',
@@ -1089,7 +1080,7 @@ class ComposerStaticInitbec0ff5a494ed1f52c181865fd1cb4f5
         'Symfony\\Polyfill\\Mbstring\\Mbstring' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/Mbstring.php',
         'Text_Template' => __DIR__ . '/..' . '/phpunit/php-text-template/src/Template.php',
         'Webmozart\\Assert\\Assert' => __DIR__ . '/..' . '/webmozart/assert/src/Assert.php',
-        'core\\Dispositivo' => __DIR__ . '/../..' . '/core/Dispositivo.php',
+        'infrastructura\\Chat' => __DIR__ . '/../..' . '/infrastructura/Apollo/Chat.php',
         'infrastructura\\Conexion' => __DIR__ . '/../..' . '/infrastructura/Conexion.php',
         'phpDocumentor\\Reflection\\DocBlock' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/DocBlock.php',
         'phpDocumentor\\Reflection\\DocBlockFactory' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/DocBlockFactory.php',
@@ -1152,7 +1143,6 @@ class ComposerStaticInitbec0ff5a494ed1f52c181865fd1cb4f5
         'phpDocumentor\\Reflection\\Types\\String_' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/Types/String_.php',
         'phpDocumentor\\Reflection\\Types\\This' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/Types/This.php',
         'phpDocumentor\\Reflection\\Types\\Void_' => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src/Types/Void_.php',
-        'tests\\Core\\DispositivoTest' => __DIR__ . '/../..' . '/tests/Core/DispositivoTest.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

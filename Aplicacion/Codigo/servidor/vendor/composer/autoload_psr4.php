@@ -22,7 +22,6 @@ return array(
     'React\\Promise\\' => array($vendorDir . '/react/promise/src'),
     'React\\EventLoop\\' => array($vendorDir . '/react/event-loop/src'),
     'Ratchet\\' => array($vendorDir . '/cboden/ratchet/src/Ratchet'),
-    'EjemploChat\\' => array($baseDir . '/EjemploChat'),
     'Doctrine\\Instantiator\\' => array($vendorDir . '/doctrine/instantiator/src/Doctrine/Instantiator'),
     'DeepCopy\\' => array($vendorDir . '/myclabs/deep-copy/src/DeepCopy'),
 );

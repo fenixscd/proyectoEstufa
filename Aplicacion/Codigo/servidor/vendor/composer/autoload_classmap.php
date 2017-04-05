@@ -31,7 +31,6 @@ return array(
     'Doctrine\\Instantiator\\Exception\\UnexpectedValueException' => $vendorDir . '/doctrine/instantiator/src/Doctrine/Instantiator/Exception/UnexpectedValueException.php',
     'Doctrine\\Instantiator\\Instantiator' => $vendorDir . '/doctrine/instantiator/src/Doctrine/Instantiator/Instantiator.php',
     'Doctrine\\Instantiator\\InstantiatorInterface' => $vendorDir . '/doctrine/instantiator/src/Doctrine/Instantiator/InstantiatorInterface.php',
-    'EjemploChat\\Conexion' => $baseDir . '/EjemploChat/Conexion.php',
     'Evenement\\EventEmitter' => $vendorDir . '/evenement/evenement/src/Evenement/EventEmitter.php',
     'Evenement\\EventEmitterInterface' => $vendorDir . '/evenement/evenement/src/Evenement/EventEmitterInterface.php',
     'Evenement\\EventEmitterTrait' => $vendorDir . '/evenement/evenement/src/Evenement/EventEmitterTrait.php',
@@ -907,7 +906,7 @@ return array(
     'Symfony\\Polyfill\\Mbstring\\Mbstring' => $vendorDir . '/symfony/polyfill-mbstring/Mbstring.php',
     'Text_Template' => $vendorDir . '/phpunit/php-text-template/src/Template.php',
     'Webmozart\\Assert\\Assert' => $vendorDir . '/webmozart/assert/src/Assert.php',
-    'core\\Dispositivo' => $baseDir . '/core/Dispositivo.php',
+    'infrastructura\\Chat' => $baseDir . '/infrastructura/Apollo/Chat.php',
     'infrastructura\\Conexion' => $baseDir . '/infrastructura/Conexion.php',
     'phpDocumentor\\Reflection\\DocBlock' => $vendorDir . '/phpdocumentor/reflection-docblock/src/DocBlock.php',
     'phpDocumentor\\Reflection\\DocBlockFactory' => $vendorDir . '/phpdocumentor/reflection-docblock/src/DocBlockFactory.php',
@@ -970,5 +969,4 @@ return array(
     'phpDocumentor\\Reflection\\Types\\String_' => $vendorDir . '/phpdocumentor/type-resolver/src/Types/String_.php',
     'phpDocumentor\\Reflection\\Types\\This' => $vendorDir . '/phpdocumentor/type-resolver/src/Types/This.php',
     'phpDocumentor\\Reflection\\Types\\Void_' => $vendorDir . '/phpdocumentor/type-resolver/src/Types/Void_.php',
-    'tests\\Core\\DispositivoTest' => $baseDir . '/tests/Core/DispositivoTest.php',
 );

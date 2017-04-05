@@ -12,8 +12,7 @@
             "web\\": "web",
             "core\\": "core",
             "tests\\": "tests",
-            "infrastructura\\":"infrastructura",
-            "EjemploChat\\":"EjemploChat"
+            "infrastructura\\":"infrastructura"
         }
   },
   "config": {
