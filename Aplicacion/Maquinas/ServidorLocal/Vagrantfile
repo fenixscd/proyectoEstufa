@@ -8,7 +8,7 @@ VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box = "ubuntu/trusty64"
-  config.vm.hostname = "ServidorEstufa2"
+  config.vm.hostname = "ServidorLocal"
 
   # Host-only network configuration
   # config.vm.network :public_network,:bridge=>"eth0" # Se conecta a la misma red que el anfitrion
@@ -23,7 +23,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
     # configuracion de la maquina virtual
     vb.customize ["modifyvm", :id, "--memory", "512"]
-    vb.customize ["modifyvm", :id, "--name"  , "ServidorEstufa2"]
+    vb.customize ["modifyvm", :id, "--name"  , "ServidorLocal"]
     vb.customize ["modifyvm", :id, "--cpus"  , 1]
     #vb.customize ["modifyvm", :id, "--chipset", "ich9"]
   end
