@@ -20,16 +20,31 @@ function Conexion(esp8266, display){
   this.websocket.onerror = function(evt) { console.log("Evento de error") };
 }
 
+
+////////   EVENTOS RELACIONADOS CON LA CONEXION ////////////
+
 Conexion.prototype.conexionAbierta = function (evt) {
-  console.log("Llego al metod conexionAbierta");
-  this.conectado = true;
   console.log(this.websocket);
+  this.conectado = true;
   this.websocket.send("Conecto");
+  this.enviarMensaje
+};
+
+Conexion.prototype.conexionCerrada = function (evt) {
+  console.log("La conexion se ha cerrado");
+};
+
+Conexion.prototype.conexionMensajeRecivido = function (evt) {
+  console.log("Mendaje recivido");
+};
+
+Conexion.prototype.conexionError = function (evt) {
+  console.log("Se ha produciodo un error en la conexion");
 };
 
 
 
-
+//////////////////////////////////////////////////////////////////
 
 Conexion.prototype.isConexionIniciada = function () {
   return this.conectado;
@@ -40,32 +55,35 @@ Conexion.prototype.getUrlServidor = function () {
   return this.urlServidor;
 };
 
-
-Conexion.prototype.onOpen = function (evt) {
-  console.log("Conexion avierta " + esp8266.getMac());
-};
-
-Conexion.prototype.enviarAlgo = function () {
-  this.getWebsocket().send(" HOtro mensaje ");
-};
-
-///////////////////////////////////////
-Conexion.prototype.enviar = function (mensaje) {
-  // var conexion = this.websocket;
-  // this.websocket.send("Hola desde enviar");
-  //  setTimeout(this.websocket.send("Hola desde enviar"), 500000);
-    setTimeout.call(console.log(this.getUrlServidor()), 2000);
-  //  console.log(mensaje);
-
-};
-
 Conexion.prototype.enviarDatos = function(clave, valor) {
 	var mensaje = "Dispositivo " + this.mac + ": " + clave + " " + valor;
-	this.enviar(mensaje);
-  //this.getWebsocket().send(enviar);
+	this.enviarMensaje(mensaje);
+  console.log("Antes de enviar " + mensaje);
 };
 
-Conexion.prototype.cargando = function () {
+
+Conexion.prototype.enviarMensaje = function (mensaje) {
+  if (this.isConexionIniciada()){
+  }else{
+    console.log("Enviado al bucle");
+    this.bucleEnviar(this, mensaje);
+  }
+};
 
 
+
+Conexion.prototype.bucleEnviar = function (_conexion, msg) {
+  var bucleEnviar = setInterval(function(){
+    if (_conexion.isConexionIniciada()){ // Cuando se conecte
+      _conexion.enviar(msg);
+      clearInterval(bucleEnviar);
+    }else{ // Mientras no este conectado
+      console.log("No estoy conectado");
+    }
+  }, 2000)
+};
+
+Conexion.prototype.enviar = function (msg) {
+  this.websocket.send(msg);
+  console.log(msg);
 };

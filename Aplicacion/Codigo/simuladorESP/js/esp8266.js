@@ -5,33 +5,17 @@ function esp8266(){
 
   this.display      = new Display(this)
   this.conexion     = new Conexion(this, this.display);
-
-
-  this.bucleConexion(this.conexion);
-  this.display.añadirHTMLDispositivo();
-  //this.iniciarComponenetes();
-  //this.actualizarMediciones(this) // Bucle para que se vallan actualizando las mediciones
-}
-
-esp8266.prototype.cargarClases = function () {
   this.termometro   = new Termometro(this.conexion, this.display);
   this.humedad      = new Humedad(this.conexion, this.display);
   this.resistencia1 = new Resistencia(1, this.conexion, this.display, this.termometro);
   this.resistencia2 = new Resistencia(2, this.conexion, this.display, this.termometro);
   this.programador1 = new Programador(this.resistencia1, this.conexion, this.display);
   this.programador2 = new Programador(this.resistencia2, this.conexion, this.display);
-};
 
-esp8266.prototype.bucleConexion = function (_conexion) {
-  var bucle = setInterval(function(){
-    console.log(_conexion.isConexionIniciada());
-    if (_conexion.isConexionIniciada()){ // Cuando se conecte
-      console.log("Estoy conectado");
-    }else{ // Mientras no este conectado
-      console.log("No estoy conectado");
-    }
-  }, 2000)
-};
+  this.display.añadirHTMLDispositivo();
+  this.iniciarComponenetes();
+  this.actualizarMediciones(this) // Bucle para que se vallan actualizando las mediciones
+}
 
 esp8266.prototype.iniciarComponenetes = function () {
 
@@ -42,7 +26,6 @@ esp8266.prototype.iniciarComponenetes = function () {
 
   this.resistencia1.setModoAutomatico(true);
   this.programador1.cambiarValores("12:25", true, 31, 5000) //(hora, encender, temperatura, cuentaAtras){
-
 };
 
 
