@@ -4,27 +4,37 @@ function Conexion(esp8266, display){
 
 
   this.urlServidor = "ws://192.168.5.20:8080";
-  this.websocket;
-  this.conectado = false;
   this.websocket = new WebSocket(this.urlServidor);
+  this.conectado = false;
+
+
 
   var _this = this;
-
   this.websocket.onopen = function(evt) {
     _this.conexionAbierta(evt);
   };
 
 
-  this.websocket.onclose = function(evt) { console.log("Conexion cerrada") };
+  this.websocket.onclose = function(evt) {
+    _this.conexionCerrada();
+  };
   this.websocket.onmessage = function(evt) { console.log("Entrad de mensaje") };
   this.websocket.onerror = function(evt) { console.log("Evento de error") };
+
+  //this.conectar();
 }
+
+Conexion.prototype.conectar = function () {
+  this.websocket = new WebSocket(this.urlServidor);
+};
+
 
 
 ////////   EVENTOS RELACIONADOS CON LA CONEXION ////////////
 
 Conexion.prototype.conexionAbierta = function (evt) {
   console.log(this.websocket);
+  console.log(this.websocket.readyState);
   this.conectado = true;
   this.websocket.send("Conecto");
   this.enviarMensaje
@@ -32,6 +42,12 @@ Conexion.prototype.conexionAbierta = function (evt) {
 
 Conexion.prototype.conexionCerrada = function (evt) {
   console.log("La conexion se ha cerrado");
+  console.log(this.websocket.readyState)
+};
+
+Conexion.prototype.conexionError = function (evt) {
+  console.log("Error en la conexion");
+  console.log(this.websocket.readyState)
 };
 
 Conexion.prototype.conexionMensajeRecivido = function (evt) {
@@ -64,6 +80,7 @@ Conexion.prototype.enviarDatos = function(clave, valor) {
 
 Conexion.prototype.enviarMensaje = function (mensaje) {
   if (this.isConexionIniciada()){
+    this.enviar(mensaje);
   }else{
     console.log("Enviado al bucle");
     this.bucleEnviar(this, mensaje);
@@ -85,5 +102,5 @@ Conexion.prototype.bucleEnviar = function (_conexion, msg) {
 
 Conexion.prototype.enviar = function (msg) {
   this.websocket.send(msg);
-  console.log(msg);
+  console.log("Enviado " + msg);
 };
