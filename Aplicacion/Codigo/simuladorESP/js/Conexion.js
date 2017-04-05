@@ -1,6 +1,7 @@
 function Conexion(esp8266, display){
   this.esp8266 = esp8266;
   this.mac = esp8266.getMac();
+  this.listaMensajes = new ListaMensajes();
 
 
   this.urlServidor = "ws://192.168.5.20:8080";
@@ -105,27 +106,25 @@ Conexion.prototype.enviarMensaje = function (mensaje) {
   if (this.isConexionIniciada()){
     this.enviar(mensaje);
   }else{
-    console.log("Enviado al bucle");
-    this.bucleEnviar(this, mensaje);
+    console.log("Enviado la lista");
   }
-};
-
-
-
-Conexion.prototype.bucleEnviar = function (_conexion, msg) {
-  var contador = 0;
-  var bucleEnviar = setInterval(function(){
-    if (_conexion.websocket.readyState == 1){ // Cuando se conecte
-      _conexion.enviar(msg);
-      clearInterval(bucleEnviar);
-    }else{ // Mientras no este conectado
-      contador++;
-      console.log("Intento de envio " + contador);
-    }
-  }, 2000)
 };
 
 Conexion.prototype.enviar = function (msg) {
   this.websocket.send(msg);
   console.log("Enviado " + msg);
+};
+
+
+///// COLA DE MENSAGES
+Conexion.prototype.addMensaje = function (msg) {
+  this.listaMensajes.addMensaje(msg);
+};
+
+Conexion.prototype.enviarListaMensajes = function () {
+  while (this.listaMensajes.getNElementos() != 0) {
+    this.enviar(this.listaMensajes.ultimoElemento()); // Envia de mas antiguo a mas moderno 
+  }
+
+
 };
