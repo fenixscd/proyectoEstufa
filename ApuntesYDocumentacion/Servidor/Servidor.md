@@ -80,12 +80,12 @@ La idea era montar dos servidores, uno que se encargse puramente de la logica y 
 
 Por lo tanto se montara un unico servidor para todo, lo unico que igual si lo ago para el desarroyo del proyecto, una separación tan clara me puede ayudar a depurar responsabilidades.
 
-###Proyectos y ejemplos similares
+### Proyectos y ejemplos similares
 
-##Configuración Vagrant
+## Configuración Vagrant
 Vagrant es el asistente para montar maquinas virtules que voy ha utlizar.
 
-###Proyectos y ejemplos similares
+### Proyectos y ejemplos similares
 
 [Pequeño manual de configuración de vagrant](http://www.conasa.es/blog/vagrant-configuracion-basica-de-la-maquina-virtual/)
 [Otro manual mas](https://www.adictosaltrabajo.com/tutoriales/vagrant-install/#5.%20Como%20instalo%20software%20de%20forma%20que%20lo%20vean%20mis%20compa%C3%B1eros?)

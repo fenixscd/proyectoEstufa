@@ -5,8 +5,7 @@ form = chat.form;
 state = document.getElementById("status");
 
 if (window.WebSocket === undefined) {
-   state.innerHTML = "Socket no soportado";
-   state.className = "fail";
+  console.log("Socket no soportado");
 }else {
    if (typeof String.prototype.startsWith != "function") {
       String.prototype.startsWith = function (str) {
@@ -18,7 +17,7 @@ if (window.WebSocket === undefined) {
 
 function onLoad() {
    console.log("Antes de conectar");
-   var wsUri = "ws://192.168.5.10:8080";
+   var wsUri = "ws://192.168.5.20:8080";
    websocket = new WebSocket(wsUri);
    console.log("Despues de genrar el WebSocket");
    websocket.onopen = function(evt) { onOpen(evt) };
@@ -27,18 +26,18 @@ function onLoad() {
    websocket.onerror = function(evt) { onError(evt) };
 }
 
-function onOpen(evt) {
+function onOpen(evt) { // Cuando se conecta
    state.className = "success";
    state.innerHTML = "Connected to server";
  }
 
-function onClose(evt) {
+function onClose(evt) { // Cuando se cierra la conexion
    state.className = "fail";
    state.innerHTML = "Not connected";
    connected.innerHTML = "0";
 }
 
-function onMessage(evt) {
+function onMessage(evt) { // Enviar mensaje
    // Existen dos tipos de mensajes:
    // 1. un mensaje de participante de chat en sí mismo
    // 2. un mensaje con un número de participantes de chat conectados
@@ -63,5 +62,5 @@ function addMessage() {
    var message = chat.value;
    chat.value = "";
    log.innerHTML = '<li class = "message der">' + message + "</li>" + log.innerHTML;
-   websocket.send(message);
+   websocket.send(message); // Enviar mensaje
 }

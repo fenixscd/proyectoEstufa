@@ -14,9 +14,9 @@ Eso lo conseguirmos teniendo 2 tarjetas wifi, una estara encargada de crear una 
 
 ## Pendiente
 
-* Mirar de crear una aplicación de escritrio.
-* Convertir la en un Servidor WEB.
-* Mirar sei se puede montar mediante Vagrant
+*   Mirar de crear una aplicación de escritrio.
+*   Convertir la en un Servidor WEB.
+*   Mirar sei se puede montar mediante Vagrant
 
 ## Crear una aplicación de escritorio
 

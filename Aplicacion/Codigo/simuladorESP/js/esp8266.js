@@ -12,11 +12,23 @@ function esp8266(){
   this.programador1 = new Programador(this.resistencia1, this.conexion, this.display);
   this.programador2 = new Programador(this.resistencia2, this.conexion, this.display);
 
-
   this.display.añadirHTMLDispositivo();
-  this.iniciarValores();
+  this.iniciarComponenetes();
   this.actualizarMediciones(this) // Bucle para que se vallan actualizando las mediciones
 }
+
+esp8266.prototype.iniciarComponenetes = function () {
+
+  this.programador1.iniciar();
+  this.programador2.iniciar();
+  this.resistencia1.iniciar();
+  this.resistencia2.iniciar();
+
+  this.resistencia1.setModoAutomatico(true);
+  this.programador1.cambiarValores("12:25", true, 31, 5000) //(hora, encender, temperatura, cuentaAtras){
+};
+
+
 
 esp8266.prototype.getMac = function() {
   return this.mac;
@@ -38,41 +50,19 @@ esp8266.prototype.setNombreDispositivo = function (nombreDispositivo) {
   this.nombreDispositivo = nombreDispositivo;
 };
 
-esp8266.prototype.buclePrincipal = function () {
-  // Modificar valores
-
-};
-
 esp8266.prototype.isResistenciaEncendida = function () {
-  console.log("Resistencia1 " + this.resistencia1.getResistenciaEncendida());
-  console.log("Resistencia2 " + this.resistencia2.getResistenciaEncendida());
   if (this.resistencia1.getResistenciaEncendida() || this.resistencia2.getResistenciaEncendida()) return true;
   else return false;
 };
 
 esp8266.prototype.actualizarMediciones = function (obj) {
-    window.setTimeout(function() {
-      obj.actualizarMediciones(obj); // Llamar a si mismo cuando termine la cuenta a tras
-    }, 1000);
-      console.log("Verificando si la resistencia esta apagada o encendida: " + obj.isResistenciaEncendida());
+    window.setInterval(function() {
       obj.termometro.actualizarMedicion(obj.isResistenciaEncendida());
       obj.humedad.actualizarEstado();
       obj.resistencia1.actualizarEstado(obj.termometro.getMedicion());
       obj.resistencia2.actualizarEstado(obj.termometro.getMedicion());
-      // console.log("Cambio de temperatura: " + obj.termometro.getMedicion());
-      // Comprobar temperatura.
-
-
-
-
-
-    //obj.estufa.cambiarMediciones(); // Metodos que quiero ejecutar
-
-    // Hala funcion hay que llamarla des de fuera para que empieza el bucle
+    }, 1000);
 };
-
-
-
 
 esp8266.prototype.solicirarDatosIniciales = function () {
 
@@ -94,14 +84,4 @@ esp8266.prototype.generarMac = function () {
     mac = mac + "-" + calculado.substr(2,3);
     this.setMac(mac);
     return mac;
-};
-
-esp8266.prototype.iniciarValores = function () {
-  this.resistencia1.setModoManual(true);
-  this.resistencia1.setModoEncendido(true);
-  this.resistencia1.setTemperatura(30);
-
-  this.resistencia2.setModoManual(false);
-  this.resistencia2.setModoEncendido(false);
-  this.resistencia2.setTemperatura(31);
 };
