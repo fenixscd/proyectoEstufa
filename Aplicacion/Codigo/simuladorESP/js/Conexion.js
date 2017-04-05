@@ -6,13 +6,12 @@ function Conexion(esp8266, display){
   this.urlServidor = "ws://192.168.5.20:8080";
   this.websocket;
   this.conectado = false;
-
   this.websocket = new WebSocket(this.urlServidor);
+
   var _this = this;
+
   this.websocket.onopen = function(evt) {
-    this.conectado = true;
-    console.log(_this.websocket);
-    _this.websocket.send("Conecto");
+    _this.conexionAbierta(evt);
   };
 
 
@@ -21,7 +20,18 @@ function Conexion(esp8266, display){
   this.websocket.onerror = function(evt) { console.log("Evento de error") };
 }
 
-Conexion.prototype.getIniciada = function () {
+Conexion.prototype.conexionAbierta = function (evt) {
+  console.log("Llego al metod conexionAbierta");
+  this.conectado = true;
+  console.log(this.websocket);
+  this.websocket.send("Conecto");
+};
+
+
+
+
+
+Conexion.prototype.isConexionIniciada = function () {
   return this.conectado;
 };
 
@@ -30,22 +40,6 @@ Conexion.prototype.getUrlServidor = function () {
   return this.urlServidor;
 };
 
-
-Conexion.prototype.iniciar = function (_this) {
-  this.websocket = new WebSocket(this.urlServidor);
-
-  this.websocket.onopen = function(evt) {
-    this.conectado = true;
-    console.log(_this.websocket);
-     _this.websocket.send("Conecto");
-
-  };
-
-
-  this.websocket.onclose = function(evt) { console.log("Conexion cerrada") };
-  this.websocket.onmessage = function(evt) { console.log("Entrad de mensaje") };
-  this.websocket.onerror = function(evt) { console.log("Evento de error") };
-};
 
 Conexion.prototype.onOpen = function (evt) {
   console.log("Conexion avierta " + esp8266.getMac());
