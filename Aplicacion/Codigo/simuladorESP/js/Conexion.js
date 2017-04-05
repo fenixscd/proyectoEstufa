@@ -4,28 +4,50 @@ function Conexion(esp8266, display){
 
 
   this.urlServidor = "ws://192.168.5.20:8080";
-  this.websocket = new WebSocket(this.urlServidor);
   this.conectado = false;
+  this.conectando = false;
+  this.intentosDeConexion = 0;
+  this.websocket;
 
+  this.conectar();
+}
 
+Conexion.prototype.conectar = function () {
+  this.websocket = new WebSocket(this.urlServidor);
+  console.log("Estado " + this.websocket.readyState);
+  if (this.conectando){
+    this.bucleConectar(this);
+  }else{
+    this.metodosConexion(this);
+  }
+};
 
+Conexion.prototype.bucleConectar = function (_this) {
+  this.conectando = true;
+  this.intentosDeConexion++;
+  var bucleConectar = setTimeout(function(){
+      console.log("Intento de conexion " + _this.intentosDeConexion);
+      _this.conectar();
+  }, 2000)
+};
+
+Conexion.prototype.metodosConexion = function () {
   var _this = this;
   this.websocket.onopen = function(evt) {
     _this.conexionAbierta(evt);
   };
 
-
   this.websocket.onclose = function(evt) {
     _this.conexionCerrada();
   };
-  this.websocket.onmessage = function(evt) { console.log("Entrad de mensaje") };
-  this.websocket.onerror = function(evt) { console.log("Evento de error") };
 
-  //this.conectar();
-}
+  this.websocket.onerror = function(evt) {
+    _this.conexionError(evt);
+  };
 
-Conexion.prototype.conectar = function () {
-  this.websocket = new WebSocket(this.urlServidor);
+  this.websocket.onmessage = function(evt) {
+    _this.conexionMensajeRecivido(evt);
+  };
 };
 
 
@@ -42,23 +64,24 @@ Conexion.prototype.conexionAbierta = function (evt) {
 
 Conexion.prototype.conexionCerrada = function (evt) {
   console.log("La conexion se ha cerrado");
+  this.conectado = false;
   console.log(this.websocket.readyState)
 };
 
 Conexion.prototype.conexionError = function (evt) {
   console.log("Error en la conexion");
+  this.conectado = false;
   console.log(this.websocket.readyState)
+};
+
+Conexion.prototype.conexionError = function (evt) {
+  this.conectado = false;
+  console.log("Se ha produciodo un error en la conexion");
 };
 
 Conexion.prototype.conexionMensajeRecivido = function (evt) {
   console.log("Mendaje recivido");
 };
-
-Conexion.prototype.conexionError = function (evt) {
-  console.log("Se ha produciodo un error en la conexion");
-};
-
-
 
 //////////////////////////////////////////////////////////////////
 
@@ -90,12 +113,14 @@ Conexion.prototype.enviarMensaje = function (mensaje) {
 
 
 Conexion.prototype.bucleEnviar = function (_conexion, msg) {
+  var contador = 0;
   var bucleEnviar = setInterval(function(){
-    if (_conexion.isConexionIniciada()){ // Cuando se conecte
+    if (_conexion.websocket.readyState == 1){ // Cuando se conecte
       _conexion.enviar(msg);
       clearInterval(bucleEnviar);
     }else{ // Mientras no este conectado
-      console.log("No estoy conectado");
+      contador++;
+      console.log("Intento de envio " + contador);
     }
   }, 2000)
 };
