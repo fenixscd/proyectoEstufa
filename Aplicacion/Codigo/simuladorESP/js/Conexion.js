@@ -14,13 +14,40 @@ function Conexion(esp8266, display){
   this.conectar();
 }
 
+Conexion.prototype.websocketInstanciar = function () {
+  if (this.websocket == null){
+    this.websocket = new WebSocket(this.urlServidor);
+  }
+};
+
+Conexion.prototype.isConectando = function () {
+  if (this.websocket.readyState == 0) return true;
+  else return false;
+};
+
+Conexion.prototype.isCerrada = function () {
+  if (this.websocket.readyState == 3) return true;
+  else return false;
+};
+
+Conexion.prototype.isConectado = function () {
+  if (this.websocket.readyState == 1) return true;
+  else return false;
+};
+
 Conexion.prototype.conectar = function () {
-  this.websocket = new WebSocket(this.urlServidor);
+  this.websocketInstanciar(); // instancia si no esta instanciado
+
   console.log("Estado " + this.websocket.readyState);
-  if (this.conectado){
+  if (this.isCerrada()){ // Si esta cerrada tengo que volver a instanciar le objeto
+    this.websocket = new WebSocket(this.urlServidor);
+  }
+
+  if (!this.isConectado()){
     this.bucleConectar(this);
   }else{
     this.metodosConexion();
+    this.enviarListaMensajes();
   }
 };
 
@@ -30,6 +57,10 @@ Conexion.prototype.bucleConectar = function (_this) {
       console.log("Intento de conexion " + _this.intentosDeConexion);
       _this.conectar();
   }, 2000)
+};
+
+Conexion.prototype.conexionEstablecida = function () {
+  console.log("Conxion establecida");
 };
 
 Conexion.prototype.metodosConexion = function () {
@@ -61,20 +92,18 @@ Conexion.prototype.conexionAbierta = function (evt) {
   this.conectando = false;
   this.conectado = true;
   this.websocket.send("Conecto");
-  this.enviarMensaje
 };
 
 Conexion.prototype.conexionCerrada = function (evt) {
-  console.log("La conexion se ha cerrado");
   this.conectado = false;
-  console.log(this.websocket.readyState)
+  this.conectar();
+  console.log("La conexion se ha cerrado " + this.websocket.readyState);
 
 };
 
 Conexion.prototype.conexionError = function (evt) {
-  console.log("Error en la conexion");
   this.conectado = false;
-  console.log(this.websocket.readyState)
+  console.log("Error en la conexion " + this.websocket.readyState);
 };
 
 Conexion.prototype.conexionError = function (evt) {
@@ -120,9 +149,9 @@ Conexion.prototype.enviar = function (msg) {
 // Para que los mensajes se envien tiene que aver conexión y la lista estar vacia
 // Tiene que estar vacia la lista para que no se cuelen mensajes mientras se esta vaciando
 Conexion.prototype.isSePuedeEnviar = function () {
-  // console.log("La conexion " + this.isConexionIniciada());
-  // console.log("La lista esta vacia " + this.listaMensajes.isVacia());
-  if (this.isConexionIniciada() && this.listaMensajes.isVacia()) return true;
+  console.log("La conexion " + this.isConectado());
+  console.log("La lista esta vacia " + this.listaMensajes.isVacia());
+  if (this.isConectado() && this.listaMensajes.isVacia()) return true;
   else return false;
 };
 
@@ -136,4 +165,5 @@ Conexion.prototype.enviarListaMensajes = function () {
   while (this.listaMensajes.getNElementos() != 0) {
     this.enviar(this.listaMensajes.ultimoElemento()); // Envia de mas antiguo a mas moderno
   }
+  console.log("Lista vaciada");
 };
