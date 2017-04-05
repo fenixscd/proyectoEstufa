@@ -17,7 +17,7 @@ function Conexion(esp8266, display){
 Conexion.prototype.conectar = function () {
   this.websocket = new WebSocket(this.urlServidor);
   console.log("Estado " + this.websocket.readyState);
-  if (this.conectando){
+  if (this.conectado){
     this.bucleConectar(this);
   }else{
     this.metodosConexion();
