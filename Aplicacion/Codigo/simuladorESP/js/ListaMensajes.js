@@ -7,9 +7,15 @@ ListaMensajes.prototype.addMensaje = function (msg) {
 };
 
 ListaMensajes.prototype.ultimoElemento = function () { // Devuelve y quita el ulimo elemento de la lista
-  return this.listaMensajes.pop()
+  return this.listaMensajes.pop();
 };
 
 ListaMensajes.prototype.getNElementos = function () {
-  return this.listaMensajes.size();
+  return this.listaMensajes.length;
+
+};
+
+ListaMensajes.prototype.isVacia = function () {
+  if (this.getNElementos() == 0) return true;
+  else return false;
 };

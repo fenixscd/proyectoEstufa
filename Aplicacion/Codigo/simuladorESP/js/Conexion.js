@@ -6,6 +6,7 @@ function Conexion(esp8266, display){
 
   this.urlServidor = "ws://192.168.5.20:8080";
   this.conectado = false;
+  // conectando es para que no vuelva a intentar conectar mientras esta abriendo la conexion
   this.conectando = false;
   this.intentosDeConexion = 0;
   this.websocket;
@@ -19,12 +20,11 @@ Conexion.prototype.conectar = function () {
   if (this.conectando){
     this.bucleConectar(this);
   }else{
-    this.metodosConexion(this);
+    this.metodosConexion();
   }
 };
 
 Conexion.prototype.bucleConectar = function (_this) {
-  this.conectando = true;
   this.intentosDeConexion++;
   var bucleConectar = setTimeout(function(){
       console.log("Intento de conexion " + _this.intentosDeConexion);
@@ -58,6 +58,7 @@ Conexion.prototype.metodosConexion = function () {
 Conexion.prototype.conexionAbierta = function (evt) {
   console.log(this.websocket);
   console.log(this.websocket.readyState);
+  this.conectando = false;
   this.conectado = true;
   this.websocket.send("Conecto");
   this.enviarMensaje
@@ -67,6 +68,7 @@ Conexion.prototype.conexionCerrada = function (evt) {
   console.log("La conexion se ha cerrado");
   this.conectado = false;
   console.log(this.websocket.readyState)
+
 };
 
 Conexion.prototype.conexionError = function (evt) {
@@ -103,10 +105,10 @@ Conexion.prototype.enviarDatos = function(clave, valor) {
 
 
 Conexion.prototype.enviarMensaje = function (mensaje) {
-  if (this.isConexionIniciada()){
+  if (this.isSePuedeEnviar()){
     this.enviar(mensaje);
-  }else{
-    console.log("Enviado la lista");
+  }else{ // Si la conexion no esta iniciada llamo a la conesion y mento el mensaje en la cola
+    this.addListaMensaje(mensaje);
   }
 };
 
@@ -115,16 +117,23 @@ Conexion.prototype.enviar = function (msg) {
   console.log("Enviado " + msg);
 };
 
+// Para que los mensajes se envien tiene que aver conexión y la lista estar vacia
+// Tiene que estar vacia la lista para que no se cuelen mensajes mientras se esta vaciando
+Conexion.prototype.isSePuedeEnviar = function () {
+  // console.log("La conexion " + this.isConexionIniciada());
+  // console.log("La lista esta vacia " + this.listaMensajes.isVacia());
+  if (this.isConexionIniciada() && this.listaMensajes.isVacia()) return true;
+  else return false;
+};
 
 ///// COLA DE MENSAGES
-Conexion.prototype.addMensaje = function (msg) {
+Conexion.prototype.addListaMensaje = function (msg) {
   this.listaMensajes.addMensaje(msg);
+  console.log(this.listaMensajes);
 };
 
 Conexion.prototype.enviarListaMensajes = function () {
   while (this.listaMensajes.getNElementos() != 0) {
-    this.enviar(this.listaMensajes.ultimoElemento()); // Envia de mas antiguo a mas moderno 
+    this.enviar(this.listaMensajes.ultimoElemento()); // Envia de mas antiguo a mas moderno
   }
-
-
 };
