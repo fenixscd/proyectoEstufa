@@ -1,5 +1,4 @@
-function Termometro(conexion, display){
-  this.conexion          = conexion;
+function Termometro(display){
   this.display           = display;
   this.enviarTemperatura = false;
   this.temperaturaMaxima = 40;

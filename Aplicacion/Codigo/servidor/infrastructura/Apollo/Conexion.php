@@ -13,21 +13,32 @@ class Conexion implements MessageComponentInterface {
 
     // Se ejecuta el metod cuando recive una conexión
     public function onOpen(ConnectionInterface $conn) {
-      // Almacene la nueva conexión para enviar mensajes a más tarde
-      $this->clients->attach($conn); // attach -> Agrega un objeto a la lista
+        // Almacene la nueva conexión para enviar mensajes a más tarde
+        $this->clients->attach($conn); // attach -> Agrega un objeto a la lista
 
-      echo "Nueva conexión! ({$conn->resourceId})\n";
-      // Preguntar la mac del dispositivo
-      // Crear el objeto
-      
-      $numRecv = count($this->clients);
-      $mensaje = "connected:".$numRecv;
-    }
+        echo "Nueva conexión! ({$conn->resourceId})\n";
 
-    // Mensaje recivido
+        $numRecv = count($this->clients) - 1;
+        $mensaje = "connected:".$numRecv;
+        foreach ($this->clients as $client) {
+            $client->send($mensaje);
+          }
+        }
+
+
     public function onMessage(ConnectionInterface $from, $msg) {
-      echo sprintf('Conexion %d mensaje "%s ' . "\n"
-               , $from->resourceId, $msg);
+      $numRecv = count($this->clients) - 1;
+      $mensaje = "log:".$msg;
+
+      echo sprintf('Connection %d sending message "%s" to %d other connection%s' . "\n"
+               , $from->resourceId, $msg, $numRecv, $numRecv == 1 ? '' : 's');
+
+      foreach ($this->clients as $client) {
+        if ($from !== $client) { // Si es el mismo cliente no le envia.
+          // En via a todos los clentes conectado menos al que ha enviado el mensaje
+          $client->send($mensaje);
+        }
+      }
     }
 
     public function onClose(ConnectionInterface $conn) {

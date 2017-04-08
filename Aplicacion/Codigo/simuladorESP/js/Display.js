@@ -1,6 +1,5 @@
-function Display (esp8266){
-  this.esp8266 = esp8266;
-  this.mac = this.esp8266.getMac();
+function Display (mac){
+  this.mac = mac;
 
   this.datos = new Array();
 }
@@ -56,5 +55,5 @@ Display.prototype.generarHTML = function () {
                           '<input type="button" value="M" onclick="hacer_click()"/>' +
                           '<input type="button" value="-" onclick="hacer_click()"/>' +
                           '</form>';
-  return plantilla.replace(/{{mac}}/g, this.esp8266.getMac());
+  return plantilla.replace(/{{mac}}/g, this.mac);
 };

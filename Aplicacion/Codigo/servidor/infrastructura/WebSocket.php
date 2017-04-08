@@ -17,7 +17,4 @@ $server = IoServer::factory(
 );
     echo "Sevidor en marcha IP 192.168.5.10 8080\n";
     $server->run();
-
-
-
 ?>

@@ -3,9 +3,10 @@ function esp8266(){
   this.nombreDispositivo = false;
   this.modoAutomatico    = false;
 
-  this.display      = new Display(this)
-  this.conexion     = new Conexion(this, this.display);
-  this.termometro   = new Termometro(this.conexion, this.display);
+  this.peticiones   = new Peticiones(this);
+  this.display      = new Display(this.mac);
+  this.conexion     = new Conexion(this, this.display, this.peticiones);
+  this.termometro   = new Termometro(this.display);
   this.humedad      = new Humedad(this.conexion, this.display);
   this.resistencia1 = new Resistencia(1, this.conexion, this.display, this.termometro);
   this.resistencia2 = new Resistencia(2, this.conexion, this.display, this.termometro);
@@ -64,10 +65,6 @@ esp8266.prototype.actualizarMediciones = function (obj) {
     }, 1000);
 };
 
-esp8266.prototype.solicirarDatosIniciales = function () {
-
-};
-
 esp8266.prototype.generarMac = function () {
   var mac = "A6-B5-C4-D3"
   var calculado;
@@ -85,3 +82,5 @@ esp8266.prototype.generarMac = function () {
     this.setMac(mac);
     return mac;
 };
+
+///////// Peticiones

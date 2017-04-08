@@ -1,0 +1,3 @@
+function Comando(){
+  this.nombre
+}
