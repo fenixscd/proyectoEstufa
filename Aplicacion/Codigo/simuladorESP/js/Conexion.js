@@ -1,7 +1,6 @@
-function Conexion(esp8266, display, peticiones){
-  this.peticiones = peticiones;
-  this.esp8266 = esp8266;
-  this.mac = esp8266.getMac();
+function Conexion(mac, comandosLista){
+  this.comandosLista = comandosLista;
+  this.mac           = mac;
   this.listaMensajes = new ListaMensajes();
 
 

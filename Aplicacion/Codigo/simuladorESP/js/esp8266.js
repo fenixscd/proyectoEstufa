@@ -1,17 +1,19 @@
 function esp8266(){
-  this.mac = this.generarMac();
+  this.tipoDispositivo   = "estufa"
+  this.mac               = this.generarMac();
   this.nombreDispositivo = false;
   this.modoAutomatico    = false;
 
-  this.peticiones   = new Peticiones(this);
+  this.comandosLista= new ComandosLista();
   this.display      = new Display(this.mac);
-  this.conexion     = new Conexion(this, this.display, this.peticiones);
+  this.conexion     = new Conexion(this.mac, this.peticiones);
   this.termometro   = new Termometro(this.display);
   this.humedad      = new Humedad(this.conexion, this.display);
   this.resistencia1 = new Resistencia(1, this.conexion, this.display, this.termometro);
   this.resistencia2 = new Resistencia(2, this.conexion, this.display, this.termometro);
   this.programador1 = new Programador(this.resistencia1, this.conexion, this.display);
   this.programador2 = new Programador(this.resistencia2, this.conexion, this.display);
+
 
   this.display.añadirHTMLDispositivo();
   this.iniciarComponenetes();
@@ -29,7 +31,9 @@ esp8266.prototype.iniciarComponenetes = function () {
   this.programador1.cambiarValores("12:25", true, 31, 5000) //(hora, encender, temperatura, cuentaAtras){
 };
 
-
+esp8266.prototype.getTipoDispositivo = function () {
+  return this.tipoDispositivo;
+};
 
 esp8266.prototype.getMac = function() {
   return this.mac;
