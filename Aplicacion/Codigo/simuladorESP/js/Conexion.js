@@ -1,5 +1,4 @@
-function Conexion(mac, comandosLista){
-  this.comandosLista = comandosLista;
+function Conexion(mac){
   this.mac           = mac;
   this.listaMensajes = new ListaMensajes();
 

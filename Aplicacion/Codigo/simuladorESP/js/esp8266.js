@@ -4,9 +4,9 @@ function esp8266(){
   this.nombreDispositivo = false;
   this.modoAutomatico    = false;
 
-  this.comandosLista= new ComandosLista();
+  //this.comandosLista= new ComandosLista();
   this.display      = new Display(this.mac);
-  this.conexion     = new Conexion(this.mac, this.peticiones);
+  this.conexion     = new Conexion(this.mac);
   this.termometro   = new Termometro(this.display);
   this.humedad      = new Humedad(this.conexion, this.display);
   this.resistencia1 = new Resistencia(1, this.conexion, this.display, this.termometro);
