@@ -4,7 +4,7 @@ function esp8266(){
   this.nombreDispositivo = false;
   this.modoAutomatico    = false;
 
-  this.peticionesLista = new PeticionesLista();
+  this.commandsLista = new CommandsLista();
   this.display         = new Display(this.mac);
   this.conexion        = new Conexion(this.mac);
   this.termometro      = new Termometro(this.display);
@@ -18,7 +18,7 @@ function esp8266(){
   this.display.añadirHTMLDispositivo();
   this.iniciarComponenetes();
   this.actualizarMediciones(this) // Bucle para que se vallan actualizando las mediciones
-  this.addPeticiones();
+  this.addCommands();
 }
 
 esp8266.prototype.iniciarComponenetes = function () {
@@ -52,8 +52,8 @@ esp8266.prototype.getNombreDispositivo = function () {
   }
 };
 
-esp8266.prototype.addPeticiones = function () {
-  this.peticionesLista.addPeticion(new PeticionTemperatura(this))
+esp8266.prototype.addCommands = function () {
+  this.commandsLista.addCommand(new CommandEnviarTemperatura(this))
 };
 
 
