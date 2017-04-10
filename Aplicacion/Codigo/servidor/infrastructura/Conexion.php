@@ -19,9 +19,11 @@ class Conexion implements MessageComponentInterface {
       echo "Nueva conexión! ({$conn->resourceId})\n";
       // Preguntar la mac del dispositivo
       // Crear el objeto
-      
+      $client->send("getTemperatura");
+
       $numRecv = count($this->clients);
       $mensaje = "connected:".$numRecv;
+
     }
 
     // Mensaje recivido
