@@ -4,20 +4,21 @@ function esp8266(){
   this.nombreDispositivo = false;
   this.modoAutomatico    = false;
 
-  //this.comandosLista= new ComandosLista();
-  this.display      = new Display(this.mac);
-  this.conexion     = new Conexion(this.mac);
-  this.termometro   = new Termometro(this.display);
-  this.humedad      = new Humedad(this.conexion, this.display);
-  this.resistencia1 = new Resistencia(1, this.conexion, this.display, this.termometro);
-  this.resistencia2 = new Resistencia(2, this.conexion, this.display, this.termometro);
-  this.programador1 = new Programador(this.resistencia1, this.conexion, this.display);
-  this.programador2 = new Programador(this.resistencia2, this.conexion, this.display);
+  this.peticionesLista = new PeticionesLista();
+  this.display         = new Display(this.mac);
+  this.conexion        = new Conexion(this.mac);
+  this.termometro      = new Termometro(this.display);
+  this.humedad         = new Humedad(this.conexion, this.display);
+  this.resistencia1    = new Resistencia(1, this.conexion, this.display, this.termometro);
+  this.resistencia2    = new Resistencia(2, this.conexion, this.display, this.termometro);
+  this.programador1    = new Programador(this.resistencia1, this.conexion, this.display);
+  this.programador2    = new Programador(this.resistencia2, this.conexion, this.display);
 
 
   this.display.añadirHTMLDispositivo();
   this.iniciarComponenetes();
   this.actualizarMediciones(this) // Bucle para que se vallan actualizando las mediciones
+  this.addPeticiones();
 }
 
 esp8266.prototype.iniciarComponenetes = function () {
@@ -50,6 +51,11 @@ esp8266.prototype.getNombreDispositivo = function () {
     return this.nombreDispositivo;
   }
 };
+
+esp8266.prototype.addPeticiones = function () {
+  this.peticionesLista.addPeticion(new PeticionTemperatura(this))
+};
+
 
 esp8266.prototype.setNombreDispositivo = function (nombreDispositivo) {
   this.nombreDispositivo = nombreDispositivo;
