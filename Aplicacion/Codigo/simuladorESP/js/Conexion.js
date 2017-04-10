@@ -107,8 +107,15 @@ Conexion.prototype.conexionError = function (evt) {
 };
 
 Conexion.prototype.conexionMensajeRecivido = function (evt) {
-  // necesito el nombre de la peticion
-  //this.peticion.ejecutar(accion);
+  // var mensaje = evt.data;
+  // console.log(mensaje);
+  // if (mensaje.startsWith("log:")) {
+  //    mensaje = mensaje.slice("log:".length);
+  //    console.log(mensaje);
+  // }else if (mensaje.startsWith("connected:")) {
+  //    mensaje = mensaje.slice("connected:".length);
+  //    console.log(mensaje);
+  // }
   console.log("Mendaje recivido");
 
 };
