@@ -1,7 +1,7 @@
-function Conexion(esp8266, display){
-  this.esp8266 = esp8266;
-  this.mac = esp8266.getMac();
-  this.listaMensajes = new ListaMensajes();
+function Conexion(mac, peticionesLista){
+  this.mac             = mac;
+  this.peticionesLista = peticionesLista;
+  this.listaMensajes   = new ListaMensajes();
 
 
   this.urlServidor = "ws://192.168.5.20:8080";
@@ -103,16 +103,14 @@ Conexion.prototype.conexionCerrada = function (evt) {
 
 Conexion.prototype.conexionError = function (evt) {
   this.conectado = false;
-  console.log("Error en la conexion " + this.websocket.readyState);
-};
-
-Conexion.prototype.conexionError = function (evt) {
-  this.conectado = false;
-  console.log("Se ha produciodo un error en la conexion");
+  console.log("Error en la conexion: " + this.websocket.readyState);
 };
 
 Conexion.prototype.conexionMensajeRecivido = function (evt) {
+  // necesito el nombre de la peticion
+  //this.peticion.ejecutar(accion);
   console.log("Mendaje recivido");
+
 };
 
 //////////////////////////////////////////////////////////////////

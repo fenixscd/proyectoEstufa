@@ -11,5 +11,7 @@
 
 function crearDispositivo() {
   var dispositivo = new esp8266();
-  
+
+  //console.log(dispositivo.peticionesLista.getPeticion("getTemperatura"));
+  dispositivo.peticionesLista.getPeticion("getTemperatura").ejecutar();
 }

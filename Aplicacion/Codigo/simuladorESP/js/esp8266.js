@@ -1,20 +1,24 @@
 function esp8266(){
-  this.mac = this.generarMac();
+  this.tipoDispositivo   = "estufa"
+  this.mac               = this.generarMac();
   this.nombreDispositivo = false;
   this.modoAutomatico    = false;
 
-  this.display      = new Display(this)
-  this.conexion     = new Conexion(this, this.display);
-  this.termometro   = new Termometro(this.conexion, this.display);
-  this.humedad      = new Humedad(this.conexion, this.display);
-  this.resistencia1 = new Resistencia(1, this.conexion, this.display, this.termometro);
-  this.resistencia2 = new Resistencia(2, this.conexion, this.display, this.termometro);
-  this.programador1 = new Programador(this.resistencia1, this.conexion, this.display);
-  this.programador2 = new Programador(this.resistencia2, this.conexion, this.display);
+  this.peticionesLista = new PeticionesLista();
+  this.display         = new Display(this.mac);
+  this.conexion        = new Conexion(this.mac);
+  this.termometro      = new Termometro(this.display);
+  this.humedad         = new Humedad(this.conexion, this.display);
+  this.resistencia1    = new Resistencia(1, this.conexion, this.display, this.termometro);
+  this.resistencia2    = new Resistencia(2, this.conexion, this.display, this.termometro);
+  this.programador1    = new Programador(this.resistencia1, this.conexion, this.display);
+  this.programador2    = new Programador(this.resistencia2, this.conexion, this.display);
+
 
   this.display.añadirHTMLDispositivo();
   this.iniciarComponenetes();
   this.actualizarMediciones(this) // Bucle para que se vallan actualizando las mediciones
+  this.addPeticiones();
 }
 
 esp8266.prototype.iniciarComponenetes = function () {
@@ -28,7 +32,9 @@ esp8266.prototype.iniciarComponenetes = function () {
   this.programador1.cambiarValores("12:25", true, 31, 5000) //(hora, encender, temperatura, cuentaAtras){
 };
 
-
+esp8266.prototype.getTipoDispositivo = function () {
+  return this.tipoDispositivo;
+};
 
 esp8266.prototype.getMac = function() {
   return this.mac;
@@ -45,6 +51,11 @@ esp8266.prototype.getNombreDispositivo = function () {
     return this.nombreDispositivo;
   }
 };
+
+esp8266.prototype.addPeticiones = function () {
+  this.peticionesLista.addPeticion(new PeticionTemperatura(this))
+};
+
 
 esp8266.prototype.setNombreDispositivo = function (nombreDispositivo) {
   this.nombreDispositivo = nombreDispositivo;
@@ -64,10 +75,6 @@ esp8266.prototype.actualizarMediciones = function (obj) {
     }, 1000);
 };
 
-esp8266.prototype.solicirarDatosIniciales = function () {
-
-};
-
 esp8266.prototype.generarMac = function () {
   var mac = "A6-B5-C4-D3"
   var calculado;
@@ -85,3 +92,5 @@ esp8266.prototype.generarMac = function () {
     this.setMac(mac);
     return mac;
 };
+
+///////// Peticiones
