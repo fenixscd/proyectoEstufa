@@ -10,7 +10,11 @@
 
 
 function crearDispositivo() {
-  var dispositivo = new esp8266();
 
+  // Programa principal se encargar de crear los dispositivos
   
+  var dispositivo = new Dispositivo();
+
+  //console.log(dispositivo.peticionesLista.getPeticion("getTemperatura"));
+  dispositivo.commandsLista.getCommand("solicitarTemperatura").ejecutar();
 }

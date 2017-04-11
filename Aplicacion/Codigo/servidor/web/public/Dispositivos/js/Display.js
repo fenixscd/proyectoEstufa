@@ -1,9 +1,22 @@
 function Display (mac){
   this.mac = mac;
-
   this.datos = new Array();
 }
 
+Display.prototype.añadirHTMLDispositivo = function () {
+  var contenedor = document.getElementsByTagName("section")[0];
+  var dispositivo = document.createElement("div");
+  dispositivo.setAttribute("class", "dispositivo");
+
+  dispositivo.innerHTML = this.generarHTML();
+  dispositivo.classList.add("dispositivo");
+  contenedor.appendChild(dispositivo);
+
+  // this.pintarValores();
+};
+
+
+//// Funcion que no se utiliza
 Display.prototype.pintarValores = function() {
   var valorPintar;
   for (dato in this.datos){
@@ -19,17 +32,7 @@ Display.prototype.cambiarValor = function(clave, valor) {
   document.getElementById(clave + this.mac).innerHTML = valor;
 };
 
-Display.prototype.añadirHTMLDispositivo = function () {
-  var contenedor = document.getElementsByTagName("section")[0];
-  var dispositivo = document.createElement("div");
-  dispositivo.setAttribute("class", "dispositivo");
 
-  dispositivo.innerHTML = this.generarHTML();
-  dispositivo.classList.add("dispositivo");
-  contenedor.appendChild(dispositivo);
-
-  // this.pintarValores();
-};
 
 Display.prototype.generarHTML = function () {
   var plantilla = '<div class="display">' +

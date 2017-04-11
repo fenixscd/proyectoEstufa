@@ -1,6 +1,5 @@
 function Conexion(mac, peticionesLista){
   this.mac             = mac;
-  this.peticionesLista = peticionesLista;
   this.listaMensajes   = new ListaMensajes();
 
 
