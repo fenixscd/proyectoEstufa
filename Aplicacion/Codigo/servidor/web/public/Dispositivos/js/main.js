@@ -6,15 +6,15 @@
 // console.log("Mediciones: " + termometro.getMedicion());
 // console.log("Mediciones: " + humedad.getMedicion());
 
+var conexion          = new Conexion();
+var listaDispositivos = new ListaDispositivos();
+var commandsLista     = new CommandsLista();
 
-
+commandsLista.addCommand(new CommandCrearDispositivo())
 
 function crearDispositivo() {
-
+  var mac = "84.255.224.22";
+  commandsLista.getCommand("crearDispositivo").ejecutar(mac, listaDispositivos);
   // Programa principal se encargar de crear los dispositivos
-  
-  var dispositivo = new Dispositivo();
 
-  //console.log(dispositivo.peticionesLista.getPeticion("getTemperatura"));
-  dispositivo.commandsLista.getCommand("solicitarTemperatura").ejecutar();
 }

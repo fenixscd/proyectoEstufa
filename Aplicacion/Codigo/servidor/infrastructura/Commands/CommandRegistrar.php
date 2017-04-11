@@ -2,23 +2,19 @@
 
 namespace infrastructura\Commands;
 
-class CommandRegistrar
-{
-  private $conexion;
-  function __construct($conexion)
-  {
-    $this->conexion = $conexion;
+class CommandRegistrar{
+  private $nombre;
+
+  public function __construct(){
+    $this->nombre = "registrar";
   }
 
-  public function ejecutar()
-  {
-    // Ir preguntando a la conexion lo necesario para registrar
-    // necesitari eun abstrac factori par instanciar los objetos de la aplicacion
+  public function ejecutar(){
+    echo "Commando Registrar";
   }
+
+  public function getNombre(){
+    return $this->nombre;
+  }
+
 }
-
-
-
-
-
- ?>
