@@ -15,7 +15,7 @@ Dispositivo.prototype.ejecutar = function () {
 
 Dispositivo.prototype.buclePeticiones = function (obj) {
     window.setInterval(function() {
-      obj.peticionesLista.getPeticion("getTemperatura").ejecutar(this.mac);
+      obj.peticionesLista.getPeticion("getTemperatura").ejecutar(obj.mac);
     }, 1000);
 };
 
