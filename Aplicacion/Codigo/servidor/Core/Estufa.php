@@ -1,7 +1,6 @@
 <?php
 namespace core;
 
-
 class Estufa{
   private $conexion;
 

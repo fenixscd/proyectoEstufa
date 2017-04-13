@@ -1,0 +1,80 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+.centrado {
+    margin: 0 auto;
+    width: 560px;
+    background-color: aqua;
+}
+
+header h1{
+    text-align: center
+}
+
+.display {
+    padding: 7px 7px;;
+    width: 250px;
+    color: white;
+    background-color: #0050FE;
+    border: black 1px solid;
+    overflow: hidden;
+    border-radius: 10px;
+    float: left;
+        
+}
+
+/******* LINEA SUPERIOR  *************/
+
+.lSuperior h2, .lSuperior p{
+    font-size: 12px;
+}
+
+.lSuperior h2 {
+	float: left;
+}
+
+.lSuperior p{ 
+    float: right;
+}
+
+.medidas h2 {
+    display: inline-block;
+    width: 49%;
+    text-align: center;
+}
+
+.programacion {
+	font-size: 12px;
+}
+
+.programacion .izq {
+    float: left;
+    
+}
+
+.programacion .der{
+	float: right;
+    text-align: left;
+    width: 50%;
+}
+
+
+
+/***********BOTONERA*************/
+
+.botonera {
+    margin-left: 2px;
+	float: left;
+    width: 28px;
+/*    text-align: center;*/
+}
+
+.botonera input {
+    width: 28px;
+    height: 28px;
+    
+}
+

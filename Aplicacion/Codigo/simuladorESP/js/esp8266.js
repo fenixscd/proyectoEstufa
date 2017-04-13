@@ -11,8 +11,6 @@ function esp8266(){
   this.humedad         = new Humedad(this.conexion, this.display);
   this.resistencia1    = new Resistencia(1, this.conexion, this.display, this.termometro);
   this.resistencia2    = new Resistencia(2, this.conexion, this.display, this.termometro);
-  this.programador1    = new Programador(this.resistencia1, this.conexion, this.display);
-  this.programador2    = new Programador(this.resistencia2, this.conexion, this.display);
 
 
   this.display.añadirHTMLDispositivo();
@@ -22,14 +20,8 @@ function esp8266(){
 }
 
 esp8266.prototype.iniciarComponenetes = function () {
-
-  this.programador1.iniciar();
-  this.programador2.iniciar();
   this.resistencia1.iniciar();
   this.resistencia2.iniciar();
-
-  this.resistencia1.setModoAutomatico(true);
-  this.programador1.cambiarValores("12:25", true, 31, 5000) //(hora, encender, temperatura, cuentaAtras){
 };
 
 esp8266.prototype.getTipoDispositivo = function () {
