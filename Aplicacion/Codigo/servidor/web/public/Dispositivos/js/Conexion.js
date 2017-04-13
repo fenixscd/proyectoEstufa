@@ -1,6 +1,7 @@
 function Conexion(mac, peticionesLista){
   this.mac             = mac;
-  this.listaMensajes   = new ListaMensajes();
+  //this.listaMensajes   = new ListaMensajes();
+  this.listaPeticionesPendientes = new ListaPeticionesPendientes();
 
 
   this.urlServidor = "ws://192.168.5.20:8080";
@@ -153,21 +154,25 @@ Conexion.prototype.enviar = function (msg) {
 // Para que los mensajes se envien tiene que aver conexión y la lista estar vacia
 // Tiene que estar vacia la lista para que no se cuelen mensajes mientras se esta vaciando
 Conexion.prototype.isSePuedeEnviar = function () {
-  console.log("La conexion " + this.isConectado());
-  console.log("La lista esta vacia " + this.listaMensajes.isVacia());
-  if (this.isConectado() && this.listaMensajes.isVacia()) return true;
+  // console.log("La conexion " + this.isConectado());
+  // console.log("La lista esta vacia " + this.listaPeticionesPendientes.isListaVacia());
+  if (this.isConectado() && this.listaPeticionesPendientes.isListaVacia()) return true;
   else return false;
 };
 
 ///// COLA DE MENSAGES
 Conexion.prototype.addListaMensaje = function (msg) {
-  this.listaMensajes.addMensaje(msg);
-  console.log(this.listaMensajes);
+  this.listaPeticionesPendientes.addMensaje(msg);
+  console.log(this.listaPeticionesPendientes);
 };
 
 Conexion.prototype.enviarListaMensajes = function () {
-  while (this.listaMensajes.getNElementos() != 0) {
-    this.enviar(this.listaMensajes.ultimoElemento()); // Envia de mas antiguo a mas moderno
+  while (this.listaPeticionesPendientes.isPeticionesPendientes()) {
+    if (this.isConectado()){
+      this.enviar(this.listaPeticionesPendientes.ultimoElemento()); // Envia de mas antiguo a mas moderno
+    }else {
+      break;
+    }
   }
   console.log("Lista vaciada");
 };
