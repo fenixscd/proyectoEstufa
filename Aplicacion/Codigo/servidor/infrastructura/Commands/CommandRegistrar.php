@@ -9,7 +9,8 @@ class CommandRegistrar{
     $this->nombre = "registrar";
   }
 
-  public function ejecutar(){
+  public function ejecutar($conexion, $parametros){
+    
     echo "Commando Registrar";
   }
 

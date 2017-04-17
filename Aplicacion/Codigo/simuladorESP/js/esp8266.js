@@ -1,10 +1,12 @@
-function esp8266(){
+function esp8266(mac){
   this.tipoDispositivo   = "estufa"
-  this.mac               = this.generarMac();
+  if (mac == undefined) this.mac = this.generarMac();
+  else this.mac = mac;
+
   this.nombreDispositivo = false;
   this.modoAutomatico    = false;
 
-  this.commandsLista = new CommandsLista();
+  this.commandsLista   = new CommandsLista();
   this.display         = new Display(this.mac);
   this.conexion        = new Conexion(this.mac);
   this.termometro      = new Termometro(this.display);

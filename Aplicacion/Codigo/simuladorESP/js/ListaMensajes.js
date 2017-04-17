@@ -12,7 +12,6 @@ ListaMensajes.prototype.ultimoElemento = function () { // Devuelve y quita el ul
 
 ListaMensajes.prototype.getNElementos = function () {
   return this.listaMensajes.length;
-
 };
 
 ListaMensajes.prototype.isVacia = function () {

@@ -8,28 +8,31 @@ use infrastructura\Commands\CommandLista;
 use infrastructura\Commands\CommandRegistrar;
 
 class Conexion implements MessageComponentInterface {
-    protected $clients;
-    protected $commandLista;
+    private $clients;
+    private $listaDispositivos;
+    private $commandLista;
+
 
     public function __construct() {
         $this->clients = new SplObjectStorage; // SplObjectStorage identificar objetos de forma única.
+        $this->listaDispositivos = new ListaDispositivos();
         $this->commandLista = new commandLista();
         $this->commandLista->addCommand(new CommandRegistrar());
     }
 
     // Se ejecuta el metod cuando recive una conexión
-    public function onOpen(ConnectionInterface $conn) {
+    public function onOpen(ConnectionInterface $conesion) {
       // Almacene la nueva conexión para enviar mensajes a más tarde
-      $this->clients->attach($conn); // attach -> Agrega un objeto a la lista
+      $this->clients->attach($conesion); // attach -> Agrega un objeto a la lista
 
-      echo "Nueva conexión! ({$conn->resourceId})\n";
+      echo "Nueva conexión! ({$conesion->resourceId})\n";
       // Preguntar la mac del dispositivo
       // Crear el objeto
       // $client->send("getTemperatura");
 
       $numRecv = count($this->clients);
       $mensaje = "connected:".$numRecv;
-      $this->commandLista->getCommand("registrar")->ejecutar();
+      //$this->commandLista->getCommand("registrar")->ejecutar();
 
     }
 
@@ -38,6 +41,7 @@ class Conexion implements MessageComponentInterface {
       echo sprintf('Conexion %d mensaje "%s ' . "\n"
                , $from->resourceId, $msg);
 
+      var_dump(json_decode($msg, true));
 
     }
 
