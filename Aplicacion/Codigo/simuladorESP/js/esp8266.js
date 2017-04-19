@@ -16,15 +16,15 @@ function esp8266(mac){
 
 
   this.display.añadirHTMLDispositivo();
-  this.iniciarComponenetes();
+  //this.iniciarComponenetes();
   this.actualizarMediciones(this) // Bucle para que se vallan actualizando las mediciones
   this.addCommands();
 }
 
-esp8266.prototype.iniciarComponenetes = function () {
-  this.resistencia1.iniciar();
-  this.resistencia2.iniciar();
-};
+// esp8266.prototype.iniciarComponenetes = function () {
+//   this.resistencia1.iniciar();
+//   this.resistencia2.iniciar();
+// };
 
 esp8266.prototype.getTipoDispositivo = function () {
   return this.tipoDispositivo;

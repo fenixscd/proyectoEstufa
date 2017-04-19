@@ -63,69 +63,57 @@ Conexion.prototype.conexionEstablecida = function () {
   console.log("Conxion establecida");
 };
 
+
 Conexion.prototype.metodosConexion = function () {
   var _this = this;
+
+  // Conexion abierta
   this.websocket.onopen = function(evt) {
-    _this.conexionAbierta(evt);
+    //_this.conexionAbierta(evt);
+
+    console.log(_this.websocket);
+    console.log(_this.websocket.readyState);
+    _this.conectando = false;
+    _this.conectado = true;
+    _this.websocket.send("Conecto");
+
   };
 
+  // Conexion cerrada
   this.websocket.onclose = function(evt) {
-    _this.conexionCerrada();
+    _this.conectado = false;
+    _this.conectar();
+    console.log("La conexion se ha cerrado " + _this.websocket.readyState);
+
   };
 
+  // Error de conexion
   this.websocket.onerror = function(evt) {
-    _this.conexionError(evt);
+    _this.conectado = false;
+    console.log("Error en la conexion: " + _this.websocket.readyState);
   };
 
+  // Mensaje entrante
   this.websocket.onmessage = function(evt) {
-    _this.conexionMensajeRecivido(evt);
+    // var mensaje = evt.data;
+    // console.log(mensaje);
+    // if (mensaje.startsWith("log:")) {
+    //    mensaje = mensaje.slice("log:".length);
+    //    console.log(mensaje);
+    // }else if (mensaje.startsWith("connected:")) {
+    //    mensaje = mensaje.slice("connected:".length);
+    //    console.log(mensaje);
+    // }
+    console.log("Mendaje recivido");
   };
 };
 
-
-
-////////   EVENTOS RELACIONADOS CON LA CONEXION ////////////
-
-Conexion.prototype.conexionAbierta = function (evt) {
-  console.log(this.websocket);
-  console.log(this.websocket.readyState);
-  this.conectando = false;
-  this.conectado = true;
-  this.websocket.send("Conecto");
-};
-
-Conexion.prototype.conexionCerrada = function (evt) {
-  this.conectado = false;
-  this.conectar();
-  console.log("La conexion se ha cerrado " + this.websocket.readyState);
-
-};
-
-Conexion.prototype.conexionError = function (evt) {
-  this.conectado = false;
-  console.log("Error en la conexion: " + this.websocket.readyState);
-};
-
-Conexion.prototype.conexionMensajeRecivido = function (evt) {
-  // var mensaje = evt.data;
-  // console.log(mensaje);
-  // if (mensaje.startsWith("log:")) {
-  //    mensaje = mensaje.slice("log:".length);
-  //    console.log(mensaje);
-  // }else if (mensaje.startsWith("connected:")) {
-  //    mensaje = mensaje.slice("connected:".length);
-  //    console.log(mensaje);
-  // }
-  console.log("Mendaje recivido");
-
-};
 
 //////////////////////////////////////////////////////////////////
 
 Conexion.prototype.isConexionIniciada = function () {
   return this.conectado;
 };
-
 
 Conexion.prototype.getUrlServidor = function () {
   return this.urlServidor;
