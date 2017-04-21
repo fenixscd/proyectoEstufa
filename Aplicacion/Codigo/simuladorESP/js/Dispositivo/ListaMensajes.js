@@ -18,3 +18,8 @@ ListaMensajes.prototype.isVacia = function () {
   if (this.getNElementos() == 0) return true;
   else return false;
 };
+
+ListaMensajes.prototype.isMsgPendientes = function () {
+  if (this.getNElementos() > 0) return true;
+  else return false;
+};

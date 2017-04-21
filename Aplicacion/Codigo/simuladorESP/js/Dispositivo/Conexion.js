@@ -11,8 +11,13 @@ function Conexion(mac, commandsLista){
 }
 
 Conexion.prototype.websocketInstanciar = function () {
-  if (this.websocket == null){
+  var _this = this;
+  if (this.websocket == null || this.isCerrada()){
     this.websocket = new WebSocket(this.urlServidor);
+    this.websocket.onopen = function(evt) { _this.conexionAbierta(evt) };
+    this.websocket.onclose = function(evt) { _this.conexionCerrada(evt); };
+    this.websocket.onmessage = function(evt) { _this.conexionError(evt); };
+    this.websocket.onerror = function(evt) { _this.conexionMensajeRecivido(evt); };
   }
 };
 
@@ -28,83 +33,42 @@ Conexion.prototype.isConectado = function () {
 
 Conexion.prototype.conectar = function () {
   this.websocketInstanciar(); // instancia si no esta instanciado
-
-  console.log("Estado " + this.websocket.readyState);
-  if (this.isCerrada()){ // Si esta cerrada tengo que volver a instanciar le objeto
-    this.websocket = new WebSocket(this.urlServidor);
-  }
-
-  if (!this.isConectado()){
-    this.bucleConectar(this);
-  }else{
-    this.metodosConexion(this);
-    this.enviarListaMensajes();
-  }
-};
-
-Conexion.prototype.bucleConectar = function (_this) {
   this.intentosDeConexion++;
-  var bucleConectar = setTimeout(function(){
-      console.log("Intento de conexion " + _this.intentosDeConexion);
-      _this.conectar();
-  }, 2000)
+  console.log("Intento de conexion " + this.intentosDeConexion);
 };
 
-Conexion.prototype.conexionEstablecida = function () {
-  console.log("Conxion establecida");
+
+////////   EVENTOS RELACIONADOS CON LA CONEXION ////////////
+
+Conexion.prototype.conexionAbierta = function (evt) {
+  this.commandsLista.getCommand("registrar").ejecutar(this);
+  this.enviarListaMensajes();
+  console.log("Conectado codigo " + this.websocket.readyState);
 };
 
-Conexion.prototype.metodosConexion = function (_this) {
-
-  // Conexion abierta
-  this.websocket.onopen = function(evt) {
-
-    console.log(_this.websocket);
-    console.log(_this.websocket.readyState);
-    _this.commandsLista("registrar").ejecutar();
-    _this.websocket.send("Conecto");
-
-  };
-
-  this.websocket.prototype.onopen = function (evt) {
-    console.log("Conexion habieta");
-  };
-  this.websocket.onopen = function(evt) {
-    console.log("Conexion habieta");
-    console.log(_this.websocket);
-    console.log(_this.websocket.readyState);
-    _this.commandsLista("registrar").ejecutar();
-    _this.websocket.send("Conecto");
-
-  };
-
-  // Conexion cerrada
-  this.websocket.onclose = function(evt) {
-    _this.conectar();
-    console.log("La conexion se ha cerrado " + _this.websocket.readyState);
-
-  };
-
-  // Error de conexion
-  this.websocket.onerror = function(evt) {
-    console.log("Error en la conexion: " + _this.websocket.readyState);
-  };
-
-  // Mensaje entrante
-  this.websocket.onmessage = function(evt) {
-    // var mensaje = evt.data;
-    // console.log(mensaje);
-    // if (mensaje.startsWith("log:")) {
-    //    mensaje = mensaje.slice("log:".length);
-    //    console.log(mensaje);
-    // }else if (mensaje.startsWith("connected:")) {
-    //    mensaje = mensaje.slice("connected:".length);
-    //    console.log(mensaje);
-    // }
-    console.log("Mendaje recivido");
-  };
+Conexion.prototype.conexionCerrada = function (evt) {
+  console.log("La conexion se ha cerrado " + this.websocket.readyState);
+  console.log("Llamo a conectar");
+  this.conectar();
 };
 
+Conexion.prototype.conexionError = function (evt) {
+  console.log("Error en la conexion: " + this.websocket.readyState);
+};
+
+Conexion.prototype.conexionMensajeRecivido = function (evt) {
+  // var mensaje = evt.data;
+  // console.log(mensaje);
+  // if (mensaje.startsWith("log:")) {
+  //    mensaje = mensaje.slice("log:".length);
+  //    console.log(mensaje);
+  // }else if (mensaje.startsWith("connected:")) {
+  //    mensaje = mensaje.slice("connected:".length);
+  //    console.log(mensaje);
+  // }
+  console.log("Metodo de mensaje recivido");
+
+};
 
 //////////////////////////////////////////////////////////////////
 

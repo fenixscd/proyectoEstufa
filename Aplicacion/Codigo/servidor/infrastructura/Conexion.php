@@ -45,7 +45,7 @@ class Conexion implements MessageComponentInterface {
       $parametros = json_decode($msg, true);
       //var_dump($parametros) + "  -  ";
 
-      $this->commandLista->getCommand($parametros["command"])->ejecutar($parametros);
+      //$this->commandLista->getCommand($parametros["command"])->ejecutar($parametros);
     }
 
     public function onClose(ConnectionInterface $conn) {

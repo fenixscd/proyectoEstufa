@@ -8,7 +8,7 @@ function Dispositivo(mac){
 
   this.commandsLista   = new CommandsLista();
   this.display         = new Display(this.mac);
-  this.conexion        = new Conexion(this.mac);
+  this.conexion        = new Conexion(this.mac, this.commandsLista);
   this.termometro      = new Termometro(this.display);
   this.humedad         = new Humedad(this.conexion, this.display);
   this.resistencia1    = new Resistencia(1, this.conexion, this.display, this.termometro);
@@ -17,9 +17,7 @@ function Dispositivo(mac){
   this.addCommands();
 
   this.display.añadirHTMLDispositivo();
-  //this.iniciarComponenetes();
   this.actualizarMediciones(this) // Bucle para que se vallan actualizando las mediciones
-  this.commandsLista.getCommand("registrar").ejecutar(this);
 }
 
 Dispositivo.prototype.getTipoDispositivo = function () {
