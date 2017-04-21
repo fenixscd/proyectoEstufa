@@ -37,7 +37,7 @@ Conexion.prototype.conectar = function () {
   if (!this.isConectado()){
     this.bucleConectar(this);
   }else{
-    this.metodosConexion();
+    this.metodosConexion(this);
     this.enviarListaMensajes();
   }
 };
@@ -54,12 +54,23 @@ Conexion.prototype.conexionEstablecida = function () {
   console.log("Conxion establecida");
 };
 
-Conexion.prototype.metodosConexion = function () {
-  var _this = this;
+Conexion.prototype.metodosConexion = function (_this) {
 
   // Conexion abierta
   this.websocket.onopen = function(evt) {
 
+    console.log(_this.websocket);
+    console.log(_this.websocket.readyState);
+    _this.commandsLista("registrar").ejecutar();
+    _this.websocket.send("Conecto");
+
+  };
+
+  this.websocket.prototype.onopen = function (evt) {
+    console.log("Conexion habieta");
+  };
+  this.websocket.onopen = function(evt) {
+    console.log("Conexion habieta");
     console.log(_this.websocket);
     console.log(_this.websocket.readyState);
     _this.commandsLista("registrar").ejecutar();

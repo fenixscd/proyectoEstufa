@@ -39,19 +39,13 @@ class Conexion implements MessageComponentInterface {
 
     // Mensaje recivido
     public function onMessage(ConnectionInterface $from, $msg) {
-      echo sprintf('Conexion %d mensaje "%s ' . "\n"
+      echo sprintf('Conexion %d mensaje "%s ' . "\n \n"
                , $from->resourceId, $msg);
 
       $parametros = json_decode($msg, true);
-      var_dump($parametros);
+      //var_dump($parametros) + "  -  ";
 
-
-      echo $parametros["command"];
       $this->commandLista->getCommand($parametros["command"])->ejecutar($parametros);
-
-
-
-
     }
 
     public function onClose(ConnectionInterface $conn) {
