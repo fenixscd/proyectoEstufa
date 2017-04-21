@@ -21,11 +21,10 @@ var listaDeMacs = ["A6-B5-C4-D3-00-01", "A6-B5-C4-D3-00-02", "A6-B5-C4-D3-00-03"
 
 function CargarLista() {
   for (var i = 0; i < listaDeMacs.length; i++){
-    new esp8266(listaDeMacs[i]);
+    new Dispositivo(listaDeMacs[i]);
   }
 }
 
-
 function crearDispositivo() {
-  new esp8266();
+  new Dispositivo();
 }

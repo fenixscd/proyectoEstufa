@@ -10,15 +10,15 @@ class ListaDispositivos {
       $this->listaDispositivos = new SplObjectStorage;
     }
 
-    public function addConexion($dispositivo){
+    public function addDispositivo($dispositivo){
       $this->listaDispositivos->attach($dispositivo);
     }
 
-    public function rmConexion ($dispositivo){
+    public function rmDispositivo ($dispositivo){
       $this->listaDispositivos->detach($dispositivo);
     }
 
-    public function getNConexiones(){
+    public function getNDispositivos(){
       return $this->listaDispositivos->count();
     }
 

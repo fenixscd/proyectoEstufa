@@ -1,8 +1,6 @@
-function Conexion(mac, peticionesLista){
+function Conexion(mac){
   this.mac             = mac;
-  this.peticionesLista = peticionesLista;
   this.listaMensajes   = new ListaMensajes();
-
 
   this.urlServidor = "ws://192.168.5.20:8080";
   this.conectado = false;
@@ -62,7 +60,6 @@ Conexion.prototype.bucleConectar = function (_this) {
 Conexion.prototype.conexionEstablecida = function () {
   console.log("Conxion establecida");
 };
-
 
 Conexion.prototype.metodosConexion = function () {
   var _this = this;
@@ -142,8 +139,6 @@ Conexion.prototype.enviar = function (msg) {
 // Para que los mensajes se envien tiene que aver conexión y la lista estar vacia
 // Tiene que estar vacia la lista para que no se cuelen mensajes mientras se esta vaciando
 Conexion.prototype.isSePuedeEnviar = function () {
-  console.log("La conexion " + this.isConectado());
-  console.log("La lista esta vacia " + this.listaMensajes.isVacia());
   if (this.isConectado() && this.listaMensajes.isVacia()) return true;
   else return false;
 };

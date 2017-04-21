@@ -3,6 +3,7 @@ namespace infrastructura;
 
 use Ratchet\MessageComponentInterface;
 use Ratchet\ConnectionInterface;
+
 use SplObjectStorage;
 use infrastructura\Commands\CommandLista;
 use infrastructura\Commands\CommandRegistrar;
@@ -41,7 +42,15 @@ class Conexion implements MessageComponentInterface {
       echo sprintf('Conexion %d mensaje "%s ' . "\n"
                , $from->resourceId, $msg);
 
-      var_dump(json_decode($msg, true));
+      $parametros = json_decode($msg, true);
+      var_dump($parametros);
+
+
+      echo $parametros["command"];
+      $this->commandLista->getCommand($mensaje["command"])->ejecutar($parametros);
+
+
+
 
     }
 

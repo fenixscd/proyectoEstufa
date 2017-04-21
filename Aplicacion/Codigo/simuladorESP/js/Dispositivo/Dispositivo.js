@@ -1,4 +1,4 @@
-function esp8266(mac){
+function Dispositivo(mac){
   this.tipoDispositivo   = "estufa"
   if (mac == undefined) this.mac = this.generarMac();
   else this.mac = mac;
@@ -14,31 +14,27 @@ function esp8266(mac){
   this.resistencia1    = new Resistencia(1, this.conexion, this.display, this.termometro);
   this.resistencia2    = new Resistencia(2, this.conexion, this.display, this.termometro);
 
+  this.addCommands();
 
   this.display.añadirHTMLDispositivo();
   //this.iniciarComponenetes();
   this.actualizarMediciones(this) // Bucle para que se vallan actualizando las mediciones
-  this.addCommands();
+  this.commandsLista.getCommand("registrar").ejecutar(this);
 }
 
-// esp8266.prototype.iniciarComponenetes = function () {
-//   this.resistencia1.iniciar();
-//   this.resistencia2.iniciar();
-// };
-
-esp8266.prototype.getTipoDispositivo = function () {
+Dispositivo.prototype.getTipoDispositivo = function () {
   return this.tipoDispositivo;
 };
 
-esp8266.prototype.getMac = function() {
+Dispositivo.prototype.getMac = function() {
   return this.mac;
 };
 
-esp8266.prototype.setMac = function(mac) {
+Dispositivo.prototype.setMac = function(mac) {
   this.mac = mac;
 };
 
-esp8266.prototype.getNombreDispositivo = function () {
+Dispositivo.prototype.getNombreDispositivo = function () {
   if (this.nombreDispositivo == false){
     return this.getMac();
   }else {
@@ -46,21 +42,16 @@ esp8266.prototype.getNombreDispositivo = function () {
   }
 };
 
-esp8266.prototype.addCommands = function () {
-  this.commandsLista.addCommand(new CommandEnviarTemperatura(this))
-};
-
-
-esp8266.prototype.setNombreDispositivo = function (nombreDispositivo) {
+Dispositivo.prototype.setNombreDispositivo = function (nombreDispositivo) {
   this.nombreDispositivo = nombreDispositivo;
 };
 
-esp8266.prototype.isResistenciaEncendida = function () {
+Dispositivo.prototype.isResistenciaEncendida = function () {
   if (this.resistencia1.getResistenciaEncendida() || this.resistencia2.getResistenciaEncendida()) return true;
   else return false;
 };
 
-esp8266.prototype.actualizarMediciones = function (obj) {
+Dispositivo.prototype.actualizarMediciones = function (obj) {
     window.setInterval(function() {
       obj.termometro.actualizarMedicion(obj.isResistenciaEncendida());
       obj.humedad.actualizarEstado();
@@ -69,7 +60,7 @@ esp8266.prototype.actualizarMediciones = function (obj) {
     }, 1000);
 };
 
-esp8266.prototype.generarMac = function () {
+Dispositivo.prototype.generarMac = function () {
   var mac = "A6-B5-C4-D3"
   var calculado;
   var longitud;
@@ -87,4 +78,8 @@ esp8266.prototype.generarMac = function () {
     return mac;
 };
 
+Dispositivo.prototype.addCommands = function () {
+  this.commandsLista.addCommand(new CommandEnviarTemperatura());
+  this.commandsLista.addCommand(new CommandRegistrar());
+};
 ///////// Peticiones

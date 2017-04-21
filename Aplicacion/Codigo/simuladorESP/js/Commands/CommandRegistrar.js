@@ -1,13 +1,14 @@
-function CommandEnviarTemperatura() {
+function CommandRegistrar(commandsLista) {
+  this.commandsLista = commandsLista;
   this.nombre      = "registrar";
   this.datos       = new Object();
 }
 
-CommandEnviarTemperatura.prototype.getNombre = function () {
+CommandRegistrar.prototype.getNombre = function () {
   return this.nombre;
 };
 
-CommandEnviarTemperatura.prototype.ejecutar = function(dispositivo) {
+CommandRegistrar.prototype.ejecutar = function(dispositivo) {
   // Crear todo lo necesario para la contestacion en la lista de dispositivo
   this.datos.command = "registrar";
   this.datos.tipoDispositivo = dispositivo.getTipoDispositivo();

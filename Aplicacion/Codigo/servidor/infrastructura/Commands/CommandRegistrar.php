@@ -2,6 +2,9 @@
 
 namespace infrastructura\Commands;
 
+use infrastructura\Dispositivo;
+use infrastructura\ListaDispositivos;
+
 class CommandRegistrar{
   private $nombre;
 
@@ -10,7 +13,7 @@ class CommandRegistrar{
   }
 
   public function ejecutar($conexion, $parametros){
-    
+
     echo "Commando Registrar";
   }
 
