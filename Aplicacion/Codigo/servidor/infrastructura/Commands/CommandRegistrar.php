@@ -2,6 +2,9 @@
 
 namespace infrastructura\Commands;
 
+use infrastructura\Dispositivo;
+use infrastructura\ListaDispositivos;
+
 class CommandRegistrar{
   private $nombre;
 
@@ -9,7 +12,8 @@ class CommandRegistrar{
     $this->nombre = "registrar";
   }
 
-  public function ejecutar(){
+  public function ejecutar($parametros){
+
     echo "Commando Registrar";
   }
 

@@ -7,7 +7,10 @@ function Resistencia (numero, conexion, display, termometro){
   this.modoEncendido        = false;
   this.resistenciaEncendida = false;
   this.temperatura          = false; // Temperatura de funcionamiento;
-  //this.pintarValoresDisplay();
+
+  this.pintarValoresDisplay();
+  this.actualizarEstado(this.termometro.getMedicion());
+
 }
 
 Resistencia.prototype.getNumero = function () {
@@ -92,7 +95,7 @@ Resistencia.prototype.actualizarEstado = function(temperaturaActual) {
 
 Resistencia.prototype.iniciar = function () {
   this.pintarValoresDisplay();
-  this.actualizarEstado(this.termometro.getMedicion())
+  this.actualizarEstado(this.termometro.getMedicion());
 };
 
 //////////////////// ENVIAR ACTUALIZAR DISPLAY ///////////////////////////////
@@ -134,7 +137,7 @@ Resistencia.prototype.pintarTemperatura = function () {
   if (this.getModoEncendido()){
     var pintar = this.getTemperatura();
   }
-this.display.cambiarValor(("resistenciaTemperatura" + this.numero), pintar);
+  this.display.cambiarValor(("resistenciaTemperatura" + this.numero), pintar);
 };
 
 Resistencia.prototype.enviarTemperatura = function () {

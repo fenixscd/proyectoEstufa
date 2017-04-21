@@ -6,7 +6,6 @@ CommandsLista.prototype.addCommand = function (peticion) {
   this.commandsLista.push(peticion);
 };
 
-
 CommandsLista.prototype.getNCommands = function () {
   return this.commandsLista.length;
 };

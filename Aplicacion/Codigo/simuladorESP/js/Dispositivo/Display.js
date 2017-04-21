@@ -16,7 +16,11 @@ Display.prototype.pintarValores = function() {
 };
 
 Display.prototype.cambiarValor = function(clave, valor) {
-  document.getElementById(clave + this.mac).innerHTML = valor;
+  // Retardo
+  var mac = this.mac;
+  setTimeout(function(){
+        document.getElementById(clave + mac).innerHTML = valor;
+    },10);
 };
 
 Display.prototype.añadirHTMLDispositivo = function () {
