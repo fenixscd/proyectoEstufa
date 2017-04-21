@@ -1,4 +1,4 @@
-function Termometro(display){
+function Termometro(display, dispositivo){
   this.display           = display;
   this.enviarTemperatura = false;
   this.temperaturaMaxima = 40;

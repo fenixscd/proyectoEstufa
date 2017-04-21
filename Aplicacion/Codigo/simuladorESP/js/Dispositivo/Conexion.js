@@ -82,7 +82,6 @@ Conexion.prototype.enviarDatos = function(clave, valor) {
   console.log("Antes de enviar " + mensaje);
 };
 
-
 Conexion.prototype.enviarMensaje = function (mensaje) {
   if (this.isSePuedeEnviar()){
     this.enviar(mensaje);

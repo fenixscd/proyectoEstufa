@@ -18,6 +18,8 @@ function Dispositivo(mac){
 
   this.display.añadirHTMLDispositivo();
   this.actualizarMediciones(this) // Bucle para que se vallan actualizando las mediciones
+
+
 }
 
 Dispositivo.prototype.getTipoDispositivo = function () {
@@ -79,5 +81,9 @@ Dispositivo.prototype.generarMac = function () {
 Dispositivo.prototype.addCommands = function () {
   this.commandsLista.addCommand(new CommandEnviarTemperatura(this));
   this.commandsLista.addCommand(new CommandRegistrar(this));
+};
+
+Dispositivo.prototype.ejecutarPrueba = function () {
+  this.commandsLista.getCommand("enviarTemperatura").ejecutar(this);
 };
 ///////// Peticiones

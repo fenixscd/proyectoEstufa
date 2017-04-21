@@ -26,5 +26,6 @@ function CargarLista() {
 }
 
 function crearDispositivo() {
-  new Dispositivo();
+  var prue = new Dispositivo();
+  prue.ejecutarPrueba();
 }
