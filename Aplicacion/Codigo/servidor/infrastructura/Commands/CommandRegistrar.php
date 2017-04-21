@@ -12,7 +12,7 @@ class CommandRegistrar{
     $this->nombre = "registrar";
   }
 
-  public function ejecutar($conexion, $parametros){
+  public function ejecutar($parametros){
 
     echo "Commando Registrar";
   }

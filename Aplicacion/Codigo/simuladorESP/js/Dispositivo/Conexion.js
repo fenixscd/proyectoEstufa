@@ -1,11 +1,9 @@
-function Conexion(mac){
+function Conexion(mac, commandsLista){
+  this.commandsLista   = commandsLista;
   this.mac             = mac;
   this.listaMensajes   = new ListaMensajes();
 
   this.urlServidor = "ws://192.168.5.20:8080";
-  this.conectado = false;
-  // conectando es para que no vuelva a intentar conectar mientras esta abriendo la conexion
-  this.conectando = false;
   this.intentosDeConexion = 0;
   this.websocket;
 
@@ -16,11 +14,6 @@ Conexion.prototype.websocketInstanciar = function () {
   if (this.websocket == null){
     this.websocket = new WebSocket(this.urlServidor);
   }
-};
-
-Conexion.prototype.isConectando = function () {
-  if (this.websocket.readyState == 0) return true;
-  else return false;
 };
 
 Conexion.prototype.isCerrada = function () {
@@ -66,19 +59,16 @@ Conexion.prototype.metodosConexion = function () {
 
   // Conexion abierta
   this.websocket.onopen = function(evt) {
-    //_this.conexionAbierta(evt);
 
     console.log(_this.websocket);
     console.log(_this.websocket.readyState);
-    _this.conectando = false;
-    _this.conectado = true;
+    _this.commandsLista("registrar").ejecutar();
     _this.websocket.send("Conecto");
 
   };
 
   // Conexion cerrada
   this.websocket.onclose = function(evt) {
-    _this.conectado = false;
     _this.conectar();
     console.log("La conexion se ha cerrado " + _this.websocket.readyState);
 
@@ -86,7 +76,6 @@ Conexion.prototype.metodosConexion = function () {
 
   // Error de conexion
   this.websocket.onerror = function(evt) {
-    _this.conectado = false;
     console.log("Error en la conexion: " + _this.websocket.readyState);
   };
 
@@ -107,10 +96,6 @@ Conexion.prototype.metodosConexion = function () {
 
 
 //////////////////////////////////////////////////////////////////
-
-Conexion.prototype.isConexionIniciada = function () {
-  return this.conectado;
-};
 
 Conexion.prototype.getUrlServidor = function () {
   return this.urlServidor;
@@ -133,7 +118,7 @@ Conexion.prototype.enviarMensaje = function (mensaje) {
 
 Conexion.prototype.enviar = function (msg) {
   this.websocket.send(msg);
-  console.log("Enviado " + msg);
+  console.log("Enviado: " + msg);
 };
 
 // Para que los mensajes se envien tiene que aver conexión y la lista estar vacia

@@ -79,7 +79,7 @@ Dispositivo.prototype.generarMac = function () {
 };
 
 Dispositivo.prototype.addCommands = function () {
-  this.commandsLista.addCommand(new CommandEnviarTemperatura());
-  this.commandsLista.addCommand(new CommandRegistrar());
+  this.commandsLista.addCommand(new CommandEnviarTemperatura(this));
+  this.commandsLista.addCommand(new CommandRegistrar(this));
 };
 ///////// Peticiones

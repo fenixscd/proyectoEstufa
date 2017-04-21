@@ -47,7 +47,7 @@ class Conexion implements MessageComponentInterface {
 
 
       echo $parametros["command"];
-      $this->commandLista->getCommand($mensaje["command"])->ejecutar($parametros);
+      $this->commandLista->getCommand($parametros["command"])->ejecutar($parametros);
 
 
 
