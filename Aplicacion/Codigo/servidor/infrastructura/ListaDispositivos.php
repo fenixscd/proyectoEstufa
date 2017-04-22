@@ -22,4 +22,13 @@ class ListaDispositivos {
       return $this->listaDispositivos->count();
     }
 
+    public function isExistsMac($mac){
+      foreach($this->listaDispositivos as $dis){
+        if ($dis->isEqualsMac($mac)){
+          return true;
+        }
+      return false;
+      }
+    }
+
 }

@@ -16,9 +16,7 @@ class CommandLista{
 
   public function getCommand($comando){
     foreach ($this->commands as $command) {
-      echo "Opcion: " . $command->getNombre();
       if ($command->getNombre() == $comando){
-        echo "Retorna: " . $command->getNombre();
         return $command;
       }
     }

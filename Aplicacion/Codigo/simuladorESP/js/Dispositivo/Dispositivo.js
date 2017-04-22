@@ -81,6 +81,7 @@ Dispositivo.prototype.generarMac = function () {
 Dispositivo.prototype.addCommands = function () {
   this.commandsLista.addCommand(new CommandEnviarTemperatura(this));
   this.commandsLista.addCommand(new CommandRegistrar(this));
+  this.commandsLista.addCommand(new CommandRegistrar(this));
 };
 
 Dispositivo.prototype.ejecutarPrueba = function () {

@@ -7,6 +7,7 @@ use Ratchet\ConnectionInterface;
 use SplObjectStorage;
 use infrastructura\Commands\CommandLista;
 use infrastructura\Commands\CommandRegistrar;
+use infrastructura\Commands\CommandRegistrarDispositivo;
 
 class Conexion implements MessageComponentInterface {
     private $clients;
@@ -18,7 +19,8 @@ class Conexion implements MessageComponentInterface {
         $this->clients = new SplObjectStorage; // SplObjectStorage identificar objetos de forma única.
         $this->listaDispositivos = new ListaDispositivos();
         $this->commandLista = new commandLista();
-        $this->commandLista->addCommand(new CommandRegistrar());
+        $this->commandLista->addCommand(new CommandRegistrar($this->listaDispositivos));
+        $this->commandLista->addCommand(new CommandRegistrarDispositivo($this->listaDispositivos));
     }
 
     // Se ejecuta el metod cuando recive una conexión
@@ -27,25 +29,17 @@ class Conexion implements MessageComponentInterface {
       $this->clients->attach($conesion); // attach -> Agrega un objeto a la lista
 
       echo "Nueva conexión! ({$conesion->resourceId})\n";
-      // Preguntar la mac del dispositivo
-      // Crear el objeto
-      // $client->send("getTemperatura");
-
-      $numRecv = count($this->clients);
-      $mensaje = "connected:".$numRecv;
-      //$this->commandLista->getCommand("registrar")->ejecutar();
-
     }
 
     // Mensaje recivido
-    public function onMessage(ConnectionInterface $from, $msg) {
+    public function onMessage(ConnectionInterface $conec, $msg) {
       echo sprintf('Conexion %d mensaje "%s ' . "\n \n"
-               , $from->resourceId, $msg);
+               , $conec->resourceId, $msg);
 
       $parametros = json_decode($msg, true);
       //var_dump($parametros) + "  -  ";
 
-      //$this->commandLista->getCommand($parametros["command"])->ejecutar($parametros);
+      $this->commandLista->getCommand($parametros["command"])->ejecutar($conec, $parametros);
     }
 
     public function onClose(ConnectionInterface $conn) {
