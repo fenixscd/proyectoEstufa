@@ -5,6 +5,7 @@ use infrastructura\ListaConexionesCliente;
 
 class Dispositivo {
     private $mac;
+    private $idConexion;
     private $conexionDispositivo;
     private $listaConexionesCliente;
     private $persistencia;
@@ -22,8 +23,13 @@ class Dispositivo {
       return $this;
     }
 
-    public function isEqualsMac($mac){
-      return $this.mac == $mac;
+    public function getIdConexion(){
+        return $this->idConexion;
+    }
+
+    public function setIdConexion($idConexion){
+        $this->idConexion = $idConexion;
+        return $this;
     }
 
     public function  getConexionDispositivo(){
@@ -34,6 +40,15 @@ class Dispositivo {
       $this->conexionDispositivo = $conexionDispositivo;
       return $this;
     }
+
+
+
+
+    public function isEqualsMac($mac){
+      return $this.mac == $mac;
+    }
+
+
 
 
 }

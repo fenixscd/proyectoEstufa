@@ -26,7 +26,7 @@ class CommandRegistrarDispositivo{
                   ->setConexionDispositivo($conec);
       $this->listaDispositivos->addDispositivo($dispositivo);
     }else {
-      $this->listaDispositivos->
+      //$this->listaDispositivos->
     }
 
     echo "-Commando registrarDispositivo";

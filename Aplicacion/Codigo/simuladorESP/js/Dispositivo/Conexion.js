@@ -41,7 +41,7 @@ Conexion.prototype.conectar = function () {
 ////////   EVENTOS RELACIONADOS CON LA CONEXION ////////////
 
 Conexion.prototype.conexionAbierta = function (evt) {
-  this.commandsLista.getCommand("registrar").ejecutar(this);
+  this.commandsLista.getCommand("registrarDispositivo").ejecutar();
   this.enviarListaMensajes();
   console.log("Conectado codigo " + this.websocket.readyState);
 };
