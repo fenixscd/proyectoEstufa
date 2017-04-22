@@ -5,12 +5,12 @@ namespace infrastructura\Commands;
 use infrastructura\Dispositivo;
 use infrastructura\ListaDispositivos;
 
-class CommandRegistrarDispositivo{
+class CommandRegistrarDispositivoCliente{
   private $nombre;
   private $listaDispositivos;
 
   public function __construct($listaDispositivos){
-    $this->nombre            = "registrarDispositivo";
+    $this->nombre            = "registrarDispositivoCliente";
     $this->listaDispositivos = $listaDispositivos;
   }
 
@@ -25,8 +25,6 @@ class CommandRegistrarDispositivo{
       $dispositivo->setMac($parametros["mac"])
                   ->setConexionDispositivo($conec);
       $this->listaDispositivos->addDispositivo($dispositivo);
-    }else {
-      //$this->listaDispositivos->
     }
 
     echo "-Commando registrarDispositivo";
