@@ -17,11 +17,16 @@ function crearDispositivo() {
 
 function cargarListaDePeticiones(){
   peticionesLista.addPeticion(new PeticionGetTemperatura(conexion));
+  peticionesLista.addPeticion(new PeticionConfirmarConexion(conexion));
+  peticionesLista.addPeticion(new PeticionRegistrarDispositivos(conexion));
 
 }
 
 function cargarListaDeComandos(){
   commandsLista.addCommand(new CommandCrearDispositivo(listaDispositivos));
   commandsLista.addCommand(new CommandCambiarTemperatura(listaDispositivos));
+  commandsLista.addCommand(new CommandCambiarEstadoConexion(listaDispositivos));
+
+
 
 }

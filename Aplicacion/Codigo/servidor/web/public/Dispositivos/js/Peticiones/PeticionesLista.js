@@ -21,4 +21,6 @@ PeticionesLista.prototype.getPeticion = function (peticion) {
     if (this.peticionesLista[i].getNombre() == peticion )
       return this.peticionesLista[i];
   }
+  console.log("La peticion -" + peticion + "- no a sido encontrada");
+  return false;
 };

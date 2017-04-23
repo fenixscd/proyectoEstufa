@@ -20,4 +20,11 @@ ListaDispositivos.prototype.getDispositivo = function (mac) {
     if (this.listaDispositivos[i].getMac() == mac )
       return this.listaDispositivos[i];
   }
+  return false;
+};
+
+ListaDispositivos.prototype.cambiarEstado = function (estado) {
+  for (var i = 0; i < this.listaDispositivos.length; i++) {
+    this.listaDispositivos[i].setConexion(estado);
+  }
 };
