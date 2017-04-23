@@ -38,8 +38,14 @@ class Conexion implements MessageComponentInterface {
 
       $parametros = json_decode($msg, true);
       //var_dump($parametros) + "  -  ";
+      $comando = $this->commandLista->getCommand($parametros["command"]);
 
-      $this->commandLista->getCommand($parametros["command"])->ejecutar($conec, $parametros);
+      if ($comando){
+        $comando->ejecutar($conec, $parametros);
+      }else {
+        echo "El comando " . $parametros["command"] . "no existe \n";
+      }
+
     }
 
     public function onClose(ConnectionInterface $conn) {

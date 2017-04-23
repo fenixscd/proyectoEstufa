@@ -1,28 +1,27 @@
 
-
-// var termometro = new Termometro();
-// var humedad = new Humedad();
-//
-// console.log("Mediciones: " + termometro.getMedicion());
-// console.log("Mediciones: " + humedad.getMedicion());
-
-var conexion          = new Conexion();
 var listaDispositivos = new ListaDispositivos();
 var commandsLista     = new CommandsLista();
+var conexion          = new Conexion(commandsLista);
 var peticionesLista   = new PeticionesLista();
 
-cargarListaDePeticiones(conexion);
+cargarListaDePeticiones();
+cargarListaDeComandos();
 
-commandsLista.addCommand(new CommandCrearDispositivo())
 
 function crearDispositivo() {
-  var mac = "84.255.224.22";
-  commandsLista.getCommand("crearDispositivo").ejecutar(mac, listaDispositivos, peticionesLista);
+  var mac = "A6-B5-C4-D3-00-01";
+  commandsLista.getCommand("crearDispositivo").ejecutar(mac, peticionesLista);
   // Programa principal se encargar de crear los dispositivos
 
 }
 
-
-function cargarListaDePeticiones(conexion){
+function cargarListaDePeticiones(){
   peticionesLista.addPeticion(new PeticionGetTemperatura(conexion));
+
+}
+
+function cargarListaDeComandos(){
+  commandsLista.addCommand(new CommandCrearDispositivo(listaDispositivos));
+  commandsLista.addCommand(new CommandCambiarTemperatura(listaDispositivos));
+
 }

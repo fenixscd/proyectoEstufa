@@ -15,7 +15,7 @@ ListaDispositivos.prototype.isDispositivos = function () {
   else return false;
 };
 
-ListaDispositivos.prototype.getDispositivos = function (mac) {
+ListaDispositivos.prototype.getDispositivo = function (mac) {
   for (var i = 0; i < this.listaDispositivos.length; i++) {
     if (this.listaDispositivos[i].getMac() == mac )
       return this.listaDispositivos[i];

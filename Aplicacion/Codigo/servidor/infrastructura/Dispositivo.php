@@ -41,6 +41,10 @@ class Dispositivo {
       return $this;
     }
 
+    public function addDispositivoCliente($conexionDispositivoCliente){
+      $this->listaDispositivoCliente->addConexion($conexionDispositivoCliente);
+    }
+
 
 
 

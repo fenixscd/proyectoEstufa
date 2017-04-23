@@ -1,8 +1,8 @@
-function Conexion(mac, peticionesLista){
-  this.mac             = mac;
+function Conexion(commandsLista){
+
   //this.listaMensajes   = new ListaMensajes();
   this.listaPeticionesPendientes = new ListaPeticionesPendientes();
-
+  this.commandsLista = commandsLista; 
 
   this.urlServidor = "ws://192.168.5.20:8080";
   this.conectado = false;
@@ -131,11 +131,6 @@ Conexion.prototype.getUrlServidor = function () {
   return this.urlServidor;
 };
 
-Conexion.prototype.enviarDatos = function(clave, valor) {
-	var mensaje = "Dispositivo " + this.mac + ": " + clave + " " + valor;
-	this.enviarMensaje(mensaje);
-  console.log("Antes de enviar " + mensaje);
-};
 
 
 Conexion.prototype.enviarMensaje = function (mensaje) {
