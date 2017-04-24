@@ -20,6 +20,6 @@ class CommandLista{
         return $command;
       }
     }
-    echo "El comando - " .$comando. " - NO EXISTE";
+    echo "El comando - " .$comando. " - NO EXISTE\n";
   }
 }
