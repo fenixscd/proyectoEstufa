@@ -15,9 +15,16 @@ ListaDispositivos.prototype.isDispositivos = function () {
   else return false;
 };
 
-ListaDispositivos.prototype.getDispositivos = function (mac) {
+ListaDispositivos.prototype.getDispositivo = function (mac) {
   for (var i = 0; i < this.listaDispositivos.length; i++) {
     if (this.listaDispositivos[i].getMac() == mac )
       return this.listaDispositivos[i];
+  }
+  return false;
+};
+
+ListaDispositivos.prototype.cambiarEstado = function (estado) {
+  for (var i = 0; i < this.listaDispositivos.length; i++) {
+    this.listaDispositivos[i].setConexion(estado);
   }
 };

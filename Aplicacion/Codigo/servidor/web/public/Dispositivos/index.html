@@ -3,16 +3,17 @@
 
 <head>
    <meta charset="UTF-8">
-   <title>Pruebas</title>
+   <title>Pruebas CLIENTES</title>
    <link rel="stylesheet" href="css/simulador.css">
 </head>
 
 <body>
     <section class="centrado" >
         <header>
-            <h1>Pruebas</h1>
+            <h1>Pruebas CLIENTES</h1>
             <form>
                 <input type="button" value="Añadir elemento" onclick="crearDispositivo()"/>
+                <input type="button" value="Cargar lista" onclick="CargarLista()"/>
              </form>
         </header>
 
@@ -56,16 +57,23 @@
    <!-- <script type="text/javascript" src="js/simulador.js"></script> -->
    <!-- <script type="text/javascript" src="js/ObjetosSimulador.js"></script> -->
    <!-- <script type="text/javascript" src="js/prueConxion.js"></script> -->
-   <script type="text/javascript" src="js/Commands/CommandsLista.js"></script>
+   <script type="text/javascript" src="js/Commands/CommandCambierTemperatura.js"></script>
+   <script type="text/javascript" src="js/Commands/CommandCambiarEstadoConexion.js"></script>
    <script type="text/javascript" src="js/Commands/CommandCrearDispositivo.js"></script>
+   <script type="text/javascript" src="js/Commands/CommandsLista.js"></script>
+
    <script type="text/javascript" src="js/Peticiones/PeticionesLista.js"></script>
    <script type="text/javascript" src="js/Peticiones/PeticionGetTemperatura.js"></script>
+   <script type="text/javascript" src="js/Peticiones/PeticionConfirmarConexion.js"></script>
+   <script type="text/javascript" src="js/Peticiones/PeticionRegistrarDispositivos.js"></script>
+
+
+
    <script type="text/javascript" src="js/Display.js"></script>
    <script type="text/javascript" src="js/Dispositivo.js"></script>
    <script type="text/javascript" src="js/ListaPeticionesPendientes.js"></script>
    <script type="text/javascript" src="js/ListaDispositivos.js"></script>
    <script type="text/javascript" src="js/Conexion.js"></script>
-   <script type="text/javascript" src="js/Commands/CommandSolicitarTemperatura.js"></script>
    <script type="text/javascript" src="js/main.js"></script>
 
 </body>

@@ -27,8 +27,18 @@ class ListaDispositivos {
         if ($dis->isEqualsMac($mac)){
           return true;
         }
-      return false;
       }
+      return false;
+    }
+
+    public function getDispositivo($mac){
+      echo "Mellega la mac a listaDispositivos: " . $mac . "\n";
+      foreach($this->listaDispositivos as $dis){
+        if ($dis->isEqualsMac($mac)){
+          return $dis;
+        }
+      }
+      return false;
     }
 
 }

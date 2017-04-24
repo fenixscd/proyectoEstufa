@@ -24,12 +24,10 @@ class Dispositivo {
     }
 
     public function getIdConexion(){
-        return $this->idConexion;
-    }
-
-    public function setIdConexion($idConexion){
-        $this->idConexion = $idConexion;
-        return $this;
+      if ($this->conexionDispositivo == null){
+        return false;
+      }
+        return $this->conexionDispositivo->resourceId;
     }
 
     public function  getConexionDispositivo(){
@@ -41,14 +39,12 @@ class Dispositivo {
       return $this;
     }
 
-
-
-
-    public function isEqualsMac($mac){
-      return $this.mac == $mac;
+    public function addDispositivoCliente($conexionDispositivoCliente){
+      $this->listaDispositivoCliente->addConexion($conexionDispositivoCliente);
     }
 
-
-
+    public function isEqualsMac($mac){
+      return $this->mac == $mac;
+    }
 
 }

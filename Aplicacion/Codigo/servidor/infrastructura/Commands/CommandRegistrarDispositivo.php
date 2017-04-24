@@ -19,17 +19,20 @@ class CommandRegistrarDispositivo{
   }
 
   public function ejecutar($conec, $parametros){
-
-    if(!$this->listaDispositivos->isExistsMac($parametros["mac"])){
+    echo "Estoy en registrar disposivo";
+    var_dump($parametros);
+    $dispositivo = $this->listaDispositivos->getDispositivo($parametros["mac"]);
+    echo "Paso de la parte de cargar dispositivo \n";
+    if(!$dispositivo){
       $dispositivo = new Dispositivo();
       $dispositivo->setMac($parametros["mac"])
                   ->setConexionDispositivo($conec);
       $this->listaDispositivos->addDispositivo($dispositivo);
     }else {
-      //$this->listaDispositivos->
+      $dispositivo->setConexionDispositivo($conec);
     }
 
-    echo "-Commando registrarDispositivo";
+    echo "-Commando registrarDispositivo \n";
   }
 
 }

@@ -21,27 +21,16 @@ Conexion.prototype.websocketInstanciar = function () {
   }
 };
 
-Conexion.prototype.isCerrada = function () {
-  if (this.websocket.readyState == 3) return true;
-  else return false;
-};
-
-Conexion.prototype.isConectado = function () {
-  if (this.websocket.readyState == 1) return true;
-  else return false;
-};
-
-Conexion.prototype.conectar = function () {
-  this.websocketInstanciar(); // instancia si no esta instanciado
-  this.intentosDeConexion++;
-  console.log("Intento de conexion " + this.intentosDeConexion);
-};
-
-
 ////////   EVENTOS RELACIONADOS CON LA CONEXION ////////////
 
 Conexion.prototype.conexionAbierta = function (evt) {
-  this.commandsLista.getCommand("registrarDispositivo").ejecutar();
+  var command = this.commandsLista.getCommand("registrarDispositivo");
+
+  if (command){
+    command.ejecutar();
+    console.log("El comando no existe");
+  }
+
   this.enviarListaMensajes();
   console.log("Conectado codigo " + this.websocket.readyState);
 };
@@ -72,14 +61,25 @@ Conexion.prototype.conexionMensajeRecivido = function (evt) {
 
 //////////////////////////////////////////////////////////////////
 
-Conexion.prototype.getUrlServidor = function () {
-  return this.urlServidor;
+
+Conexion.prototype.isCerrada = function () {
+  if (this.websocket.readyState == 3) return true;
+  else return false;
 };
 
-Conexion.prototype.enviarDatos = function(clave, valor) {
-	var mensaje = "Dispositivo " + this.mac + ": " + clave + " " + valor;
-	this.enviarMensaje(mensaje);
-  console.log("Antes de enviar " + mensaje);
+Conexion.prototype.isConectado = function () {
+  if (this.websocket.readyState == 1) return true;
+  else return false;
+};
+
+Conexion.prototype.conectar = function () {
+  this.websocketInstanciar(); // instancia si no esta instanciado
+  this.intentosDeConexion++;
+  console.log("Intento de conexion " + this.intentosDeConexion);
+};
+
+Conexion.prototype.getUrlServidor = function () {
+  return this.urlServidor;
 };
 
 Conexion.prototype.enviarMensaje = function (mensaje) {
@@ -101,6 +101,7 @@ Conexion.prototype.isSePuedeEnviar = function () {
   if (this.isConectado() && this.listaMensajes.isVacia()) return true;
   else return false;
 };
+
 
 ///// COLA DE MENSAGES
 Conexion.prototype.addListaMensaje = function (msg) {

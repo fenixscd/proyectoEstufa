@@ -17,5 +17,6 @@ CommandEnviarTemperatura.prototype.ejecutar = function(parametros) {
   console.log("Codigo Envio " + parametros.codigoEnvio);
   this.datos.mac = this.dispositivo.mac;
   this.datos.respuesta = this.dispositivo.termometro.getMedicion();
+  this.datos.command = "getTemperatura";
   this.dispositivo.conexion.enviarMensaje(JSON.stringify(this.datos));
 };

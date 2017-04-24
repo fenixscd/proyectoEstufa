@@ -2,23 +2,52 @@ function Dispositivo(mac, peticionesLista){
   this.mac             = mac;
   this.display         = new Display(this.mac);
   this.peticionesLista = peticionesLista;
-  this.buclePeticiones(this);
+  this.conexion        = false;
+  this.bucle;
+
+  this.display.añadirHTMLDispositivo();
+  this.actualizarElEsadoDeLaConexion();
+
+  // Al crear el dispositivos pregunto si estoy conectado
 }
 
-Dispositivo.prototype.getMac = function () {
+Dispositivo.prototype.actualizarElEsadoDeLaConexion = function () {
+  var estdo = this.peticionesLista.getPeticion("confirmarConexion").ejecutar();
+  this.setConexion(estdo);
+};
+
+
+Dispositivo.prototype.setConexion = function(conexion) {
+  if(conexion){
+    this.peticionesLista.getPeticion("registrarDispositivo").ejecutar(this.mac);
+    this.buclePeticiones(this);
+  }else {
+    this.detenerBucle();
+  }
+  this.conexion = conexion;
+};
+
+Dispositivo.prototype.getMac = function() {
   this.mac;
 };
 
-Dispositivo.prototype.ejecutar = function () {
-
+Dispositivo.prototype.detenerBucle = function () {
+  clearInterval(this.bucle);
 };
 
-Dispositivo.prototype.buclePeticiones = function (obj) {
-    window.setInterval(function() {
-      obj.peticionesLista.getPeticion("getTemperatura").ejecutar(obj.mac);
-    }, 1000);
+Dispositivo.prototype.buclePeticiones = function(obj) {
+  console.log("Estoy en el bucle");
+  this.bucle = window.setInterval(function() {
+    obj.peticionesLista.getPeticion("getTemperatura").ejecutar(obj.mac);
+  }, 5000);
 };
 
-Dispositivo.prototype.cargarPeticiones = function () {
+Dispositivo.prototype.registrarDispositivo = function () {
 
+  var peticion = peticionesLista.getPeticion("registrarDispositivos");
+
+  if (peticion){
+    peticion
+  }
+  peticionesLista.getPeticion()
 };

@@ -21,4 +21,6 @@ CommandsLista.prototype.getCommand = function (comando) {
     if (this.commandsLista[i].getNombre() == comando )
       return this.commandsLista[i];
   }
+  console.log("El comando - "+ comando +" - no existe:");
+  return false;
 };
