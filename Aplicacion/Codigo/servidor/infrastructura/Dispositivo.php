@@ -44,7 +44,7 @@ class Dispositivo {
     }
 
     public function isEqualsMac($mac){
-      return $this.mac == $mac;
+      return $this->mac == $mac;
     }
 
 }

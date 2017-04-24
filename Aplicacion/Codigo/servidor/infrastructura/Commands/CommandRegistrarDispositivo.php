@@ -19,7 +19,10 @@ class CommandRegistrarDispositivo{
   }
 
   public function ejecutar($conec, $parametros){
+    echo "Estoy en registrar disposivo";
+    var_dump($parametros);
     $dispositivo = $this->listaDispositivos->getDispositivo($parametros["mac"]);
+    echo "Paso de la parte de cargar dispositivo \n";
     if(!$dispositivo){
       $dispositivo = new Dispositivo();
       $dispositivo->setMac($parametros["mac"])

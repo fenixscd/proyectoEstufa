@@ -31,5 +31,4 @@ class CommandRegistrarDispositivoCliente{
 
     echo "-Commando registrarDispositivoCliente \n";
   }
-//
 }

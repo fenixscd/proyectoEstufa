@@ -102,6 +102,7 @@ Conexion.prototype.isSePuedeEnviar = function () {
   else return false;
 };
 
+
 ///// COLA DE MENSAGES
 Conexion.prototype.addListaMensaje = function (msg) {
   this.listaMensajes.addMensaje(msg);
@@ -109,12 +110,8 @@ Conexion.prototype.addListaMensaje = function (msg) {
 };
 
 Conexion.prototype.enviarListaMensajes = function () {
-  while (this.listaPeticionesPendientes.isPeticionesPendientes()) {
-    if (this.isConectado()){
-      this.enviar(this.listaPeticionesPendientes.ultimoElemento()); // Envia de mas antiguo a mas moderno
-    }else {
-      break;
-    }
+  while (this.listaMensajes.getNElementos() != 0) {
+    this.enviar(this.listaMensajes.ultimoElemento()); // Envia de mas antiguo a mas moderno
   }
   console.log("Lista vaciada");
 };

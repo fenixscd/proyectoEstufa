@@ -42,10 +42,7 @@ class Conexion implements MessageComponentInterface {
 
       if ($comando){
         $comando->ejecutar($conec, $parametros);
-      }else {
-        echo "El comando " . $parametros["command"] . "no existe \n";
       }
-
     }
 
     public function onClose(ConnectionInterface $conn) {
