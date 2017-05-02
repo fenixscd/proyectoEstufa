@@ -9,6 +9,7 @@ use infrastructura\Commands\CommandLista;
 use infrastructura\Commands\CommandRegistrar;
 use infrastructura\Commands\CommandRegistrarDispositivo;
 use infrastructura\Commands\CommandRegistrarDispositivoCliente;
+use infrastructura\Commands\CommandDispGetTemperatura;
 
 class Conexion implements MessageComponentInterface {
     private $clients;
@@ -21,6 +22,7 @@ class Conexion implements MessageComponentInterface {
         $this->listaDispositivos = new ListaDispositivos();
         $this->commandLista = new commandLista();
         $this->commandLista->addCommand(new CommandRegistrar($this->listaDispositivos));
+        $this->commandLista->addCommand(new CommandDispGetTemperatura($this->listaDispositivos));
         $this->commandLista->addCommand(new CommandRegistrarDispositivo($this->listaDispositivos));
         $this->commandLista->addCommand(new CommandRegistrarDispositivoCliente($this->listaDispositivos));
     }

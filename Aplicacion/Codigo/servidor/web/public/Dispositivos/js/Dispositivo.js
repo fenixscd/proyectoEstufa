@@ -42,12 +42,6 @@ Dispositivo.prototype.buclePeticiones = function(obj) {
   // }, 5000);
 };
 
-Dispositivo.prototype.registrarDispositivo = function () {
-
-  var peticion = peticionesLista.getPeticion("registrarDispositivos");
-
-  if (peticion){
-    peticion
-  }
-  peticionesLista.getPeticion()
+Dispositivo.prototype.getDisplay = function () {
+  return this.display;
 };

@@ -30,6 +30,13 @@ class Dispositivo {
         return $this->conexionDispositivo->resourceId;
     }
 
+    public function isConexion(){
+      if ($this->conexionDispositivo == null || $this->conexionDispositivo == false){
+        return false;
+      }
+      return ture;
+    }
+
     public function  getConexionDispositivo(){
       return $this->conexionDispositivo;
     }
@@ -39,12 +46,19 @@ class Dispositivo {
       return $this;
     }
 
+    public function enviarMensaje($parametros){
+      $datos = array("mac" => $this->getMac());
+
+
+    }
+
     public function addDispositivoCliente($conexionDispositivoCliente){
       $this->listaDispositivoCliente->addConexion($conexionDispositivoCliente);
     }
 
     public function isEqualsMac($mac){
-      return $this->mac == $mac;
+      return $this->getMac() == $mac;
+
     }
 
 }

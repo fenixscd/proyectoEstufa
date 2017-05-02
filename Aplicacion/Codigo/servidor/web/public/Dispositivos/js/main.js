@@ -23,7 +23,6 @@ function cargarListaDePeticiones(){
 
 function cargarListaDeComandos(){
   commandsLista.addCommand(new CommandCrearDispositivo(listaDispositivos));
-  commandsLista.addCommand(new CommandCambiarTemperatura(listaDispositivos));
   commandsLista.addCommand(new CommandCambiarEstadoConexion(listaDispositivos));
 }
 

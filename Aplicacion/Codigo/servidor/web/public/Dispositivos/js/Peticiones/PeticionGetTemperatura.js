@@ -10,9 +10,9 @@ PeticionGetTemperatura.prototype.getNombre = function () {
 
 PeticionGetTemperatura.prototype.ejecutar = function(mac) {
   // Crear todo lo necesario para la contestacion en la lista de dispositivo
-  this.datos.mac     = mac;
-  this.datos.command = "getTemperatura"; // Comando que se ejecuta en el servidor
-  this.datos.codigo  = "codigoDePeticion";
+  this.datos.mac             = mac;
+  this.datos.command         = "getTemperatura"; // Comando que se ejecuta en el servidor
+  this.datos.codigoPeticion  = "codigoDePeticion";
 
   this.conexion.enviarMensaje(JSON.stringify(this.datos));
 };

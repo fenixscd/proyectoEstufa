@@ -10,6 +10,4 @@ CommandCambiarEstadoConexion.prototype.getNombre = function () {
 
 CommandCambiarEstadoConexion.prototype.ejecutar = function(parametros) {
   this.listaDispositivos.cambiarEstado(parametros);
-
-
 };
