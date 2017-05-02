@@ -30,8 +30,6 @@ class CommandRegistrarDispositivo{
     }else {
       $dispositivo->setConexionDispositivo($conec);
     }
-
-
   }
 
 }

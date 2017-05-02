@@ -50,8 +50,8 @@ Conexion.prototype.conexionError = function (evt) {
 };
 
 Conexion.prototype.conexionMensajeRecivido = function (evt) {
-  // var mensaje = evt.data;
-  // console.log(mensaje);
+  var mensaje = evt.data;
+  console.log(mensaje);
   // if (mensaje.startsWith("log:")) {
   //    mensaje = mensaje.slice("log:".length);
   //    console.log(mensaje);

@@ -34,7 +34,7 @@ class Dispositivo {
       if ($this->conexionDispositivo == null || $this->conexionDispositivo == false){
         return false;
       }
-      return ture;
+      return true;
     }
 
     public function  getConexionDispositivo(){
@@ -46,19 +46,39 @@ class Dispositivo {
       return $this;
     }
 
-    public function enviarMensaje($parametros){
-      $datos = array("mac" => $this->getMac());
-
-
+    public function addDispositivoCliente($conexionDispositivoCliente){
+      $this->listaDispositivoCliente->addConexion($conexionDispositivoCliente);
     }
 
-    public function addDispositivoCliente($conexionDispositivoCliente){
+    public function getDispositivosCliente($mac){
       $this->listaDispositivoCliente->addConexion($conexionDispositivoCliente);
     }
 
     public function isEqualsMac($mac){
       return $this->getMac() == $mac;
-
     }
 
+    public function enviarMensajeDispositivo($parametros){
+      echo "Funcion enviar mensaje DISPOSITIVO Parametros\n";
+      $mensaje = json_encode($parametros);
+      echo "Mensaje en string: ". $mensaje;
+      if ($this->isConexion()){
+        $this->conexionDispositivo->send($mensaje);
+        echo "Mensaje enviado a DISPOSITIVO ->\n\n\n";
+      }else {
+        echo "No hay Dispositivo\n";
+      }
+    }
+
+    public function enviarMensajeDispositivoCliente($parametros){
+      $mensaje = json_encode($parametros);
+      if ($this->listaDispositivoCliente->isExistConexiones()){
+        $this->listaDispositivoCliente->enviarMensajeDispositivos($mensaje);
+        echo "Envia a dispositivos cliente\n";
+      }else {
+        echo "No hay dispositivos cliente\n";
+      }
+
+
+    }
 }

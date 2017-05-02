@@ -37,9 +37,9 @@ Dispositivo.prototype.detenerBucle = function () {
 
 Dispositivo.prototype.buclePeticiones = function(obj) {
   console.log("Estoy en el bucle");
-  // this.bucle = window.setInterval(function() {
+  this.bucle = window.setInterval(function() {
     obj.peticionesLista.getPeticion("getTemperatura").ejecutar(obj.mac);
-  // }, 5000);
+  }, 5000);
 };
 
 Dispositivo.prototype.getDisplay = function () {
