@@ -18,6 +18,7 @@ Dispositivo.prototype.actualizarElEsadoDeLaConexion = function () {
 
 
 Dispositivo.prototype.setConexion = function(conexion) {
+  console.log("Dispositivo setConesion: " + conexion);
   if(conexion){
     this.peticionesLista.getPeticion("registrarDispositivo").ejecutar(this.mac);
     this.buclePeticiones(this);
@@ -28,7 +29,7 @@ Dispositivo.prototype.setConexion = function(conexion) {
 };
 
 Dispositivo.prototype.getMac = function() {
-  this.mac;
+  return this.mac;
 };
 
 Dispositivo.prototype.detenerBucle = function () {
@@ -42,12 +43,6 @@ Dispositivo.prototype.buclePeticiones = function(obj) {
   }, 5000);
 };
 
-Dispositivo.prototype.registrarDispositivo = function () {
-
-  var peticion = peticionesLista.getPeticion("registrarDispositivos");
-
-  if (peticion){
-    peticion
-  }
-  peticionesLista.getPeticion()
+Dispositivo.prototype.getDisplay = function () {
+  return this.display;
 };

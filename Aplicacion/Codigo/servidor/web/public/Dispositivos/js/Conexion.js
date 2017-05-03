@@ -15,9 +15,10 @@ Conexion.prototype.websocketInstanciar = function () {
     this.websocket = new WebSocket(this.urlServidor);
     this.websocket.onopen = function(evt) { _this.conexionAbierta(evt) };
     this.websocket.onclose = function(evt) { _this.conexionCerrada(evt); };
-    this.websocket.onmessage = function(evt) { _this.conexionError(evt); };
-    this.websocket.onerror = function(evt) { _this.conexionMensajeRecivido(evt); };
+    this.websocket.onmessage = function(evt) { _this.conexionMensajeRecivido(evt); };
+    this.websocket.onerror = function(evt) { _this.conexionError(evt); };
   }
+
 };
 
 
@@ -36,12 +37,10 @@ Conexion.prototype.conexionAbierta = function (evt) {
 Conexion.prototype.conexionCerrada = function (evt) {
   // Desconectar los dispositivos (Para que aparezcan en la consola)
   var command = this.commandsLista.getCommand("cambiarEstadoConexion");
-
   if (command){
     command.ejecutar(false);
-  }else {
-    console.log("No exixte elcomando");
   }
+
   this.conectar();
 };
 
@@ -50,16 +49,17 @@ Conexion.prototype.conexionError = function (evt) {
 };
 
 Conexion.prototype.conexionMensajeRecivido = function (evt) {
-  // var mensaje = evt.data;
-  // console.log(mensaje);
-  // if (mensaje.startsWith("log:")) {
-  //    mensaje = mensaje.slice("log:".length);
-  //    console.log(mensaje);
-  // }else if (mensaje.startsWith("connected:")) {
-  //    mensaje = mensaje.slice("connected:".length);
-  //    console.log(mensaje);
-  // }
   console.log("Metodo de mensaje recivido");
+  var mensaje = evt.data;
+  console.log(mensaje);
+  var parametros = JSON.parse(mensaje);
+  console.log("Comando recivido: " +  parametros["command"]);
+  console.log(parametros["command"]);
+  var command = this.commandsLista.getCommand(parametros["command"]);
+
+  if (command){
+     command.ejecutar(parametros);
+  }
 
 };
 

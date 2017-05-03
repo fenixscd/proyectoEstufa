@@ -19,6 +19,7 @@ class CommandRegistrarDispositivoCliente{
   }
 
   public function ejecutar($conec, $parametros){
+    echo "-Commando registrarDispositivoCliente \n";
     $dispositivo = $this->listaDispositivos->getDispositivo($parametros["mac"]);
     if(!$dispositivo){
       $dispositivo = new Dispositivo();
@@ -28,7 +29,5 @@ class CommandRegistrarDispositivoCliente{
     }else {
       $dispositivo->addDispositivoCliente($conec);
     }
-
-    echo "-Commando registrarDispositivoCliente \n";
   }
 }

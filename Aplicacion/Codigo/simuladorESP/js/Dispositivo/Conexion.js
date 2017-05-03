@@ -16,9 +16,10 @@ Conexion.prototype.websocketInstanciar = function () {
     this.websocket = new WebSocket(this.urlServidor);
     this.websocket.onopen = function(evt) { _this.conexionAbierta(evt) };
     this.websocket.onclose = function(evt) { _this.conexionCerrada(evt); };
-    this.websocket.onmessage = function(evt) { _this.conexionError(evt); };
-    this.websocket.onerror = function(evt) { _this.conexionMensajeRecivido(evt); };
+    this.websocket.onmessage = function(evt) { _this.conexionMensajeRecivido(evt); };
+    this.websocket.onerror = function(evt) { _this.conexionError(evt); };
   }
+
 };
 
 ////////   EVENTOS RELACIONADOS CON LA CONEXION ////////////
@@ -28,7 +29,7 @@ Conexion.prototype.conexionAbierta = function (evt) {
 
   if (command){
     command.ejecutar();
-    console.log("El comando no existe");
+    console.log("Se ejecuta el comando registrarDispositivo");
   }
 
   this.enviarListaMensajes();
@@ -43,9 +44,23 @@ Conexion.prototype.conexionCerrada = function (evt) {
 
 Conexion.prototype.conexionError = function (evt) {
   console.log("Error en la conexion: " + this.websocket.readyState);
+  console.log(evt);
 };
 
 Conexion.prototype.conexionMensajeRecivido = function (evt) {
+  console.log("Metodo de mensaje recivido");
+  var mensaje = evt.data;
+  console.log(mensaje);
+  var parametros = JSON.parse(mensaje);
+  console.log("Comando recivido: " +  parametros["command"]);
+  var command = this.commandsLista.getCommand(parametros["command"]);
+
+  if (command){
+     command.ejecutar();
+  }
+
+  // LISTA DE COMANDOS PARA EJECUTAR
+
   // var mensaje = evt.data;
   // console.log(mensaje);
   // if (mensaje.startsWith("log:")) {
@@ -55,7 +70,7 @@ Conexion.prototype.conexionMensajeRecivido = function (evt) {
   //    mensaje = mensaje.slice("connected:".length);
   //    console.log(mensaje);
   // }
-  console.log("Metodo de mensaje recivido");
+
 
 };
 

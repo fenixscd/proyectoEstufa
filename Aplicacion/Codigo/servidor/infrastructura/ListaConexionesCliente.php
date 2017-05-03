@@ -22,4 +22,21 @@ class ListaConexionesCliente {
       return $this->listaConexionesCliente->count();
     }
 
+    public function getConexiones (){
+      return $this->listaConexionesCliente;
+    }
+
+    public function isExistConexiones(){
+      if ($this->getNConexiones()== 0) return false;
+      else return true;
+    }
+
+    public function enviarMensajeDispositivos ($parametros){
+      echo "Lo que vosy a enviar: ". $parametros;
+      foreach($this->listaConexionesCliente as $dis){
+         $dis->send($parametros);
+      }
+      return false;
+    }
+
 }

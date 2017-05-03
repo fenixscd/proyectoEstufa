@@ -32,7 +32,6 @@ class ListaDispositivos {
     }
 
     public function getDispositivo($mac){
-      echo "Mellega la mac a listaDispositivos: " . $mac . "\n";
       foreach($this->listaDispositivos as $dis){
         if ($dis->isEqualsMac($mac)){
           return $dis;
@@ -41,4 +40,22 @@ class ListaDispositivos {
       return false;
     }
 
+    public function rmConexion($conexion){
+      foreach($this->listaDispositivos as $dis){
+        $dis->rmDispositivoCliente($conexion);
+        if ($dis->getConexionDispositivo() == $conexion){
+          $dis->setConexionDispositivo(null);
+        }
+        if (!$this->isExistConexionesDispositivoOrClient()){
+          $this->listaDispositivos->detach($dis);
+        }
+      }
+    }
+
+    public function isExistConexionesDispositivoOrClient($dispositivo){
+      if ($dispositivo->isConexion() || $dispositivo->getDispositivosCliente()->isExistConexiones()){
+        return true;
+      }
+      return false;
+    }
 }
