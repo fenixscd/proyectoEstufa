@@ -29,7 +29,7 @@ Dispositivo.prototype.setConexion = function(conexion) {
 };
 
 Dispositivo.prototype.getMac = function() {
-  this.mac;
+  return this.mac;
 };
 
 Dispositivo.prototype.detenerBucle = function () {

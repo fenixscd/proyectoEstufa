@@ -16,7 +16,7 @@ Display.prototype.pintarValores = function() {
 };
 
 Display.prototype.cambiarValor = function(clave, valor) {
-  // Retardo
+  console.log("Clave: "+ clave + " Valor " + valor);
   var mac = this.mac;
   setTimeout(function(){
         document.getElementById(clave + mac).innerHTML = valor;

@@ -49,16 +49,17 @@ Conexion.prototype.conexionError = function (evt) {
 };
 
 Conexion.prototype.conexionMensajeRecivido = function (evt) {
+  console.log("Metodo de mensaje recivido");
   var mensaje = evt.data;
   console.log(mensaje);
-  // if (mensaje.startsWith("log:")) {
-  //    mensaje = mensaje.slice("log:".length);
-  //    console.log(mensaje);
-  // }else if (mensaje.startsWith("connected:")) {
-  //    mensaje = mensaje.slice("connected:".length);
-  //    console.log(mensaje);
-  // }
-  console.log("Metodo de mensaje recivido");
+  var parametros = JSON.parse(mensaje);
+  console.log("Comando recivido: " +  parametros["command"]);
+  console.log(parametros["command"]);
+  var command = this.commandsLista.getCommand(parametros["command"]);
+
+  if (command){
+     command.ejecutar(parametros);
+  }
 
 };
 

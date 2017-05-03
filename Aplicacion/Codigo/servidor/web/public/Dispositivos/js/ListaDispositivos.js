@@ -16,10 +16,14 @@ ListaDispositivos.prototype.isDispositivos = function () {
 };
 
 ListaDispositivos.prototype.getDispositivo = function (mac) {
+  console.log("dispositivos: " + this.listaDispositivos);
+  console.log(this.listaDispositivos[0]);
   for (var i = 0; i < this.listaDispositivos.length; i++) {
+    console.log("dispositivo: " + this.listaDispositivos[i].getMac());
     if (this.listaDispositivos[i].getMac() == mac )
       return this.listaDispositivos[i];
   }
+  console.log("El dispositivo " + mac + " NO ESTA EN LA LISTA DE DISPOSITIVOS");
   return false;
 };
 
