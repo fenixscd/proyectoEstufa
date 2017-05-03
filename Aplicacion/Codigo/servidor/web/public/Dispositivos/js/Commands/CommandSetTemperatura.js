@@ -8,7 +8,7 @@ CommandSetTemperatura.prototype.getNombre = function () {
 };
 
 CommandSetTemperatura.prototype.ejecutar = function(parametros) {
-  console.log("Comando setTermometro ");
+  console.log("Comando setTemperatura ");
   var dispositivo = this.listaDispositivos.getDispositivo(mac);
   var mac         = parametros[mac];
   var clave       = "temperatura" + mac;

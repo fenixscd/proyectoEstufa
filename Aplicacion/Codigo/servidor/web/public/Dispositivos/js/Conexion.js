@@ -15,9 +15,10 @@ Conexion.prototype.websocketInstanciar = function () {
     this.websocket = new WebSocket(this.urlServidor);
     this.websocket.onopen = function(evt) { _this.conexionAbierta(evt) };
     this.websocket.onclose = function(evt) { _this.conexionCerrada(evt); };
-    this.websocket.onmessage = function(evt) { _this.conexionError(evt); };
-    this.websocket.onerror = function(evt) { _this.conexionMensajeRecivido(evt); };
+    this.websocket.onmessage = function(evt) { _this.conexionMensajeRecivido(evt); };
+    this.websocket.onerror = function(evt) { _this.conexionError(evt); };
   }
+
 };
 
 
@@ -36,12 +37,10 @@ Conexion.prototype.conexionAbierta = function (evt) {
 Conexion.prototype.conexionCerrada = function (evt) {
   // Desconectar los dispositivos (Para que aparezcan en la consola)
   var command = this.commandsLista.getCommand("cambiarEstadoConexion");
-
   if (command){
     command.ejecutar(false);
-  }else {
-    console.log("No exixte elcomando");
   }
+
   this.conectar();
 };
 

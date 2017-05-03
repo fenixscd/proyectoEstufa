@@ -28,3 +28,7 @@ ListaDispositivos.prototype.cambiarEstado = function (estado) {
     this.listaDispositivos[i].setConexion(estado);
   }
 };
+
+ListaDispositivos.prototype.rmConexion = function (conexion) {
+  // Buscar conexion
+};

@@ -39,4 +39,23 @@ class ListaDispositivos {
       }
       return false;
     }
+
+    public function rmConexion($conexion){
+      foreach($this->listaDispositivos as $dis){
+        $dis->rmDispositivoCliente($conexion);
+        if ($dis->getConexionDispositivo() == $conexion){
+          $dis->setConexionDispositivo(null);
+        }
+        if (!$this->isExistConexionesDispositivoOrClient()){
+          $this->listaDispositivos->detach($dis);
+        }
+      }
+    }
+
+    public function isExistConexionesDispositivoOrClient($dispositivo){
+      if ($dispositivo->isConexion() || $dispositivo->getDispositivosCliente()->isExistConexiones()){
+        return true;
+      }
+      return false;
+    }
 }

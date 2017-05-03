@@ -11,7 +11,7 @@ class Dispositivo {
     private $persistencia;
 
     public function __construct() {
-      $this->listaDispositivoCliente = new ListaConexionesCliente();
+      $this->listaConexionesCliente = new ListaConexionesCliente();
     }
 
     public function getMac(){
@@ -47,11 +47,15 @@ class Dispositivo {
     }
 
     public function addDispositivoCliente($conexionDispositivoCliente){
-      $this->listaDispositivoCliente->addConexion($conexionDispositivoCliente);
+      $this->listaConexionesCliente->addConexion($conexionDispositivoCliente);
     }
 
-    public function getDispositivosCliente($mac){
-      $this->listaDispositivoCliente->addConexion($conexionDispositivoCliente);
+    public function rmDispositivoCliente($conexionDispositivoCliente){
+      $this->listaConexionesCliente->detach($conexionDispositivoCliente);
+    }
+
+    public function getDispositivosCliente(){
+      return $this->listaConexionesCliente;
     }
 
     public function isEqualsMac($mac){
@@ -71,14 +75,16 @@ class Dispositivo {
     }
 
     public function enviarMensajeDispositivoCliente($parametros){
+      echo "El si que hay dispositivos numero de dispositivos :" . $this->listaConexionesCliente->getNConexiones() . " \n";
+      echo "Enviar mensaje para los DISPOSITIVO: " . $this->listaConexionesCliente->getNConexiones() . " \n\n";
       $mensaje = json_encode($parametros);
-      if ($this->listaDispositivoCliente->isExistConexiones()){
-        $this->listaDispositivoCliente->enviarMensajeDispositivos($mensaje);
+
+      if ($this->listaConexionesCliente->isExistConexiones()){
+
+        $this->listaConexionesCliente->enviarMensajeDispositivos($mensaje);
         echo "Envia a dispositivos cliente\n";
       }else {
         echo "No hay dispositivos cliente\n";
       }
-
-
     }
 }

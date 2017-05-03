@@ -29,7 +29,7 @@ Conexion.prototype.conexionAbierta = function (evt) {
 
   if (command){
     command.ejecutar();
-    console.log("El comando no existe");
+    console.log("Se ejecuta el comando registrarDispositivo");
   }
 
   this.enviarListaMensajes();
@@ -52,11 +52,11 @@ Conexion.prototype.conexionMensajeRecivido = function (evt) {
   var mensaje = evt.data;
   console.log(mensaje);
   var parametros = JSON.parse(mensaje);
-  var command = this.commandsLista.getCommand("registrarDispositivo");
+  console.log("Comando recivido: " +  parametros["command"]);
+  var command = this.commandsLista.getCommand(parametros["command"]);
 
   if (command){
-    command.ejecutar();
-    console.log("El comando no existe");
+     command.ejecutar();
   }
 
   // LISTA DE COMANDOS PARA EJECUTAR

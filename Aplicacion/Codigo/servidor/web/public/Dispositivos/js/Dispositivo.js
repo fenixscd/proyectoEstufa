@@ -18,6 +18,7 @@ Dispositivo.prototype.actualizarElEsadoDeLaConexion = function () {
 
 
 Dispositivo.prototype.setConexion = function(conexion) {
+  console.log("Dispositivo setConesion: " + conexion);
   if(conexion){
     this.peticionesLista.getPeticion("registrarDispositivo").ejecutar(this.mac);
     this.buclePeticiones(this);

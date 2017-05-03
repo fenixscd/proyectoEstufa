@@ -32,8 +32,9 @@ class ListaConexionesCliente {
     }
 
     public function enviarMensajeDispositivos ($parametros){
+      echo "Lo que vosy a enviar: ". $parametros;
       foreach($this->listaConexionesCliente as $dis){
-         $this->$dis->send($parametros);
+         $dis->send($parametros);
       }
       return false;
     }
