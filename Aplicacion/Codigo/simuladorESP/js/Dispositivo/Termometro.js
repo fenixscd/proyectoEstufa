@@ -17,7 +17,7 @@ Termometro.prototype.generarValorEntreDosNumeros  = function(max, min){
   return Math.random() * (max - min) + min;
 };
 
-Termometro.prototype.getMedicion = function (isEncendida) {
+Termometro.prototype.getMedicion = function () {
   return parseFloat(this.temperatura).toFixed(1);
 };
 

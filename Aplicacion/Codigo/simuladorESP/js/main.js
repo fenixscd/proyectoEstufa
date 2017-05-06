@@ -28,5 +28,4 @@ function CargarLista() {
 
 function crearDispositivo() {
   var prue = new Dispositivo();
-  prue.ejecutarPrueba();
 }

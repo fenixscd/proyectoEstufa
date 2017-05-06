@@ -23,7 +23,6 @@ header h1{
     overflow: hidden;
     border-radius: 10px;
     float: left;
-        
 }
 
 /******* LINEA SUPERIOR  *************/
@@ -36,7 +35,7 @@ header h1{
 	float: left;
 }
 
-.lSuperior p{ 
+.lSuperior p{
     float: right;
 }
 
@@ -46,21 +45,9 @@ header h1{
     text-align: center;
 }
 
-.programacion {
-	font-size: 12px;
+p {
+  font-size: 12px;
 }
-
-.programacion .izq {
-    float: left;
-    
-}
-
-.programacion .der{
-	float: right;
-    text-align: left;
-    width: 50%;
-}
-
 
 
 /***********BOTONERA*************/
@@ -75,6 +62,5 @@ header h1{
 .botonera input {
     width: 28px;
     height: 28px;
-    
-}
 
+}

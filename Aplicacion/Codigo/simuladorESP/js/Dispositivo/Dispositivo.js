@@ -13,6 +13,8 @@ function Dispositivo(mac){
   this.humedad         = new Humedad(this.conexion, this.display);
   this.resistencia1    = new Resistencia(1, this.conexion, this.display, this.termometro);
   this.resistencia2    = new Resistencia(2, this.conexion, this.display, this.termometro);
+  this.termostato1     = new Termostato(1, this.resistencia1);
+  this.termostato2     = new Termostato(2, this.resistencia2);
 
   this.addCommands();
 
@@ -81,8 +83,8 @@ Dispositivo.prototype.addCommands = function () {
   this.commandsLista.addCommand(new CommandRegistrar(this));
   this.commandsLista.addCommand(new CommandRegistrar(this));
 };
-
-Dispositivo.prototype.ejecutarPrueba = function () {
-  this.commandsLista.getCommand("enviarTemperatura").ejecutar(this);
-};
+//
+// Dispositivo.prototype.ejecutarPrueba = function () {
+//   this.commandsLista.getCommand("enviarTemperatura").ejecutar(this);
+// };
 ///////// Peticiones

@@ -45,11 +45,13 @@ Display.prototype.generarHTML = function () {
                         '<h2><span id="temperatura{{mac}}"></span>º</h2>' +
                         '<h2><span id="humedad{{mac}}">10</span>%</h2>' +
                       '</div>' +
-                      '<div class="programacion">' +
-                        '<p class="izq"><span id="resistenciaAutomatico1{{mac}}"></span> Res1 [<span id="resistenciaEstado1{{mac}}"></span>]: <span id="resistenciaEncendida1{{mac}}"> </span> <span id="resistenciaTemperatura1{{mac}}"></span></p>' +
-                        '<p class="der">Hora <span id="ProgramadorHora1{{mac}}">6:25</span> <span id="ProgramadorEncender1{{mac}}"> </span> <span id="ProgramadorTemperatura1{{mac}}">27</span></p>' +
-                        '<p class="izq"><span id="resistenciaAutomatico2{{mac}}"></span> Res2 [<span id="resistenciaEstado2{{mac}}"> </span>]: <span id="resistenciaEncendida2{{mac}}"></span> <span id="resistenciaTemperatura2{{mac}}"></span></p>' +
-                        '<p class="der">Hora <span id="ProgramadorHora2{{mac}}">6:25</span> <span id="ProgramadorEncender2{{mac}}">ON</span> <span id="ProgramadorTemperatura2{{mac}}">27</span></p>' +
+
+                      '<div>' +
+                        '<p class="izq">Resis 1 [<span id="estadoResitencia1{{mac}}">*</span>]: <span id="estadoTermostato1{{mac}}">ON</span> <span id="tempTermostato1{{mac}}">27</span>º</p>' +
+                      '</div>' +
+
+                      '<div>' +
+                        '<p class="izq">Resis 2 [<span id="estadoResitencia2{{mac}}"> </span>]: <span id="estadoTermostato2{{mac}}">OFF</span> <span id="tempTermostato2{{mac}}"></span></p>' +
                       '</div>' +
                       '</div>' +
                       '</div>' +
