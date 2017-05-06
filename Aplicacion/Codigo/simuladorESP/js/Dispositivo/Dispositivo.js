@@ -18,8 +18,6 @@ function Dispositivo(mac){
 
   this.display.añadirHTMLDispositivo();
   this.actualizarMediciones(this) // Bucle para que se vallan actualizando las mediciones
-
-
 }
 
 Dispositivo.prototype.getTipoDispositivo = function () {
