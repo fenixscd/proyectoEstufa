@@ -16,7 +16,7 @@ header h1{
 
 .display {
     padding: 7px 7px;;
-    width: 250px;
+    width: 220px;
     color: white;
     background-color: #0050FE;
     border: black 1px solid;
@@ -48,13 +48,26 @@ header h1{
 p {
   font-size: 12px;
 }
+/***********Resistencia*************/
 
+.ultimoBloque{
+    display: inline-block;
+    width: 49%;
+}
+
+.izq {
+    text-align: left;
+}
+
+.der {
+    text-align: center;
+}
 
 /***********BOTONERA*************/
 
 .botonera {
     margin-left: 2px;
-	float: left;
+	  float: left;
     width: 28px;
 /*    text-align: center;*/
 }

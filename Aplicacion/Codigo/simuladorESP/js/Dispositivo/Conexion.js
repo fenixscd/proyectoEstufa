@@ -22,7 +22,6 @@ Conexion.prototype.websocketInstanciar = function () {
     this.websocket.onmessage = function(evt) { _this.conexionMensajeRecivido(evt); };
     this.websocket.onerror = function(evt) { _this.conexionError(evt); };
   }
-
 };
 
 ////////   EVENTOS RELACIONADOS CON LA CONEXION ////////////
@@ -92,7 +91,12 @@ Conexion.prototype.getUrlServidor = function () {
   return this.urlServidor;
 };
 
-Conexion.prototype.enviarMensaje = function (mensaje) {
+Conexion.prototype.enviarMensaje = function (datos) {
+  var mensaje;
+  console.log("Antes de enviar: " + datos);
+  datos.mac = this.mac;
+  mensaje =JSON.stringify(datos);
+  console.log("Mensaje a enviar: " + mensaje);
   if (this.isSePuedeEnviar()){
     this.enviar(mensaje);
   }else{ // Si la conexion no esta iniciada llamo a la conesion y mento el mensaje en la cola

@@ -50,11 +50,12 @@ Termometro.prototype.cambiarMedicion = function (isEncendida) {
   this.setMedicion(total);
 };
 
-Termometro.prototype.pintarDisplay = function () {
-  this.display.cambiarValor("temperatura", this.getMedicion());
-};
 
 Termometro.prototype.actualizarMedicion = function (isEncendida) {
   this.cambiarMedicion(isEncendida);
   this.pintarDisplay();
+};
+
+Termometro.prototype.pintarDisplay = function () {
+  this.display.cambiarValor("temperatura", this.getMedicion());
 };

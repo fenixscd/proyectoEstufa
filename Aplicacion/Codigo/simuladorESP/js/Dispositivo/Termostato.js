@@ -1,12 +1,14 @@
-function Termostato(numero, display, resistencia){
+function Termostato(numero, display, conexion, resistencia) {
+  this.conexion          = conexion;
   this.resistencia       = resistencia;
   this.numero            = numero;
   this.display           = display;
-  this.estado             = false;
+  this.estado            = false;
   this.temperatura       = false;
 
   this.pintarEstado();
   this.pintarTemperatura();
+  this.enviarEstado();
 }
 
 Termostato.prototype.getTemperatura = function (){
@@ -23,13 +25,13 @@ Termostato.prototype.getEstado = function () {
 Termostato.prototype.setEstado = function (estado) {
   this.estado = estado;
   this.pintarEstado();
-  // Enviar el cambio de
+  this.enviarEstado();
 };
 
 Termostato.prototype.setTemperatura = function (temperatura) {
   this.temperatura = temperatura;
   this.pintarTemperatura();
-  return this;
+  this.enviarTemperatura();
 };
 
 Termostato.prototype.actualizarEstado = function (temperaturaActual) {
@@ -38,7 +40,7 @@ Termostato.prototype.actualizarEstado = function (temperaturaActual) {
     if (parseFloat(this.getTemperatura()) >= parseFloat(temperaturaActual)) {
       isTemperaturaSelec = true;
     }
-    
+
     this.resistencia.setEstado(isTemperaturaSelec);
   }
 };
@@ -53,5 +55,18 @@ Termostato.prototype.pintarEstado = function () {
 };
 
 Termostato.prototype.pintarTemperatura = function () {
-  this.display.cambiarValor(("tempTermostato" + this.numero), this.getTemperatura());
+  this.display.cambiarValor(("tempTermostato" + this.numero), (this.getTemperatura()+"º"));
+};
+
+Termostato.prototype.enviarEstado = function () {
+  var datos = new Object();
+  datos.command = "setClientEstadoTermostato" + this.numero;
+  datos.valor = this.getEstado();
+  this.conexion.enviarMensaje(datos);
+};
+
+Termostato.prototype.enviarTemperatura = function () {
+  this.datos.command = "setClientTeperaturaTermostato" + this.numero;
+  this.datos.valor = this.getTemperatura();
+  this.conexion.enviarMensaje(this.datos);
 };

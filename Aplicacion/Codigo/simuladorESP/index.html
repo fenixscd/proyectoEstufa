@@ -22,7 +22,7 @@
                 <div class="display">
                     <div class="lSuperior">
                         <h2><span id="dispositivo">A6-B5-C4-D3-E2-F1</span></h2>
-                        <p><span id="modo">Manual</span> | <span id="conexion">DESCONEC</span></p>
+                        <p><span id="conexion">DESCONEC</span></p>
                     </div>
 
                     <div class="medidas">
@@ -30,12 +30,14 @@
                         <h2>H: <span id="hume">10</span>%</h2>
                     </div>
 
-                    <div>
-                      <p class="izq">Resis 1 [<span id="estadoResitencia1{{mac}}">*</span>]: <span id="estadoTermostato1{{mac}}">ON</span> <span id="tempTermostato1{{mac}}">27</span>º</p>
+                    <div class="ultimoBloque">
+                      <p class= "izq">Resis 1 [<span id="estadoResitencia1{{mac}}">*</span>]: <span id="estadoTermostato1{{mac}}">ON</span> <span id="tempTermostato1{{mac}}">27</span>º</p>
+                      <p class= "izq">Resis 2 [<span id="estadoResitencia2{{mac}}"> </span>]: <span id="estadoTermostato2{{mac}}">OFF</span> <span id="tempTermostato2{{mac}}"></span></p>
                     </div>
 
-                    <div>
-                      <p class="izq">Resis 2 [<span id="estadoResitencia2{{mac}}"> </span>]: <span id="estadoTermostato2{{mac}}">OFF</span> <span id="tempTermostato2{{mac}}"></span></p>
+                    <div class="ultimoBloque">
+                      <p class= "der">Total Conectados</p>
+                      <p class= "der"><span id="estadoTermostato2{{mac}}">0</span></p>
                     </div>
 
 
@@ -65,6 +67,8 @@
    <script type="text/javascript" src="js/Dispositivo/Humedad.js"></script>
    <script type="text/javascript" src="js/Dispositivo/Resistencia.js"></script>
    <script type="text/javascript" src="js/Dispositivo/Dispositivo.js"></script>
+   <script type="text/javascript" src="js/Dispositivo/Conectados.js"></script>
+
 
    <script type="text/javascript" src="js/main.js"></script>
 

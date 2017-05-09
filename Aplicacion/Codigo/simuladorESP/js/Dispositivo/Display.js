@@ -32,19 +32,28 @@ Display.prototype.añadirHTMLDispositivo = function () {
 Display.prototype.generarHTML = function () {
   var plantilla = '<div class="display">' +
                       '<div class="lSuperior">' +
-                        '<h2><span id="dispositivo{{mac}}">{{mac}}</span></h2>' +
+                        '<h2><span id="nombreDispositivo{{mac}}">{{mac}}</span></h2>' +
                         '<p><span id="estadoConexion{{mac}}"></span></p>' +
                       '</div>' +
                       '<div class="medidas">' +
                         '<h2><span id="temperatura{{mac}}"></span>º</h2>' +
                         '<h2><span id="humedad{{mac}}">10</span>%</h2>' +
                       '</div>' +
-                      '<div>' +
-                        '<p class="izq">Resis 1 [<span id="estadoResitencia1{{mac}}"> </span>]: <span id="estadoTermostato1{{mac}}"></span> <span id="tempTermostato1{{mac}}"></span></p>' +
+
+
+
+
+                      '<div class="ultimoBloque">' +
+                        '<p class= "izq">Resis 1 [<span id="estadoResitencia1{{mac}}"></span>]: <span id="estadoTermostato1{{mac}}"></span> <span id="tempTermostato1{{mac}}"></span></p>' +
+                        '<p class= "izq">Resis 2 [<span id="estadoResitencia2{{mac}}"></span>]: <span id="estadoTermostato2{{mac}}"></span> <span id="tempTermostato2{{mac}}"></span></p>' +
                       '</div>' +
-                      '<div>' +
-                        '<p class="izq">Resis 2 [<span id="estadoResitencia2{{mac}}"> </span>]: <span id="estadoTermostato2{{mac}}"></span> <span id="tempTermostato2{{mac}}"></span></p>' +
+
+                      '<div class="ultimoBloque">' +
+                        '<p class= "der">Total Conectados</p>' +
+                        '<p class= "der"><span id="totalConectados{{mac}}"></span></p>' +
                       '</div>' +
+
+
                       '</div>' +
                       '</div>' +
                       '<div class="botonera">' +

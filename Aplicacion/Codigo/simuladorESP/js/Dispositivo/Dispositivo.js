@@ -4,20 +4,19 @@ function Dispositivo(mac){
   else this.mac = mac;
 
   this.nombreDispositivo = false;
-  this.modoAutomatico    = false;
 
   this.commandsLista   = new CommandsLista();
   this.display         = new Display(this.mac);
   this.conexion        = new Conexion(this.mac, this.commandsLista, this.display);
   this.termometro      = new Termometro(this.display);
   this.humedad         = new Humedad(this.conexion, this.display);
-  this.resistencia1    = new Resistencia(1, this.conexion, this.display, this.termometro);
-  this.resistencia2    = new Resistencia(2, this.conexion, this.display, this.termometro);
-  this.termostato1     = new Termostato(1, this.display, this.resistencia1);
-  this.termostato2     = new Termostato(2, this.display, this.resistencia2);
+  this.resistencia1    = new Resistencia(1, this.conexion, this.display);
+  this.resistencia2    = new Resistencia(2, this.conexion, this.display);
+  this.termostato1     = new Termostato(1, this.display, this.conexion, this.resistencia1);
+  this.termostato2     = new Termostato(2, this.display, this.conexion, this.resistencia2);
+  this.Conectados      = new Conectados(this.display, this.conexion);
 
   this.addCommands();
-
   this.actualizarMediciones(this) // Bucle para que se vallan actualizando las mediciones
 }
 
@@ -27,6 +26,10 @@ Dispositivo.prototype.getTipoDispositivo = function () {
 
 Dispositivo.prototype.getMac = function() {
   return this.mac;
+};
+
+Dispositivo.prototype.getConexion = function () {
+  return this.conexion;
 };
 
 Dispositivo.prototype.setMac = function(mac) {
@@ -43,6 +46,9 @@ Dispositivo.prototype.getNombreDispositivo = function () {
 
 Dispositivo.prototype.setNombreDispositivo = function (nombreDispositivo) {
   this.nombreDispositivo = nombreDispositivo;
+  // Pintar dispositivo
+
+  //
 };
 
 Dispositivo.prototype.isResistenciaEncendida = function () {
@@ -81,6 +87,16 @@ Dispositivo.prototype.addCommands = function () {
   this.commandsLista.addCommand(new CommandGetTemperatura(this));
   this.commandsLista.addCommand(new CommandRegistrar(this));
   this.commandsLista.addCommand(new CommandRegistrar(this));
+};
+
+Dispositivo.prototype.pintarNombreDispositivo = function () {
+  this.display.cambiarValor(("nombreDispositivo"), this.getNombreDispositivo());
+};
+
+Dispositivo.prototype.enviarNombreDispositivo = function () {
+  this.datos.command = "setClientNombreDispositivo";
+  this.datos.valor = this.getNombreDispositivo();
+  this.conexion.enviarMensaje(this.datos);
 };
 //
 // Dispositivo.prototype.ejecutarPrueba = function () {

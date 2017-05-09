@@ -51,7 +51,3 @@ Humedad.prototype.actualizarEstado = function () {
 Humedad.prototype.pintarHumedad = function () {
   this.display.cambiarValor("humedad", this.getMedicion());
 };
-
-Humedad.prototype.enviarHumedad = function () {
-  this.conexion.enviarDatos("humedad", this.getMedicion());
-};
