@@ -28,5 +28,5 @@ function CargarLista() {
 
 function crearDispositivo() {
   var prue = new Dispositivo();
-  prue.termostato1.setEstado(true);
+  //prue.termostato1.setEstado(true);
 }

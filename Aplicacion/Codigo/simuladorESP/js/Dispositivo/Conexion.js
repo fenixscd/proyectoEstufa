@@ -28,7 +28,8 @@ Conexion.prototype.websocketInstanciar = function () {
 
 Conexion.prototype.conexionAbierta = function (evt) {
   this.pintarEstado();
-  var command = this.commandsLista.getCommand("registrarDispositivo");
+  // registrar;
+  var command = this.commandsLista.getCommand("registrar");
 
   if (command){
     command.ejecutar();
@@ -130,7 +131,6 @@ Conexion.prototype.enviarListaMensajes = function () {
   console.log("Lista vaciada");
 };
 
-
 Conexion.prototype.pintarEstado = function () {
   var estadoConexion = "DESCONEC";
 
@@ -138,4 +138,13 @@ Conexion.prototype.pintarEstado = function () {
     estadoConexion = "CONEC"
   }
   this.display.cambiarValor(("estadoConexion"), estadoConexion);
+};
+
+Conexion.prototype.registrar = function() {
+  // Crear todo lo necesario para la contestacion en la lista de dispositivo
+  var datos = new Object();
+  datos.command = "registrarDispositivo";
+  datos.tipoDispositivo = this.dispositivo.getTipoDispositivo();
+  datos.mac = this.dispositivo.mac;
+  dispositivo.conexion.enviarMensaje(this.datos);
 };

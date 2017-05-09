@@ -1,6 +1,6 @@
 function CommandRegistrar(dispositivo) {
   this.dispositivo = dispositivo;
-  this.nombre      = "registrarDispositivo";
+  this.nombre      = "registrar";
   this.datos       = new Object();
 }
 
@@ -13,5 +13,5 @@ CommandRegistrar.prototype.ejecutar = function(parametros) {
   this.datos.command = "registrarDispositivo";
   this.datos.tipoDispositivo = this.dispositivo.getTipoDispositivo();
   this.datos.mac = this.dispositivo.mac;
-  this.dispositivo.conexion.enviarMensaje(JSON.stringify(this.datos));
+  this.dispositivo.conexion.enviarMensaje(this.datos);
 };
