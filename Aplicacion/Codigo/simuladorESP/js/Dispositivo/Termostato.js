@@ -1,39 +1,57 @@
-function Termostato(numero, display, dispositivo, resistencia){
+function Termostato(numero, display, resistencia){
   this.resistencia       = resistencia;
   this.numero            = numero;
   this.display           = display;
-  this.estdo             = false;
-  this.temperaturaSelec;
+  this.estado             = false;
+  this.temperatura       = false;
+
+  this.pintarEstado();
+  this.pintarTemperatura();
 }
 
-Termostato.prototype.getTemperaturaSelec = function (){
-  return parseFloat(this.temperaturaSelec);
+Termostato.prototype.getTemperatura = function (){
+  if (this.temperatura == false || this.temperatura == null ) {
+    return parseFloat(0);
+  }
+  return parseFloat(this.temperatura);
 }
 
-Termostato.prototype.getEstdo = function () {
+Termostato.prototype.getEstado = function () {
   return this.estado;
 };
 
-Termostato.prototype.setEstado = function () {
-  // Envia el cambio de estado
+Termostato.prototype.setEstado = function (estado) {
+  this.estado = estado;
+  this.pintarEstado();
+  // Enviar el cambio de
 };
 
-Termostato.prototype.setTemperaturaSelec = function (temperaturaSelec) {
-  this.temperaturaSelec = temperaturaSelec;
+Termostato.prototype.setTemperatura = function (temperatura) {
+  this.temperatura = temperatura;
+  this.pintarTemperatura();
   return this;
 };
 
 Termostato.prototype.actualizarEstado = function (temperaturaActual) {
-  if (this.estdo){
-    var isTemperaturaSelec = parseFloat(this.getTemperaturaSelec()) <= parseFloat(temperaturaActual);
+  if (this.estado){
+    var  isTemperaturaSelec = false;
+    if (parseFloat(this.getTemperatura()) >= parseFloat(temperaturaActual)) {
+      isTemperaturaSelec = true;
+    }
+    
     this.resistencia.setEstado(isTemperaturaSelec);
   }
 };
 
 Termostato.prototype.pintarEstado = function () {
-  pintar = "";
-  if (this.getEstdo()){
-    var pintar = this.getTemperatura();
+  var estadoTermostato = "OFF";
+
+  if (this.getEstado()){
+    estadoTermostato = "ON"
   }
-  this.display.cambiarValor(("resistenciaTemperatura" + this.numero), pintar);
+  this.display.cambiarValor(("estadoTermostato" + this.numero), estadoTermostato);
+};
+
+Termostato.prototype.pintarTemperatura = function () {
+  this.display.cambiarValor(("tempTermostato" + this.numero), this.getTemperatura());
 };

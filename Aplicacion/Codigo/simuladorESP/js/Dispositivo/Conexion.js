@@ -1,4 +1,5 @@
-function Conexion(mac, commandsLista){
+function Conexion(mac, commandsLista, display){
+  this.display         = display;
   this.commandsLista   = commandsLista;
   this.mac             = mac;
   this.listaMensajes   = new ListaMensajes();
@@ -8,6 +9,8 @@ function Conexion(mac, commandsLista){
   this.websocket;
 
   this.conectar();
+  this.pintarEstado();
+  // pintar estado
 }
 
 Conexion.prototype.websocketInstanciar = function () {
@@ -25,6 +28,7 @@ Conexion.prototype.websocketInstanciar = function () {
 ////////   EVENTOS RELACIONADOS CON LA CONEXION ////////////
 
 Conexion.prototype.conexionAbierta = function (evt) {
+  this.pintarEstado();
   var command = this.commandsLista.getCommand("registrarDispositivo");
 
   if (command){
@@ -37,6 +41,7 @@ Conexion.prototype.conexionAbierta = function (evt) {
 };
 
 Conexion.prototype.conexionCerrada = function (evt) {
+  this.pintarEstado();
   console.log("La conexion se ha cerrado " + this.websocket.readyState);
   console.log("Llamo a conectar");
   this.conectar();
@@ -62,6 +67,10 @@ Conexion.prototype.conexionMensajeRecivido = function (evt) {
 
 //////////////////////////////////////////////////////////////////
 
+
+Conexion.prototype.getEstado = function () {
+  return this.websocket.readyState == 1;
+};
 
 Conexion.prototype.isCerrada = function () {
   if (this.websocket.readyState == 3) return true;
@@ -115,4 +124,14 @@ Conexion.prototype.enviarListaMensajes = function () {
     this.enviar(this.listaMensajes.ultimoElemento()); // Envia de mas antiguo a mas moderno
   }
   console.log("Lista vaciada");
+};
+
+
+Conexion.prototype.pintarEstado = function () {
+  var estadoConexion = "DESCONEC";
+
+  if (this.getEstado()){
+    estadoConexion = "CONEC"
+  }
+  this.display.cambiarValor(("estadoConexion"), estadoConexion);
 };

@@ -8,17 +8,16 @@ function Dispositivo(mac){
 
   this.commandsLista   = new CommandsLista();
   this.display         = new Display(this.mac);
-  this.conexion        = new Conexion(this.mac, this.commandsLista);
+  this.conexion        = new Conexion(this.mac, this.commandsLista, this.display);
   this.termometro      = new Termometro(this.display);
   this.humedad         = new Humedad(this.conexion, this.display);
   this.resistencia1    = new Resistencia(1, this.conexion, this.display, this.termometro);
   this.resistencia2    = new Resistencia(2, this.conexion, this.display, this.termometro);
-  this.termostato1     = new Termostato(1, this.resistencia1);
-  this.termostato2     = new Termostato(2, this.resistencia2);
+  this.termostato1     = new Termostato(1, this.display, this.resistencia1);
+  this.termostato2     = new Termostato(2, this.display, this.resistencia2);
 
   this.addCommands();
 
-  this.display.añadirHTMLDispositivo();
   this.actualizarMediciones(this) // Bucle para que se vallan actualizando las mediciones
 }
 
@@ -47,7 +46,7 @@ Dispositivo.prototype.setNombreDispositivo = function (nombreDispositivo) {
 };
 
 Dispositivo.prototype.isResistenciaEncendida = function () {
-  if (this.resistencia1.getResistenciaEncendida() || this.resistencia2.getResistenciaEncendida()) return true;
+  if (this.resistencia1.getEstado() || this.resistencia2.getEstado()) return true;
   else return false;
 };
 
@@ -55,8 +54,8 @@ Dispositivo.prototype.actualizarMediciones = function (obj) {
     window.setInterval(function() {
       obj.termometro.actualizarMedicion(obj.isResistenciaEncendida());
       obj.humedad.actualizarEstado();
-      obj.resistencia1.actualizarEstado(obj.termometro.getMedicion());
-      obj.resistencia2.actualizarEstado(obj.termometro.getMedicion());
+      obj.termostato1.actualizarEstado(obj.termometro.getMedicion());
+      obj.termostato2.actualizarEstado(obj.termometro.getMedicion());
     }, 1000);
 };
 
