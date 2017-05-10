@@ -2,21 +2,15 @@
 
 namespace infrastructura\Commands;
 
-use infrastructura\Dispositivo;
 use infrastructura\ListaDispositivos;
 
-class Command {
+
+abstract class Command {
   private $nombre;
   private $listaDispositivos;
 
   public function __construct($listaDispositivos){
-    $this->nombre            = "registrarDispositivoCliente";
     $this->listaDispositivos = $listaDispositivos;
-  }
-
-  public function setNombre($nombre){
-    $this->nombre = $nombre ;
-    return $this;
   }
 
   public function getNombre(){

@@ -1,11 +1,13 @@
-function Termometro(display, dispositivo){
+function Termometro(display, conexion){
   this.display           = display;
+  this.conexion          = conexion;
   this.enviarTemperatura = false;
   this.temperaturaMaxima = 40;
   this.temperaturaMinima = -20;
   this.temperatura;
 
   this.temperaturaInicial();
+  this.pintarDisplay();
 }
 
 Termometro.prototype.temperaturaInicial = function (){
@@ -17,7 +19,7 @@ Termometro.prototype.generarValorEntreDosNumeros  = function(max, min){
   return Math.random() * (max - min) + min;
 };
 
-Termometro.prototype.getMedicion = function (isEncendida) {
+Termometro.prototype.getMedicion = function () {
   return parseFloat(this.temperatura).toFixed(1);
 };
 
@@ -50,11 +52,19 @@ Termometro.prototype.cambiarMedicion = function (isEncendida) {
   this.setMedicion(total);
 };
 
-Termometro.prototype.pintarDisplay = function () {
-  this.display.cambiarValor("temperatura", this.getMedicion());
-};
 
 Termometro.prototype.actualizarMedicion = function (isEncendida) {
   this.cambiarMedicion(isEncendida);
   this.pintarDisplay();
+};
+
+Termometro.prototype.pintarDisplay = function () {
+  this.display.cambiarValor("temperatura", this.getMedicion());
+};
+
+Termometro.prototype.enviarValores = function () {
+  var datos = new Object();
+  datos.command = "serverSetTermometro";
+  datos.valor = this.getMedicion();
+  this.conexion.enviarMensaje(datos);
 };

@@ -2,12 +2,14 @@
 
 namespace infrastructura\Commands;
 
-class CommandDispGetTemperatura{
+use infrastructura\ListaDispositivos;
+
+
+class CommandDispGetTemperatura {
   private $nombre;
   private $listaDispositivos;
 
   public function __construct($listaDispositivos){
-    $this->nombre = "getTemperatura";
     $this->listaDispositivos = $listaDispositivos;
   }
 
@@ -16,12 +18,14 @@ class CommandDispGetTemperatura{
   }
 
   public function ejecutar($conec, $parametros){
-    $dispositivo = $this->listaDispositivos->getDispositivo($parametros["mac"]);
+  $dispositivo = $this->listaDispositivos->getDispositivo($parametros["mac"]);
 
     if($dispositivo->isConexion()){
+      $dispositivo->enviarMensaje($parametros);
       $dispositivo->enviarMensajeDispositivo($parametros);
     } else {
       echo "EL dispositivo no esta conectado\n";
     }
+
   }
 }

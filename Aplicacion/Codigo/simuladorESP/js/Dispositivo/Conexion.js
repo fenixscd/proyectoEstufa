@@ -1,6 +1,8 @@
-function Conexion(mac, commandsLista){
+function Conexion(dispositivo, display, commandsLista){
+  this.dispositivo     = dispositivo;
+  this.display         = display;
   this.commandsLista   = commandsLista;
-  this.mac             = mac;
+  this.mac             = dispositivo.getMac();
   this.listaMensajes   = new ListaMensajes();
 
   this.urlServidor = "ws://192.168.5.20:8080";
@@ -8,6 +10,8 @@ function Conexion(mac, commandsLista){
   this.websocket;
 
   this.conectar();
+  this.pintarEstado();
+  // pintar estado
 }
 
 Conexion.prototype.websocketInstanciar = function () {
@@ -19,24 +23,19 @@ Conexion.prototype.websocketInstanciar = function () {
     this.websocket.onmessage = function(evt) { _this.conexionMensajeRecivido(evt); };
     this.websocket.onerror = function(evt) { _this.conexionError(evt); };
   }
-
 };
 
 ////////   EVENTOS RELACIONADOS CON LA CONEXION ////////////
 
 Conexion.prototype.conexionAbierta = function (evt) {
-  var command = this.commandsLista.getCommand("registrarDispositivo");
-
-  if (command){
-    command.ejecutar();
-    console.log("Se ejecuta el comando registrarDispositivo");
-  }
-
+  this.pintarEstado();
+  this.registrar();
   this.enviarListaMensajes();
-  console.log("Conectado codigo " + this.websocket.readyState);
+  this.dispositivo.conexionAbierta();
 };
 
 Conexion.prototype.conexionCerrada = function (evt) {
+  this.pintarEstado();
   console.log("La conexion se ha cerrado " + this.websocket.readyState);
   console.log("Llamo a conectar");
   this.conectar();
@@ -58,24 +57,14 @@ Conexion.prototype.conexionMensajeRecivido = function (evt) {
   if (command){
      command.ejecutar();
   }
-
-  // LISTA DE COMANDOS PARA EJECUTAR
-
-  // var mensaje = evt.data;
-  // console.log(mensaje);
-  // if (mensaje.startsWith("log:")) {
-  //    mensaje = mensaje.slice("log:".length);
-  //    console.log(mensaje);
-  // }else if (mensaje.startsWith("connected:")) {
-  //    mensaje = mensaje.slice("connected:".length);
-  //    console.log(mensaje);
-  // }
-
-
 };
 
 //////////////////////////////////////////////////////////////////
 
+
+Conexion.prototype.getEstado = function () {
+  return this.websocket.readyState == 1;
+};
 
 Conexion.prototype.isCerrada = function () {
   if (this.websocket.readyState == 3) return true;
@@ -97,17 +86,19 @@ Conexion.prototype.getUrlServidor = function () {
   return this.urlServidor;
 };
 
-Conexion.prototype.enviarMensaje = function (mensaje) {
+Conexion.prototype.enviarMensaje = function (datos) {
   if (this.isSePuedeEnviar()){
-    this.enviar(mensaje);
+    this.enviar(datos);
   }else{ // Si la conexion no esta iniciada llamo a la conesion y mento el mensaje en la cola
-    this.addListaMensaje(mensaje);
+    this.addListaMensaje(datos);
   }
 };
 
-Conexion.prototype.enviar = function (msg) {
-  this.websocket.send(msg);
-  console.log("Enviado: " + msg);
+Conexion.prototype.enviar = function (datos) {
+  datos.mac = this.mac;
+  mensaje =JSON.stringify(datos);
+  this.websocket.send(mensaje);
+  console.log("Enviado -> " + mensaje);
 };
 
 // Para que los mensajes se envien tiene que aver conexión y la lista estar vacia
@@ -129,4 +120,21 @@ Conexion.prototype.enviarListaMensajes = function () {
     this.enviar(this.listaMensajes.ultimoElemento()); // Envia de mas antiguo a mas moderno
   }
   console.log("Lista vaciada");
+};
+
+Conexion.prototype.pintarEstado = function () {
+  var estadoConexion = "DESCONEC";
+
+  if (this.getEstado()){
+    estadoConexion = "CONEC"
+  }
+  this.display.cambiarValor("estadoConexion", estadoConexion);
+};
+
+Conexion.prototype.registrar = function() {
+  // Crear todo lo necesario para la contestacion en la lista de dispositivo
+  var datos = new Object();
+  datos.command = "registrarDispositivo";
+  datos.tipoDispositivo = this.dispositivo.getTipoDispositivo();
+  this.enviar(datos);
 };

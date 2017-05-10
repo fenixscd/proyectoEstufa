@@ -9,9 +9,7 @@ CommandGetTemperatura.prototype.getNombre = function () {
 };
 
 CommandGetTemperatura.prototype.ejecutar = function(parametros) {
-  this.datos.mac = this.dispositivo.mac;
   this.datos.command = "setTemperatura";
   this.datos.valor = this.dispositivo.termometro.getMedicion();
-  console.log("Contestacion al getTemperatura: " + this.datos);
-  this.dispositivo.conexion.enviarMensaje(JSON.stringify(this.datos));
+  this.dispositivo.conexion.enviarMensaje(this.datos);
 };

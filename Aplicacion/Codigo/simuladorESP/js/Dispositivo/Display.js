@@ -1,26 +1,20 @@
 function Display (mac){
   this.mac = mac;
-
-  this.datos = new Array();
+  this.añadirHTMLDispositivo();
 }
 
-Display.prototype.pintarValores = function() {
-  var valorPintar;
-  for (dato in this.datos){
-      valorPintar = this.datos[dato][1]; // Valor verdadero
-      if (this.datos[dato][0] === false){
-        valorPintar = this.datos[dato][2]; // Para falso
-      }
-      document.getElementById(dato + this.mac).innerHTML = valorPintar;
-  }
-};
 
 Display.prototype.cambiarValor = function(clave, valor) {
   // Retardo
   var mac = this.mac;
-  setTimeout(function(){
-        document.getElementById(clave + mac).innerHTML = valor;
-    },10);
+    setTimeout(function(){
+      if (document.getElementById(clave + mac) != null){
+          document.getElementById(clave + mac).innerHTML = valor;
+        }else {
+          console.log("No existe el clave \"" + clave + "\" en le HTML");
+        }
+      },100);
+
 };
 
 Display.prototype.añadirHTMLDispositivo = function () {
@@ -38,19 +32,28 @@ Display.prototype.añadirHTMLDispositivo = function () {
 Display.prototype.generarHTML = function () {
   var plantilla = '<div class="display">' +
                       '<div class="lSuperior">' +
-                        '<h2><span id="dispositivo{{mac}}">{{mac}}</span></h2>' +
-                        '<p><span id="conexion{{mac}}">DESCONEC</span></p>' +
+                        '<h2><span id="nombreDispositivo{{mac}}"></span></h2>' +
+                        '<p><span id="estadoConexion{{mac}}"></span></p>' +
                       '</div>' +
                       '<div class="medidas">' +
                         '<h2><span id="temperatura{{mac}}"></span>º</h2>' +
                         '<h2><span id="humedad{{mac}}">10</span>%</h2>' +
                       '</div>' +
-                      '<div class="programacion">' +
-                        '<p class="izq"><span id="resistenciaAutomatico1{{mac}}"></span> Res1 [<span id="resistenciaEstado1{{mac}}"></span>]: <span id="resistenciaEncendida1{{mac}}"> </span> <span id="resistenciaTemperatura1{{mac}}"></span></p>' +
-                        '<p class="der">Hora <span id="ProgramadorHora1{{mac}}">6:25</span> <span id="ProgramadorEncender1{{mac}}"> </span> <span id="ProgramadorTemperatura1{{mac}}">27</span></p>' +
-                        '<p class="izq"><span id="resistenciaAutomatico2{{mac}}"></span> Res2 [<span id="resistenciaEstado2{{mac}}"> </span>]: <span id="resistenciaEncendida2{{mac}}"></span> <span id="resistenciaTemperatura2{{mac}}"></span></p>' +
-                        '<p class="der">Hora <span id="ProgramadorHora2{{mac}}">6:25</span> <span id="ProgramadorEncender2{{mac}}">ON</span> <span id="ProgramadorTemperatura2{{mac}}">27</span></p>' +
+
+
+
+
+                      '<div class="ultimoBloque">' +
+                        '<p class= "izq">Resis 1 [<span id="estadoResitencia1{{mac}}"></span>]: <span id="estadoTermostato1{{mac}}"></span> <span id="tempTermostato1{{mac}}"></span></p>' +
+                        '<p class= "izq">Resis 2 [<span id="estadoResitencia2{{mac}}"></span>]: <span id="estadoTermostato2{{mac}}"></span> <span id="tempTermostato2{{mac}}"></span></p>' +
                       '</div>' +
+
+                      '<div class="ultimoBloque">' +
+                        '<p class= "der">Total Conectados</p>' +
+                        '<p class= "der"><span id="totalConectados{{mac}}"></span></p>' +
+                      '</div>' +
+
+
                       '</div>' +
                       '</div>' +
                       '<div class="botonera">' +
