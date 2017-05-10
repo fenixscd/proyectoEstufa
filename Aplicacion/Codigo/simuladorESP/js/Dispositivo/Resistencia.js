@@ -1,4 +1,4 @@
-function Resistencia (numero, conexion, display){
+function Resistencia (numero, display, conexion){
   this.conexion	            = conexion;
   this.display	            = display;
   this.numero               = numero;
@@ -6,7 +6,6 @@ function Resistencia (numero, conexion, display){
   this.datos                = new Object();
 
   this.pintarEstado();
-  this.enviarEstado();
 }
 
 Resistencia.prototype.getNombre = function () {
@@ -25,7 +24,7 @@ Resistencia.prototype.setEstado = function (nuevoEstado) {
   if (this.estado != nuevoEstado){
     this.estado = nuevoEstado;
     this.pintarEstado();
-    this.enviarEstado();
+    this.enviarValores();
     // Enviar nuevo estado
   }
 };
@@ -39,8 +38,9 @@ Resistencia.prototype.pintarEstado = function () {
   this.display.cambiarValor(("estadoResitencia" + this.numero), estadoResitencia);
 };
 
-Resistencia.prototype.enviarEstado = function () {
-  this.datos.command = "setClientEstadoResitencia" + this.numero;
-  this.datos.valor = this.getEstado();
-  this.conexion.enviarMensaje(this.datos);
+Resistencia.prototype.enviarValores = function () {
+  var datos = new Object();
+  datos.command = "setClientEstadoResitencia" + this.numero;
+  datos.valor = this.getEstado();
+  this.conexion.enviarMensaje(datos);
 };

@@ -32,7 +32,7 @@ Display.prototype.añadirHTMLDispositivo = function () {
 Display.prototype.generarHTML = function () {
   var plantilla = '<div class="display">' +
                       '<div class="lSuperior">' +
-                        '<h2><span id="nombreDispositivo{{mac}}">{{mac}}</span></h2>' +
+                        '<h2><span id="nombreDispositivo{{mac}}"></span></h2>' +
                         '<p><span id="estadoConexion{{mac}}"></span></p>' +
                       '</div>' +
                       '<div class="medidas">' +

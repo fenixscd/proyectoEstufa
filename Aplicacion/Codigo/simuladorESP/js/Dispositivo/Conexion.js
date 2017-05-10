@@ -1,7 +1,8 @@
-function Conexion(mac, commandsLista, display){
+function Conexion(dispositivo, display, commandsLista){
+  this.dispositivo     = dispositivo;
   this.display         = display;
   this.commandsLista   = commandsLista;
-  this.mac             = mac;
+  this.mac             = dispositivo.getMac();
   this.listaMensajes   = new ListaMensajes();
 
   this.urlServidor = "ws://192.168.5.20:8080";
@@ -28,16 +29,9 @@ Conexion.prototype.websocketInstanciar = function () {
 
 Conexion.prototype.conexionAbierta = function (evt) {
   this.pintarEstado();
-  // registrar;
-  var command = this.commandsLista.getCommand("registrar");
-
-  if (command){
-    command.ejecutar();
-    console.log("Se ejecuta el comando registrarDispositivo");
-  }
-
+  this.registrar();
   this.enviarListaMensajes();
-  console.log("Conectado codigo " + this.websocket.readyState);
+  this.dispositivo.conexionAbierta();
 };
 
 Conexion.prototype.conexionCerrada = function (evt) {
@@ -93,21 +87,18 @@ Conexion.prototype.getUrlServidor = function () {
 };
 
 Conexion.prototype.enviarMensaje = function (datos) {
-  var mensaje;
-  console.log("Antes de enviar: " + datos);
-  datos.mac = this.mac;
-  mensaje =JSON.stringify(datos);
-  console.log("Mensaje a enviar: " + mensaje);
   if (this.isSePuedeEnviar()){
-    this.enviar(mensaje);
+    this.enviar(datos);
   }else{ // Si la conexion no esta iniciada llamo a la conesion y mento el mensaje en la cola
-    this.addListaMensaje(mensaje);
+    this.addListaMensaje(datos);
   }
 };
 
-Conexion.prototype.enviar = function (msg) {
-  this.websocket.send(msg);
-  console.log("Enviado: " + msg);
+Conexion.prototype.enviar = function (datos) {
+  datos.mac = this.mac;
+  mensaje =JSON.stringify(datos);
+  this.websocket.send(mensaje);
+  console.log("Enviado -> " + mensaje);
 };
 
 // Para que los mensajes se envien tiene que aver conexión y la lista estar vacia
@@ -137,7 +128,7 @@ Conexion.prototype.pintarEstado = function () {
   if (this.getEstado()){
     estadoConexion = "CONEC"
   }
-  this.display.cambiarValor(("estadoConexion"), estadoConexion);
+  this.display.cambiarValor("estadoConexion", estadoConexion);
 };
 
 Conexion.prototype.registrar = function() {
@@ -145,6 +136,5 @@ Conexion.prototype.registrar = function() {
   var datos = new Object();
   datos.command = "registrarDispositivo";
   datos.tipoDispositivo = this.dispositivo.getTipoDispositivo();
-  datos.mac = this.dispositivo.mac;
-  dispositivo.conexion.enviarMensaje(this.datos);
+  this.enviar(datos);
 };

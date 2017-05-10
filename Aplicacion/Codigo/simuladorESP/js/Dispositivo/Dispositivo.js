@@ -7,17 +7,18 @@ function Dispositivo(mac){
 
   this.commandsLista   = new CommandsLista();
   this.display         = new Display(this.mac);
-  this.conexion        = new Conexion(this.mac, this.commandsLista, this.display);
-  this.termometro      = new Termometro(this.display);
-  this.humedad         = new Humedad(this.conexion, this.display);
-  this.resistencia1    = new Resistencia(1, this.conexion, this.display);
-  this.resistencia2    = new Resistencia(2, this.conexion, this.display);
+  this.conexion        = new Conexion(this, this.display, this.commandsLista);
+  this.termometro      = new Termometro(this.display, this.conexion);
+  this.humedad         = new Humedad(this.display, this.conexion);
+  this.resistencia1    = new Resistencia(1, this.display, this.conexion);
+  this.resistencia2    = new Resistencia(2, this.display, this.conexion);
   this.termostato1     = new Termostato(1, this.display, this.conexion, this.resistencia1);
   this.termostato2     = new Termostato(2, this.display, this.conexion, this.resistencia2);
   this.Conectados      = new Conectados(this.display, this.conexion);
 
   this.addCommands();
   this.actualizarMediciones(this) // Bucle para que se vallan actualizando las mediciones
+  this.pintarNombreDispositivo()
 }
 
 Dispositivo.prototype.getTipoDispositivo = function () {
@@ -46,9 +47,8 @@ Dispositivo.prototype.getNombreDispositivo = function () {
 
 Dispositivo.prototype.setNombreDispositivo = function (nombreDispositivo) {
   this.nombreDispositivo = nombreDispositivo;
-  // Pintar dispositivo
-
-  //
+  this.pintarNombreDispositivo();
+  this.enviarNombreDispositivo();
 };
 
 Dispositivo.prototype.isResistenciaEncendida = function () {
@@ -85,21 +85,38 @@ Dispositivo.prototype.generarMac = function () {
 
 Dispositivo.prototype.addCommands = function () {
   this.commandsLista.addCommand(new CommandGetTemperatura(this));
-  this.commandsLista.addCommand(new CommandRegistrar(this));
-  this.commandsLista.addCommand(new CommandRegistrar(this));
 };
+
+Dispositivo.prototype.conexionAbierta = function () {
+  this.termostato1.enviarValores();
+  this.termostato2.enviarValores();
+  this.resistencia1.enviarValores();
+  this.resistencia2.enviarValores();
+  this.termometro.enviarValores();
+  this.enviarValores();
+  this.humedad.enviarValores();
+};
+
+Dispositivo.prototype.conexionCerrada = function () {
+  // Terminar bucle
+};
+
+Dispositivo.prototype.conectadosClientes = function () {
+
+};
+
+Dispositivo.prototype.desconectadosClientes = function () {
+
+};
+
 
 Dispositivo.prototype.pintarNombreDispositivo = function () {
-  this.display.cambiarValor(("nombreDispositivo"), this.getNombreDispositivo());
+  this.display.cambiarValor("nombreDispositivo", this.getNombreDispositivo());
 };
 
-Dispositivo.prototype.enviarNombreDispositivo = function () {
-  this.datos.command = "setClientNombreDispositivo";
-  this.datos.valor = this.getNombreDispositivo();
-  this.conexion.enviarMensaje(this.datos);
+Dispositivo.prototype.enviarValores = function () {
+  var datos = new Object();
+  datos.command = "setClientNombreDispositivo";
+  datos.valor = this.getNombreDispositivo();
+  this.conexion.enviarMensaje(datos);
 };
-//
-// Dispositivo.prototype.ejecutarPrueba = function () {
-//   this.commandsLista.getCommand("enviarTemperatura").ejecutar(this);
-// };
-///////// Peticiones

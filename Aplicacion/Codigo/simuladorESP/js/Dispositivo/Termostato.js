@@ -8,7 +8,6 @@ function Termostato(numero, display, conexion, resistencia) {
 
   this.pintarEstado();
   this.pintarTemperatura();
-  this.enviarEstado();
 }
 
 Termostato.prototype.getTemperatura = function (){
@@ -66,7 +65,13 @@ Termostato.prototype.enviarEstado = function () {
 };
 
 Termostato.prototype.enviarTemperatura = function () {
-  this.datos.command = "setClientTeperaturaTermostato" + this.numero;
-  this.datos.valor = this.getTemperatura();
-  this.conexion.enviarMensaje(this.datos);
+  var datos = new Object();
+  datos.command = "setClientTeperaturaTermostato" + this.numero;
+  datos.valor = this.getTemperatura();
+  this.conexion.enviarMensaje(datos);
+};
+
+Termostato.prototype.enviarValores = function () {
+  this.enviarEstado();
+  this.enviarTemperatura();
 };
