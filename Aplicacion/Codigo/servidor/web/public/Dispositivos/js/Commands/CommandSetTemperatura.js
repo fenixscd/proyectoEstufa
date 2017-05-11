@@ -8,18 +8,19 @@ CommandSetTemperatura.prototype.getNombre = function () {
 };
 
 CommandSetTemperatura.prototype.ejecutar = function(parametros) {
-  console.log("Comando setTemperatura " + parametros["mac"]);
+  console.log("Comando setHumedad " + parametros["mac"]);
   var mac         = parametros["mac"];
   var clave       = "temperatura";
   var valor       = parametros["valor"];
 
-  var dispositivo = this.listaDispositivos.getDispositivo(parametros["mac"]);
+  this.listaDispositivos.cambiarValor(mac, clave, valor);
+  // console.log("Clave: " + clave);
+  // console.log("Valor: " + valor);
+  // if (dispositivo != false){
+  //   console.log("Si que existe el dispositivo");
+  //   dispositivo.getDisplay().cambiarValor(clave, valor);
+  // }
 
-  console.log("Clave: " + clave);
-  console.log("Valor: " + valor);
-  if (dispositivo != false){
-    console.log("Si que existe el dispositivo");
-    dispositivo.getDisplay().cambiarValor(clave, valor);
-  }
-  //this.listaDispositivos.cambiarEstado(parametros);
+
+
 };
