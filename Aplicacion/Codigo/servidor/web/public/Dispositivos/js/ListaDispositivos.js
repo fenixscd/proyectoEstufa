@@ -33,6 +33,17 @@ ListaDispositivos.prototype.cambiarEstado = function (estado) {
   }
 };
 
-ListaDispositivos.prototype.rmConexion = function (conexion) {
-  // Buscar conexion
-};
+ListaDispositivos.prototype.cambiarValor = function(clave, valor) {
+
+  document.getElementById(clave + mac).innerHTML = valor;
+
+
+  for (var i = 0; i < this.listaDispositivos.length; i++) {
+    console.log("dispositivo: " + this.listaDispositivos[i].getMac());
+    if (this.listaDispositivos[i].getMac() == mac )
+      return this.listaDispositivos[i];
+  }
+
+
+
+}

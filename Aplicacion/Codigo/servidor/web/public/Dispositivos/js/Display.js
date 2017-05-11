@@ -16,11 +16,12 @@ Display.prototype.pintarValores = function() {
 };
 
 Display.prototype.cambiarValor = function(clave, valor) {
-  console.log("Clave: "+ clave + " Valor " + valor);
   var mac = this.mac;
-  setTimeout(function(){
-        document.getElementById(clave + mac).innerHTML = valor;
-    },10);
+  if (document.getElementById(clave + mac) != null){
+    document.getElementById(clave + mac).innerHTML = valor;
+  }else {
+    console.log("No existe el clave \"" + clave + "\" en le HTML");
+  }
 };
 
 Display.prototype.añadirHTMLDispositivo = function () {
