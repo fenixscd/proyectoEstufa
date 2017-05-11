@@ -15,7 +15,6 @@ CommandSetTemperatura.prototype.ejecutar = function(parametros) {
 
   var dispositivo = this.listaDispositivos.getDispositivo(parametros["mac"]);
 
-
   console.log("Clave: " + clave);
   console.log("Valor: " + valor);
   if (dispositivo != false){

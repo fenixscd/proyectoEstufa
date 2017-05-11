@@ -4,17 +4,6 @@ function Display (mac){
   this.datos = new Array();
 }
 
-Display.prototype.pintarValores = function() {
-  var valorPintar;
-  for (dato in this.datos){
-      valorPintar = this.datos[dato][1]; // Valor verdadero
-      if (this.datos[dato][0] === false){
-        valorPintar = this.datos[dato][2]; // Para falso
-      }
-      document.getElementById(dato + this.mac).innerHTML = valorPintar;
-  }
-};
-
 Display.prototype.cambiarValor = function(clave, valor) {
   var mac = this.mac;
   if (document.getElementById(clave + mac) != null){
@@ -86,3 +75,16 @@ Display.prototype.generarHTML = function () {
 
   return plantilla.replace(/{{mac}}/g, this.mac);
 };
+
+
+
+// Display.prototype.pintarValores = function() {
+//   var valorPintar;
+//   for (dato in this.datos){
+//       valorPintar = this.datos[dato][1]; // Valor verdadero
+//       if (this.datos[dato][0] === false){
+//         valorPintar = this.datos[dato][2]; // Para falso
+//       }
+//       document.getElementById(dato + this.mac).innerHTML = valorPintar;
+//   }
+// };

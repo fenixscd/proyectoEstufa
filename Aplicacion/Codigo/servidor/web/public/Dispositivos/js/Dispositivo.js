@@ -3,7 +3,7 @@ function Dispositivo(mac, peticionesLista){
   this.display         = new Display(this.mac);
   this.peticionesLista = peticionesLista;
   this.conexion        = false;
-  this.bucle;
+  // this.bucle;
 
   this.display.añadirHTMLDispositivo();
   this.actualizarElEsadoDeLaConexion();
@@ -17,8 +17,9 @@ Dispositivo.prototype.actualizarElEsadoDeLaConexion = function () {
 Dispositivo.prototype.setConexion = function(conexion) {
   console.log("Dispositivo setConesion: " + conexion);
   if(conexion){
-    this.peticionesLista.getPeticion("registrarDispositivo").ejecutar(this.mac);
-    //this.buclePeticiones(this);
+
+    // this.peticionesLista.getPeticion("registrarDispositivo").ejecutar(this.mac);
+    // this.buclePeticiones(this);
   }else {
     //this.detenerBucle();
   }
@@ -28,6 +29,11 @@ Dispositivo.prototype.setConexion = function(conexion) {
 Dispositivo.prototype.getMac = function() {
   return this.mac;
 };
+
+Dispositivo.prototype.getDisplay = function () {
+  return this.display;
+};
+
 
 // Dispositivo.prototype.detenerBucle = function () {
 //   clearInterval(this.bucle);
@@ -39,7 +45,3 @@ Dispositivo.prototype.getMac = function() {
 //     obj.peticionesLista.getPeticion("getTemperatura").ejecutar(obj.mac);
 //   }, 5000);
 // };
-
-Dispositivo.prototype.getDisplay = function () {
-  return this.display;
-};
