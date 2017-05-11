@@ -97,26 +97,13 @@ Dispositivo.prototype.conexionAbierta = function () {
   this.humedad.enviarValores();
 };
 
-Dispositivo.prototype.conexionCerrada = function () {
-  // Terminar bucle
-};
-
-Dispositivo.prototype.conectadosClientes = function () {
-
-};
-
-Dispositivo.prototype.desconectadosClientes = function () {
-
-};
-
-
 Dispositivo.prototype.pintarNombreDispositivo = function () {
   this.display.cambiarValor("nombreDispositivo", this.getNombreDispositivo());
 };
 
 Dispositivo.prototype.enviarValores = function () {
   var datos = new Object();
-  datos.command = "setClientNombreDispositivo";
+  datos.command = "clientSetNombreDispositivo";
   datos.valor = this.getNombreDispositivo();
   this.conexion.enviarMensaje(datos);
 };

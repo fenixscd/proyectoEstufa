@@ -59,14 +59,14 @@ Termostato.prototype.pintarTemperatura = function () {
 
 Termostato.prototype.enviarEstado = function () {
   var datos = new Object();
-  datos.command = "setClientEstadoTermostato" + this.numero;
+  datos.command = "clientSetEstadoTermostato" + this.numero;
   datos.valor = this.getEstado();
   this.conexion.enviarMensaje(datos);
 };
 
 Termostato.prototype.enviarTemperatura = function () {
   var datos = new Object();
-  datos.command = "setClientTeperaturaTermostato" + this.numero;
+  datos.command = "clientSetTeperaturaTermostato" + this.numero;
   datos.valor = this.getTemperatura();
   this.conexion.enviarMensaje(datos);
 };
