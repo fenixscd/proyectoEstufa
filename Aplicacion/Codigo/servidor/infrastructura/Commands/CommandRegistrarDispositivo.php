@@ -31,5 +31,4 @@ class CommandRegistrarDispositivo{
       $dispositivo->setConexionDispositivo($conec);
     }
   }
-
 }

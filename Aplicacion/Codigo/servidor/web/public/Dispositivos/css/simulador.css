@@ -16,14 +16,13 @@ header h1{
 
 .display {
     padding: 7px 7px;;
-    width: 250px;
+    width: 220px;
     color: white;
     background-color: #0050FE;
     border: black 1px solid;
     overflow: hidden;
     border-radius: 10px;
     float: left;
-
 }
 
 /******* LINEA SUPERIOR  *************/
@@ -44,36 +43,44 @@ header h1{
     display: inline-block;
     width: 49%;
     text-align: center;
+    font-size: 28px;
 }
 
-.programacion {
-	font-size: 12px;
+p {
+  font-size: 12px;
+}
+/***********Resistencia*************/
+
+.ultimoBloque{
+    display: inline;
+    font-size: 15px;;
 }
 
-.programacion .izq {
-    float: left;
-
+.izq {
+  display: inline-block;
+  text-align: left;
+  width: 70px;
 }
 
-.programacion .der{
-	float: right;
-    text-align: left;
-    width: 50%;
+.cnt{
+  display: inline-block;
+  text-align: center;
+  width: 35px;
 }
 
-
-
-/***********BOTONERA*************/
-
-.botonera {
-    margin-left: 2px;
-	float: left;
-    width: 28px;
-/*    text-align: center;*/
+.der {
+  display: inline-block;
+  text-align: left;
+  width: 90px;
 }
 
-.botonera input {
-    width: 28px;
-    height: 28px;
+.ultimoBloque .der input{
+  width: 20px;
+}
 
+.ultimoBloque .der p{
+  display:inline-block;
+  text-align: center;
+  font-size: 15px;
+  width: 30px;
 }
