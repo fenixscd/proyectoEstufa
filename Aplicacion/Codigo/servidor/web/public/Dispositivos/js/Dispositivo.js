@@ -7,8 +7,6 @@ function Dispositivo(mac, peticionesLista){
 
   this.display.añadirHTMLDispositivo();
   this.actualizarElEsadoDeLaConexion();
-
-  // Al crear el dispositivos pregunto si estoy conectado
 }
 
 Dispositivo.prototype.actualizarElEsadoDeLaConexion = function () {

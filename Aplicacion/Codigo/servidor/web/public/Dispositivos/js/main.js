@@ -12,7 +12,6 @@ function crearDispositivo() {
   var mac = "A6-B5-C4-D3-00-01";
   commandsLista.getCommand("crearDispositivo").ejecutar(mac, peticionesLista);
   // Programa principal se encargar de crear los dispositivos
-
 }
 
 function cargarListaDePeticiones(){

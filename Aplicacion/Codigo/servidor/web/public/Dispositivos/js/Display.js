@@ -23,16 +23,6 @@ Display.prototype.cambiarValor = function(clave, valor) {
     },10);
 };
 
-// Display.prototype.añadirHTMLDispositivo = function () {
-//   var contenedor = document.getElementsByTagName("section")[0];
-//   var dispositivo = document.createElement("div");
-//   dispositivo.setAttribute("class", "dispositivo");
-//
-//   dispositivo.innerHTML = this.generarHTML();
-//   dispositivo.classList.add("dispositivo");
-//   contenedor.appendChild(dispositivo);
-// };
-
 Display.prototype.añadirHTMLDispositivo = function () {
   var contenedor = document.getElementsByTagName("article")[0];
   var dispositivo = document.createElement("div");
