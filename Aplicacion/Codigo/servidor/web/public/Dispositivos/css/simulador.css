@@ -4,6 +4,12 @@
     box-sizing: border-box;
 }
 
+form {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
 .centrado {
     margin: 0 auto;
     width: 560px;
@@ -15,6 +21,7 @@ header h1{
 }
 
 .display {
+    margin: 5px;
     padding: 7px 7px;;
     width: 220px;
     color: white;
@@ -52,6 +59,7 @@ header h1{
 }
 
 .nombre {
+  margin-left: 2px;
   width: 120px;
   color: white;
   background-color: #0050FE;
@@ -61,7 +69,7 @@ header h1{
 p {
   font-size: 12px;
 }
-/***********Resistencia*************/
+/*********** ULTIMA LINEA *************/
 
 .ultimoBloque{
     display: inline;
@@ -82,15 +90,15 @@ p {
 
 .der {
   display: inline-block;
-  text-align: left;
+  text-align: right;
   width: 90px;
 }
 
-.ultimoBloque .der input{
+.der input{
   width: 20px;
 }
 
-.ultimoBloque .der p{
+.der p{
   display:inline-block;
   text-align: center;
   font-size: 15px;
