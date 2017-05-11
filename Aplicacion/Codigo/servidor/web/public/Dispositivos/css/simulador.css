@@ -37,6 +37,11 @@ header h1{
 
 .lSuperior p{
     float: right;
+    margin-top: 3px;
+}
+
+.lSuperior form{
+    float: left;
 }
 
 .medidas h2 {
@@ -44,6 +49,13 @@ header h1{
     width: 49%;
     text-align: center;
     font-size: 28px;
+}
+
+.nombre {
+  width: 120px;
+  color: white;
+  background-color: #0050FE;
+  border: none;
 }
 
 p {
@@ -82,5 +94,5 @@ p {
   display:inline-block;
   text-align: center;
   font-size: 15px;
-  width: 30px;
+  width: 35px;
 }

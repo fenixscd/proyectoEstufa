@@ -21,13 +21,16 @@
             <div class="dispositivo">
                 <div class="display">
                     <div class="lSuperior">
-                        <h2><span id="dispositivo">A6-B5-C4-D3-E2-F1</span></h2>
-                        <p><span id="conexion">DESCONEC</span></p>
+                      <form>
+                        <input type="button" name="" value="<" onclick="hacer_click()"/>
+                        <input class="nombre" type="text" name="nombreDispositivo{{mac}}" value="A6-B5-C4-D3-E2-F1-">
+                      </form>
+                      <p><span id="estadoConexion{{mac}}">DESCONEC</span></p>
                     </div>
 
                     <div class="medidas">
-                        <h2>T: <span id="temp">25.5</span>º</h2>
-                        <h2>H: <span id="hume">10</span>%</h2>
+                        <h2>T: <span id="temperatura{{mac}}">25.5</span>º</h2>
+                        <h2>H: <span id="humedad{{mac}}">10</span>%</h2>
                     </div>
 
                     <div class="ultimoBloque">
@@ -59,7 +62,7 @@
 
                         <div class="der">
                           <input type="button" value="+"  onclick="hacer_click()"/>
-                          <p id="tempTermostato2{{mac}}">25.2</p>
+                          <p id="tempTermostato2{{mac}}">100.0</p>
                           <input type="button" value=" - " onclick="hacer_click()"/>
                         </div>
                       </form>

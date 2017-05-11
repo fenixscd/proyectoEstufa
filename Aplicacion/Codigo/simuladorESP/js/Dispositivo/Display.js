@@ -36,7 +36,7 @@ Display.prototype.generarHTML = function () {
                         '<p><span id="estadoConexion{{mac}}"></span></p>' +
                       '</div>' +
                       '<div class="medidas">' +
-                        '<h2><span id="temperatura{{mac}}"></span>º</h2>' +
+                        '<h2><span id="temperatura{{mac}}"></span></h2>' +
                         '<h2><span id="humedad{{mac}}">10</span>%</h2>' +
                       '</div>' +
 
