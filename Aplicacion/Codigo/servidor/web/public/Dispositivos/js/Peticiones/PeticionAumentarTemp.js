@@ -14,7 +14,7 @@ PeticionAumentarTemp.prototype.ejecutar = function(mac, termostato) {
   this.datos.command = "aumentarTemp"+termostato; // Comando que se ejecuta en el servidor
   this.datos.codigo  = "codigoDePeticion";
 
-  console.log(this.datos);
+  //console.log(this.datos);
 
-  // this.conexion.enviarMensaje(JSON.stringify(this.datos));
+  this.conexion.enviarMensaje(JSON.stringify(this.datos));
 };

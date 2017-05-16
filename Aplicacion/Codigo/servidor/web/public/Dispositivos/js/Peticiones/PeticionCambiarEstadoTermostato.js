@@ -14,7 +14,7 @@ PeticionCambiarEstadoTermostato.prototype.ejecutar = function(mac, termostato, e
   this.datos.estado  = estado;
   this.datos.command = "cambiarEstadoTermostato"+termostato; // Comando que se ejecuta en el servidor
   this.datos.codigo  = "codigoDePeticion";
-  console.log(this.datos);
+  // console.log(this.datos);
 
-  // this.conexion.enviarMensaje(JSON.stringify(this.datos));
+  this.conexion.enviarMensaje(JSON.stringify(this.datos));
 };

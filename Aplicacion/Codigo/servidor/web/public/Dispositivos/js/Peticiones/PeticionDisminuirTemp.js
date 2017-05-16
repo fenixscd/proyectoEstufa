@@ -13,7 +13,7 @@ PeticionDisminuirTemp.prototype.ejecutar = function(mac, termostato) {
   this.datos.mac      = mac;
   this.datos.command = "disminuirTemp"+termostato; // Comando que se ejecuta en el servidor
   this.datos.codigo  = "codigoDePeticion";
-  console.log(this.datos);
+  // console.log(this.datos);
 
-  // this.conexion.enviarMensaje(JSON.stringify(this.datos));
+  this.conexion.enviarMensaje(JSON.stringify(this.datos));
 };
