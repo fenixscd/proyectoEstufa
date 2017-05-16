@@ -175,3 +175,41 @@ mv composer.phar /usr/local/bin/composer
 # fi
 
 echo '........'
+
+
+
+#!/usr/bin/env bash
+
+#DBHOST=localhost
+
+# echo "Hola"
+
+# if [ -d /var/www/infrastructura/ ]; then
+#         echo "Me coloco en la carpeta"
+        
+# else
+#         echo "LA CARPETA infrastructura NO EXISTE"
+# fi
+
+# if [ -d /var/www/infrastructura/ ]; then
+#         echo "Me coloco en la carpeta"
+#         cd /var/www/infrastructura
+#         if [ -f /var/www/infrastructura/WebSocket.php ];then
+#                 clear
+#                 echo "El ejecuto el WebSocket"
+#                 php /var/www/infrastructura/WebSocket.php
+#         else
+#                 echo "El archivo WebSocket.php no existe"
+#         fi
+# else
+#         echo "LA CARPETA infrastructura NO EXISTE"
+# fi
+
+# if [ -f /vagrant/scripts/vim.sh ];then
+#       echo "Sí, sí existe."
+#       chmod +x /vagrant/scripts/vim.sh
+#       sh /vagrant/scripts/vim/vim.sh
+# else
+#       echo "No, no existe"
+# fi
+

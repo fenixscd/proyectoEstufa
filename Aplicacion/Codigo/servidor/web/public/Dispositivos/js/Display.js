@@ -45,13 +45,13 @@ Display.prototype.generarHTML = function () {
                         '</div>' +
 
                         '<div class="cnt">' +
-                          '<input type="button" value="ON" onclick="hacer_click()"/>' +
+                          '<input type="button" value="ON" onclick="peticionesLista.getPeticion(`cambiarEstadoTermostato`).ejecutar(`{{mac}}`, 1, this.value)"/>' +
                         '</div>' +
 
                         '<div class="der">' +
-                          '<input type="button" value="+"  onclick="hacer_click()"/>' +
+                          '<input type="button" value="+" onclick="peticionesLista.getPeticion(`aumentarTemp`).ejecutar(`{{mac}}`, 1)"/>' +
                           '<p id="tempTermostato1{{mac}}">25.2</p>' +
-                          '<input type="button" value=" - " onclick="hacer_click()"/>' +
+                          '<input type="button" value=" - " onclick="peticionesLista.getPeticion(`disminuirTemp`).ejecutar(`{{mac}}`, 1)"/>' +
                         '</div>' +
                       '</form>' +
 
@@ -61,13 +61,13 @@ Display.prototype.generarHTML = function () {
                         '</div>' +
 
                         '<div class="cnt">' +
-                          '<input type="button" value="OFF" onclick="hacer_click()"/>' +
+                          '<input type="button" value="OFF" onclick="peticionesLista.getPeticion(`cambiarEstadoTermostato`).ejecutar(`{{mac}}`, 2, this.value)"/>' +
                         '</div>' +
 
                         '<div class="der">' +
-                          '<input type="button" value="+"  onclick="hacer_click()"/>' +
+                          '<input type="button" value="+" onclick="peticionesLista.getPeticion(`aumentarTemp`).ejecutar(`{{mac}}`, 2)"/>' +
                           '<p id="tempTermostato2{{mac}}">100</p>' +
-                          '<input type="button" value=" - " onclick="hacer_click()"/>' +
+                          '<input type="button" value=" - " onclick="peticionesLista.getPeticion(`disminuirTemp`).ejecutar(`{{mac}}`, 2)"/>' +
                         '</div>' +
                       '</form>' +
                     '</div>' +

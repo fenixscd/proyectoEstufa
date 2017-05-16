@@ -7,6 +7,10 @@ var peticionesLista   = new PeticionesLista();
 cargarListaDePeticiones();
 cargarListaDeComandos();
 
+function ejecutarPeticion(mac, pe){
+  // Mirar los parametros
+  commandsLista.getCommand("crearDispositivo").ejecutar(mac, peticionesLista);
+}
 
 function crearDispositivo() {
   var mac = "A6-B5-C4-D3-00-01";
@@ -18,6 +22,10 @@ function cargarListaDePeticiones(){
   peticionesLista.addPeticion(new PeticionGetTemperatura(conexion));
   peticionesLista.addPeticion(new PeticionConfirmarConexion(conexion));
   peticionesLista.addPeticion(new PeticionRegistrarDispositivos(conexion));
+  peticionesLista.addPeticion(new PeticionAumentarTemp(conexion));
+  peticionesLista.addPeticion(new PeticionDisminuirTemp(conexion));
+  peticionesLista.addPeticion(new PeticionCambiarEstadoTermostato(conexion));
+
 }
 
 function cargarListaDeComandos(){
