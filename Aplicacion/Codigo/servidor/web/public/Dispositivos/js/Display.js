@@ -27,7 +27,7 @@ Display.prototype.generarHTML = function () {
   var plantilla = '<div class="display">' +
                     '<div class="lSuperior">' +
                       '<form>' +
-                        '<input type="button" name="" value="<" onclick="hacer_click()"/>' +
+                        '<input type="button" name="00" value="<" onclick="peticionesLista.getPeticion(`cambiarNombreDispositivo`).ejecutar(`{{mac}}`, this.form.children[1].value)"/>' +
                         '<input class="nombre" type="text" name="nombreDispositivo{{mac}}" value="{{mac}}">' +
                       '</form>' +
                       '<p><span id="estadoConexion{{mac}}">DESCONEC</span></p>' +

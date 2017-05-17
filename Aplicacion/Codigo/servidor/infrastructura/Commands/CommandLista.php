@@ -15,11 +15,12 @@ class CommandLista{
   }
 
   public function getCommand($comando){
-    foreach ($this->commands as $command) {
+    foreach ($this->commands as $command){
       if ($command->getNombre() == $comando){
         return $command;
       }
     }
-    echo "El comando - " .$comando. " - NO EXISTE\n";
+    // Repetir comando
+    echo "El comando - " . $comando . " - NO EXISTE\n";
   }
 }

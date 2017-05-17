@@ -10,6 +10,8 @@ use infrastructura\Commands\CommandRegistrarDispositivo;
 use infrastructura\Commands\CommandRegistrarDispositivoCliente;
 use infrastructura\Commands\CommandDispGetTemperatura;
 use infrastructura\Commands\CommandClientSetTemperatura;
+use infrastructura\Commands\CommandClientRepetir;
+use infrastructura\Commands\CommandDispRepetir;
 
 class Conexion implements MessageComponentInterface {
     private $clients;
@@ -25,6 +27,9 @@ class Conexion implements MessageComponentInterface {
         $this->commandLista->addCommand(new CommandClientSetTemperatura($this->listaDispositivos));
         $this->commandLista->addCommand(new CommandRegistrarDispositivo($this->listaDispositivos));
         $this->commandLista->addCommand(new CommandRegistrarDispositivoCliente($this->listaDispositivos));
+        $this->commandLista->addCommand(new CommandClientRepetir($this->listaDispositivos));
+        $this->commandLista->addCommand(new CommandDispRepetir($this->listaDispositivos));
+
 
     }
 

@@ -25,7 +25,7 @@ function cargarListaDePeticiones(){
   peticionesLista.addPeticion(new PeticionAumentarTemp(conexion));
   peticionesLista.addPeticion(new PeticionDisminuirTemp(conexion));
   peticionesLista.addPeticion(new PeticionCambiarEstadoTermostato(conexion));
-
+  peticionesLista.addPeticion(new PeticionCambiarNombreDispositivo(conexion));
 }
 
 function cargarListaDeComandos(){

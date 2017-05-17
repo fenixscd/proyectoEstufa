@@ -14,7 +14,7 @@ PeticionCambiarNombreDispositivo.prototype.ejecutar = function(mac, nombre) {
   this.datos.nombre  = nombre;
   this.datos.command = "cambiarNombreDispositivo"; // Comando que se ejecuta en el servidor
   this.datos.codigo  = "codigoDePeticion";
-  console.log(arguments);
+  console.log(this.datos);
 
-  this.conexion.enviarMensaje(JSON.stringify(this.datos));
+  // this.conexion.enviarMensaje(JSON.stringify(this.datos));
 };

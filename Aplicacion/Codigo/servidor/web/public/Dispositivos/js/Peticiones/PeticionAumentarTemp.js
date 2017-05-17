@@ -8,11 +8,12 @@ PeticionAumentarTemp.prototype.getNombre = function () {
   return this.nombre;
 };
 
-PeticionAumentarTemp.prototype.ejecutar = function(mac, termostato) {
+PeticionAumentarTemp.prototype.ejecutar = function(mac, nTermostato) {
   // Crear todo lo necesario para la contestacion en la lista de dispositivo
-  this.datos.mac      = mac;
-  this.datos.command = "aumentarTemp"+termostato; // Comando que se ejecuta en el servidor
-  this.datos.codigo  = "codigoDePeticion";
+  this.datos.mac         = mac;
+  this.datos.nTermostato = nTermostato;
+  this.datos.repetir     = "aumentarTemp"
+  this.datos.command     = "dispRepetir";
 
   //console.log(this.datos);
 

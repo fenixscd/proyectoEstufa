@@ -4,17 +4,19 @@ function Termostato(numero, display, conexion, resistencia) {
   this.numero            = numero;
   this.display           = display;
   this.estado            = false;
-  this.temperatura       = false;
+  this.temperatura       = 24;
 
   this.pintarEstado();
   this.pintarTemperatura();
 }
 
 Termostato.prototype.getTemperatura = function (){
-  if (this.temperatura == false || this.temperatura == null ) {
-    return parseFloat(0);
+  var temp = this.temperatura;
+  if (temp == false || temp == null ) {
+    temp = 0;
   }
-  return parseFloat(this.temperatura);
+  temp = parseFloat(temp);
+  return temp.toFixed(1)
 }
 
 Termostato.prototype.getEstado = function () {
@@ -33,13 +35,23 @@ Termostato.prototype.setTemperatura = function (temperatura) {
   this.enviarTemperatura();
 };
 
+Termostato.prototype.getNTermostato = function () {
+  return this.numero;
+};
+
+Termostato.prototype.isNTermostato = function (nTermostato) {
+  if(this.numero == nTermostato) return true;
+  return false;
+};
+
+
+
 Termostato.prototype.actualizarEstado = function (temperaturaActual) {
   if (this.estado){
     var  isTemperaturaSelec = false;
     if (parseFloat(this.getTemperatura()) >= parseFloat(temperaturaActual)) {
       isTemperaturaSelec = true;
     }
-
     this.resistencia.setEstado(isTemperaturaSelec);
   }
 };
