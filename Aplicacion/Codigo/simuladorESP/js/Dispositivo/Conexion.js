@@ -55,7 +55,7 @@ Conexion.prototype.conexionMensajeRecivido = function (evt) {
   var command = this.commandsLista.getCommand(parametros["command"]);
 
   if (command){
-     command.ejecutar();
+     command.ejecutar(parametros);
   }
 };
 

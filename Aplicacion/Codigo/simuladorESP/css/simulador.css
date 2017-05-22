@@ -50,9 +50,19 @@ p {
 }
 /***********Resistencia*************/
 
-.ultimoBloque{
+/*.ultimoBloque{
     display: inline-block;
     width: 49%;
+}*/
+
+.ultimoBloqueIz{
+    display: inline-block;
+    width: 55%;
+}
+
+.ultimoBloqueDer{
+    display: inline-block;
+    width: 43%;
 }
 
 .izq {

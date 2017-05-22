@@ -4,62 +4,89 @@ function Display (mac){
   this.datos = new Array();
 }
 
-Display.prototype.pintarValores = function() {
-  var valorPintar;
-  for (dato in this.datos){
-      valorPintar = this.datos[dato][1]; // Valor verdadero
-      if (this.datos[dato][0] === false){
-        valorPintar = this.datos[dato][2]; // Para falso
-      }
-      document.getElementById(dato + this.mac).innerHTML = valorPintar;
+Display.prototype.cambiarValor = function(clave, valor) {
+  var mac = this.mac;
+  if (document.getElementById(clave + mac) != null){
+    document.getElementById(clave + mac).innerHTML = valor;
+  }else {
+    console.log("No existe el clave \"" + clave + "\" en le HTML");
   }
 };
 
-Display.prototype.cambiarValor = function(clave, valor) {
-  console.log("Clave: "+ clave + " Valor " + valor);
-  var mac = this.mac;
-  setTimeout(function(){
-        document.getElementById(clave + mac).innerHTML = valor;
-    },10);
-};
-
 Display.prototype.añadirHTMLDispositivo = function () {
-  var contenedor = document.getElementsByTagName("section")[0];
+  var contenedor = document.getElementsByTagName("article")[0];
   var dispositivo = document.createElement("div");
   dispositivo.setAttribute("class", "dispositivo");
 
   dispositivo.innerHTML = this.generarHTML();
   dispositivo.classList.add("dispositivo");
   contenedor.appendChild(dispositivo);
-
-  // this.pintarValores();
 };
 
 Display.prototype.generarHTML = function () {
   var plantilla = '<div class="display">' +
-                      '<div class="lSuperior">' +
-                        '<h2><span id="dispositivo{{mac}}">{{mac}}</span></h2>' +
-                        '<p><span id="conexion{{mac}}">DESCONEC</span></p>' +
-                      '</div>' +
-                      '<div class="medidas">' +
-                        '<h2><span id="temperatura{{mac}}"></span>º</h2>' +
-                        '<h2><span id="humedad{{mac}}">10</span>%</h2>' +
-                      '</div>' +
+                    '<div class="lSuperior">' +
+                      '<form>' +
+                        '<input type="button" name="" value="<" onclick="peticionesLista.getPeticion(`cambiarNombreDispositivo`).ejecutar(`{{mac}}`, this.form.children[1].value)"/>' +
+                        '<input class="nombre" type="text" name="nombreDispositivo{{mac}}" value="{{mac}}">' +
+                      '</form>' +
+                      '<p><span id="estadoConexion{{mac}}">DESCONEC</span></p>' +
+                    '</div>' +
 
-                      '<div>' +
-                        '<p class="izq">Resis 1 [<span id="estadoResitencia1{{mac}}">*</span>]: <span id="estadoTermostato1{{mac}}">ON</span> <span id="tempTermostato1{{mac}}">27</span>º</p>' +
-                      '</div>' +
+                    '<div class="medidas">' +
+                        '<h2>T: <span id="temperatura{{mac}}">25.5</span>º</h2>' +
+                        '<h2>H: <span id="humedad{{mac}}">10</span>%</h2>' +
+                    '</div>' +
 
-                      '<div>' +
-                        '<p class="izq">Resis 2 [<span id="estadoResitencia2{{mac}}"> </span>]: <span id="estadoTermostato2{{mac}}">OFF</span> <span id="tempTermostato2{{mac}}"></span></p>' +
-                      '</div>' +
-                      '</div>' +
-                      '</div>' +
-                      '<div class="botonera">' +
-                        '<form>' +
-                          '<input type="button" value="+" onclick="hacer_click()"/>' +
-                          '<input type="button" value="M" onclick="hacer_click()"/>' +
-                          '<input type="button" value="-" onclick="hacer_click()"/>' +
-                          '</form>';
+                    '<div class="ultimoBloque">' +
+                      '<form>' +
+                        '<div class="izq">' +
+                          'Resis 1 [<span id="estadoResitencia1{{mac}}">*</span>]' +
+                        '</div>' +
+
+                        '<div class="cnt">' +
+                          '<input type="button" value="OFF" onclick="cambiarEstado(`{{mac}}`,1 , this.value)"/>' +
+                        '</div>' +
+
+                        '<div class="der">' +
+                          '<input type="button" value="+" onclick="peticionesLista.getPeticion(`aumentarTemp`).ejecutar(`{{mac}}`, 1)"/>' +
+                          '<p id="tempTermostato1{{mac}}">25.2</p>' +
+                          '<input type="button" value=" - " onclick="peticionesLista.getPeticion(`disminuirTemp`).ejecutar(`{{mac}}`, 1)"/>' +
+                        '</div>' +
+                      '</form>' +
+
+                      '<form>' +
+                        '<div class="izq">' +
+                          'Resis 2 [<span id="estadoResitencia2{{mac}}"> </span>]' +
+                        '</div>' +
+
+                        '<div class="cnt">' +
+                          '<input type="button" value="OFF" onclick="cambiarEstado(`{{mac}}`, 2, this.value)"/>' +
+                        '</div>' +
+
+
+
+                        '<div class="der">' +
+                          '<input type="button" value="+" onclick="peticionesLista.getPeticion(`aumentarTemp`).ejecutar(`{{mac}}`, 2)"/>' +
+                          '<p id="tempTermostato2{{mac}}">100</p>' +
+                          '<input type="button" value=" - " onclick="peticionesLista.getPeticion(`disminuirTemp`).ejecutar(`{{mac}}`, 2)"/>' +
+                        '</div>' +
+                      '</form>' +
+                    '</div>' +
+                '</div>';
+
   return plantilla.replace(/{{mac}}/g, this.mac);
 };
+
+
+
+// Display.prototype.pintarValores = function() {
+//   var valorPintar;
+//   for (dato in this.datos){
+//       valorPintar = this.datos[dato][1]; // Valor verdadero
+//       if (this.datos[dato][0] === false){
+//         valorPintar = this.datos[dato][2]; // Para falso
+//       }
+//       document.getElementById(dato + this.mac).innerHTML = valorPintar;
+//   }
+// };

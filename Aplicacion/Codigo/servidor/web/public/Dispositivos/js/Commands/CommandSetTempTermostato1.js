@@ -1,16 +1,16 @@
-function CommandSetTemperatura(listaDispositivos) {
+function CommandSetTempTermostato1(listaDispositivos) {
   this.listaDispositivos = listaDispositivos;
-  this.nombre            = "setTemperatura";
+  this.nombre            = "setTempTermostato1";
 }
 
-CommandSetTemperatura.prototype.getNombre = function () {
+CommandSetTempTermostato1.prototype.getNombre = function () {
   return this.nombre;
 };
 
-CommandSetTemperatura.prototype.ejecutar = function(parametros) {
+CommandSetTempTermostato1.prototype.ejecutar = function(parametros) {
   console.log("Comando "+ setNombreDispositivo + " parametros " + parametros);
   var mac         = parametros["mac"];
-  var clave       = "temperatura";
+  var clave       = "tempTermostato1";
   var valor       = parametros["valor"];
 
   this.listaDispositivos.cambiarValor(mac, clave, valor);

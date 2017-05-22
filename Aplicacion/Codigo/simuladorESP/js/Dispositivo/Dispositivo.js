@@ -56,6 +56,29 @@ Dispositivo.prototype.isResistenciaEncendida = function () {
   else return false;
 };
 
+Dispositivo.prototype.getTermostato = function (nTermostato) {
+  if (this.termostato1.isNTermostato(nTermostato)) return this.termostato1;
+  if (this.termostato2.isNTermostato(nTermostato)) return this.termostato2;
+  console.log("No se ha encontrado el termostato con el numero " + nTermostato);
+};
+
+
+Dispositivo.prototype.aumentarTemp = function (termostato) {
+  var termostato = termostato;
+  termostato.setTemperatura(parseFloat(termostato.temperatura) + 0.1);
+};
+
+Dispositivo.prototype.disminuirTemp = function (termostato) {
+  var termostato = termostato;
+  termostato.setTemperatura(parseFloat(termostato.temperatura) - 0.1);
+};
+
+// Termostato.prototype.aumentarTemp = function () {
+//   this.temperatura = parseFloat(this.temperatura) + 0.1;
+//   this.enviarTemperatura();
+//   this.pintarTemperatura();
+// };
+
 Dispositivo.prototype.actualizarMediciones = function (obj) {
     window.setInterval(function() {
       obj.termometro.actualizarMedicion(obj.isResistenciaEncendida());
@@ -85,6 +108,11 @@ Dispositivo.prototype.generarMac = function () {
 
 Dispositivo.prototype.addCommands = function () {
   this.commandsLista.addCommand(new CommandGetTemperatura(this));
+  this.commandsLista.addCommand(new CommandAumentarTemp(this));
+  this.commandsLista.addCommand(new CommandDisminuirTemp(this));
+  this.commandsLista.addCommand(new CommandCambiarEstadoTermostato(this));
+  this.commandsLista.addCommand(new CommandCambiarNombreDispositivo(this));
+
 };
 
 Dispositivo.prototype.conexionAbierta = function () {
@@ -97,26 +125,13 @@ Dispositivo.prototype.conexionAbierta = function () {
   this.humedad.enviarValores();
 };
 
-Dispositivo.prototype.conexionCerrada = function () {
-  // Terminar bucle
-};
-
-Dispositivo.prototype.conectadosClientes = function () {
-
-};
-
-Dispositivo.prototype.desconectadosClientes = function () {
-
-};
-
-
 Dispositivo.prototype.pintarNombreDispositivo = function () {
   this.display.cambiarValor("nombreDispositivo", this.getNombreDispositivo());
 };
 
 Dispositivo.prototype.enviarValores = function () {
   var datos = new Object();
-  datos.command = "setClientNombreDispositivo";
+  datos.command = "clientSetNombreDispositivo";
   datos.valor = this.getNombreDispositivo();
   this.conexion.enviarMensaje(datos);
 };

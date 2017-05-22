@@ -4,6 +4,12 @@
     box-sizing: border-box;
 }
 
+form {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
 .centrado {
     margin: 0 auto;
     width: 560px;
@@ -15,15 +21,15 @@ header h1{
 }
 
 .display {
+    margin: 5px;
     padding: 7px 7px;;
-    width: 250px;
+    width: 220px;
     color: white;
     background-color: #0050FE;
     border: black 1px solid;
     overflow: hidden;
     border-radius: 10px;
     float: left;
-
 }
 
 /******* LINEA SUPERIOR  *************/
@@ -38,42 +44,63 @@ header h1{
 
 .lSuperior p{
     float: right;
+    margin-top: 3px;
+}
+
+.lSuperior form{
+    float: left;
 }
 
 .medidas h2 {
     display: inline-block;
     width: 49%;
     text-align: center;
+    font-size: 28px;
 }
 
-.programacion {
-	font-size: 12px;
+.nombre {
+  margin-left: 2px;
+  width: 120px;
+  color: white;
+  background-color: #0050FE;
+  border: none;
 }
 
-.programacion .izq {
-    float: left;
+p {
+  font-size: 12px;
+}
+/*********** ULTIMA LINEA *************/
 
+.ultimoBloque{
+    display: inline;
+    font-size: 15px;;
 }
 
-.programacion .der{
-	float: right;
-    text-align: left;
-    width: 50%;
+.izq {
+  display: inline-block;
+  text-align: left;
+  width: 70px;
 }
 
-
-
-/***********BOTONERA*************/
-
-.botonera {
-    margin-left: 2px;
-	float: left;
-    width: 28px;
-/*    text-align: center;*/
+.cnt{
+  display: inline-block;
+  text-align: center;
+  width: 35px;
 }
 
-.botonera input {
-    width: 28px;
-    height: 28px;
+.der {
+  display: inline-block;
+  text-align: right;
+  width: 90px;
+}
 
+.der input{
+  width: 20px;
+}
+
+.der p{
+  display:inline-block;
+  text-align: center;
+  font-size: 15px;
+  width: 35px;
 }

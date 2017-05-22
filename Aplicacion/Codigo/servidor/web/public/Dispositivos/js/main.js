@@ -7,18 +7,25 @@ var peticionesLista   = new PeticionesLista();
 cargarListaDePeticiones();
 cargarListaDeComandos();
 
+function ejecutarPeticion(mac, pe){
+  // Mirar los parametros
+  commandsLista.getCommand("crearDispositivo").ejecutar(mac, peticionesLista);
+}
 
 function crearDispositivo() {
   var mac = "A6-B5-C4-D3-00-01";
   commandsLista.getCommand("crearDispositivo").ejecutar(mac, peticionesLista);
   // Programa principal se encargar de crear los dispositivos
-
 }
 
 function cargarListaDePeticiones(){
   peticionesLista.addPeticion(new PeticionGetTemperatura(conexion));
   peticionesLista.addPeticion(new PeticionConfirmarConexion(conexion));
   peticionesLista.addPeticion(new PeticionRegistrarDispositivos(conexion));
+  peticionesLista.addPeticion(new PeticionAumentarTemp(conexion));
+  peticionesLista.addPeticion(new PeticionDisminuirTemp(conexion));
+  peticionesLista.addPeticion(new PeticionCambiarEstadoTermostato(conexion));
+  peticionesLista.addPeticion(new PeticionCambiarNombreDispositivo(conexion));
 }
 
 function cargarListaDeComandos(){
@@ -45,4 +52,14 @@ function CargarLista() {
   for (var i = 0; i < 3; i++){
     commandsLista.getCommand("crearDispositivo").ejecutar(listaDeMacs[i], peticionesLista);
   }
+}
+
+function cambiarEstado(mac, nTermostato, valor){
+  var nuevoEstado;
+  if (valor == "ON"){
+    nuevoEstado = false;
+  }else{
+    nuevoEstado = true
+  }
+  peticionesLista.getPeticion("cambiarEstadoTermostato").ejecutar(mac, nTermostato, nuevoEstado);
 }

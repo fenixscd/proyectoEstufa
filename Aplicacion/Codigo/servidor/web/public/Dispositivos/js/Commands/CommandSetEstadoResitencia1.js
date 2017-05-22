@@ -1,16 +1,16 @@
-function CommandSetTemperatura(listaDispositivos) {
+function CommandSetEstadoResitencia1(listaDispositivos) {
   this.listaDispositivos = listaDispositivos;
-  this.nombre            = "setTemperatura";
+  this.nombre            = "setEstadoResitencia1";
 }
 
-CommandSetTemperatura.prototype.getNombre = function () {
+CommandSetEstadoResitencia1.prototype.getNombre = function () {
   return this.nombre;
 };
 
-CommandSetTemperatura.prototype.ejecutar = function(parametros) {
+CommandSetEstadoResitencia1.prototype.ejecutar = function(parametros) {
   console.log("Comando "+ setNombreDispositivo + " parametros " + parametros);
   var mac         = parametros["mac"];
-  var clave       = "temperatura";
+  var clave       = "estadoResitencia1";
   var valor       = parametros["valor"];
 
   this.listaDispositivos.cambiarValor(mac, clave, valor);

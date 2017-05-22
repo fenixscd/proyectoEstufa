@@ -27,12 +27,16 @@ ListaDispositivos.prototype.getDispositivo = function (mac) {
   return false;
 };
 
+
+//////////////// Modificar cosas ///////
+
+ListaDispositivos.prototype.cambiarValor = function(mac, clave, valor) {
+  var dispositivo = this.getDispositivo(mac);
+  dispositivo.getDisplay().cambiarValor(clave, valor);
+}
+
 ListaDispositivos.prototype.cambiarEstado = function (estado) {
   for (var i = 0; i < this.listaDispositivos.length; i++) {
     this.listaDispositivos[i].setConexion(estado);
   }
-};
-
-ListaDispositivos.prototype.rmConexion = function (conexion) {
-  // Buscar conexion
 };

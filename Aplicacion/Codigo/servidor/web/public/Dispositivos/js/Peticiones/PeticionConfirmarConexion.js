@@ -8,5 +8,7 @@ PeticionConfirmarConexion.prototype.getNombre = function () {
 };
 
 PeticionConfirmarConexion.prototype.ejecutar = function() {
+  // Tengo que verificar quel el dispositivos tambien este conectado.
+  // No solo que hay una conexion.
   return this.conexion.isConectado();
 };
