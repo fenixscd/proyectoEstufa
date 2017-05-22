@@ -35,6 +35,11 @@ ListaDispositivos.prototype.cambiarValor = function(mac, clave, valor) {
   dispositivo.getDisplay().cambiarValor(clave, valor);
 }
 
+ListaDispositivos.prototype.getNodoHtml = function (mac) {
+  var dispositivo = this.getDispositivo(mac);
+  return dispositivo.getDisplay().nodoHtml();
+};
+
 ListaDispositivos.prototype.cambiarEstado = function (estado) {
   for (var i = 0; i < this.listaDispositivos.length; i++) {
     this.listaDispositivos[i].setConexion(estado);

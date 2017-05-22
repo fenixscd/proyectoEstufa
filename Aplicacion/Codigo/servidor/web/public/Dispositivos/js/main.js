@@ -33,6 +33,8 @@ function cargarListaDeComandos(){
   commandsLista.addCommand(new CommandCambiarEstadoConexion(listaDispositivos));
   commandsLista.addCommand(new CommandSetTemperatura(listaDispositivos));
   commandsLista.addCommand(new CommandClientSetTermostatoTemp(listaDispositivos));
+  commandsLista.addCommand(new CommandClientSetTermostatoEstado(listaDispositivos));
+
 
 }
 
