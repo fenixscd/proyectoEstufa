@@ -14,7 +14,6 @@ PeticionAumentarTemp.prototype.ejecutar = function(mac, nTermostato) {
   this.datos.nTermostato = nTermostato;
   this.datos.repetir     = "aumentarTemp"
   this.datos.command     = "dispRepetir";
-
   //console.log(this.datos);
 
   this.conexion.enviarMensaje(JSON.stringify(this.datos));

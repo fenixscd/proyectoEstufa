@@ -4,12 +4,13 @@ function CommandDisminuirTemp(dispositivo) {
   this.datos       = new Object();
 }
 
-CommandGetTemperatura.prototype.getNombre = function () {
+CommandDisminuirTemp.prototype.getNombre = function () {
   return this.nombre;
 };
 
-CommandGetTemperatura.prototype.ejecutar = function(parametros) {
+CommandDisminuirTemp.prototype.ejecutar = function(parametros) {
   var nTermostato = parametros["nTermostato"];
   var termostato = this.dispositivo.getTermostato(nTermostato);
-  termostato.setTemperatura(parseFloat(termostato.temperatura) - 0.1);
+  temperatura = termostato.getTemperatura();
+  termostato.setTemperatura(parseFloat(temperatura) - 0.1);
 };
