@@ -73,11 +73,11 @@ Dispositivo.prototype.disminuirTemp = function (termostato) {
   termostato.setTemperatura(parseFloat(termostato.temperatura) - 0.1);
 };
 
-Dispositivo.prototype.aumentarTemp = function () {
-  this.temperatura = parseFloat(this.temperatura) + 0.1;
-  this.enviarTemperatura();
-  this.pintarTemperatura();
-};
+// Termostato.prototype.aumentarTemp = function () {
+//   this.temperatura = parseFloat(this.temperatura) + 0.1;
+//   this.enviarTemperatura();
+//   this.pintarTemperatura();
+// };
 
 Dispositivo.prototype.actualizarMediciones = function (obj) {
     window.setInterval(function() {

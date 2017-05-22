@@ -27,7 +27,7 @@ Display.prototype.generarHTML = function () {
   var plantilla = '<div class="display">' +
                     '<div class="lSuperior">' +
                       '<form>' +
-                        '<input type="button" name="00" value="<" onclick="peticionesLista.getPeticion(`cambiarNombreDispositivo`).ejecutar(`{{mac}}`, this.form.children[1].value)"/>' +
+                        '<input type="button" name="" value="<" onclick="peticionesLista.getPeticion(`cambiarNombreDispositivo`).ejecutar(`{{mac}}`, this.form.children[1].value)"/>' +
                         '<input class="nombre" type="text" name="nombreDispositivo{{mac}}" value="{{mac}}">' +
                       '</form>' +
                       '<p><span id="estadoConexion{{mac}}">DESCONEC</span></p>' +
@@ -45,7 +45,7 @@ Display.prototype.generarHTML = function () {
                         '</div>' +
 
                         '<div class="cnt">' +
-                          '<input type="button" value="ON" onclick="cambiarEstado(`{{mac}}`,1 , this.value)"/>' +
+                          '<input type="button" value="OFF" onclick="cambiarEstado(`{{mac}}`,1 , this.value)"/>' +
                         '</div>' +
 
                         '<div class="der">' +
