@@ -12,6 +12,7 @@ PeticionCambiarEstadoTermostato.prototype.ejecutar = function(mac, nTermostato, 
 
   this.datos.mac         = mac;
   this.datos.nTermostato = nTermostato;
+  this.datos.estado      = estado;
   this.datos.repetir     = "cambiarEstadoTermostato"
   this.datos.command     = "dispRepetir";
 

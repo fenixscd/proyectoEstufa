@@ -24,9 +24,11 @@ Termostato.prototype.getEstado = function () {
 };
 
 Termostato.prototype.setEstado = function (estado) {
-  this.estado = estado;
-  this.pintarEstado();
-  this.enviarEstado();
+  if (estado != this.estado){
+    this.estado = estado;
+    this.pintarEstado();
+    this.enviarEstado();
+  }
 };
 
 Termostato.prototype.setTemperatura = function (temperatura) {
