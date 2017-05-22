@@ -53,3 +53,13 @@ function CargarLista() {
     commandsLista.getCommand("crearDispositivo").ejecutar(listaDeMacs[i], peticionesLista);
   }
 }
+
+function cambiarEstado(mac, nTermostato, valor){
+  var nuevoEstado;
+  if (valor == "ON"){
+    nuevoEstado = false;
+  }else{
+    nuevoEstado = true
+  }
+  peticionesLista.getPeticion("cambiarEstadoTermostato").ejecutar(mac, nTermostato, nuevoEstado);
+}

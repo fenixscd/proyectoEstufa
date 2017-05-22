@@ -8,13 +8,12 @@ PeticionCambiarEstadoTermostato.prototype.getNombre = function () {
   return this.nombre;
 };
 
-PeticionCambiarEstadoTermostato.prototype.ejecutar = function(mac, termostato, estado) {
-  // Crear todo lo necesario para la contestacion en la lista de dispositivo
-  this.datos.mac     = mac;
-  this.datos.estado  = estado;
-  this.datos.command = "cambiarEstadoTermostato"+termostato; // Comando que se ejecuta en el servidor
-  this.datos.codigo  = "codigoDePeticion";
-  // console.log(this.datos);
+PeticionCambiarEstadoTermostato.prototype.ejecutar = function(mac, nTermostato, estado) {
+
+  this.datos.mac         = mac;
+  this.datos.nTermostato = nTermostato;
+  this.datos.repetir     = "cambiarEstadoTermostato"
+  this.datos.command     = "dispRepetir";
 
   this.conexion.enviarMensaje(JSON.stringify(this.datos));
 };

@@ -45,7 +45,7 @@ Display.prototype.generarHTML = function () {
                         '</div>' +
 
                         '<div class="cnt">' +
-                          '<input type="button" value="ON" onclick="peticionesLista.getPeticion(`cambiarEstadoTermostato`).ejecutar(`{{mac}}`, 1, this.value)"/>' +
+                          '<input type="button" value="ON" onclick="cambiarEstado(`{{mac}}`,1 , this.value)"/>' +
                         '</div>' +
 
                         '<div class="der">' +
@@ -61,8 +61,10 @@ Display.prototype.generarHTML = function () {
                         '</div>' +
 
                         '<div class="cnt">' +
-                          '<input type="button" value="OFF" onclick="peticionesLista.getPeticion(`cambiarEstadoTermostato`).ejecutar(`{{mac}}`, 2, this.value)"/>' +
+                          '<input type="button" value="OFF" onclick="cambiarEstado(`{{mac}}`, 2, this.value)"/>' +
                         '</div>' +
+
+
 
                         '<div class="der">' +
                           '<input type="button" value="+" onclick="peticionesLista.getPeticion(`aumentarTemp`).ejecutar(`{{mac}}`, 2)"/>' +
