@@ -25,7 +25,6 @@ Resistencia.prototype.setEstado = function (nuevoEstado) {
     this.estado = nuevoEstado;
     this.pintarEstado();
     this.enviarValores();
-    // Enviar nuevo estado
   }
 };
 

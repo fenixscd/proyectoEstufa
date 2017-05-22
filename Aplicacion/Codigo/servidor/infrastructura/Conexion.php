@@ -14,6 +14,7 @@ use infrastructura\Commands\CommandClientRepetir;
 use infrastructura\Commands\CommandDispRepetir;
 use infrastructura\Commands\CommandClientSetTermostatoTemp;
 use infrastructura\Commands\CommandClientSetTermostatoEstado;
+use infrastructura\Commands\CommandClientSetResistenciaEstado;
 
 class Conexion implements MessageComponentInterface {
     private $clients;
@@ -33,6 +34,7 @@ class Conexion implements MessageComponentInterface {
         $this->commandLista->addCommand(new CommandDispRepetir($this->listaDispositivos));
         $this->commandLista->addCommand(new CommandClientSetTermostatoTemp($this->listaDispositivos));
         $this->commandLista->addCommand(new CommandClientSetTermostatoEstado($this->listaDispositivos));
+        $this->commandLista->addCommand(new CommandClientSetResistenciaEstado($this->listaDispositivos));
 
 
 

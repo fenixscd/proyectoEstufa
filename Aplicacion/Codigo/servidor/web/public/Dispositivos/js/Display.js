@@ -41,7 +41,7 @@ Display.prototype.generarHTML = function () {
                     '<div class="ultimoBloque">' +
                       '<form>' +
                         '<div class="izq">' +
-                          'Resis 1 [<span id="estadoResitencia1{{mac}}">*</span>]' +
+                          'Resis 1 [<span id="resitencia1Estado{{mac}}"> </span>]' +
                         '</div>' +
 
                         '<div class="cnt">' +
@@ -57,7 +57,7 @@ Display.prototype.generarHTML = function () {
 
                       '<form>' +
                         '<div class="izq">' +
-                          'Resis 2 [<span id="estadoResitencia2{{mac}}"> </span>]' +
+                          'Resis 2 [<span id="resitencia2Estado{{mac}}"> </span>]' +
                         '</div>' +
 
                         '<div class="cnt">' +
