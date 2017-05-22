@@ -73,15 +73,17 @@ Termostato.prototype.pintarTemperatura = function () {
 
 Termostato.prototype.enviarEstado = function () {
   var datos = new Object();
-  datos.command = "clientSetEstadoTermostato" + this.numero;
+  datos.command = "clientSetTermostatoEstado" + this.numero;
   datos.valor = this.getEstado();
   this.conexion.enviarMensaje(datos);
 };
 
 Termostato.prototype.enviarTemperatura = function () {
   var datos = new Object();
-  datos.command = "clientSetTeperaturaTermostato" + this.numero;
-  datos.valor = this.getTemperatura();
+  datos.command     = "clientSetTermostatoTemp";
+  datos.nTermostato = this.numero;
+  datos.valor       = this.getTemperatura();
+
   this.conexion.enviarMensaje(datos);
 };
 
