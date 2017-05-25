@@ -27,6 +27,11 @@ header h1{
 
 /******* LINEA SUPERIOR  *************/
 
+.lSuperior{
+  overflow: hidden;
+  width: 100%;
+}
+
 .lSuperior h2, .lSuperior p{
     font-size: 12px;
 }
@@ -37,6 +42,10 @@ header h1{
 
 .lSuperior p{
     float: right;
+}
+
+.medidas {
+  display: block;
 }
 
 .medidas h2 {

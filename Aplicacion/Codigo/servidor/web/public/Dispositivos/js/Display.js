@@ -34,8 +34,8 @@ Display.prototype.generarHTML = function () {
                     '</div>' +
 
                     '<div class="medidas">' +
-                        '<h2>T: <span id="temperatura{{mac}}">25.5</span>º</h2>' +
-                        '<h2>H: <span id="humedad{{mac}}">10</span>%</h2>' +
+                        '<h2><span id="temperatura{{mac}}">25.5</span>º</h2>' +
+                        '<h2><span id="humedad{{mac}}">10</span>%</h2>' +
                     '</div>' +
 
                     '<div class="ultimoBloque">' +

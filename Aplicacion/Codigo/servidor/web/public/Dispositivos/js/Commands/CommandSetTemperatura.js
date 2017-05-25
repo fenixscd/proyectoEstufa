@@ -1,6 +1,6 @@
 function CommandSetTemperatura(listaDispositivos) {
   this.listaDispositivos = listaDispositivos;
-  this.nombre            = "setTemperatura";
+  this.nombre            = "clientSetTermometro";
 }
 
 CommandSetTemperatura.prototype.getNombre = function () {
@@ -8,7 +8,7 @@ CommandSetTemperatura.prototype.getNombre = function () {
 };
 
 CommandSetTemperatura.prototype.ejecutar = function(parametros) {
-  console.log("Comando "+ setNombreDispositivo + " parametros " + parametros);
+  console.log("Comando "+ this.getNombre() + " parametros " + parametros);
   var mac         = parametros["mac"];
   var clave       = "temperatura";
   var valor       = parametros["valor"];

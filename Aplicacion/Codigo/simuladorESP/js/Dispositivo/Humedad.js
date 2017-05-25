@@ -53,7 +53,8 @@ Humedad.prototype.pintarDisplay = function () {
 
 Humedad.prototype.enviarValores = function () {
   var datos = new Object();
-  datos.command = "serverSetHumedad";
+  datos.command = "clientSetHumedad";
   datos.valor = this.getMedicion();
+  
   this.conexion.enviarMensaje(datos);
 };

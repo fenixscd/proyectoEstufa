@@ -36,8 +36,8 @@ Display.prototype.generarHTML = function () {
                         '<p><span id="estadoConexion{{mac}}"></span></p>' +
                       '</div>' +
                       '<div class="medidas">' +
-                        '<h2><span id="temperatura{{mac}}"></span></h2>' +
-                        '<h2><span id="humedad{{mac}}">10</span>%</h2>' +
+                        '<h2>T:<span id="temperatura{{mac}}"></span></h2>' +
+                        '<h2>H:<span id="humedad{{mac}}">10</span>%</h2>' +
                       '</div>' +
 
                       '<div class="ultimoBloqueIz">' +
@@ -49,7 +49,7 @@ Display.prototype.generarHTML = function () {
                         '<p class= "der">Total Conectados</p>' +
                         '<p class= "der"><span id="totalConectados{{mac}}"></span></p>' +
                       '</div>' +
-                      
+
                       '</div>' +
                       '</div>' +
                       '<div class="botonera">' +
