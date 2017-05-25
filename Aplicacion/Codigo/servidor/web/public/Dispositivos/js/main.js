@@ -35,6 +35,8 @@ function cargarListaDeComandos(){
   commandsLista.addCommand(new CommandClientSetTermostatoTemp(listaDispositivos));
   commandsLista.addCommand(new CommandClientSetTermostatoEstado(listaDispositivos));
   commandsLista.addCommand(new CommandClientSetResitenciaEstado(listaDispositivos));
+  commandsLista.addCommand(new CommandClientSetHumedad(listaDispositivos));
+
 }
 
 var listaDeMacs = ["A6-B5-C4-D3-00-01", "A6-B5-C4-D3-00-02", "A6-B5-C4-D3-00-03",

@@ -82,7 +82,7 @@ Dispositivo.prototype.disminuirTemp = function (termostato) {
 Dispositivo.prototype.actualizarMediciones = function (obj) {
     window.setInterval(function() {
       obj.termometro.actualizarMedicion(obj.isResistenciaEncendida());
-      obj.humedad.actualizarEstado();
+      obj.humedad.cambiarHumedad();
       obj.termostato1.actualizarEstado(obj.termometro.getMedicion());
       obj.termostato2.actualizarEstado(obj.termometro.getMedicion());
     }, 1000);
