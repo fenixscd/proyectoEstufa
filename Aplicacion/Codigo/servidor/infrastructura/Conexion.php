@@ -8,7 +8,6 @@ use SplObjectStorage;
 use infrastructura\Commands\CommandLista;
 use infrastructura\Commands\CommandRegistrarDispositivo;
 use infrastructura\Commands\CommandRegistrarDispositivoCliente;
-use infrastructura\Commands\CommandDispGetTemperatura;
 use infrastructura\Commands\CommandClientSetTemperatura;
 use infrastructura\Commands\CommandClientRepetir;
 use infrastructura\Commands\CommandDispRepetir;
@@ -28,7 +27,6 @@ class Conexion implements MessageComponentInterface {
         $this->clients = new SplObjectStorage; // SplObjectStorage identificar objetos de forma única.
         $this->listaDispositivos = new ListaDispositivos();
         $this->commandLista = new commandLista();
-        $this->commandLista->addCommand(new CommandDispGetTemperatura($this->listaDispositivos));
         $this->commandLista->addCommand(new CommandClientSetTemperatura($this->listaDispositivos));
         $this->commandLista->addCommand(new CommandRegistrarDispositivo($this->listaDispositivos));
         $this->commandLista->addCommand(new CommandRegistrarDispositivoCliente($this->listaDispositivos));
