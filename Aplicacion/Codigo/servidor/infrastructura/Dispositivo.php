@@ -88,4 +88,16 @@ class Dispositivo {
       }
     }
 
+    public function eventDispositivoConectado(){
+
+    }
+
+    public function eventoDispositivoDesconectado(){
+
+    }
+
+    public function eventoClienteConectado(){
+
+    }
+
 }
