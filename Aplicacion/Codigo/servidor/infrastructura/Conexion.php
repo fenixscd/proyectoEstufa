@@ -64,7 +64,8 @@ class Conexion implements MessageComponentInterface {
     public function onClose(ConnectionInterface $conn) {
         // La conexión está cerrada, eliminarla, ya que ya no podemos enviarle mensajes
         $this->clients->detach($conn);
-        
+        $this->listaDispositivos->rmConexion($conn);
+
         // rmDispositivoCliente
         echo "La conexion {$conn->resourceId} se ha desconectado\n";
     }

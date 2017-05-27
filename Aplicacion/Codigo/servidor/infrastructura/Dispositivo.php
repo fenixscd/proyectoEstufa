@@ -53,7 +53,7 @@ class Dispositivo {
 
     public function rmConexionCliente($conexion){
       if ($this->listaConexionesCliente->isExistConexion($conexion)){
-        $this->listaConexionesCliente->detach($conexionDispositivoCliente);
+        $this->listaConexionesCliente->detach($conexion);
         // Comando enviar numero de conesiones actuales al dispositivo
       }
     }
@@ -94,7 +94,7 @@ class Dispositivo {
 
 
     public function isEqualConexionDispositivo($conexion){
-      if ($conexionDispositivo == $conexion) return true;
+      if ($this->conexionDispositivo == $conexion) return true;
       return false;
     }
 

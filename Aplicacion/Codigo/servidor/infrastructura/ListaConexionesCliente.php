@@ -57,4 +57,7 @@ class ListaConexionesCliente {
       return false;
     }
 
+    public function detach($conexion){
+      $this->listaConexionesCliente->detach($conexion);
+    }
 }
