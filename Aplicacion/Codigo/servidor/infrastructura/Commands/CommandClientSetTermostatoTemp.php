@@ -16,7 +16,7 @@ class CommandClientSetTermostatoTemp{
   }
 
   public function ejecutar($conec, $parametros){
-    echo "Commando clientSetTermostatoTemp\n";
+    // echo "Commando clientSetTermostatoTemp\n";
     //
     // Falta guardar en la base de datos
     //

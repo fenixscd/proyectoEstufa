@@ -10,5 +10,6 @@ CommandCambiarNombreDispositivo.prototype.getNombre = function () {
 
 CommandCambiarNombreDispositivo.prototype.ejecutar = function(parametros) {
   var nombre = parametros["nombre"];
-  this.dispositivo.setNombre(nombre);
+  this.dispositivo.setNombreDispositivo(nombre);
+
 };

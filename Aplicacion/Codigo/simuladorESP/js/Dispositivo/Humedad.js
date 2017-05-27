@@ -40,11 +40,8 @@ Humedad.prototype.cambiarHumedad = function () {
 
 Humedad.prototype.setMedicion = function(humedad){
   this.humedad = this.getEntreValores(humedad, this.humedadMaxima, this.humedadMinima);
-};
-
-Humedad.prototype.actualizarEstado = function () {
-  this.cambiarHumedad();
   this.pintarDisplay();
+  this.enviarValores();
 };
 
 Humedad.prototype.pintarDisplay = function () {
@@ -53,7 +50,8 @@ Humedad.prototype.pintarDisplay = function () {
 
 Humedad.prototype.enviarValores = function () {
   var datos = new Object();
-  datos.command = "serverSetHumedad";
+  datos.command = "clientSetHumedad";
   datos.valor = this.getMedicion();
+
   this.conexion.enviarMensaje(datos);
 };

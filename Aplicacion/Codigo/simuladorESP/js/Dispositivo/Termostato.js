@@ -25,6 +25,7 @@ Termostato.prototype.getEstado = function () {
 
 Termostato.prototype.setEstado = function (estado) {
   if (estado != this.estado){
+
     this.estado = estado;
     this.pintarEstado();
     this.enviarEstado();
@@ -47,7 +48,6 @@ Termostato.prototype.isNTermostato = function (nTermostato) {
 };
 
 
-
 Termostato.prototype.actualizarEstado = function (temperaturaActual) {
   if (this.estado){
     var  isTemperaturaSelec = false;
@@ -55,6 +55,8 @@ Termostato.prototype.actualizarEstado = function (temperaturaActual) {
       isTemperaturaSelec = true;
     }
     this.resistencia.setEstado(isTemperaturaSelec);
+  }else{
+    this.resistencia.setEstado(false);
   }
 };
 
@@ -73,8 +75,10 @@ Termostato.prototype.pintarTemperatura = function () {
 
 Termostato.prototype.enviarEstado = function () {
   var datos = new Object();
-  datos.command = "clientSetTermostatoEstado" + this.numero;
+  datos.command = "clientSetTermostatoEstado";
+  datos.nTermostato = this.numero;
   datos.valor = this.getEstado();
+
   this.conexion.enviarMensaje(datos);
 };
 

@@ -25,7 +25,6 @@ Resistencia.prototype.setEstado = function (nuevoEstado) {
     this.estado = nuevoEstado;
     this.pintarEstado();
     this.enviarValores();
-    // Enviar nuevo estado
   }
 };
 
@@ -40,7 +39,8 @@ Resistencia.prototype.pintarEstado = function () {
 
 Resistencia.prototype.enviarValores = function () {
   var datos = new Object();
-  datos.command = "clientSetEstadoResitencia" + this.numero;
+  datos.command = "clientSetResitenciaEstado";
+  datos.nResistencia = this.numero;
   datos.valor = this.getEstado();
   this.conexion.enviarMensaje(datos);
 };

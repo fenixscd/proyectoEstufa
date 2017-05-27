@@ -3,21 +3,38 @@ function Dispositivo(mac, peticionesLista){
   this.display         = new Display(this.mac);
   this.peticionesLista = peticionesLista;
   this.conexion        = false;
+  this.conexionDisp    = false;
   // this.bucle;
 
   this.display.añadirHTMLDispositivo();
   this.actualizarElEsadoDeLaConexion();
 }
 
+Dispositivo.prototype.actualizarEstadoDispConec = function () {
+  var estdo = this.peticionesLista.getPeticion("confirmarConexion").ejecutar();
+  this.setConexion(estdo);
+};
+
 Dispositivo.prototype.actualizarElEsadoDeLaConexion = function () {
   var estdo = this.peticionesLista.getPeticion("confirmarConexion").ejecutar();
   this.setConexion(estdo);
+};
+
+Dispositivo.prototype.setConexionDisp = function (conexionDisp) {
+  this.conexionDisp = conexionDisp;
+  // Pintar el cambio de estado
+
+};
+
+Dispositivo.prototype.getConexionDisp = function () {
+  return this.conexionDisp;
 };
 
 Dispositivo.prototype.setConexion = function(conexion) {
   console.log("Dispositivo setConexion: " + conexion);
   if(conexion){
     this.peticionesLista.getPeticion("registrarDispositivo").ejecutar(this.mac);
+    this.peticionesLista.getPeticion("getEstadoDispConec").ejecutar(this.mac);
     // this.buclePeticiones(this);
   }else {
     //this.detenerBucle();
@@ -32,6 +49,9 @@ Dispositivo.prototype.getMac = function() {
 Dispositivo.prototype.getDisplay = function () {
   return this.display;
 };
+
+
+
 
 
 // Dispositivo.prototype.detenerBucle = function () {

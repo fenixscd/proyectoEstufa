@@ -25,6 +25,8 @@ Termometro.prototype.getMedicion = function () {
 
 Termometro.prototype.setMedicion = function (temperatura) {
   this.temperatura = this.getEntreValores(temperatura, this.temperaturaMaxima, this.temperaturaMinima);
+  this.enviarValores();
+  // Si estan conectados?
 };
 
 Termometro.prototype.getEntreValores = function (cantidad, cantidadMaxima, cantidadMinima) {
@@ -52,7 +54,6 @@ Termometro.prototype.cambiarMedicion = function (isEncendida) {
   this.setMedicion(total);
 };
 
-
 Termometro.prototype.actualizarMedicion = function (isEncendida) {
   this.cambiarMedicion(isEncendida);
   this.pintarDisplay();
@@ -64,7 +65,8 @@ Termometro.prototype.pintarDisplay = function () {
 
 Termometro.prototype.enviarValores = function () {
   var datos = new Object();
-  datos.command = "serverSetTermometro";
+  datos.command = "clientSetTermometro";
   datos.valor = this.getMedicion();
+
   this.conexion.enviarMensaje(datos);
 };

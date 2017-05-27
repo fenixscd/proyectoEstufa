@@ -24,7 +24,7 @@ Display.prototype.añadirHTMLDispositivo = function () {
 };
 
 Display.prototype.generarHTML = function () {
-  var plantilla = '<div class="display">' +
+  var plantilla = '<div class="display id="{{mac}}">' +
                     '<div class="lSuperior">' +
                       '<form>' +
                         '<input type="button" name="" value="<" onclick="peticionesLista.getPeticion(`cambiarNombreDispositivo`).ejecutar(`{{mac}}`, this.form.children[1].value)"/>' +
@@ -34,18 +34,18 @@ Display.prototype.generarHTML = function () {
                     '</div>' +
 
                     '<div class="medidas">' +
-                        '<h2>T: <span id="temperatura{{mac}}">25.5</span>º</h2>' +
-                        '<h2>H: <span id="humedad{{mac}}">10</span>%</h2>' +
+                        '<h2><span id="temperatura{{mac}}">25.5</span>º</h2>' +
+                        '<h2><span id="humedad{{mac}}">10</span>%</h2>' +
                     '</div>' +
 
                     '<div class="ultimoBloque">' +
                       '<form>' +
                         '<div class="izq">' +
-                          'Resis 1 [<span id="estadoResitencia1{{mac}}">*</span>]' +
+                          'Resis 1 [<span id="resitencia1Estado{{mac}}"> </span>]' +
                         '</div>' +
 
                         '<div class="cnt">' +
-                          '<input type="button" value="OFF" onclick="cambiarEstado(`{{mac}}`,1 , this.value)"/>' +
+                          '<input id="termostato1Estado{{mac}}" type="button" value="OFF" onclick="cambiarEstado(`{{mac}}`,1 , this.value)"/>' +
                         '</div>' +
 
                         '<div class="der">' +
@@ -57,14 +57,12 @@ Display.prototype.generarHTML = function () {
 
                       '<form>' +
                         '<div class="izq">' +
-                          'Resis 2 [<span id="estadoResitencia2{{mac}}"> </span>]' +
+                          'Resis 2 [<span id="resitencia2Estado{{mac}}"> </span>]' +
                         '</div>' +
 
                         '<div class="cnt">' +
-                          '<input type="button" value="OFF" onclick="cambiarEstado(`{{mac}}`, 2, this.value)"/>' +
+                          '<input id="termostato2Estado{{mac}}" type="button" value="OFF" onclick="cambiarEstado(`{{mac}}`, 2, this.value)"/>' +
                         '</div>' +
-
-
 
                         '<div class="der">' +
                           '<input type="button" value="+" onclick="peticionesLista.getPeticion(`aumentarTemp`).ejecutar(`{{mac}}`, 2)"/>' +
@@ -77,6 +75,15 @@ Display.prototype.generarHTML = function () {
 
   return plantilla.replace(/{{mac}}/g, this.mac);
 };
+
+Display.prototype.nodoHtml = function () {
+  var mac = this.mac;
+  if (document.getElementById(mac) != null){
+    return document.getElementById(mac);
+  }else {
+    console.log("El nodo con mac: " + mac + " no existe ");
+  }
+}
 
 
 

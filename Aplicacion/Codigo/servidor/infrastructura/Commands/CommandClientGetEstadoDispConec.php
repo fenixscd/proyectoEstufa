@@ -2,12 +2,12 @@
 
 namespace infrastructura\Commands;
 
-class CommandClientSetTemperatura{
+class CommandClientGetEstadoDispConec{
   private $nombre;
   private $listaDispositivos;
 
   public function __construct($listaDispositivos){
-    $this->nombre = "clientSetTermometro";
+    $this->nombre            = "clientGetEstadoDispConec";
     $this->listaDispositivos = $listaDispositivos;
   }
 
@@ -16,8 +16,12 @@ class CommandClientSetTemperatura{
   }
 
   public function ejecutar($conec, $parametros){
-    // echo "Commando clientSetTermometro\n";
+    echo "Commando clientGetEstadoDispConec\n";
     $dispositivo = $this->listaDispositivos->getDispositivo($parametros["mac"]);
+
+    $parametros["command"] = "clientSetEstadoDispConec";
+    $parametros["valor"] = $dispositivo->isConexionDispositivo();
+
     $dispositivo->enviarMensajeDispositivoCliente($parametros);
   }
 }

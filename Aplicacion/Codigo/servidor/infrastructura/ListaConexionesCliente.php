@@ -32,11 +32,32 @@ class ListaConexionesCliente {
     }
 
     public function enviarMensajeDispositivos ($parametros){
-      echo "Lo que vosy a enviar: ". $parametros;
+      echo "Lo que voy a enviar a cliente : ". $parametros ."\n";
       foreach($this->listaConexionesCliente as $dis){
          $dis->send($parametros);
       }
       return false;
     }
 
+    public function isConexionId ($resourceId){
+      foreach($this->listaConexionesCliente as $dis){
+        if ($dis->resourceId == $resourceId){
+          return true;
+        }
+      }
+      return false;
+    }
+
+    public function isExistConexion($conexion){
+      foreach($this->listaConexionesCliente as $con){
+        if ($con == $conexion){
+          return true;
+        }
+      }
+      return false;
+    }
+
+    public function detach($conexion){
+      $this->listaConexionesCliente->detach($conexion);
+    }
 }

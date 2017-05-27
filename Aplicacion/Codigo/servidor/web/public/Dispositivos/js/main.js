@@ -26,6 +26,7 @@ function cargarListaDePeticiones(){
   peticionesLista.addPeticion(new PeticionDisminuirTemp(conexion));
   peticionesLista.addPeticion(new PeticionCambiarEstadoTermostato(conexion));
   peticionesLista.addPeticion(new PeticionCambiarNombreDispositivo(conexion));
+  peticionesLista.addPeticion(new PeticionGetEstadoDispConec(conexion));
 }
 
 function cargarListaDeComandos(){
@@ -33,6 +34,12 @@ function cargarListaDeComandos(){
   commandsLista.addCommand(new CommandCambiarEstadoConexion(listaDispositivos));
   commandsLista.addCommand(new CommandSetTemperatura(listaDispositivos));
   commandsLista.addCommand(new CommandClientSetTermostatoTemp(listaDispositivos));
+  commandsLista.addCommand(new CommandClientSetTermostatoEstado(listaDispositivos));
+  commandsLista.addCommand(new CommandClientSetResitenciaEstado(listaDispositivos));
+  commandsLista.addCommand(new CommandClientSetHumedad(listaDispositivos));
+  commandsLista.addCommand(new CommandClientSetEstadoDispConec(listaDispositivos));
+
+
 
 }
 

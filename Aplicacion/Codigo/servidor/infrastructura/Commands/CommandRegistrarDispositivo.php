@@ -19,7 +19,7 @@ class CommandRegistrarDispositivo{
   }
 
   public function ejecutar($conec, $parametros){
-    echo "-Commando registrarDispositivo \n";
+    echo "Commando registrarDispositivo ".$parametros["mac"]." \n";
     var_dump($parametros);
     $dispositivo = $this->listaDispositivos->getDispositivo($parametros["mac"]);
     if(!$dispositivo){

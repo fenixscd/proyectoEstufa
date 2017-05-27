@@ -1,16 +1,16 @@
-function CommandSetTemperatura(listaDispositivos) {
+function CommandClientSetHumedad(listaDispositivos) {
   this.listaDispositivos = listaDispositivos;
-  this.nombre            = "clientSetTermometro";
+  this.nombre            = "clientSetHumedad";
 }
 
-CommandSetTemperatura.prototype.getNombre = function () {
+CommandClientSetHumedad.prototype.getNombre = function () {
   return this.nombre;
 };
 
-CommandSetTemperatura.prototype.ejecutar = function(parametros) {
+CommandClientSetHumedad.prototype.ejecutar = function(parametros) {
   console.log("Comando "+ this.getNombre() + " parametros " + parametros);
   var mac         = parametros["mac"];
-  var clave       = "temperatura";
+  var clave       = "humedad";
   var valor       = parametros["valor"];
 
   this.listaDispositivos.cambiarValor(mac, clave, valor);
