@@ -30,7 +30,7 @@ Conexion.prototype.conexionAbierta = function (evt) {
   }
 
   this.enviarListaMensajes();
-  console.log("Conectado codigo: " + this.websocket.readyState);
+  // console.log("Conectado codigo: " + this.websocket.readyState);
 };
 
 Conexion.prototype.conexionCerrada = function (evt) {
@@ -48,12 +48,12 @@ Conexion.prototype.conexionError = function (evt) {
 };
 
 Conexion.prototype.conexionMensajeRecivido = function (evt) {
-  console.log("Metodo de mensaje recivido");
+  // console.log("Metodo de mensaje recivido");
   var mensaje = evt.data;
   console.log(mensaje);
   var parametros = JSON.parse(mensaje);
-  console.log("Comando recivido: " +  parametros["command"]);
-  console.log(parametros["command"]);
+  // console.log("Comando recivido: " +  parametros["command"]);
+  // console.log(parametros["command"]);
   var command = this.commandsLista.getCommand(parametros["command"]);
 
   if (command){
