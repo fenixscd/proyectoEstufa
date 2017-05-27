@@ -66,6 +66,10 @@ class Dispositivo {
       return $this->getMac() == $mac;
     }
 
+    public function getNConexionesCliente(){
+      $this->listaConexionesCliente->getNConexiones();
+    }
+
     public function enviarMensajeDispositivo($parametros){
       // echo "Funcion enviar mensaje DISPOSITIVO Parametros\n";
       $mensaje = json_encode($parametros);
