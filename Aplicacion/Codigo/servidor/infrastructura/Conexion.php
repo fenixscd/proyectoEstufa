@@ -53,7 +53,7 @@ class Conexion implements MessageComponentInterface {
 
     // Mensaje recivido
     public function onMessage(ConnectionInterface $conec, $msg) {
-      echo sprintf('Mensaje entrante %d mensaje "%s ' . "\n", $conec->resourceId, $msg);
+      //echo sprintf('Mensaje entrante %d mensaje "%s ' . "\n", $conec->resourceId, $msg);
 
       $parametros = json_decode($msg, true);
       //var_dump($parametros) + "  -  ";

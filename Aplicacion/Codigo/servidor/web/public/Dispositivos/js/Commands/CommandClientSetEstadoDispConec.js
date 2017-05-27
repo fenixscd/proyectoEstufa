@@ -9,9 +9,14 @@ CommandClientSetEstadoDispConec.prototype.getNombre = function () {
 
 CommandClientSetEstadoDispConec.prototype.ejecutar = function(parametros) {
   console.log("Comando "+ this.nombre + " parametros " + parametros);
+
   var mac         = parametros["mac"];
   var clave       = "estadoConexion";
   var valor       = parametros["valor"];
+
+  var dispositivo = this.listaDispositivos.getDispositivo(mac);
+
+  dispositivo.setConexionDisp(valor);
 
   if (valor == true) {
     valor = "CONEC"

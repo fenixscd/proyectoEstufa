@@ -64,34 +64,34 @@ class Dispositivo {
     }
 
     public function enviarMensajeDispositivo($parametros){
-      echo "Funcion enviar mensaje DISPOSITIVO Parametros\n";
+      // echo "Funcion enviar mensaje DISPOSITIVO Parametros\n";
       $mensaje = json_encode($parametros);
-      echo "Mensaje en string: ". $mensaje;
+      // echo "Mensaje en string: ". $mensaje;
       if ($this->isConexionDispositivo()){
         $this->conexionDispositivo->send($mensaje);
-        echo "Mensaje enviado a DISPOSITIVO ->\n\n\n";
+        // echo "Mensaje enviado a DISPOSITIVO ->\n\n\n";
       }else {
-        echo "No hay Dispositivo\n";
+        echo "No hay Dispositivo CONECTADO \n";
       }
     }
 
     public function enviarMensajeDispositivoCliente($parametros){
-      echo "El si que hay dispositivos numero de dispositivos :" . $this->listaConexionesCliente->getNConexiones() . " \n";
-      echo "Enviar mensaje para los DISPOSITIVO: " . $this->listaConexionesCliente->getNConexiones() . " \n\n";
+      // echo "El si que hay dispositivos numero de dispositivos :" . $this->listaConexionesCliente->getNConexiones() . " \n";
+      // echo "Enviar mensaje para los DISPOSITIVO: " . $this->listaConexionesCliente->getNConexiones() . " \n\n";
       $mensaje = json_encode($parametros);
 
       if ($this->listaConexionesCliente->isExistConexiones()){
 
         $this->listaConexionesCliente->enviarMensajeDispositivos($mensaje);
-        echo "Envia a dispositivos cliente\n";
+        // echo "Envia a dispositivos cliente\n";
       }else {
-        echo "No hay dispositivos cliente\n";
+        echo "El dispositivo ".  $parametros["mac"] . "no esta conectado -> comando".  $parametros["command"] . "\n";
       }
     }
 
     public function eventoCambioEstadoDispositivo(){
       $this->enviarClienteEstadoConeDisp();
-      // $this->enviarPersEstadoConeDisp();
+      // $this->enviarPersistenciaEstadoConeDisp();
 
     }
 

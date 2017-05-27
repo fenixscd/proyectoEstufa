@@ -16,7 +16,7 @@ class CommandClientRepetir{
   }
 
   public function ejecutar($conec, $parametros){
-    echo "Commando clientRepetir\n";
+    // echo "Commando clientRepetir\n";
     $dispositivo = $this->listaDispositivos->getDispositivo($parametros["mac"]);
     $dispositivo->enviarMensajeDispositivoCliente($parametros);
   }

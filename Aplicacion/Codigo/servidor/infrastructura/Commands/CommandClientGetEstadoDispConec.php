@@ -17,8 +17,11 @@ class CommandClientGetEstadoDispConec{
 
   public function ejecutar($conec, $parametros){
     echo "Commando clientGetEstadoDispConec\n";
-
     $dispositivo = $this->listaDispositivos->getDispositivo($parametros["mac"]);
-    $dispositivo->enviarClienteEstadoConeDisp();
+
+    $parametros["command"] = "clientSetEstadoDispConec";
+    $parametros["valor"] = $dispositivo->isConexionDispositivo();
+
+    $dispositivo->enviarMensajeDispositivoCliente($parametros);
   }
 }

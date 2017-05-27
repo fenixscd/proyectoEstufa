@@ -16,7 +16,7 @@ class CommandClientSetHumedad{
   }
 
   public function ejecutar($conec, $parametros){
-    echo "Commando clientSetHumedad\n";
+    // echo "Commando clientSetHumedad\n";
     $dispositivo = $this->listaDispositivos->getDispositivo($parametros["mac"]);
     $dispositivo->enviarMensajeDispositivoCliente($parametros);
   }

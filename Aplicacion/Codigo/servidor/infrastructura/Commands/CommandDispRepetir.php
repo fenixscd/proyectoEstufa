@@ -21,7 +21,7 @@ class CommandDispRepetir {
     $parametros["command"] = $parametros["repetir"];
     echo "El comando a repetir ". $parametros["command"] . "\n";
 
-    if($dispositivo->isConexion()){
+    if($dispositivo->isConexionDispositivo()){
       $dispositivo->enviarMensajeDispositivo($parametros);
     } else {
       echo "EL dispositivo no esta conectado\n";
