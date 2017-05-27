@@ -11,8 +11,7 @@ PeticionRegistrarDispositivos.prototype.getNombre = function () {
 PeticionRegistrarDispositivos.prototype.ejecutar = function(mac) {
   // Crear todo lo necesario para la contestacion en la lista de dispositivo
   this.datos.mac     = mac;
-  this.datos.command = "registrarDispositivoCliente"; // Comando que se ejecuta en el servidor
-  this.datos.codigo  = "codigoDePeticion";
+  this.datos.command = "registrarDispositivoCliente";
 
   this.conexion.enviarMensaje(JSON.stringify(this.datos));
 };

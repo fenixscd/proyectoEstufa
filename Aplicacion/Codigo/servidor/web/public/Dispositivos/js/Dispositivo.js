@@ -18,6 +18,7 @@ Dispositivo.prototype.setConexion = function(conexion) {
   console.log("Dispositivo setConexion: " + conexion);
   if(conexion){
     this.peticionesLista.getPeticion("registrarDispositivo").ejecutar(this.mac);
+    this.peticionesLista.getPeticion("getEstadoDispConec").ejecutar(this.mac);
     // this.buclePeticiones(this);
   }else {
     //this.detenerBucle();

@@ -18,7 +18,6 @@ Conexion.prototype.websocketInstanciar = function () {
     this.websocket.onmessage = function(evt) { _this.conexionMensajeRecivido(evt); };
     this.websocket.onerror = function(evt) { _this.conexionError(evt); };
   }
-
 };
 
 

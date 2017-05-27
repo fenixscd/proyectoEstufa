@@ -30,7 +30,7 @@ class Dispositivo {
         return $this->conexionDispositivo->resourceId;
     }
 
-    public function isConexion(){
+    public function isConexionDispositivo(){
       if ($this->conexionDispositivo == null || $this->conexionDispositivo == false){
         return false;
       }
@@ -43,6 +43,7 @@ class Dispositivo {
 
     public function setConexionDispositivo($conexionDispositivo){
       $this->conexionDispositivo = $conexionDispositivo;
+      $this->eventoCambioEstadoDispositivo();
       return $this;
     }
 
@@ -66,7 +67,7 @@ class Dispositivo {
       echo "Funcion enviar mensaje DISPOSITIVO Parametros\n";
       $mensaje = json_encode($parametros);
       echo "Mensaje en string: ". $mensaje;
-      if ($this->isConexion()){
+      if ($this->isConexionDispositivo()){
         $this->conexionDispositivo->send($mensaje);
         echo "Mensaje enviado a DISPOSITIVO ->\n\n\n";
       }else {
@@ -88,15 +89,27 @@ class Dispositivo {
       }
     }
 
-    public function eventDispositivoConectado(){
+    public function eventoCambioEstadoDispositivo(){
+      $this->enviarClienteEstadoConeDisp();
+      // $this->enviarPersEstadoConeDisp();
 
     }
 
-    public function eventoDispositivoDesconectado(){
+    public function enviarClienteEstadoConeDisp(){
+      $parametros = array('mac'    => $this->mac,
+                          'command'=>'clientSetEstadoDispConec',
+                          'valor'  =>$this->isConexionDispositivo());
 
+      $this->enviarMensajeDispositivoCliente($parametros);
     }
+
+
 
     public function eventoClienteConectado(){
+
+    }
+
+    public function eventoClienteDesconectado(){
 
     }
 

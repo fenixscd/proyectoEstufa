@@ -15,6 +15,8 @@ use infrastructura\Commands\CommandClientSetTermostatoTemp;
 use infrastructura\Commands\CommandClientSetTermostatoEstado;
 use infrastructura\Commands\CommandClientSetResistenciaEstado;
 use infrastructura\Commands\CommandClientSetHumedad;
+use infrastructura\Commands\CommandClientGetEstadoDispConec;
+
 
 
 class Conexion implements MessageComponentInterface {
@@ -36,6 +38,7 @@ class Conexion implements MessageComponentInterface {
         $this->commandLista->addCommand(new CommandClientSetTermostatoEstado($this->listaDispositivos));
         $this->commandLista->addCommand(new CommandClientSetResistenciaEstado($this->listaDispositivos));
         $this->commandLista->addCommand(new CommandClientSetHumedad($this->listaDispositivos));
+        $this->commandLista->addCommand(new CommandClientGetEstadoDispConec($this->listaDispositivos));
 
 
 
