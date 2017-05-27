@@ -51,8 +51,11 @@ class Dispositivo {
       $this->listaConexionesCliente->addConexion($conexionDispositivoCliente);
     }
 
-    public function rmDispositivoCliente($conexionDispositivoCliente){
-      $this->listaConexionesCliente->detach($conexionDispositivoCliente);
+    public function rmConexionCliente($conexion){
+      if ($this->listaConexionesCliente->isExistConexion($conexion)){
+        $this->listaConexionesCliente->detach($conexionDispositivoCliente);
+        // Comando enviar numero de conesiones actuales al dispositivo
+      }
     }
 
     public function getDispositivosCliente(){
@@ -88,6 +91,13 @@ class Dispositivo {
         echo "El dispositivo ".  $parametros["mac"] . "no esta conectado -> comando".  $parametros["command"] . "\n";
       }
     }
+
+
+    public function isEqualConexionDispositivo($conexion){
+      if ($conexionDispositivo == $conexion) return true;
+      return false;
+    }
+
 
     public function eventoCambioEstadoDispositivo(){
       $this->enviarClienteEstadoConeDisp();

@@ -18,6 +18,19 @@ class ListaDispositivos {
       $this->listaDispositivos->detach($dispositivo);
     }
 
+    public function rmConexion ($conexion){
+      // Primero si es del tipo dispositivo
+
+       foreach($this->listaDispositivos as $dis){
+         if ($dis->isEqualConexionDispositivo($conexion)){
+           $dis->setConexionDispositivo(false);
+           break;
+         }
+         $dis->rmConexionCliente($conexion);
+       }
+
+    }
+
     public function getNDispositivos(){
       return $this->listaDispositivos->count();
     }
@@ -40,17 +53,17 @@ class ListaDispositivos {
       return false;
     }
 
-    public function rmConexion($conexion){
-      foreach($this->listaDispositivos as $dis){
-        $dis->rmDispositivoCliente($conexion);
-        if ($dis->getConexionDispositivo() == $conexion){
-          $dis->setConexionDispositivo(null);
-        }
-        if (!$this->isExistConexionesDispositivoOrClient()){
-          $this->listaDispositivos->detach($dis);
-        }
-      }
-    }
+    // public function rmConexion($conexion){
+    //   foreach($this->listaDispositivos as $dis){
+    //     $dis->rmDispositivoCliente($conexion);
+    //     if ($dis->getConexionDispositivo() == $conexion){
+    //       $dis->setConexionDispositivo(null);
+    //     }
+    //     if (!$this->isExistConexionesDispositivoOrClient()){
+    //       $this->listaDispositivos->detach($dis);
+    //     }
+    //   }
+    // }
 
     public function isExistConexionesDispositivoOrClient($dispositivo){
       if ($dispositivo->isConexion() || $dispositivo->getDispositivosCliente()->isExistConexiones()){

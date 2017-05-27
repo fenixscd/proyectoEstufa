@@ -39,9 +39,6 @@ class Conexion implements MessageComponentInterface {
         $this->commandLista->addCommand(new CommandClientSetResistenciaEstado($this->listaDispositivos));
         $this->commandLista->addCommand(new CommandClientSetHumedad($this->listaDispositivos));
         $this->commandLista->addCommand(new CommandClientGetEstadoDispConec($this->listaDispositivos));
-
-
-
     }
 
     // Se ejecuta el metod cuando recive una conexión
@@ -67,6 +64,8 @@ class Conexion implements MessageComponentInterface {
     public function onClose(ConnectionInterface $conn) {
         // La conexión está cerrada, eliminarla, ya que ya no podemos enviarle mensajes
         $this->clients->detach($conn);
+        
+        // rmDispositivoCliente
         echo "La conexion {$conn->resourceId} se ha desconectado\n";
     }
 

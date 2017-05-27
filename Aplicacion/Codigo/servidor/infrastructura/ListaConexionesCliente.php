@@ -39,4 +39,22 @@ class ListaConexionesCliente {
       return false;
     }
 
+    public function isConexionId ($resourceId){
+      foreach($this->listaConexionesCliente as $dis){
+        if ($dis->resourceId == $resourceId){
+          return true;
+        }
+      }
+      return false;
+    }
+
+    public function isExistConexion($conexion){
+      foreach($this->listaConexionesCliente as $con){
+        if ($con == $conexion){
+          return true;
+        }
+      }
+      return false;
+    }
+
 }
