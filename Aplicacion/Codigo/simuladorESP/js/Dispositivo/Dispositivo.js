@@ -4,17 +4,18 @@ function Dispositivo(mac){
   else this.mac = mac;
 
   this.nombreDispositivo = false;
+  this.numClientes         = 0;
 
   this.commandsLista   = new CommandsLista();
   this.display         = new Display(this.mac);
   this.conexion        = new Conexion(this, this.display, this.commandsLista);
-  this.termometro      = new Termometro(this.display, this.conexion);
-  this.humedad         = new Humedad(this.display, this.conexion);
+  this.termometro      = new Termometro(this.display, this.conexion, this);
+  this.humedad         = new Humedad(this.display, this.conexion, this);
   this.resistencia1    = new Resistencia(1, this.display, this.conexion);
   this.resistencia2    = new Resistencia(2, this.display, this.conexion);
   this.termostato1     = new Termostato(1, this.display, this.conexion, this.resistencia1);
   this.termostato2     = new Termostato(2, this.display, this.conexion, this.resistencia2);
-  this.Conectados      = new Conectados(this.display, this.conexion);
+  // this.Conectados      = new Conectados(this.display, this.conexion);
 
   this.addCommands();
   this.actualizarMediciones(this) // Bucle para que se vallan actualizando las mediciones
@@ -37,12 +38,26 @@ Dispositivo.prototype.setMac = function(mac) {
   this.mac = mac;
 };
 
+Dispositivo.prototype.getNumClientes = function () {
+  return this.numClientes;
+};
+
+Dispositivo.prototype.setNumClientes = function (numClientes) {
+  this.numClientes = numClientes;
+  this.pintarNumClientes();
+};
+
 Dispositivo.prototype.getNombreDispositivo = function () {
   if (this.nombreDispositivo == false){
     return this.getMac();
   }else {
     return this.nombreDispositivo;
   }
+};
+
+Dispositivo.prototype.isClientesConectados = function () {
+  if (this.numClientes > 0) return true;
+  return false;
 };
 
 Dispositivo.prototype.setNombreDispositivo = function (nombreDispositivo) {
@@ -112,7 +127,7 @@ Dispositivo.prototype.addCommands = function () {
   this.commandsLista.addCommand(new CommandDisminuirTemp(this));
   this.commandsLista.addCommand(new CommandCambiarEstadoTermostato(this));
   this.commandsLista.addCommand(new CommandCambiarNombreDispositivo(this));
-
+  this.commandsLista.addCommand(new CommandCambiarNumClientes(this));
 };
 
 Dispositivo.prototype.conexionAbierta = function () {
@@ -127,6 +142,10 @@ Dispositivo.prototype.conexionAbierta = function () {
 
 Dispositivo.prototype.pintarNombreDispositivo = function () {
   this.display.cambiarValor("nombreDispositivo", this.getNombreDispositivo());
+};
+
+Dispositivo.prototype.pintarNumClientes = function () {
+  this.display.cambiarValor("totalConectados", this.getNumClientes());
 };
 
 Dispositivo.prototype.enviarValores = function () {

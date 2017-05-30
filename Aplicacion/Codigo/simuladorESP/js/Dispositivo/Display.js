@@ -51,12 +51,6 @@ Display.prototype.generarHTML = function () {
                       '</div>' +
 
                       '</div>' +
-                      '</div>' +
-                      '<div class="botonera">' +
-                        '<form>' +
-                          '<input type="button" value="+" onclick="hacer_click()"/>' +
-                          '<input type="button" value="M" onclick="hacer_click()"/>' +
-                          '<input type="button" value="-" onclick="hacer_click()"/>' +
-                          '</form>';
+                      '</div>';
   return plantilla.replace(/{{mac}}/g, this.mac);
 };

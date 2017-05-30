@@ -44,17 +44,17 @@ class Dispositivo {
     public function setConexionDispositivo($conexionDispositivo){
       $this->conexionDispositivo = $conexionDispositivo;
       $this->eventoCambioEstadoDispositivo();
-      return $this;
     }
 
     public function addDispositivoCliente($conexionDispositivoCliente){
       $this->listaConexionesCliente->addConexion($conexionDispositivoCliente);
+      $this->enviarNumClientes();
     }
 
     public function rmConexionCliente($conexion){
       if ($this->listaConexionesCliente->isExistConexion($conexion)){
         $this->listaConexionesCliente->detach($conexion);
-        // Comando enviar numero de conesiones actuales al dispositivo
+        $this->enviarNumClientes();
       }
     }
 
@@ -67,7 +67,7 @@ class Dispositivo {
     }
 
     public function getNConexionesCliente(){
-      $this->listaConexionesCliente->getNConexiones();
+      return $this->listaConexionesCliente->getNConexiones();
     }
 
     public function enviarMensajeDispositivo($parametros){
@@ -102,11 +102,9 @@ class Dispositivo {
       return false;
     }
 
-
     public function eventoCambioEstadoDispositivo(){
       $this->enviarClienteEstadoConeDisp();
-      // $this->enviarPersistenciaEstadoConeDisp();
-
+      $this->enviarNumClientes();
     }
 
     public function enviarClienteEstadoConeDisp(){
@@ -117,14 +115,12 @@ class Dispositivo {
       $this->enviarMensajeDispositivoCliente($parametros);
     }
 
+    public function enviarNumClientes(){
+      $parametros = array('mac'    => $this->mac,
+                          'command'=>'cambiarNumClientes',
+                          'valor'  =>$this->getNConexionesCliente());
 
-
-    public function eventoClienteConectado(){
-
-    }
-
-    public function eventoClienteDesconectado(){
-
+      $this->enviarMensajeDispositivo($parametros);
     }
 
 }

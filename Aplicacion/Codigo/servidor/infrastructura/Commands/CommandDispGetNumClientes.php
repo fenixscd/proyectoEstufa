@@ -16,11 +16,11 @@ class CommandDispGetNumClientes{
   }
 
   public function ejecutar($conec, $parametros){
-    echo "Commando clientGetEstadoDispConec\n";
+    echo "Commando dispGetNumClientes\n";
     $dispositivo = $this->listaDispositivos->getDispositivo($parametros["mac"]);
 
-    $parametros["command"] = "setNumClientes";
-    $parametros["valor"] = $dispositivo->getNConexionesCliente();
+    $parametros["command"] = "cambiarNumClientes";
+    $parametros["valor"]   = $dispositivo->getNConexionesCliente();
 
     $dispositivo->enviarMensajeDispositivo($parametros);
   }
