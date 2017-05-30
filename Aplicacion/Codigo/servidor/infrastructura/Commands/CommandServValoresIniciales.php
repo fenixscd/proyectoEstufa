@@ -3,12 +3,12 @@ namespace infrastructura\Commands;
 
 use infrastructura\ListaDispositivos;
 
-class CommandDispRepetir {
+class CommandServValoresIniciales {
   private $nombre;
   private $listaDispositivos;
 
   public function __construct($listaDispositivos){
-    $this->nombre            = "dispRepetir";
+    $this->nombre            = "serverValoresInciales";
     $this->listaDispositivos = $listaDispositivos;
   }
 
@@ -18,13 +18,12 @@ class CommandDispRepetir {
 
   public function ejecutar($conec, $parametros){
     $dispositivo = $this->listaDispositivos->getDispositivo($parametros["mac"]);
-    $parametros["command"] = $parametros["repetir"];
-    echo "El comando a repetir ". $parametros["command"] . "\n";
 
     if($dispositivo->isConexionDispositivo()){
+      $parametros["command"] = $parametros["enviarValoresActuales"];
       $dispositivo->enviarMensajeDispositivo($parametros);
     } else {
-      echo "EL dispositivo no esta conectado\n";
+      echo "Se pasa la consulta a la Base de Datos\n";
     }
   }
 }

@@ -17,6 +17,8 @@ use infrastructura\Commands\CommandClientSetResistenciaEstado;
 use infrastructura\Commands\CommandClientSetHumedad;
 use infrastructura\Commands\CommandClientGetEstadoDispConec;
 use infrastructura\Commands\CommandDispGetNumClientes;
+use infrastructura\Commands\CommandServValoresIniciales;
+
 
 
 
@@ -41,6 +43,7 @@ class Conexion implements MessageComponentInterface {
         $this->commandLista->addCommand(new CommandClientSetHumedad($this->listaDispositivos));
         $this->commandLista->addCommand(new CommandClientGetEstadoDispConec($this->listaDispositivos));
         $this->commandLista->addCommand(new CommandDispGetNumClientes($this->listaDispositivos));
+        $this->commandLista->addCommand(new CommandServValoresIniciales($this->listaDispositivos));
 
     }
 

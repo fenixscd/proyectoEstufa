@@ -19,19 +19,8 @@ Conectados.prototype.addCliente = function () {
 Conectados.prototype.rmCliente = function () {
   if (this.nDispositivos <= 0) {
     this.nDispositivos = 0;
-
-    // Parar bucle
   }
   this.nDispositivos--;
-};
-
-Conectados.prototype.bucleEnvio = function () {
-  // Si ya estoy en marcha no hago nada;
-
-};
-
-Conectados.prototype.pararBucle = function () {
-
 };
 
 Conectados.prototype.continuarEnvado = function () {

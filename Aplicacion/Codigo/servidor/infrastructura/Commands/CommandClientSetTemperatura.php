@@ -16,6 +16,7 @@ class CommandClientSetTemperatura{
   }
 
   public function ejecutar($conec, $parametros){
+    
     // echo "Commando clientSetTermometro\n";
     $dispositivo = $this->listaDispositivos->getDispositivo($parametros["mac"]);
     $dispositivo->enviarMensajeDispositivoCliente($parametros);

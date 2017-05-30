@@ -16,10 +16,6 @@ class CommandClientSetTermostatoEstado{
   }
 
   public function ejecutar($conec, $parametros){
-    // echo "Commando clientSetTermostatoTemp\n";
-    //
-    // Falta guardar en la base de datos
-    //
     $dispositivo = $this->listaDispositivos->getDispositivo($parametros["mac"]);
     $dispositivo->enviarMensajeDispositivoCliente($parametros);
   }

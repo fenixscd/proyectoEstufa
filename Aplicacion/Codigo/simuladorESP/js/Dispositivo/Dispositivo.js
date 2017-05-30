@@ -45,6 +45,7 @@ Dispositivo.prototype.getNumClientes = function () {
 Dispositivo.prototype.setNumClientes = function (numClientes) {
   this.numClientes = numClientes;
   this.pintarNumClientes();
+
 };
 
 Dispositivo.prototype.getNombreDispositivo = function () {
@@ -128,16 +129,19 @@ Dispositivo.prototype.addCommands = function () {
   this.commandsLista.addCommand(new CommandCambiarEstadoTermostato(this));
   this.commandsLista.addCommand(new CommandCambiarNombreDispositivo(this));
   this.commandsLista.addCommand(new CommandCambiarNumClientes(this));
+  this.commandsLista.addCommand(new CommandEnviarValoresActuales(this));
+
+
 };
 
-Dispositivo.prototype.conexionAbierta = function () {
+Dispositivo.prototype.enviarTodosLosValores = function () {
   this.termostato1.enviarValores();
   this.termostato2.enviarValores();
   this.resistencia1.enviarValores();
   this.resistencia2.enviarValores();
   this.termometro.enviarValores();
-  this.enviarValores();
   this.humedad.enviarValores();
+  this.enviarValores();
 };
 
 Dispositivo.prototype.pintarNombreDispositivo = function () {
