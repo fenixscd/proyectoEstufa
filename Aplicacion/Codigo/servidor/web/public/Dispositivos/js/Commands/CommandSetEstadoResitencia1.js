@@ -8,7 +8,6 @@ CommandSetEstadoResitencia1.prototype.getNombre = function () {
 };
 
 CommandSetEstadoResitencia1.prototype.ejecutar = function(parametros) {
-  console.log("Comando "+ setNombreDispositivo + " parametros " + parametros);
   var mac         = parametros["mac"];
   var clave       = "estadoResitencia1";
   var valor       = parametros["valor"];

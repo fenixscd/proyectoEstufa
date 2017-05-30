@@ -1,6 +1,6 @@
 function CommandSetNombreDispositivo(listaDispositivos) {
   this.listaDispositivos = listaDispositivos;
-  this.nombre            = "setNombreDispositivo";
+  this.nombre            = "clientSetNombreDispositivo";
 }
 
 CommandSetNombreDispositivo.prototype.getNombre = function () {
@@ -8,10 +8,9 @@ CommandSetNombreDispositivo.prototype.getNombre = function () {
 };
 
 CommandSetNombreDispositivo.prototype.ejecutar = function(parametros) {
-  console.log("Comando "+ setNombreDispositivo + " parametros " + parametros);
   var mac         = parametros["mac"];
   var clave       = "nombreDispositivo";
   var valor       = parametros["valor"];
 
-  //this.listaDispositivos.cambiarValor(mac, clave, valor);
+  this.listaDispositivos.cambiarValor(mac, clave, valor);
 };

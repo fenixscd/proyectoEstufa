@@ -141,7 +141,7 @@ Dispositivo.prototype.enviarTodosLosValores = function () {
   this.resistencia2.enviarValores();
   this.termometro.enviarValores();
   this.humedad.enviarValores();
-  this.enviarValores();
+  this.enviarNombreDispositivo();
 };
 
 Dispositivo.prototype.pintarNombreDispositivo = function () {
@@ -152,7 +152,7 @@ Dispositivo.prototype.pintarNumClientes = function () {
   this.display.cambiarValor("totalConectados", this.getNumClientes());
 };
 
-Dispositivo.prototype.enviarValores = function () {
+Dispositivo.prototype.enviarNombreDispositivo = function () {
   var datos = new Object();
   datos.command = "clientSetNombreDispositivo";
   datos.valor = this.getNombreDispositivo();

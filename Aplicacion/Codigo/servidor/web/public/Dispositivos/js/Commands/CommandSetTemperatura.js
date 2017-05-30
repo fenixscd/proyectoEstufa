@@ -8,7 +8,6 @@ CommandSetTemperatura.prototype.getNombre = function () {
 };
 
 CommandSetTemperatura.prototype.ejecutar = function(parametros) {
-  console.log("Comando "+ this.getNombre() + " parametros " + parametros);
   var mac         = parametros["mac"];
   var clave       = "temperatura";
   var valor       = parametros["valor"];

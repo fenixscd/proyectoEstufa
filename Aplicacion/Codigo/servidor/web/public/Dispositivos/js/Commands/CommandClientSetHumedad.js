@@ -8,7 +8,6 @@ CommandClientSetHumedad.prototype.getNombre = function () {
 };
 
 CommandClientSetHumedad.prototype.ejecutar = function(parametros) {
-  console.log("Comando "+ this.getNombre() + " parametros " + parametros);
   var mac         = parametros["mac"];
   var clave       = "humedad";
   var valor       = parametros["valor"];

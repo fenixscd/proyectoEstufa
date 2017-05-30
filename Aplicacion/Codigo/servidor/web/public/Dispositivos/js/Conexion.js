@@ -50,7 +50,7 @@ Conexion.prototype.conexionError = function (evt) {
 Conexion.prototype.conexionMensajeRecivido = function (evt) {
   // console.log("Metodo de mensaje recivido");
   var mensaje = evt.data;
-  console.log(mensaje);
+  // console.log(mensaje);
   var parametros = JSON.parse(mensaje);
   // console.log("Comando recivido: " +  parametros["command"]);
   // console.log(parametros["command"]);
