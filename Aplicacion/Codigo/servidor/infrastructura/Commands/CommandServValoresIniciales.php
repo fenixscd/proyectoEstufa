@@ -20,7 +20,7 @@ class CommandServValoresIniciales {
     $dispositivo = $this->listaDispositivos->getDispositivo($parametros["mac"]);
 
     if($dispositivo->isConexionDispositivo()){
-      $parametros["command"] = $parametros["enviarValoresActuales"];
+      $parametros["command"] = "enviarValoresActuales";
       $dispositivo->enviarMensajeDispositivo($parametros);
     } else {
       echo "Se pasa la consulta a la Base de Datos\n";
