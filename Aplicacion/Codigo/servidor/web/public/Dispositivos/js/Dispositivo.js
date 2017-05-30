@@ -22,7 +22,11 @@ Dispositivo.prototype.actualizarElEsadoDeLaConexion = function () {
 
 Dispositivo.prototype.setConexionDisp = function (conexionDisp) {
   this.conexionDisp = conexionDisp;
-  // Pintar el cambio de estado
+  this.pintarConexionDispositivo();
+
+  if(conexionDisp){
+    this.peticionesLista.getPeticion("valoresInciales").ejecutar(this.mac);
+  }
 
 };
 
@@ -50,6 +54,17 @@ Dispositivo.prototype.getDisplay = function () {
   return this.display;
 };
 
+Dispositivo.prototype.pintarConexionDispositivo = function () {
+  var valor = "DESCONEC";
+  if (this.conexionDisp) {
+    valor = "CONEC";
+  }
+  this.display.cambiarValor("estadoConexion", valor);
+};
+
+Dispositivo.prototype.solicitarValoreIniciales = function () {
+
+};
 
 
 

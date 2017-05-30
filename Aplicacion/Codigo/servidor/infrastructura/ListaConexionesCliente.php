@@ -12,6 +12,7 @@ class ListaConexionesCliente {
 
     public function addConexion($conexion){
       $this->listaConexionesCliente->attach($conexion);
+      // echo "\n\nDepues de añadir una conexion " . $this->getNConexiones() . "\n\n";
     }
 
     public function rmConexion ($conexion){
@@ -32,7 +33,7 @@ class ListaConexionesCliente {
     }
 
     public function enviarMensajeDispositivos ($parametros){
-      echo "Lo que voy a enviar a cliente : ". $parametros ."\n";
+      // echo "Lo que voy a enviar a cliente : ". $parametros ."\n";
       foreach($this->listaConexionesCliente as $dis){
          $dis->send($parametros);
       }

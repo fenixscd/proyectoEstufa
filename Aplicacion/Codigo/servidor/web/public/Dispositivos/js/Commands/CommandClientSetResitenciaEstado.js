@@ -8,7 +8,6 @@ CommandClientSetResitenciaEstado.prototype.getNombre = function () {
 };
 
 CommandClientSetResitenciaEstado.prototype.ejecutar = function(parametros) {
-  console.log("Comando "+ this.nombre + " parametros " + parametros);
   var mac         = parametros["mac"];
   var nResistencia = parametros["nResistencia"]
 

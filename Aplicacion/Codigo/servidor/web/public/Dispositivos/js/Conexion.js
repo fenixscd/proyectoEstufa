@@ -13,10 +13,10 @@ Conexion.prototype.websocketInstanciar = function () {
   var _this = this;
   if (this.websocket == null || this.isCerrada()){
     this.websocket = new WebSocket(this.urlServidor);
-    this.websocket.onopen = function(evt) { _this.conexionAbierta(evt) };
-    this.websocket.onclose = function(evt) { _this.conexionCerrada(evt); };
+    this.websocket.onopen    = function(evt) { _this.conexionAbierta(evt) };
+    this.websocket.onclose   = function(evt) { _this.conexionCerrada(evt); };
     this.websocket.onmessage = function(evt) { _this.conexionMensajeRecivido(evt); };
-    this.websocket.onerror = function(evt) { _this.conexionError(evt); };
+    this.websocket.onerror   = function(evt) { _this.conexionError(evt); };
   }
 };
 
@@ -50,7 +50,7 @@ Conexion.prototype.conexionError = function (evt) {
 Conexion.prototype.conexionMensajeRecivido = function (evt) {
   // console.log("Metodo de mensaje recivido");
   var mensaje = evt.data;
-  console.log(mensaje);
+  // console.log(mensaje);
   var parametros = JSON.parse(mensaje);
   // console.log("Comando recivido: " +  parametros["command"]);
   // console.log(parametros["command"]);

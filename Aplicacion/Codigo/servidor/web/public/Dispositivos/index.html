@@ -19,8 +19,7 @@
 <script type="text/javascript" src="js/Commands/CommandClientSetTermostatoEstado.js"></script>
 <script type="text/javascript" src="js/Commands/CommandClientSetResitenciaEstado.js"></script>
 <script type="text/javascript" src="js/Commands/CommandClientSetEstadoDispConec.js"></script>
-
-
+<script type="text/javascript" src="js/Commands/CommandSetNombreDispositivo.js"></script>
 
 
 
@@ -30,8 +29,7 @@
 <script type="text/javascript" src="js/Peticiones/PeticionCambiarEstadoTermostato.js"></script>
 <script type="text/javascript" src="js/Peticiones/PeticionCambiarNombreDispositivo.js"></script>
 <script type="text/javascript" src="js/Peticiones/PeticionGetEstadoDispConec.js"></script>
-
-
+<script type="text/javascript" src="js/Peticiones/PeticionValoreIniciales.js"></script>
 
 
 <script type="text/javascript" src="js/Peticiones/PeticionGetTemperatura.js"></script>
@@ -48,7 +46,7 @@
 <body>
     <section class="centrado" >
         <header>
-            <h1>Pruebas CLIENTES</h1>
+            <h1>Pruebas CLIENTES <span id="conexion">DESCONECTADO</span></h1>
             <form>
                 <input type="button" value="Añadir elemento" onclick="crearDispositivo()"/>
                 <input type="button" value="Cargar lista" onclick="CargarLista()"/>
@@ -61,9 +59,9 @@
                     <div class="lSuperior">
                       <form>
                         <input type="button" name="" value="<" onclick="hacer_click()"/>
-                        <input class="nombre" type="text" name="nombreDispositivo{{mac}}" value="A6-B5-C4-D3-E2-F1-">
+                        <input class="nombre" type="text" name="nombreDispositivo{{mac}}" value="A6-B5-C4-D3-E2-F1">
                       </form>
-                      <p><span id="estadoConexion{{mac}}">DESCONEC</span></p>
+                      <p><span id="estadoConexion{{mac}}">DESCON</span></p>
                     </div>
 
                     <div class="medidas">

@@ -31,7 +31,7 @@ Conexion.prototype.conexionAbierta = function (evt) {
   this.pintarEstado();
   this.registrar();
   this.enviarListaMensajes();
-  this.dispositivo.conexionAbierta();
+  this.dispositivo.enviarTodosLosValores();
 };
 
 Conexion.prototype.conexionCerrada = function (evt) {

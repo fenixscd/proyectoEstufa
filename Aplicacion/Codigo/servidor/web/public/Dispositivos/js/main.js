@@ -27,6 +27,9 @@ function cargarListaDePeticiones(){
   peticionesLista.addPeticion(new PeticionCambiarEstadoTermostato(conexion));
   peticionesLista.addPeticion(new PeticionCambiarNombreDispositivo(conexion));
   peticionesLista.addPeticion(new PeticionGetEstadoDispConec(conexion));
+  peticionesLista.addPeticion(new PeticionValoreIniciales(conexion));
+
+
 }
 
 function cargarListaDeComandos(){
@@ -38,6 +41,9 @@ function cargarListaDeComandos(){
   commandsLista.addCommand(new CommandClientSetResitenciaEstado(listaDispositivos));
   commandsLista.addCommand(new CommandClientSetHumedad(listaDispositivos));
   commandsLista.addCommand(new CommandClientSetEstadoDispConec(listaDispositivos));
+  commandsLista.addCommand(new CommandSetNombreDispositivo(listaDispositivos));
+
+
 
 
 

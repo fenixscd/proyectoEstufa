@@ -1,13 +1,14 @@
 <?php
-
 namespace infrastructura\Commands;
 
-class CommandClientSetTemperatura{
+use infrastructura\ListaDispositivos;
+
+class CommandServValoresIniciales {
   private $nombre;
   private $listaDispositivos;
 
   public function __construct($listaDispositivos){
-    $this->nombre = "clientSetTermometro";
+    $this->nombre            = "serverValoresInciales";
     $this->listaDispositivos = $listaDispositivos;
   }
 
@@ -16,9 +17,13 @@ class CommandClientSetTemperatura{
   }
 
   public function ejecutar($conec, $parametros){
-    
-    // echo "Commando clientSetTermometro\n";
     $dispositivo = $this->listaDispositivos->getDispositivo($parametros["mac"]);
-    $dispositivo->enviarMensajeDispositivoCliente($parametros);
+
+    if($dispositivo->isConexionDispositivo()){
+      $parametros["command"] = "enviarValoresActuales";
+      $dispositivo->enviarMensajeDispositivo($parametros);
+    } else {
+      echo "Se pasa la consulta a la Base de Datos\n";
+    }
   }
 }

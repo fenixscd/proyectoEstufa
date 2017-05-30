@@ -8,7 +8,6 @@ CommandClientSetTermostatoTemp.prototype.getNombre = function () {
 };
 
 CommandClientSetTermostatoTemp.prototype.ejecutar = function(parametros) {
-  console.log("Comando "+ this.nombre + " parametros " + parametros);
   var mac         = parametros["mac"];
   var nTermostato = parametros["nTermostato"];
   var valor       = parametros["valor"];

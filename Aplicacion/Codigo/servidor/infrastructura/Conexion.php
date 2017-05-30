@@ -16,6 +16,10 @@ use infrastructura\Commands\CommandClientSetTermostatoEstado;
 use infrastructura\Commands\CommandClientSetResistenciaEstado;
 use infrastructura\Commands\CommandClientSetHumedad;
 use infrastructura\Commands\CommandClientGetEstadoDispConec;
+use infrastructura\Commands\CommandDispGetNumClientes;
+use infrastructura\Commands\CommandServValoresIniciales;
+use infrastructura\Commands\CommandClientSetNombreDisp;
+
 
 
 
@@ -39,6 +43,11 @@ class Conexion implements MessageComponentInterface {
         $this->commandLista->addCommand(new CommandClientSetResistenciaEstado($this->listaDispositivos));
         $this->commandLista->addCommand(new CommandClientSetHumedad($this->listaDispositivos));
         $this->commandLista->addCommand(new CommandClientGetEstadoDispConec($this->listaDispositivos));
+        $this->commandLista->addCommand(new CommandDispGetNumClientes($this->listaDispositivos));
+        $this->commandLista->addCommand(new CommandServValoresIniciales($this->listaDispositivos));
+        $this->commandLista->addCommand(new CommandClientSetNombreDisp($this->listaDispositivos));
+
+
     }
 
     // Se ejecuta el metod cuando recive una conexión

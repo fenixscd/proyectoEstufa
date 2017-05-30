@@ -1,5 +1,6 @@
-function Humedad(display, conexion){
+function Humedad(display, conexion, dispositivo){
   this.humedad;
+  this.dispositivo   = dispositivo;
   this.display       = display;
   this.conexion      = conexion;
   this.humedadMaxima = 99;
@@ -49,9 +50,14 @@ Humedad.prototype.pintarDisplay = function () {
 };
 
 Humedad.prototype.enviarValores = function () {
-  var datos = new Object();
-  datos.command = "clientSetHumedad";
-  datos.valor = this.getMedicion();
 
-  this.conexion.enviarMensaje(datos);
+  if (this.dispositivo.isClientesConectados()){
+    var datos = new Object();
+    datos.command = "clientSetHumedad";
+    datos.valor = this.getMedicion();
+
+    this.conexion.enviarMensaje(datos);
+  }
+
+
 };

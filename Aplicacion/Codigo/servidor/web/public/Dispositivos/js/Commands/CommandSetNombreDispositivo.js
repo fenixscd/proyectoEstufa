@@ -1,6 +1,6 @@
 function CommandSetNombreDispositivo(listaDispositivos) {
   this.listaDispositivos = listaDispositivos;
-  this.nombre            = "setNombreDispositivo";
+  this.nombre            = "clientSetNombreDispositivo";
 }
 
 CommandSetNombreDispositivo.prototype.getNombre = function () {
@@ -8,10 +8,16 @@ CommandSetNombreDispositivo.prototype.getNombre = function () {
 };
 
 CommandSetNombreDispositivo.prototype.ejecutar = function(parametros) {
-  console.log("Comando "+ setNombreDispositivo + " parametros " + parametros);
+  console.log("Comando " + this.getNombre()  + " parametros ");
+  console.log(parametros);
   var mac         = parametros["mac"];
   var clave       = "nombreDispositivo";
   var valor       = parametros["valor"];
 
-  //this.listaDispositivos.cambiarValor(mac, clave, valor);
+  if (document.getElementById(clave + mac) != null){
+    console.log("Si que encuetra la etiqueta");
+    document.getElementById(clave + mac).value = valor;
+  }else {
+    console.log("No existe el clave \"" + clave + " - " + mac  + "\" en le HTML");
+  }
 };

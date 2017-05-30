@@ -9,7 +9,15 @@ Display.prototype.cambiarValor = function(clave, valor) {
   if (document.getElementById(clave + mac) != null){
     document.getElementById(clave + mac).innerHTML = valor;
   }else {
-    console.log("No existe el clave \"" + clave + "\" en le HTML");
+    console.log("No existe el clave \"" + clave + " - " + mac  + "\" en le HTML");
+  }
+};
+
+Display.prototype.pintarEstado = function (valor) {
+  if (document.getElementById("conexion") != null){
+    document.getElementById("conexion").innerHTML = valor;
+  }else {
+    console.log("No existe el clave \" conexion \" en le HTML");
   }
 };
 
@@ -28,14 +36,14 @@ Display.prototype.generarHTML = function () {
                     '<div class="lSuperior">' +
                       '<form>' +
                         '<input type="button" name="" value="<" onclick="peticionesLista.getPeticion(`cambiarNombreDispositivo`).ejecutar(`{{mac}}`, this.form.children[1].value)"/>' +
-                        '<input class="nombre" type="text" name="nombreDispositivo{{mac}}" value="{{mac}}">' +
+                        '<input id="nombreDispositivo{{mac}}"  class="nombre" type="text" name="nombreDispositivo{{mac}}" value="{{mac}}">' +
                       '</form>' +
                       '<p><span id="estadoConexion{{mac}}">DESCONEC</span></p>' +
                     '</div>' +
 
                     '<div class="medidas">' +
-                        '<h2><span id="temperatura{{mac}}">25.5</span>º</h2>' +
-                        '<h2><span id="humedad{{mac}}">10</span>%</h2>' +
+                        '<h2><span id="temperatura{{mac}}">-</span>º</h2>' +
+                        '<h2><span id="humedad{{mac}}">-</span>%</h2>' +
                     '</div>' +
 
                     '<div class="ultimoBloque">' +
@@ -50,7 +58,7 @@ Display.prototype.generarHTML = function () {
 
                         '<div class="der">' +
                           '<input type="button" value="+" onclick="peticionesLista.getPeticion(`aumentarTemp`).ejecutar(`{{mac}}`, 1)"/>' +
-                          '<p id="tempTermostato1{{mac}}">25.2</p>' +
+                          '<p id="tempTermostato1{{mac}}">-</p>' +
                           '<input type="button" value=" - " onclick="peticionesLista.getPeticion(`disminuirTemp`).ejecutar(`{{mac}}`, 1)"/>' +
                         '</div>' +
                       '</form>' +
@@ -66,7 +74,7 @@ Display.prototype.generarHTML = function () {
 
                         '<div class="der">' +
                           '<input type="button" value="+" onclick="peticionesLista.getPeticion(`aumentarTemp`).ejecutar(`{{mac}}`, 2)"/>' +
-                          '<p id="tempTermostato2{{mac}}">100</p>' +
+                          '<p id="tempTermostato2{{mac}}">-</p>' +
                           '<input type="button" value=" - " onclick="peticionesLista.getPeticion(`disminuirTemp`).ejecutar(`{{mac}}`, 2)"/>' +
                         '</div>' +
                       '</form>' +
