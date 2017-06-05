@@ -23,6 +23,7 @@ class CommandServValoresIniciales {
       $parametros["command"] = "enviarValoresActuales";
       $dispositivo->enviarMensajeDispositivo($parametros);
     } else {
+      // Para los valores de temperatura y estado del termostato
       echo "Se pasa la consulta a la Base de Datos\n";
     }
   }

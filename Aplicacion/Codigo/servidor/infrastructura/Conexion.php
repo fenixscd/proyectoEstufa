@@ -19,6 +19,8 @@ use infrastructura\Commands\CommandClientGetEstadoDispConec;
 use infrastructura\Commands\CommandDispGetNumClientes;
 use infrastructura\Commands\CommandServValoresIniciales;
 use infrastructura\Commands\CommandClientSetNombreDisp;
+use infrastructura\Commands\CommandLoguearUsuario;
+
 
 
 
@@ -46,8 +48,7 @@ class Conexion implements MessageComponentInterface {
         $this->commandLista->addCommand(new CommandDispGetNumClientes($this->listaDispositivos));
         $this->commandLista->addCommand(new CommandServValoresIniciales($this->listaDispositivos));
         $this->commandLista->addCommand(new CommandClientSetNombreDisp($this->listaDispositivos));
-
-
+        $this->commandLista->addCommand(new CommandLoguearUsuario($this->listaDispositivos));
     }
 
     // Se ejecuta el metod cuando recive una conexión
