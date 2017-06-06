@@ -7,11 +7,6 @@ var peticionesLista   = new PeticionesLista();
 cargarListaDePeticiones();
 cargarListaDeComandos();
 
-function ejecutarPeticion(mac, pe){
-  // Mirar los parametros
-  commandsLista.getCommand("crearDispositivo").ejecutar(mac, peticionesLista);
-}
-
 function crearDispositivo() {
   var mac = "A6-B5-C4-D3-00-01";
   commandsLista.getCommand("crearDispositivo").ejecutar(mac, peticionesLista);
@@ -28,12 +23,13 @@ function cargarListaDePeticiones(){
   peticionesLista.addPeticion(new PeticionCambiarNombreDispositivo(conexion));
   peticionesLista.addPeticion(new PeticionGetEstadoDispConec(conexion));
   peticionesLista.addPeticion(new PeticionValoreIniciales(conexion));
+  peticionesLista.addPeticion(new PeticionListaDispo(conexion));
 
 
 }
 
 function cargarListaDeComandos(){
-  commandsLista.addCommand(new CommandCrearDispositivo(listaDispositivos));
+  commandsLista.addCommand(new CommandCrearDispositivo(listaDispositivos, peticionesLista));
   commandsLista.addCommand(new CommandCambiarEstadoConexion(listaDispositivos));
   commandsLista.addCommand(new CommandSetTemperatura(listaDispositivos));
   commandsLista.addCommand(new CommandClientSetTermostatoTemp(listaDispositivos));
@@ -42,11 +38,6 @@ function cargarListaDeComandos(){
   commandsLista.addCommand(new CommandClientSetHumedad(listaDispositivos));
   commandsLista.addCommand(new CommandClientSetEstadoDispConec(listaDispositivos));
   commandsLista.addCommand(new CommandSetNombreDispositivo(listaDispositivos));
-
-
-
-
-
 }
 
 var listaDeMacs = ["A6-B5-C4-D3-00-01", "A6-B5-C4-D3-00-02", "A6-B5-C4-D3-00-03",
@@ -64,9 +55,19 @@ var listaDeMacs = ["A6-B5-C4-D3-00-01", "A6-B5-C4-D3-00-02", "A6-B5-C4-D3-00-03"
 
 function CargarLista() {
   // for (var i = 0; i < listaDeMacs.length; i++){
+  var parametros=[];
   for (var i = 0; i < 3; i++){
-    commandsLista.getCommand("crearDispositivo").ejecutar(listaDeMacs[i], peticionesLista);
+    parametros["mac"]=listaDeMacs[i];
+    commandsLista.getCommand("crearDispositivo").ejecutar(parametros);
   }
+}
+
+function CargarListaServidor(usuario){
+  console.log(usuario);
+  var datos     = new Object();
+  datos.usuario = usuario;
+  datos.command = "clientGenerarDisp";
+  conexion.enviarMensaje(JSON.stringify(datos));
 }
 
 function cambiarEstado(mac, nTermostato, valor){

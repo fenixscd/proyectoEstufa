@@ -18,8 +18,9 @@ PeticionesLista.prototype.isCommands = function () {
 
 PeticionesLista.prototype.getPeticion = function (peticion) {
   for (var i = 0; i < this.peticionesLista.length; i++) {
-    if (this.peticionesLista[i].getNombre() == peticion )
+    if (this.peticionesLista[i].getNombre() == peticion ){
       return this.peticionesLista[i];
+    }
   }
   console.log("La peticion -" + peticion + "- no a sido encontrada");
   return false;

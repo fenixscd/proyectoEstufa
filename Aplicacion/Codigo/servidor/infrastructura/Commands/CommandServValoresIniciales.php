@@ -20,7 +20,7 @@ class CommandServValoresIniciales {
     $dispositivo = $this->listaDispositivos->getDispositivo($parametros["mac"]);
 
     if($dispositivo->isConexionDispositivo()){
-      $parametros["command"] = "enviarValoresActuales";
+      $parametros["command"] = "crearDispositivo";
       $dispositivo->enviarMensajeDispositivo($parametros);
     } else {
       // Para los valores de temperatura y estado del termostato
