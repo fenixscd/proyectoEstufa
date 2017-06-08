@@ -21,7 +21,7 @@ var listaDeMacs = ["A6-B5-C4-D3-00-01", "A6-B5-C4-D3-00-02", "A6-B5-C4-D3-00-03"
 
 function CargarLista() {
   // for (var i = 0; i < listaDeMacs.length; i++){
-  for (var i = 0; i < 3; i++){
+  for (var i = 0; i < 20; i++){
     new Dispositivo(listaDeMacs[i]);
   }
 }
