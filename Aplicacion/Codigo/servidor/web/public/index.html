@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang = "es">
+
+<head>
+   <meta charset="UTF-8">
+   <title>Pruebas CLIENTES</title>
+   <link rel="stylesheet" href="Dispositivos/css/simulador.css">
+</head>
+<script type="text/javascript" src="Dispositivos/js/Commands/CommandsLista.js"></script>
+<script type="text/javascript" src="Dispositivos/js/Commands/CommandCrearDispositivo.js"></script>
+
+<script type="text/javascript" src="Dispositivos/js/Commands/CommandCambiarEstadoConexion.js"></script>
+
+<script type="text/javascript" src="Dispositivos/js/Commands/CommandSetTemperatura.js"></script>
+<script type="text/javascript" src="Dispositivos/js/Commands/CommandClientSetHumedad.js"></script>
+<script type="text/javascript" src="Dispositivos/js/Commands/CommandSetEstadoResitencia1.js"></script>
+<script type="text/javascript" src="Dispositivos/js/Commands/CommandSetEstadoResitencia2.js"></script>
+<script type="text/javascript" src="Dispositivos/js/Commands/CommandClientSetTermostatoTemp.js"></script>
+<script type="text/javascript" src="Dispositivos/js/Commands/CommandClientSetTermostatoEstado.js"></script>
+<script type="text/javascript" src="Dispositivos/js/Commands/CommandClientSetResitenciaEstado.js"></script>
+<script type="text/javascript" src="Dispositivos/js/Commands/CommandClientSetEstadoDispConec.js"></script>
+<script type="text/javascript" src="Dispositivos/js/Commands/CommandSetNombreDispositivo.js"></script>
+
+
+
+<script type="text/javascript" src="Dispositivos/js/Peticiones/PeticionesLista.js"></script>
+<script type="text/javascript" src="Dispositivos/js/Peticiones/PeticionAumentarTemp.js"></script>
+<script type="text/javascript" src="Dispositivos/js/Peticiones/PeticionDisminuirTemp.js"></script>
+<script type="text/javascript" src="Dispositivos/js/Peticiones/PeticionCambiarEstadoTermostato.js"></script>
+<script type="text/javascript" src="Dispositivos/js/Peticiones/PeticionCambiarNombreDispositivo.js"></script>
+<script type="text/javascript" src="Dispositivos/js/Peticiones/PeticionGetEstadoDispConec.js"></script>
+<script type="text/javascript" src="Dispositivos/js/Peticiones/PeticionValoreIniciales.js"></script>
+<script type="text/javascript" src="Dispositivos/js/Peticiones/PeticionListaDispo.js"></script>
+
+<script type="text/javascript" src="Dispositivos/js/Peticiones/PeticionGetTemperatura.js"></script>
+<script type="text/javascript" src="Dispositivos/js/Peticiones/PeticionConfirmarConexion.js"></script>
+<script type="text/javascript" src="Dispositivos/js/Peticiones/PeticionRegistrarDispositivos.js"></script>
+
+<script type="text/javascript" src="Dispositivos/js/Display.js"></script>
+<script type="text/javascript" src="Dispositivos/js/Dispositivo.js"></script>
+<script type="text/javascript" src="Dispositivos/js/ListaPeticionesPendientes.js"></script>
+<script type="text/javascript" src="Dispositivos/js/ListaDispositivos.js"></script>
+<script type="text/javascript" src="Dispositivos/js/Conexion.js"></script>
+<script type="text/javascript" src="Dispositivos/js/main.js"></script>
+
+<body>
+    <section class="centrado" >
+        <header>
+            <h1>Pruebas CLIENTES <span id="conexion">DESCONECTADO</span></h1>
+            <form>
+                <input type="button" value="Añadir elemento" onclick="crearDispositivo()"/>
+                <input type="button" value="Cargar lista" onclick="CargarLista()"/>
+                <input type="button" value="Cargar lista Servidor" onclick="CargarListaServidor('samuel')"/>
+             </form>
+        </header>
+
+        <article>
+            <div class="dispositivo">
+                <div class="display">
+                    <div class="lSuperior">
+                      <form>
+                        <input type="button" name="" value="<" onclick="hacer_click()"/>
+                        <input class="nombre" type="text" name="nombreDispositivo{{mac}}" value="A6-B5-C4-D3-E2-F1">
+                      </form>
+                      <p><span id="estadoConexion{{mac}}">DESCON</span></p>
+                    </div>
+
+                    <div class="medidas">
+                        <h2>T: <span id="temperatura{{mac}}">25.5</span>º</h2>
+                        <h2>H: <span id="humedad{{mac}}">10</span>%</h2>
+                    </div>
+
+                    <div class="ultimoBloque">
+
+                      <form>
+                        <div class="izq">
+                          Resis 1 [<span id="estadoResitencia1{{mac}}">*</span>]
+                        </div>
+
+                        <div class="cnt">
+                          <input type="button" value="OFF" onclick="hacer_click()"/>
+                        </div>
+
+                        <div class="der">
+                          <input type="button" value="+"  onclick="hacer_click()"/>
+                          <p id="tempTermostato1{{mac}}">25.2</p>
+                          <input type="button" value=" - " onclick="hacer_click()"/>
+                        </div>
+                      </form>
+
+                      <form>
+                        <div class="izq">
+                          Resis 2 [<span id="estadoResitencia2{{mac}}"> </span>]
+                        </div>
+
+                        <div class="cnt">
+                          <input type="button" value="OFF" onclick="hacer_click()"/>
+                        </div>
+
+                        <div class="der">
+                          <input type="button" value="+"  onclick="hacer_click()"/>
+                          <p id="tempTermostato2{{mac}}">100.0</p>
+                          <input type="button" value=" - " onclick="hacer_click()"/>
+                        </div>
+                      </form>
+                    </div>
+                </div>
+
+
+            </div>
+        </article>
+
+
+</body>
+
+</html>

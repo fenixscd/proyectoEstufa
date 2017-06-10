@@ -13,8 +13,8 @@ $server = IoServer::factory(
             new Conexion()
         )
     ),
-    8080
+    8008
 );
-    echo "Sevidor en marcha IP 192.168.5.10 8080\n";
+    echo "Sevidor en marcha IP 192.168.1.120 8080\n";
     $server->run();
 ?>

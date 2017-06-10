@@ -150,9 +150,14 @@ mysql -uroot -p$DBPASSWD -e "FLUSH PRIVILEGES";
 
 
 echo -e "\n--- CONFIGURANDO BASE DE DATOS ---\n"
+# mysql -uroot -p$DBPASSWD -e "CREATE DATABASE $DBNAME" >> /vagrant/vm_build.log 2>&1
+mysql -uroot -p$DBPASSWD < ./BaseDeDatos.sql
+echo -e "\n--- INSERTANDO LOS DATOS ---\n"
+mysql -uroot -p$DBPASSWD < ./CargarRegistors.sql
+echo "Estoy en "
+echo pwd
 
-mysql -uroot -p$DBPASSWD -e "CREATE DATABASE $DBNAME" >> /vagrant/vm_build.log 2>&1
-#mysql -uroot -p$DBPASSWD -e "grant all privileges on $DBNAME.* to '$DBUSER'@'localhost' identified by '$DBPASSWD'" > /vagrant/vm_build.log 2>&1
+
 echo '.'
 echo '-------------------------------------------------------------------------------------------------'
 echo '--------------  MYSQL INSTALDO Y FUNCIONANDO-----------------------------------------------------'
@@ -165,51 +170,4 @@ curl -s https://getcomposer.org/installer | php
 mv composer.phar /usr/local/bin/composer
 
 /etc/init.d/apache2 restart
-
-# if [ -f /vagrant/scripts/vim.sh ];then
-# 	echo "Sí, sí existe."
-# 	chmod +x /vagrant/scripts/vim.sh
-# 	sh /vagrant/scripts/vim/vim.sh
-# else
-# 	echo "No, no existe"
-# fi
-
 echo '........'
-
-
-
-#!/usr/bin/env bash
-
-#DBHOST=localhost
-
-# echo "Hola"
-
-# if [ -d /var/www/infrastructura/ ]; then
-#         echo "Me coloco en la carpeta"
-        
-# else
-#         echo "LA CARPETA infrastructura NO EXISTE"
-# fi
-
-# if [ -d /var/www/infrastructura/ ]; then
-#         echo "Me coloco en la carpeta"
-#         cd /var/www/infrastructura
-#         if [ -f /var/www/infrastructura/WebSocket.php ];then
-#                 clear
-#                 echo "El ejecuto el WebSocket"
-#                 php /var/www/infrastructura/WebSocket.php
-#         else
-#                 echo "El archivo WebSocket.php no existe"
-#         fi
-# else
-#         echo "LA CARPETA infrastructura NO EXISTE"
-# fi
-
-# if [ -f /vagrant/scripts/vim.sh ];then
-#       echo "Sí, sí existe."
-#       chmod +x /vagrant/scripts/vim.sh
-#       sh /vagrant/scripts/vim/vim.sh
-# else
-#       echo "No, no existe"
-# fi
-

@@ -14,7 +14,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # config.vm.network :public_network,:bridge=>"eth0" # Se conecta a la misma red que el anfitrion
   # config.vm.network :public_network
 
-  config.vm.network "private_network", ip: "192.168.5.20"
+  # config.vm.network "private_network", ip: "192.168.5.20"
+  config.vm.network "public_network", ip: "192.168.1.120"
   config.vm.synced_folder "../../Codigo/servidor" , "/var/www", :mount_options => ["dmode=777", "fmode=777"]
   config.vm.synced_folder "./COMPARTIDA" , "/home/vagrant", :mount_options => ["dmode=777", "fmode=777"]
 
