@@ -81,16 +81,9 @@ Conexion.prototype.conectar = function () {
   console.log("Intento de conexion " + this.intentosDeConexion);
 };
 
-
-Conexion.prototype.conexionEstablecida = function () {
-  console.log("Conxion establecida");
-};
-
 Conexion.prototype.getUrlServidor = function () {
   return this.urlServidor;
 };
-
-
 
 Conexion.prototype.enviarMensaje = function (mensaje) {
   if (this.isSePuedeEnviar()){

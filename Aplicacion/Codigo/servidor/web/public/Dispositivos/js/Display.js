@@ -1,7 +1,5 @@
 function Display (mac){
   this.mac = mac;
-
-  this.datos = new Array();
 }
 
 Display.prototype.cambiarValor = function(clave, valor) {
@@ -92,16 +90,3 @@ Display.prototype.nodoHtml = function () {
     console.log("El nodo con mac: " + mac + " no existe ");
   }
 }
-
-
-
-// Display.prototype.pintarValores = function() {
-//   var valorPintar;
-//   for (dato in this.datos){
-//       valorPintar = this.datos[dato][1]; // Valor verdadero
-//       if (this.datos[dato][0] === false){
-//         valorPintar = this.datos[dato][2]; // Para falso
-//       }
-//       document.getElementById(dato + this.mac).innerHTML = valorPintar;
-//   }
-// };

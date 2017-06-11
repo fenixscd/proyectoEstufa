@@ -27,7 +27,6 @@ Dispositivo.prototype.setConexionDisp = function (conexionDisp) {
   if(conexionDisp){
     this.peticionesLista.getPeticion("valoresInciales").ejecutar(this.mac);
   }
-
 };
 
 Dispositivo.prototype.getConexionDisp = function () {
@@ -61,21 +60,3 @@ Dispositivo.prototype.pintarConexionDispositivo = function () {
   }
   this.display.cambiarValor("estadoConexion", valor);
 };
-
-Dispositivo.prototype.solicitarValoreIniciales = function () {
-
-};
-
-
-
-
-// Dispositivo.prototype.detenerBucle = function () {
-//   clearInterval(this.bucle);
-// };
-
-// Dispositivo.prototype.buclePeticiones = function(obj) {
-//   console.log("Estoy en el bucle");
-//   this.bucle = window.setInterval(function() {
-//     obj.peticionesLista.getPeticion("getTemperatura").ejecutar(obj.mac);
-//   }, 5000);
-// };

@@ -23,11 +23,6 @@ use infrastructura\Commands\CommandLoguearUsuario;
 use infrastructura\Commands\CommandClientGenerarDisp;
 
 
-
-
-
-
-
 class Conexion implements MessageComponentInterface {
     private $clients;
     private $listaDispositivos;
@@ -53,9 +48,6 @@ class Conexion implements MessageComponentInterface {
         $this->commandLista->addCommand(new CommandClientSetNombreDisp($this->listaDispositivos));
         $this->commandLista->addCommand(new CommandLoguearUsuario($this->listaDispositivos));
         $this->commandLista->addCommand(new CommandClientGenerarDisp($this->listaDispositivos));
-
-
-
     }
 
     // Se ejecuta el metod cuando recive una conexión

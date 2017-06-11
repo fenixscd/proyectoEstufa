@@ -14,9 +14,9 @@ class CommandLista{
     $this->commands->attach($Command);
   }
 
-  public function getCommand($comando){
+  public function getCommand($nombreComando){
     foreach ($this->commands as $command){
-      if ($command->getNombre() == $comando){
+      if ($command->getNombre() == $nombreComando){
         return $command;
       }
     }
