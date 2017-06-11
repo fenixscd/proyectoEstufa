@@ -5,7 +5,7 @@ function Conexion(dispositivo, display, commandsLista){
   this.mac             = dispositivo.getMac();
   this.listaMensajes   = new ListaMensajes();
 
-  this.urlServidor = "ws://192.168.5.20:8008";
+  this.urlServidor = "ws://192.168.1.120:8008";
   this.intentosDeConexion = 0;
   this.websocket;
 

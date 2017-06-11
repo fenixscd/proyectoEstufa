@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 #DBHOST=localhost
-DBNAME=ServidorEstufa
+#DBNAME=ServidorEstufa
 DBUSER=ServidorEstufa
 DBPASSWD=ServidorEstufa
 
@@ -57,6 +57,13 @@ if [ -d /var/www/html/ ]; then
 else
 	echo "La carpeta html no existe"
 fi
+
+if [ -d /var/www/ ]; then
+	echo "--- LA CARPETA www YA EXISTE"
+else
+	echo "--- CREANDO LA CARPETA wwww"
+	mkdir /var/www
+fi
 #Carpeta internet
 if [ -d /var/www/web/ ]; then
 	echo "--- LA CARPETA WEB YA EXISTE"
@@ -101,8 +108,6 @@ sudo a2enmod rewrite
 sudo service apache2 restart
 
 
-
-
 echo '.'
 echo '--------------------------------------------------------'
 echo '-------------- APACHE Configurado-----------------------'
@@ -121,7 +126,6 @@ apt-get install php5-cli -y
 apt-get install php5-curl -y
 apt-get install php5-mcrypt -y
 apt-get install php5-gd -y
-apt-get install php5-sqlite -y
 apt-get install php5-cgi -y
 apt-get install php5-mysql -y
 
@@ -152,10 +156,6 @@ mysql -uroot -p$DBPASSWD -e "FLUSH PRIVILEGES";
 echo -e "\n--- CONFIGURANDO BASE DE DATOS ---\n"
 # mysql -uroot -p$DBPASSWD -e "CREATE DATABASE $DBNAME" >> /vagrant/vm_build.log 2>&1
 mysql -uroot -p$DBPASSWD < ./BaseDeDatos.sql
-echo -e "\n--- INSERTANDO LOS DATOS ---\n"
-mysql -uroot -p$DBPASSWD < ./CargarRegistors.sql
-echo "Estoy en "
-echo pwd
 
 
 echo '.'
