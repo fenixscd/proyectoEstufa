@@ -21,9 +21,10 @@ Dispositivo.prototype.actualizarElEsadoDeLaConexion = function () {
 };
 
 Dispositivo.prototype.setConexionDisp = function (conexionDisp) {
+
   this.conexionDisp = conexionDisp;
   this.pintarConexionDispositivo();
-
+  console.log("Antes de la condicion de para que pida valoresInciales " + conexionDisp);
   if(conexionDisp){
     this.peticionesLista.getPeticion("valoresInciales").ejecutar(this.mac);
   }
@@ -44,6 +45,7 @@ Dispositivo.prototype.setConexion = function(conexion) {
   }
   this.conexion = conexion;
 };
+
 
 Dispositivo.prototype.getMac = function() {
   return this.mac;

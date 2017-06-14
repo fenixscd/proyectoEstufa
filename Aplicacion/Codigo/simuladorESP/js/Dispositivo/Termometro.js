@@ -2,7 +2,6 @@ function Termometro(display, conexion, dispositivo){
   this.display           = display;
   this.conexion          = conexion;
   this.dispositivo       = dispositivo;
-  this.enviarTemperatura = false;
   this.temperaturaMaxima = 40;
   this.temperaturaMinima = -20;
   this.temperatura;

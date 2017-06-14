@@ -59,7 +59,7 @@ class Persistencia {
 
       $reusltaodMacs = array();
       if ($resultado->num_rows === 0) {
-        echo "Lo sentimos. No se pudo encontrar dispositivos para el usuario $usuarios.";
+        echo "Lo sentimos. No se pudo encontrar dispositivos para el usuario.";
         $reusltaodMacs = false;
         // exit;
       }

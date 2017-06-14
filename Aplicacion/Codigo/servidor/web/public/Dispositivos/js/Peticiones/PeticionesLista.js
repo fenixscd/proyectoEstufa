@@ -17,6 +17,7 @@ PeticionesLista.prototype.isCommands = function () {
 };
 
 PeticionesLista.prototype.getPeticion = function (peticion) {
+  console.log("Peticion solicitada " + peticion);
   for (var i = 0; i < this.peticionesLista.length; i++) {
     if (this.peticionesLista[i].getNombre() == peticion ){
       return this.peticionesLista[i];

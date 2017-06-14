@@ -17,10 +17,11 @@ class CommandServValoresIniciales {
   }
 
   public function ejecutar($conec, $parametros){
+    echo "\n Se solicitan valores iniciales al dispositivo \n " . $parametros["mac"];
     $dispositivo = $this->listaDispositivos->getDispositivo($parametros["mac"]);
 
     if($dispositivo->isConexionDispositivo()){
-      $parametros["command"] = "crearDispositivo";
+      $parametros["command"] = "enviarValoresActuales";
       $dispositivo->enviarMensajeDispositivo($parametros);
     } else {
       // Para los valores de temperatura y estado del termostato

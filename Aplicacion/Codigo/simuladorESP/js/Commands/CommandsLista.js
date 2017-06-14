@@ -2,8 +2,8 @@ function CommandsLista (){
   this.commandsLista = new Array()
 }
 
-CommandsLista.prototype.addCommand = function (peticion) {
-  this.commandsLista.push(peticion);
+CommandsLista.prototype.addCommand = function (command) {
+  this.commandsLista.push(command);
 };
 
 CommandsLista.prototype.getNCommands = function () {
@@ -15,11 +15,11 @@ CommandsLista.prototype.isCommands = function () {
   else return false;
 };
 
-CommandsLista.prototype.getCommand = function (comando) {
+CommandsLista.prototype.getCommand = function (nombreComando) {
   for (var i = 0; i < this.commandsLista.length; i++) {
-    if (this.commandsLista[i].getNombre() == comando )
+    if (this.commandsLista[i].getNombre() == nombreComando )
       return this.commandsLista[i];
   }
-  console.log("El comando - "+ comando +" - no existe:");
+  console.log("El comando - "+ nombreComando +" - no existe:");
   return false;
 };

@@ -21,16 +21,18 @@ class CommandClientGenerarDisp{
   }
 
   public function ejecutar($conec, $parametros){
-    echo "Commando clientGenerarDisp ". $parametros["usuario"] ."\n";
 
-    $this->conexion = $conec;
-    $usuario = $parametros["usuario"];
-    $persistencia = Persistencia::getInstance();
+    if (array_key_exists('usuario', $parametros)) {
+      echo "Commando clientGenerarDisp ". $parametros["usuario"] ."\n";
+      $this->conexion = $conec;
+      $usuario = $parametros["usuario"];
 
-    $listadoMacs = $persistencia->listadoDeMacs($usuario);
+      $persistencia = Persistencia::getInstance();
 
-    foreach ($listadoMacs as $mac) {
-      $this->enviarMensaje($mac);
+      $listadoMacs = $persistencia->listadoDeMacs($usuario);
+      foreach ($listadoMacs as $mac) {
+        $this->enviarMensaje($mac);
+      }
     }
   }
 

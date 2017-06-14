@@ -21,6 +21,7 @@ function cargarListaDePeticiones(){
   peticionesLista.addPeticion(new PeticionDisminuirTemp(conexion));
   peticionesLista.addPeticion(new PeticionCambiarEstadoTermostato(conexion));
   peticionesLista.addPeticion(new PeticionCambiarNombreDispositivo(conexion));
+  peticionesLista.addPeticion(new PeticionCambiarNombreDisp(conexion));
   peticionesLista.addPeticion(new PeticionGetEstadoDispConec(conexion));
   peticionesLista.addPeticion(new PeticionValoreIniciales(conexion));
   peticionesLista.addPeticion(new PeticionListaDispo(conexion));
@@ -62,8 +63,17 @@ function CargarLista() {
   }
 }
 
-function CargarListaServidor(usuario){
-  console.log(usuario);
+function CargarListaServidor(){
+  var usuario;
+  if (document.getElementById("usuario") != null){
+    usuario = document.getElementById("usuario").value;
+    solicitarCarga(usuario);
+  }else {
+    console.log("No existe el clave usuario en le HTML");
+  }
+}
+
+function solicitarCarga(usuario){
   var datos     = new Object();
   datos.usuario = usuario;
   datos.command = "clientGenerarDisp";
@@ -78,4 +88,16 @@ function cambiarEstado(mac, nTermostato, valor){
     nuevoEstado = true
   }
   peticionesLista.getPeticion("cambiarEstadoTermostato").ejecutar(mac, nTermostato, nuevoEstado);
+}
+
+function CambiarNombre(mac){
+  console.log("Estoy en cambiar nobre");
+  var mac = mac;
+  var nombre;
+  if (document.getElementById("nombreDispositivo" + mac) != null){
+    nombre = document.getElementById("nombreDispositivo" + mac).value;
+    peticionesLista.getPeticion("cambiarNombreDisp").ejecutar(mac, nombre);
+  }else {
+    console.log("No existe el clave \"nombreDispositivo - " + mac  + "\" en le HTML");
+  }
 }

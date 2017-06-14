@@ -32,10 +32,10 @@ Display.prototype.añadirHTMLDispositivo = function () {
 Display.prototype.generarHTML = function () {
   var plantilla = '<div class="display id="{{mac}}">' +
                     '<div class="lSuperior">' +
-                      '<form>' +
-                        '<input type="button" name="" value="<" onclick="peticionesLista.getPeticion(`cambiarNombreDispositivo`).ejecutar(`{{mac}}`, this.form.children[1].value)"/>' +
+
+                        '<input type="button" name="" value="<" onclick="CambiarNombre(`{{mac}}`)"/>'+
                         '<input id="nombreDispositivo{{mac}}"  class="nombre" type="text" name="nombreDispositivo{{mac}}" value="{{mac}}">' +
-                      '</form>' +
+
                       '<p><span id="estadoConexion{{mac}}">DESCONEC</span></p>' +
                     '</div>' +
 
