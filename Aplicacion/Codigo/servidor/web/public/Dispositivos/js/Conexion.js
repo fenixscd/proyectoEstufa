@@ -2,7 +2,7 @@ function Conexion(commandsLista){
   this.listaPeticionesPendientes = new ListaPeticionesPendientes();
   this.commandsLista = commandsLista;
 
-  this.urlServidor = "ws://192.168.1.120:8008";
+  this.urlServidor = "ws://192.168.5.20:8008";
   this.intentosDeConexion = 0;
   this.websocket;
   console.log("Direccione de conexion " + this.urlServidor);
@@ -50,7 +50,7 @@ Conexion.prototype.conexionError = function (evt) {
 Conexion.prototype.conexionMensajeRecivido = function (evt) {
   // console.log("Metodo de mensaje recivido");
   var mensaje = evt.data;
-  // console.log(mensaje);
+  console.log(mensaje);
   var parametros = JSON.parse(mensaje);
   // console.log("Comando recivido: " +  parametros["command"]);
   // console.log(parametros["command"]);

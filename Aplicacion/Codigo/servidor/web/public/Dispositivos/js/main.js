@@ -25,8 +25,6 @@ function cargarListaDePeticiones(){
   peticionesLista.addPeticion(new PeticionGetEstadoDispConec(conexion));
   peticionesLista.addPeticion(new PeticionValoreIniciales(conexion));
   peticionesLista.addPeticion(new PeticionListaDispo(conexion));
-
-
 }
 
 function cargarListaDeComandos(){
